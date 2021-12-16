@@ -36,7 +36,7 @@ public class Usuario {
         this.password = password;
         this.foto = foto;
         this.zona = zona;
-        this.alta = alta;
+        this.alta = true;
         this.telefono = telefono;
     }
 
