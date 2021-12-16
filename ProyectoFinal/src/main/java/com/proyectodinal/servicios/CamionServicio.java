@@ -21,7 +21,7 @@ public class CamionServicio {
     private RepositorioCamion repositorioCamion;
 
     @Transactional
-    public void crearCamion(Integer pesoMaximo, String modelo, Integer anio, String patente, Integer poliza, Foto foto) throws ErroresServicio {
+    public void crearCamion(Integer pesoMaximo, String modelo, Integer anio, String patente, Integer poliza/*, Foto foto*/) throws ErroresServicio {
         validar(pesoMaximo, modelo, anio, patente, poliza);
         Camion camion = new Camion();
         camion.setPesoMaximo(pesoMaximo);
@@ -29,7 +29,7 @@ public class CamionServicio {
         camion.setAnio(anio);
         camion.setPatente(patente);
         camion.setPoliza(poliza);
-        camion.setFoto(foto);//REVISAR
+        /*camion.setFoto(foto);*/ //REVISAR
         repositorioCamion.save(camion);
     }
 
