@@ -54,6 +54,7 @@ public class UsuarioServicio {
         }
     }
 
+    @Transactional
     public void modificarUsuario(String id, String nombre, String apellido, String mail, String password/*,Foto foto*/, String zona, Integer telefono) throws ErroresServicio {
         Optional<Usuario> respuesta = repositorioUsuario.findById(id);
         if (respuesta.isPresent()) {
