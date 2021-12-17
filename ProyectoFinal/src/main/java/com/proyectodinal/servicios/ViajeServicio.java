@@ -19,7 +19,6 @@ public class ViajeServicio {
     public void crearViaje(Integer peso, Integer kmRecorridos, String tipoCargas, String destino, String origen) throws ErroresServicio {
         ValidarViaje(peso, kmRecorridos, tipoCargas, destino, origen);
         Viaje viaje = new Viaje();
-
         viaje.setDestino(destino);
         viaje.setKmRecorridos(kmRecorridos);
         viaje.setOrigen(origen);
@@ -44,6 +43,8 @@ public class ViajeServicio {
             viaje.setPeso(peso);
             viaje.setTipoCargas(tipoCargas);
             repositorioViaje.save(viaje);
+        } else {
+            throw new ErroresServicio("No se encontro el viaje solicitado");
         }
     }
 
@@ -74,6 +75,8 @@ public class ViajeServicio {
             Viaje viaje = respuesta.get();
             viaje.setAlta(false);
             repositorioViaje.save(viaje);
+        } else {
+            throw new ErroresServicio("No se encontro el viaje solicitado");
         }
     }
 
