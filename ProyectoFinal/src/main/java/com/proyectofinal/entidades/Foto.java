@@ -1,36 +1,42 @@
 
 package com.proyectofinal.entidades;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Foto {
-    private Byte contenido;
-    private String mime;
-    private String nombre;
     
-     @Id
+    @Id
     @GeneratedValue(generator="uuid")
     @GenericGenerator(name="uuid",strategy="uuid2")
     private String ID;
-
+    
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private byte[] contenido;
+    private String mime;
+    private String nombre;
+    
     public Foto() {
     }
 
-    public Foto(Byte contenido, String mime, String nombre) {
+    public Foto(byte[] contenido, String mime, String nombre) {
         this.contenido = contenido;
         this.mime = mime;
         this.nombre = nombre;
     }
      
-    public Byte getContenido() {
+    public byte[] getContenido() {
         return contenido;
     }
 
-    public void setContenido(Byte contenido) {
+    public void setContenido(byte[] contenido) {
         this.contenido = contenido;
     }
 
