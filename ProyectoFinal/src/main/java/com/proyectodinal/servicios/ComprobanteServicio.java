@@ -18,8 +18,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ComprobanteServicio {
+
     @Autowired
     private RepositorioComprobante repositorioComprobante;
+<<<<<<< Updated upstream
  @Transactional
   public void crearComprobante(Integer valoracion, Proveedor proveedor, Viaje viaje) throws ErroresServicio {
   validarComprobante(valoracion, proveedor, viaje);
@@ -34,18 +36,51 @@ public class ComprobanteServicio {
   Optional<Comprobante> respuesta = repositorioComprobante.findById(id);
   
   }
+=======
+
+    @Transactional
+    public void crearComprobante(Integer valoracion, Proveedor proveedor, Viaje viaje) throws ErroresServicio {
+        validarComprobante(valoracion, proveedor, viaje);
+        Comprobante comprobante = new Comprobante();
+        comprobante.setProveedor(proveedor);
+        comprobante.setValoracion(valoracion);
+        comprobante.setViaje(viaje);
+        repositorioComprobante.save(comprobante);
+    }
+
+    @Transactional
+    private void ModificarComprobante(String id, Integer valoracion, Proveedor proveedor, Viaje viaje) throws ErroresServicio {
+        Optional<Comprobante> respuesta = repositorioComprobante.findById(id);
+        validarComprobante(valoracion, proveedor, viaje);
+        if (respuesta.isPresent()) {
+            Comprobante comprobante = respuesta.get();
+            comprobante.setProveedor(proveedor);
+            comprobante.setValoracion(valoracion);
+            comprobante.setViaje(viaje);
+            repositorioComprobante.save(comprobante);
+
+        }
+    }
+
+>>>>>>> Stashed changes
     private void validarComprobante(Integer valoracion, Proveedor proveedor, Viaje viaje) throws ErroresServicio {
-        if (valoracion ==null) {
+        if (valoracion == null) {
             throw new ErroresServicio("Debe ingresar una valoracion");
         }
-        if (proveedor ==null) {
+        if (proveedor == null) {
             throw new ErroresServicio("Debe ingresar un proveedor");
         }
-        if (viaje ==null) {
+        if (viaje == null) {
             throw new ErroresServicio("Debe ingresar un viaje");
         }
     }
+<<<<<<< Updated upstream
      public void modificarComprobante(){
          
      }
+=======
+    /*private void Valoracion(){
+}*/
+
+>>>>>>> Stashed changes
 }
