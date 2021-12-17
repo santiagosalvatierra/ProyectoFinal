@@ -22,7 +22,7 @@ public class CamionServicio {
 
     @Transactional
     public void crearCamion(Integer pesoMaximo, String modelo, Integer anio, String patente, Integer poliza/*, Foto foto*/) throws ErroresServicio {
-        validar(pesoMaximo, modelo, anio, patente, poliza);
+        validarCamion(pesoMaximo, modelo, anio, patente, poliza);
         Camion camion = new Camion();
         camion.setPesoMaximo(pesoMaximo);
         camion.setModelo(modelo);
@@ -33,7 +33,7 @@ public class CamionServicio {
         repositorioCamion.save(camion);
     }
 
-    public void validar(Integer pesoMaximo, String modelo, Integer anio, String patente, Integer poliza/*, Foto foto*/) throws ErroresServicio {
+    public void validarCamion(Integer pesoMaximo, String modelo, Integer anio, String patente, Integer poliza/*, Foto foto*/) throws ErroresServicio {
         if (pesoMaximo == null) {
             throw new ErroresServicio("Debe ingresar un peso maximo");
         }
@@ -52,9 +52,9 @@ public class CamionServicio {
     }
 
     @Transactional
-    public void modificar(String id, Integer pesoMaximo, String modelo, Integer anio, String patente, Integer poliza, Foto foto) throws ErroresServicio {
+    public void modificarCamion(String id, Integer pesoMaximo, String modelo, Integer anio, String patente, Integer poliza, Foto foto) throws ErroresServicio {
         Optional<Camion> respuesta = repositorioCamion.findById(id);
-        validar(pesoMaximo, modelo, anio, patente, poliza);
+        validarCamion(pesoMaximo, modelo, anio, patente, poliza);
         if (respuesta.isPresent()) {
             Camion camion = respuesta.get();
             camion.setPesoMaximo(pesoMaximo);
