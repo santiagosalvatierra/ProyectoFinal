@@ -1,4 +1,3 @@
-
 package com.proyectofinal.entidades;
 
 import javax.persistence.Entity;
@@ -8,14 +7,15 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Viaje {
+
     @Id
-    @GeneratedValue(generator="uuid")
-    @GenericGenerator(name="uuid",strategy="uuid2")
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String ID;
     private Integer peso;
     private Integer kmRecorridos;
     private String tipoCargas;
-    private boolean alta;
+    private boolean alta = true;
     private String destino;
     private String origen;
 
@@ -23,7 +23,7 @@ public class Viaje {
     }
 
     public Viaje(Integer peso, Integer kmRecorridos, String tipoCargas, boolean alta, String destino, String origen) {
- 
+
         this.peso = peso;
         this.kmRecorridos = kmRecorridos;
         this.tipoCargas = tipoCargas;
@@ -92,5 +92,5 @@ public class Viaje {
     public void setOrigen(String origen) {
         this.origen = origen;
     }
-    
+
 }
