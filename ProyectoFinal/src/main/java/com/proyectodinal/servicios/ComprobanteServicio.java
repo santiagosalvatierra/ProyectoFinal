@@ -32,7 +32,15 @@ public class ComprobanteServicio {
   @Transactional
   private void ModificarComprobante(String id,Integer valoracion, Proveedor proveedor, Viaje viaje)throws ErroresServicio{
   Optional<Comprobante> respuesta = repositorioComprobante.findById(id);
+   validarComprobante(valoracion, proveedor, viaje);
+      if (respuesta.isPresent()){
+          Comprobante comprobante = respuesta.get();
+          comprobante.setProveedor(proveedor);
+  comprobante.setValoracion(valoracion);
+  comprobante.setViaje(viaje);
+   repositorioComprobante.save(comprobante);
   
+      }
   }
     private void validarComprobante(Integer valoracion, Proveedor proveedor, Viaje viaje) throws ErroresServicio {
         if (valoracion ==null) {
@@ -45,7 +53,7 @@ public class ComprobanteServicio {
             throw new ErroresServicio("Debe ingresar un viaje");
         }
     }
-     public void modificarComprobante(){
-         
-     }
+    /*private void Valoracion(){
+}*/
+    
 }
