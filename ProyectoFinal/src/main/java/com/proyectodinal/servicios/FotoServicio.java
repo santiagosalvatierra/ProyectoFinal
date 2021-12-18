@@ -23,7 +23,7 @@ public class FotoServicio {
     //Metodo para guardar la foto
     @Transactional
     public Foto guardar(MultipartFile archivo) throws ErroresServicio {
-        if (archivo != null || !archivo.isEmpty()) {
+        if (archivo != null && !archivo.isEmpty()) {
             try {
                 Foto foto = new Foto();
                 foto.setMime(archivo.getContentType());
@@ -41,7 +41,7 @@ public class FotoServicio {
     //Metodo para actualizar una foto
     @Transactional
     public Foto actualizar(String idFoto, MultipartFile archivo) throws ErroresServicio{
-        if (archivo != null || !archivo.isEmpty()) {
+        if (archivo != null && !archivo.isEmpty()) {
             try {
                 Foto foto = new Foto();
                 //como es un metodo para modificar hay que verificar si existe una foto anterior para reemplazarla
