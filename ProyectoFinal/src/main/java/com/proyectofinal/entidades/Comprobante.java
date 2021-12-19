@@ -13,8 +13,10 @@ public class Comprobante {
     @GenericGenerator(name="uuid",strategy="uuid2")
     private String ID;
     private Integer valoracion;
+    
     @OneToOne
     private Proveedor proveedor;
+    
     @OneToOne
     private Viaje viaje;
 

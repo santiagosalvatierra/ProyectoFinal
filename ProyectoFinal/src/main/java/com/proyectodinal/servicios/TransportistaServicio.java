@@ -7,6 +7,7 @@ package com.proyectodinal.servicios;
 
 import com.proyectofinal.entidades.Camion;
 import com.proyectofinal.entidades.Foto;
+import com.proyectofinal.entidades.Proveedor;
 import com.proyectofinal.entidades.Transportista;
 import com.proyectofinal.entidades.Usuario;
 import com.proyectofinal.errores.ErroresServicio;
@@ -92,7 +93,27 @@ public class TransportistaServicio {
             throw new ErroresServicio("No se encontro el usuario solicitado");
         }
     }
-
+    @Transactional
+    public void deshabilitarTransportista(String id) throws ErroresServicio{
+         Optional<Transportista> respuesta = repositorioTransportista.findById(id);
+        if (respuesta.isPresent()) {
+            Transportista transportista = respuesta.get();
+            transportista.setAlta(false);
+        }else{
+        throw new ErroresServicio("No se encontro el usuario solicitado");
+        }
+    }
+    
+    @Transactional
+    public void habilitarTransportista(String id) throws ErroresServicio{
+         Optional<Transportista> respuesta = repositorioTransportista.findById(id);
+        if (respuesta.isPresent()) {
+            Transportista transportista = respuesta.get();
+            transportista.setAlta(true);
+        }else{
+        throw new ErroresServicio("No se encontro el usuario solicitado");
+        }
+    }
     public void validarTransportista(String nombre, String apellido, String mail, String password, Foto foto, String zona, Integer telefono, Camion camion) throws ErroresServicio {
         if (nombre == null || nombre.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un nombre");
@@ -125,7 +146,7 @@ public class TransportistaServicio {
         Optional<Usuario> usuario = repositorioUsuario.buscarPorMail(mail);
         if (usuario != null) {
             List<GrantedAuthority> permisos = new ArrayList<>();
-            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO");
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_TRANSPORTISTA_REGISTRADO");
             permisos.add(p1);
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
             HttpSession session = attr.getRequest().getSession(true);

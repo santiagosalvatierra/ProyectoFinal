@@ -9,6 +9,7 @@ import com.proyectofinal.entidades.Camion;
 import com.proyectofinal.entidades.Foto;
 import com.proyectofinal.errores.ErroresServicio;
 import com.proyectofinal.repositorios.RepositorioCamion;
+import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class CamionServicio {
     private RepositorioCamion repositorioCamion;
 
     @Transactional
-    public void crearCamion(Integer pesoMaximo, String modelo, Integer anio, String patente, Integer poliza/*, Foto foto*/) throws ErroresServicio {
+    public void crearCamion(Integer pesoMaximo, String modelo, Integer anio, String patente, Integer poliza, Foto foto) throws ErroresServicio {
         validarCamion(pesoMaximo, modelo, anio, patente, poliza);
         Camion camion = new Camion();
         camion.setPesoMaximo(pesoMaximo);
@@ -29,7 +30,7 @@ public class CamionServicio {
         camion.setAnio(anio);
         camion.setPatente(patente);
         camion.setPoliza(poliza);
-        /*camion.setFoto(foto);*/ //REVISAR
+        camion.setFoto(foto);
         repositorioCamion.save(camion);
     }
 

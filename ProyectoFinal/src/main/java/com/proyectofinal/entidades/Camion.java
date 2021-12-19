@@ -1,6 +1,7 @@
 
 package com.proyectofinal.entidades;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,8 +19,9 @@ public class Camion {
     @GeneratedValue(generator="uuid")
     @GenericGenerator(name="uuid",strategy="uuid2")
     private String ID;
+    
     @OneToMany
-    private Foto foto;
+    private List<Foto> foto;
 
     public Camion() {
     }
@@ -31,7 +33,7 @@ public class Camion {
         this.anio = anio;
         this.patente = patente;
         this.poliza = poliza;
-        this.foto = foto;
+        this.foto = (List<Foto>) foto;
     }
 
     public String getDescripcion() {
@@ -91,11 +93,11 @@ public class Camion {
     }
 
     public Foto getFoto() {
-        return foto;
+        return (Foto) foto;
     }
 
     public void setFoto(Foto foto) {
-        this.foto = foto;
+        this.foto = (List<Foto>) foto;
     }
     
 }

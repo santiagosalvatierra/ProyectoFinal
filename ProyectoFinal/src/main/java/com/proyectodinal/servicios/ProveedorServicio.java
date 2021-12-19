@@ -82,6 +82,26 @@ public class ProveedorServicio {
         throw new ErroresServicio("No se encontro el usuario solicitado");
     }
     }
+    @Transactional
+    public void deshabilitarProveedor(String id) throws ErroresServicio{
+         Optional<Proveedor> respuesta = repositorioproveedor.findById(id);
+        if (respuesta.isPresent()) {
+            Proveedor proveedor = respuesta.get();
+            proveedor.setAlta(false);
+        }else{
+        throw new ErroresServicio("No se encontro el usuario solicitado");
+        }
+    }
+    @Transactional
+    public void habilitarProveedor(String id) throws ErroresServicio{
+         Optional<Proveedor> respuesta = repositorioproveedor.findById(id);
+        if (respuesta.isPresent()) {
+            Proveedor proveedor = respuesta.get();
+            proveedor.setAlta(true);
+        }else{
+        throw new ErroresServicio("No se encontro el usuario solicitado");
+        }
+    }
     public void validarProveedor(String nombre, String apellido, String mail, String password,Foto foto, String zona, Integer telefono,String razonSocial,Integer cuilEmpresa,String nombreEmpresa) throws ErroresServicio {
         if (nombre == null || nombre.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un nombre");
@@ -118,7 +138,7 @@ public class ProveedorServicio {
         Optional <Usuario> usuario = repositorioUsuario.buscarPorMail(mail);
         if (usuario != null) {
             List<GrantedAuthority> permisos = new ArrayList<>();
-            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO");
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_PROVEEDOR_REGISTRADO");
             permisos.add(p1);
             ServletRequestAttributes attr=(ServletRequestAttributes)RequestContextHolder.currentRequestAttributes();
             HttpSession session = attr.getRequest().getSession(true);
