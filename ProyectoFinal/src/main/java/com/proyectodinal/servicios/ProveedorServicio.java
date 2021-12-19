@@ -29,12 +29,14 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
 public class ProveedorServicio {
-    @Autowired
-    private RepositorioProveedor repositorioproveedor;
-    @Autowired
-    private RepositorioUsuario repositorioUsuario;
-    @Autowired
-    private NotificacionDeServicio notificacionServicio;
+    @Autowired(required = true)
+    RepositorioProveedor repositorioproveedor;
+    
+    @Autowired(required = true)
+    RepositorioUsuario repositorioUsuario;
+    
+    @Autowired(required = true)
+    NotificacionDeServicio notificacionServicio;
 
     @Transactional
     public void crearProveedor(String nombre, String apellido, String mail, String password,Foto foto, String zona, Integer telefono,String razonSocial,Integer cuilEmpresa,String nombreEmpresa) throws ErroresServicio{

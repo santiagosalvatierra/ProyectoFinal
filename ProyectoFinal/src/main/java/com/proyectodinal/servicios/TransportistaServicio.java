@@ -32,12 +32,14 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @Service
 public class TransportistaServicio {
  
-    @Autowired
-    private RepositorioTransportista repositorioTransportista;
-    @Autowired
-    private RepositorioUsuario repositorioUsuario;
-    @Autowired
-    private NotificacionDeServicio notificacionServicio;
+    @Autowired(required = true)
+    RepositorioTransportista repositorioTransportista;
+    
+    @Autowired(required = true)
+    RepositorioUsuario repositorioUsuario;
+    
+    @Autowired(required = true)
+    NotificacionDeServicio notificacionServicio;
 
     @Transactional
     public void crearTransportista(String nombre, String apellido, String mail, String password, Foto foto, String zona, Integer telefono, Camion camion, Integer cantidadViajes) throws ErroresServicio {

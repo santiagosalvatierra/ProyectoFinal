@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ViajeServicio {
 
-    @Autowired
-    private RepositorioViaje repositorioViaje;
+    @Autowired(required = true)
+    RepositorioViaje repositorioViaje;
 
     @Transactional
 
@@ -24,8 +24,6 @@ public class ViajeServicio {
         viaje.setOrigen(origen);
         viaje.setPeso(peso);
         viaje.setTipoCargas(tipoCargas);
-        // no hago setID por que es "uuid"
-        //no hago setAlta por que ya es true desde el atributo de la entidad
         repositorioViaje.save(viaje);
 
     }

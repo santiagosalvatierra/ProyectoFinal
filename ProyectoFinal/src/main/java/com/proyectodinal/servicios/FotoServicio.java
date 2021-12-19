@@ -17,8 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class FotoServicio {
     
-    @Autowired
-    private RepositorioFoto repositorioFoto;
+    @Autowired(required = true)
+    RepositorioFoto repositorioFoto;
     
     //Metodo para guardar la foto
     @Transactional

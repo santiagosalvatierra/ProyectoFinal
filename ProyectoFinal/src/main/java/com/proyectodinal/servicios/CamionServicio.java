@@ -18,8 +18,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CamionServicio {
 //PROBANDO
-    @Autowired
-    private RepositorioCamion repositorioCamion;
+    @Autowired(required = true)
+    RepositorioCamion repositorioCamion;
 
     @Transactional
     public void crearCamion(Integer pesoMaximo, String modelo, Integer anio, String patente, Integer poliza, Foto foto) throws ErroresServicio {

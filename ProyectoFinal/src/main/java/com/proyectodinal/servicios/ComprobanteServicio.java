@@ -18,8 +18,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ComprobanteServicio {
 
-    @Autowired
-    private RepositorioComprobante repositorioComprobante;
+    @Autowired(required = true)
+    RepositorioComprobante repositorioComprobante;
 
     @Transactional
     public void crearComprobante(Integer valoracion, Proveedor proveedor, Viaje viaje) throws ErroresServicio {
