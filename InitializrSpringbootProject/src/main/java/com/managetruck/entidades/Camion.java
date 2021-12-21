@@ -21,8 +21,8 @@ public class Camion {
     @GenericGenerator(name="uuid",strategy="uuid2")
     private String ID;
     
-    @OneToOne
-    private Foto foto;
+    @OneToMany
+    private List<Foto> foto;
 
     public Camion() {
     }
@@ -34,7 +34,7 @@ public class Camion {
         this.anio = anio;
         this.patente = patente;
         this.poliza = poliza;
-        this.foto =  foto;
+        this.foto =  (List<Foto>) foto;
     }
 
     public String getDescripcion() {
@@ -98,7 +98,7 @@ public class Camion {
     }
 
     public void setFoto(Foto foto) {
-        this.foto =  foto;
+        this.foto =  (List<Foto>) foto;
     }
     
 }
