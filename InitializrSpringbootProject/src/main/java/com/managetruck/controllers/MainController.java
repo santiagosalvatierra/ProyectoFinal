@@ -31,8 +31,8 @@ public class MainController {
     }
     
     @PostMapping("")
-    public String crear(@RequestParam String nombre,@RequestParam String apellido,@RequestParam String mail,@RequestParam String password,@RequestParam String zona,@RequestParam Integer telefono,@RequestParam String razonSocial,@RequestParam Integer cuilEmpresa,@RequestParam String nombreEmpresa) throws ErroresServicio{
-        proveedorServicio.crearProveedor(nombre, apellido, mail, password, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
+    public String crear(@RequestParam String nombre,@RequestParam String apellido,MultipartFile archivo,@RequestParam String mail,@RequestParam String password,@RequestParam String zona,@RequestParam Integer telefono,@RequestParam String razonSocial,@RequestParam Integer cuilEmpresa,@RequestParam String nombreEmpresa) throws ErroresServicio{
+        proveedorServicio.crearProveedor(nombre, apellido, mail, password,archivo, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
     return "index";
     }
 }

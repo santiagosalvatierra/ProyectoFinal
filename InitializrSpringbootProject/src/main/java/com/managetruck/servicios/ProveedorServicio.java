@@ -28,6 +28,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ProveedorServicio {
@@ -39,10 +40,14 @@ public class ProveedorServicio {
     
     @Autowired(required = true)
     NotificacionDeServicio notificacionServicio;
+    
+    @Autowired(required = true)
+    FotoServicio fotoServicio;
 
     @Transactional
-    public void crearProveedor(String nombre, String apellido, String mail, String password/*,Foto foto*/, String zona, Integer telefono,String razonSocial,Integer cuilEmpresa,String nombreEmpresa) throws ErroresServicio{
-        validarProveedor(nombre,apellido,mail,password/*,foto*/,zona,telefono,razonSocial,cuilEmpresa,nombreEmpresa);
+    public void crearProveedor(String nombre, String apellido, String mail, String password,MultipartFile archivo, String zona, Integer telefono,String razonSocial,Integer cuilEmpresa,String nombreEmpresa) throws ErroresServicio{
+        Foto foto= fotoServicio.guardar(archivo);
+        validarProveedor(nombre,apellido,mail,password,archivo,zona,telefono,razonSocial,cuilEmpresa,nombreEmpresa);
         Optional<Usuario> respuesta = repositorioUsuario.buscarPorMail(mail);
         if (respuesta.isPresent()) {
             throw new ErroresServicio("El mail ya esta utilizado");
@@ -54,7 +59,7 @@ public class ProveedorServicio {
         proveedor.setMail(mail);
         String encriptada = new BCryptPasswordEncoder().encode(password);
         proveedor.setPassword(encriptada);
-        //proveedor.setFoto(foto);
+        proveedor.setFoto(foto);
         proveedor.setZona(zona);
         proveedor.setTelefono(telefono);
         proveedor.setRazonSocial(razonSocial);
@@ -66,7 +71,7 @@ public class ProveedorServicio {
         }
     }
     @Transactional
-    public void modificarUsuario(String id,String nombre, String apellido, String mail, String password,Foto foto, String zona, Integer telefono,String razonSocial,Integer cuilEmpresa,String nombreEmpresa) throws ErroresServicio {
+    public void modificarUsuario(String id,String nombre, String apellido, String mail, String password,MultipartFile archivo, String zona, Integer telefono,String razonSocial,Integer cuilEmpresa,String nombreEmpresa) throws ErroresServicio {
         Optional<Proveedor> respuesta = repositorioproveedor.findById(id);
         if (respuesta.isPresent()) {
         Proveedor proveedor = respuesta.get();
@@ -75,6 +80,7 @@ public class ProveedorServicio {
         proveedor.setMail(mail);
         String encriptada = new BCryptPasswordEncoder().encode(password);
         proveedor.setPassword(encriptada);
+        Foto foto= fotoServicio.guardar(archivo);
         proveedor.setFoto(foto);
         proveedor.setZona(zona);
         proveedor.setTelefono(telefono);
@@ -107,7 +113,7 @@ public class ProveedorServicio {
         throw new ErroresServicio("No se encontro el usuario solicitado");
         }
     }
-    public void validarProveedor(String nombre, String apellido, String mail, String password/*,Foto foto*/, String zona, Integer telefono,String razonSocial,Integer cuilEmpresa,String nombreEmpresa) throws ErroresServicio {
+    public void validarProveedor(String nombre, String apellido, String mail, String password,MultipartFile foto, String zona, Integer telefono,String razonSocial,Integer cuilEmpresa,String nombreEmpresa) throws ErroresServicio {
         if (nombre == null || nombre.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un nombre");
         }
@@ -126,9 +132,9 @@ public class ProveedorServicio {
         if (zona == null || zona.isEmpty()) {
             throw new ErroresServicio("Debe ingresar una zona");
         }
-//        if (foto == null ) {
-//            throw new ErroresServicio("Debe ingresar una foto");
-//        }
+       if (foto == null) {
+            throw new ErroresServicio("Debe ingresar una foto");
+       }
         if (razonSocial == null || razonSocial.isEmpty()) {
             throw new ErroresServicio("Debe ingresar una zona");
         }
