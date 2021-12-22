@@ -7,7 +7,7 @@
     </head>
     <body>
         <div>prueba de persistencia viaje</div>
-        <form th:action="@{/}" method="post">
+        <form th:action="@{/}" method="post" enctype="multipart/form-data">
             <input type="text" name="nombre">
             <label name="nombre">nombre</label>
             
@@ -35,6 +35,9 @@
             
             <input type="number" name="cuilEmpresa">
             <label name="cuilEmpresa">cuilEmpresa</label>
+             
+            <label for="foto">Foto</label>
+            <input type="file" name="archivo">
             
             <input type="text" name="nombreEmpresa">
             <label name="nombreEmpresa">nombreEmpresa</label>
