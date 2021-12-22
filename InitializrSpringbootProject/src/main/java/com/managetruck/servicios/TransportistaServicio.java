@@ -11,6 +11,7 @@ import com.managetruck.entidades.Foto;
 import com.managetruck.entidades.Proveedor;
 import com.managetruck.entidades.Transportista;
 import com.managetruck.entidades.Usuario;
+import com.managetruck.enumeracion.Role;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.repositorios.RepositorioProveedor;
 import com.managetruck.repositorios.RepositorioTransportista;
@@ -65,6 +66,7 @@ public class TransportistaServicio {
             transportista.setCamion(camion);
             transportista.setCantidadViajes(0);
             transportista.setValoracion(0);
+            transportista.setRol(Role.Transportista);
             transportista.setEstado(true);
             //se envia notificacion que lo realizo correctamente
             notificacionServicio.enviar("TEXTO DE BIENVENIDA", "NOMBRE DE LA PAGINA", transportista.getMail());
@@ -146,20 +148,20 @@ public class TransportistaServicio {
 
     }
 
-    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
-        Optional<Usuario> usuario = repositorioUsuario.buscarPorMail(mail);
-        if (usuario != null) {
-            List<GrantedAuthority> permisos = new ArrayList<>();
-            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_TRANSPORTISTA_REGISTRADO");
-            permisos.add(p1);
-            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-            HttpSession session = attr.getRequest().getSession(true);
-            session.setAttribute("usuariosession", usuario.get());
-            User user = new User(usuario.get().getMail(), usuario.get().getPassword(), permisos);
-            return user;
-
-        } else {
-            return null;
-        }
-    }
+//    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
+//        Optional<Usuario> usuario = repositorioUsuario.buscarPorMail(mail);
+//        if (usuario != null) {
+//            List<GrantedAuthority> permisos = new ArrayList<>();
+//            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_"+usuario.get().getRol());
+//            permisos.add(p1);
+//            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+//            HttpSession session = attr.getRequest().getSession(true);
+//            session.setAttribute("usuariosession", usuario.get());
+//            User user = new User(usuario.get().getMail(), usuario.get().getPassword(), permisos);
+//            return user;
+//
+//        } else {
+//            return null;
+//        }
+//    }
 }

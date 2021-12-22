@@ -5,9 +5,14 @@
  */
 package com.managetruck;
 
+<<<<<<< Updated upstream
 import com.managetruck.servicios.ProveedorServicio;
 import com.managetruck.servicios.UsuarioServicio;
 import static javafx.scene.input.KeyCode.T;
+=======
+
+import com.managetruck.servicios.UsuarioServicio;
+>>>>>>> Stashed changes
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -22,6 +27,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class Security extends WebSecurityConfigurerAdapter {
     
+<<<<<<< Updated upstream
     @Autowired
     private UsuarioServicio usuario;
     
@@ -29,6 +35,14 @@ public class Security extends WebSecurityConfigurerAdapter {
     
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(usuario).passwordEncoder(new BCryptPasswordEncoder());
+=======
+    @Autowired(required=true)
+    private UsuarioServicio usuarioServicio;
+    
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
+        auth.userDetailsService(usuarioServicio).passwordEncoder(new BCryptPasswordEncoder());
+>>>>>>> Stashed changes
     }
 
     @Override
@@ -48,3 +62,7 @@ public class Security extends WebSecurityConfigurerAdapter {
     
     
 }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
