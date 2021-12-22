@@ -49,7 +49,7 @@ public class TransportistaServicio {
     FotoServicio fotoServicio;
 
     @Transactional 
-    public void crearTransportista(String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, Integer telefono, Camion camion, Integer cantidadViajes) throws ErroresServicio {
+    public void crearTransportista(String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, String telefono, Camion camion, Integer cantidadViajes) throws ErroresServicio {
         Foto foto= fotoServicio.guardar(archivo);
         validarTransportista(nombre, apellido, mail, password, foto, zona, telefono, camion);
         Optional<Usuario> respuesta = repositorioUsuario.buscarPorMail(mail);
@@ -81,7 +81,7 @@ public class TransportistaServicio {
     }
 
     @Transactional
-    public void modificarUsuario(String id, String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, Integer telefono, Camion camion, double valoracion, Integer cantidadViajes) throws ErroresServicio {
+    public void modificarUsuario(String id, String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, String telefono, Camion camion, double valoracion, Integer cantidadViajes) throws ErroresServicio {
         Foto foto= fotoServicio.guardar(archivo);
         Optional<Transportista> respuesta = repositorioTransportista.findById(id);
         if (respuesta.isPresent()) {
@@ -125,7 +125,7 @@ public class TransportistaServicio {
         throw new ErroresServicio("No se encontro el usuario solicitado");
         }
     }
-    public void validarTransportista(String nombre, String apellido, String mail, String password, Foto foto, String zona, Integer telefono, Camion camion) throws ErroresServicio {
+    public void validarTransportista(String nombre, String apellido, String mail, String password, Foto foto, String zona, String telefono, Camion camion) throws ErroresServicio {
         if (nombre == null || nombre.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un nombre");
         }

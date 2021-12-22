@@ -45,7 +45,7 @@ public class ProveedorServicio {
     private FotoServicio fotoServicio;
 
     @Transactional
-    public void crearProveedor(String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, Integer telefono, String razonSocial, Integer cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
+    public void crearProveedor(String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
         Foto foto = fotoServicio.guardar(archivo);
         validarProveedor(nombre, apellido, mail, password, archivo, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
 
@@ -73,7 +73,7 @@ public class ProveedorServicio {
     }
 
     @Transactional
-    public void modificarUsuario(String id, String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, Integer telefono, String razonSocial, Integer cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
+    public void modificarUsuario(String id, String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
         Optional<Proveedor> respuesta = repositorioproveedor.findById(id);
         if (respuesta.isPresent()) {
             Proveedor proveedor = respuesta.get();
@@ -118,7 +118,7 @@ public class ProveedorServicio {
         }
     }
 
-    public void validarProveedor(String nombre, String apellido, String mail, String password, MultipartFile foto, String zona, Integer telefono, String razonSocial, Integer cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
+    public void validarProveedor(String nombre, String apellido, String mail, String password, MultipartFile foto, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
         if (nombre == null || nombre.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un nombre");
         }

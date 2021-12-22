@@ -34,9 +34,9 @@ public class Usuario {
     private Foto foto;
     private String zona;
     private boolean alta;
-    private Integer telefono;
+    private String telefono;
 
-    public Usuario(String nombre, String apellido, String mail, String password,Role rol, Foto foto, String zona, boolean alta, Integer telefono) {
+    public Usuario(String nombre, String apellido, String mail, String password,Role rol, Foto foto, String zona, boolean alta, String telefono) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.mail = mail;
@@ -123,11 +123,11 @@ public class Usuario {
         this.alta = alta;
     }
 
-    public Integer getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Integer telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
