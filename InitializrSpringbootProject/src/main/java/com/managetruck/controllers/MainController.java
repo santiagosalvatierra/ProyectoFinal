@@ -7,6 +7,7 @@ package com.managetruck.controllers;
 
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.servicios.FotoServicio;
+import com.managetruck.servicios.ProveedorServicio;
 import com.managetruck.servicios.ViajeServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class MainController {
     
     @Autowired
-    FotoServicio fotoServicio;
+    ProveedorServicio proveedorServicio;
     
     @GetMapping("")
     public String index(){
@@ -30,8 +31,8 @@ public class MainController {
     }
     
     @PostMapping("")
-    public String crear() throws ErroresServicio{
-        
+    public String crear(@RequestParam String nombre,@RequestParam String apellido,@RequestParam String mail,@RequestParam String password,@RequestParam String zona,@RequestParam Integer telefono,@RequestParam String razonSocial,@RequestParam Integer cuilEmpresa,@RequestParam String nombreEmpresa) throws ErroresServicio{
+        proveedorServicio.crearProveedor(nombre, apellido, mail, password, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
     return "index";
     }
 }

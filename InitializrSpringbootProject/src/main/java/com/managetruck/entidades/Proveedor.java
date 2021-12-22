@@ -1,6 +1,7 @@
 
 package com.managetruck.entidades;
 
+import com.managetruck.enumeracion.Role;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -51,5 +52,7 @@ public class Proveedor extends Usuario{
     public String toString() {
         return "Proveedor{" + "razonSocial=" + razonSocial + ", cuilEmpresa=" + cuilEmpresa + ", nombreEmpresa=" + nombreEmpresa + '}';
     }
+
+   
     
 }

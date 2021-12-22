@@ -6,33 +6,38 @@
 package com.managetruck.servicios;
 
 import com.managetruck.entidades.Usuario;
+import com.managetruck.enumeracion.Role;
 import com.managetruck.repositorios.RepositorioUsuario;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-
-public class UsuarioServicio {
+@Service
+public class UsuarioServicio implements UserDetailsService{
     
     @Autowired
     RepositorioUsuario repositorioUsuario;
     
     public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
-        Optional <Usuario> usuario = repositorioUsuario.buscarPorMail(mail);
+        Optional<Usuario> usuario = repositorioUsuario.buscarPorMail(mail);
         if (usuario != null) {
             List<GrantedAuthority> permisos = new ArrayList<>();
-            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_PROVEEDOR_REGISTRADO");
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_"+usuario.get().getRol());
             permisos.add(p1);
-            ServletRequestAttributes attr=(ServletRequestAttributes)RequestContextHolder.currentRequestAttributes();
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
             HttpSession session = attr.getRequest().getSession(true);
             session.setAttribute("usuariosession", usuario.get());
             User user = new User(usuario.get().getMail(), usuario.get().getPassword(), permisos);
