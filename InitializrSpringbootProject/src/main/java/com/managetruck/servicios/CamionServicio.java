@@ -20,14 +20,15 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class CamionServicio {
 //PROBANDO
+
     @Autowired(required = true)
     RepositorioCamion repositorioCamion;
-    
+
     @Autowired
     FotoServicio fotoServicio;
 
     @Transactional
-    public void crearCamion(Integer pesoMaximo, String modelo, Integer anio, String patente, Integer poliza,List <MultipartFile> archivos) throws ErroresServicio {
+    public void crearCamion(Integer pesoMaximo, String modelo, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos) throws ErroresServicio {
         List<Foto> fotos = new ArrayList<>();
         for (MultipartFile archivo : archivos) {
             fotos.add(fotoServicio.guardar(archivo));
@@ -62,7 +63,7 @@ public class CamionServicio {
     }
 
     @Transactional
-    public void modificarCamion(String id, Integer pesoMaximo, String modelo, Integer anio, String patente, Integer poliza, List <MultipartFile> archivos) throws ErroresServicio {
+    public void modificarCamion(String id, Integer pesoMaximo, String modelo, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos) throws ErroresServicio {
         List<Foto> fotos = new ArrayList<>();
         for (MultipartFile archivo : archivos) {
             fotos.add(fotoServicio.guardar(archivo));
