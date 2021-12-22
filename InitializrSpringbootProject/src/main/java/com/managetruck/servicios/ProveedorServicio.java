@@ -41,23 +41,17 @@ public class ProveedorServicio {
     @Autowired(required = true)
     NotificacionDeServicio notificacionServicio;
 
-    @Autowired(required = true)
-    FotoServicio fotoServicio;
+    
 
     @Autowired
     private FotoServicio fotoServicio;
 
     @Transactional
-
     public void crearProveedor(String nombre, String apellido, String mail, String password,MultipartFile archivo, String zona, Integer telefono,String razonSocial,Integer cuilEmpresa,String nombreEmpresa) throws ErroresServicio{
         Foto foto= fotoServicio.guardar(archivo);
         validarProveedor(nombre,apellido,mail,password,archivo,zona,telefono,razonSocial,cuilEmpresa,nombreEmpresa);
 
-    public void crearProveedor(MultipartFile archivo,String nombre, String apellido, String mail, String password, String zona, Integer telefono,String razonSocial,Integer cuilEmpresa,String nombreEmpresa) throws ErroresServicio{
-        Foto foto = fotoServicio.guardar(archivo);
-        validarProveedor(nombre,apellido,mail,password/*,foto*/,zona,telefono,razonSocial,cuilEmpresa,nombreEmpresa);
-
-        Optional<Usuario> respuesta = repositorioUsuario.buscarPorMail(mail);
+       Optional<Usuario> respuesta = repositorioUsuario.buscarPorMail(mail);
         if (respuesta.isPresent()) {
             throw new ErroresServicio("El mail ya esta utilizado");
 

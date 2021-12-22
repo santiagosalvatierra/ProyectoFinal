@@ -47,3 +47,4 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .and().csrf().disable();
 
     }
+}
