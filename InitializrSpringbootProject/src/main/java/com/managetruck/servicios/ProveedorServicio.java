@@ -28,6 +28,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ProveedorServicio {
@@ -40,8 +41,12 @@ public class ProveedorServicio {
     @Autowired(required = true)
     NotificacionDeServicio notificacionServicio;
 
+    @Autowired
+    private FotoServicio fotoServicio;
+    
     @Transactional
-    public void crearProveedor(String nombre, String apellido, String mail, String password/*,Foto foto*/, String zona, Integer telefono,String razonSocial,Integer cuilEmpresa,String nombreEmpresa) throws ErroresServicio{
+    public void crearProveedor(MultipartFile archivo,String nombre, String apellido, String mail, String password, String zona, Integer telefono,String razonSocial,Integer cuilEmpresa,String nombreEmpresa) throws ErroresServicio{
+        Foto foto = fotoServicio.guardar(archivo);
         validarProveedor(nombre,apellido,mail,password/*,foto*/,zona,telefono,razonSocial,cuilEmpresa,nombreEmpresa);
         Optional<Usuario> respuesta = repositorioUsuario.buscarPorMail(mail);
         if (respuesta.isPresent()) {
@@ -54,7 +59,7 @@ public class ProveedorServicio {
         proveedor.setMail(mail);
         String encriptada = new BCryptPasswordEncoder().encode(password);
         proveedor.setPassword(encriptada);
-        //proveedor.setFoto(foto);
+        proveedor.setFoto(foto);
         proveedor.setZona(zona);
         proveedor.setTelefono(telefono);
         proveedor.setRazonSocial(razonSocial);
