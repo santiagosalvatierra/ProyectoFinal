@@ -31,6 +31,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class TransportistaServicio {
@@ -43,9 +44,13 @@ public class TransportistaServicio {
     
     @Autowired(required = true)
     NotificacionDeServicio notificacionServicio;
+    
+    @Autowired
+    FotoServicio fotoServicio;
 
-    @Transactional
-    public void crearTransportista(String nombre, String apellido, String mail, String password, Foto foto, String zona, Integer telefono, Camion camion, Integer cantidadViajes) throws ErroresServicio {
+    @Transactional 
+    public void crearTransportista(String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, Integer telefono, Camion camion, Integer cantidadViajes) throws ErroresServicio {
+        Foto foto= fotoServicio.guardar(archivo);
         validarTransportista(nombre, apellido, mail, password, foto, zona, telefono, camion);
         Optional<Usuario> respuesta = repositorioUsuario.buscarPorMail(mail);
         if (respuesta.isPresent()) {
@@ -76,8 +81,8 @@ public class TransportistaServicio {
     }
 
     @Transactional
-    public void modificarUsuario(String id, String nombre, String apellido, String mail, String password, Foto foto, String zona, Integer telefono, Camion camion, double valoracion, Integer cantidadViajes) throws ErroresServicio {
-        //se busca si existe el transportista en la base de datos
+    public void modificarUsuario(String id, String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, Integer telefono, Camion camion, double valoracion, Integer cantidadViajes) throws ErroresServicio {
+        Foto foto= fotoServicio.guardar(archivo);
         Optional<Transportista> respuesta = repositorioTransportista.findById(id);
         if (respuesta.isPresent()) {
             Transportista transportista = respuesta.get();

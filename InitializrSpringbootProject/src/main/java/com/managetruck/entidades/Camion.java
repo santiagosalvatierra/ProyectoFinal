@@ -97,7 +97,7 @@ public class Camion {
         return (Foto) foto;
     }
 
-    public void setFoto(Foto foto) {
+    public void setFoto(List<Foto> foto) {
         this.foto =  (List<Foto>) foto;
     }
     
