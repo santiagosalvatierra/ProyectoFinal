@@ -128,9 +128,10 @@ public class ProveedorServicio {
         if (mail == null || mail.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un mail");
         }
-        if (telefono == null) {
+        if (telefono == null || telefono.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un telefono ");
         }
+        verificarnumeros(telefono);
         if (password == null || password.isEmpty()) {
             throw new ErroresServicio("Debe ingresar una contraseña");
         }
@@ -143,14 +144,24 @@ public class ProveedorServicio {
         if (razonSocial == null || razonSocial.isEmpty()) {
             throw new ErroresServicio("Debe ingresar una zona");
         }
-        if (cuilEmpresa == null) {
+        if (cuilEmpresa == null || cuilEmpresa.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un cuil de la empresa");
         }
+        verificarnumeros(cuilEmpresa);
         if (nombreEmpresa == null || nombreEmpresa.isEmpty()) {
             throw new ErroresServicio("Debe ingresar una nombre para la empresa");
         }
     }
-
+//para verificar que los datos ingresados sean numeros
+    public void verificarnumeros(String datos)throws ErroresServicio{
+        try {
+           Long numero= Long.parseLong(datos); 
+        } catch (Exception e) {
+            throw new ErroresServicio("El dato de" + datos +" ingresado no es un numero");
+        }
+        
+        
+    }
 //    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
 //        Optional <Usuario> usuario = repositorioUsuario.buscarPorMail(mail);
 //        if (usuario != null) {
