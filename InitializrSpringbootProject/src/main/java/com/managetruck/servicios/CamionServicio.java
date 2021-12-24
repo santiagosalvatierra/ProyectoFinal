@@ -83,4 +83,14 @@ public class CamionServicio {
             throw new ErroresServicio("No se encontro el camion solicitado");
         }
     }
+    //metodo para buscar un camion por id
+    public Camion buscarCamionId(String id) throws ErroresServicio{
+        Optional <Camion> respuesta = repositorioCamion.findById(id);
+        if (respuesta.isPresent()) {
+            Camion camion = respuesta.get();
+            return camion;
+        }else{
+            throw new ErroresServicio ("No se encontro el camion");
+        }
+    }
 }

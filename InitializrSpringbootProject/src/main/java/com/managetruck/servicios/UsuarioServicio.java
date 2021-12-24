@@ -7,6 +7,7 @@ package com.managetruck.servicios;
 
 import com.managetruck.entidades.Usuario;
 import com.managetruck.enumeracion.Role;
+import com.managetruck.errores.ErroresServicio;
 import com.managetruck.repositorios.RepositorioUsuario;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +46,16 @@ public class UsuarioServicio implements UserDetailsService{
 
         } else {
             return null;
+        }
+    }
+    //metodo para buscar el usuario por id
+    public Usuario buscarUsuarioId(String id) throws ErroresServicio{
+        Optional <Usuario> respuesta = repositorioUsuario.findById(id);
+        if (respuesta.isPresent()) {
+            Usuario usuario = respuesta.get();
+            return usuario;
+        }else{
+            throw new ErroresServicio ("No se encontro el usuario");
         }
     }
 }

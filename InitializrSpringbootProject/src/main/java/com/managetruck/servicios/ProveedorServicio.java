@@ -67,7 +67,7 @@ public class ProveedorServicio {
             proveedor.setCuilEmpresa(cuilEmpresa);
             proveedor.setNombreEmpresa(nombreEmpresa);
             proveedor.setRol(Role.Proveedor);
-            notificacionServicio.enviar("TEXTO DE BIENVENIDA", "NOMBRE DE LA PAGINA", proveedor.getMail());
+            //notificacionServicio.enviar("TEXTO DE BIENVENIDA", "NOMBRE DE LA PAGINA", proveedor.getMail());
             repositorioproveedor.save(proveedor);
         }
     }
