@@ -28,13 +28,14 @@ public class CamionServicio {
     FotoServicio fotoServicio;
 
     @Transactional
-    public void crearCamion(Integer pesoMaximo, String modelo, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos) throws ErroresServicio {
+    public void crearCamion(Integer pesoMaximo, String modelo,String descripcion, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos) throws ErroresServicio {
         List<Foto> fotos = new ArrayList<>();
         for (MultipartFile archivo : archivos) {
             fotos.add(fotoServicio.guardar(archivo));
         }
         validarCamion(pesoMaximo, modelo, anio, patente, poliza);
         Camion camion = new Camion();
+        camion.setDescripcion(descripcion);
         camion.setPesoMaximo(pesoMaximo);
         camion.setModelo(modelo);
         camion.setAnio(anio);
@@ -63,7 +64,7 @@ public class CamionServicio {
     }
 
     @Transactional
-    public void modificarCamion(String id, Integer pesoMaximo, String modelo, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos) throws ErroresServicio {
+    public void modificarCamion(String id, Integer pesoMaximo, String modelo,String descripcion, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos) throws ErroresServicio {
         List<Foto> fotos = new ArrayList<>();
         for (MultipartFile archivo : archivos) {
             fotos.add(fotoServicio.guardar(archivo));
@@ -72,6 +73,7 @@ public class CamionServicio {
         validarCamion(pesoMaximo, modelo, anio, patente, poliza);
         if (respuesta.isPresent()) {
             Camion camion = respuesta.get();
+            camion.setDescripcion(descripcion);
             camion.setPesoMaximo(pesoMaximo);
             camion.setModelo(modelo);
             camion.setAnio(anio);

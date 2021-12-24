@@ -6,47 +6,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>prueba de persistencia viaje</div>
+        <div>prueba de persistencia camion</div>
         <form th:action="@{/}" method="post" enctype="multipart/form-data">
-            <input type="text" name="nombre">
-            <label name="nombre">nombre</label>
+            <input type="text" name="pesoMaximo">
+            <label name="pesoMaximo">pesoMaximo</label>
+            <br>
+            <textarea name="descripcion" rows="10" cols="40"></textarea>
+            <br>
+            <input type="text" name="modelo">
+            <label name="modelo">modelo</label>
             <br>
             
-            <input type="text" name="apellido">
-            <label name="apellido">apellido</label>
+            <input type="text" name="anio">
+            <label name="anio">anio</label>
             <br>
             
-            <input type="mail" name="mail">
-            <label name="mail">mail</label>
-            <br>
-            
-            <input type="password" name="password">
-            <label name="password">password</label>
+            <input type="text" name="patente">
+            <label name="patente">patente</label>
             <br>
             
             
-            <input type="text" name="zona">
-            <label name="zona">zona</label>
+            
+            <input type="text" name="poliza">
+            <label name="poliza">poliza</label>
             <br>
             
-            <input type="text" name="telefono">
-            <label name="telefono">telefono</label>
-            <br>
-            
-            <input type="text" name="razonSocial">
-            <label name="razonSocial">razonSocial</label>
-            <br>
-            
-            <input type="text" name="cuilEmpresa">
-            <label name="cuilEmpresa">cuilEmpresa</label>
-            <br>
              
-            <label for="foto">Foto</label>
-            <input type="file" name="archivo">
+            <label for="fotos">fotos</label>
+            <input type="file" name="fotos" multiple>
             <br>
-            
-            <input type="text" name="nombreEmpresa">
-            <label name="nombreEmpresa">nombreEmpresa</label>
             
         <input type="submit">
     </form>

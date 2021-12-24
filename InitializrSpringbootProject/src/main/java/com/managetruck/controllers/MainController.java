@@ -6,9 +6,11 @@
 package com.managetruck.controllers;
 
 import com.managetruck.errores.ErroresServicio;
+import com.managetruck.servicios.CamionServicio;
 import com.managetruck.servicios.FotoServicio;
 import com.managetruck.servicios.ProveedorServicio;
 import com.managetruck.servicios.ViajeServicio;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class MainController {
 
     @Autowired
-    ProveedorServicio proveedorServicio;
+    CamionServicio camionServicio;
 
     @GetMapping("")
     public String index(){
@@ -31,9 +33,8 @@ public class MainController {
     }
     
     @PostMapping("")
-    public String crear(@RequestParam String nombre,@RequestParam String apellido,MultipartFile archivo,@RequestParam String mail,@RequestParam String password,@RequestParam String zona,@RequestParam String telefono,@RequestParam String razonSocial,@RequestParam String cuilEmpresa,@RequestParam String nombreEmpresa) throws ErroresServicio{
-        proveedorServicio.crearProveedor(nombre, apellido, mail, password,archivo, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
-
+    public String crear(@RequestParam Integer pesoMaximo,String descripcion,@RequestParam String modelo,Integer anio,@RequestParam String patente,@RequestParam Integer poliza,List<MultipartFile> fotos) throws ErroresServicio{
+        camionServicio.crearCamion(pesoMaximo, modelo,descripcion, anio,patente, poliza,fotos);
     return "index";
     }
 }
