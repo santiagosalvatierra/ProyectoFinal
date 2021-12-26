@@ -17,4 +17,15 @@ public interface RepositorioCamion extends JpaRepository<Camion,String>{
     @Query("SELECT c FROM Camion c WHERE c.id = :id")
     public List <Camion> buscarCamionporId(@Param("id")String id);
     
+    //query para buscar en la base de datos por el numero de patente
+    @Query("SELECT c FROM Camion c WHERE c.patente = :patente")
+    public List <Camion> buscarCamionporPatente(@Param("patente")String patente);
+    
+   //query para buscar a los camiones que estan habilitados
+    @Query("SELECT c FROM Camion c WHERE c.alta = true")
+    public List <Camion> buscarCamionporHabilitados();
+    
+    //query para buscar a los camiones deshabilitados
+    @Query("SELECT c FROM Camion c WHERE c.alta = false")
+    public List <Camion> buscarCamionporDeshabilitados();
 }

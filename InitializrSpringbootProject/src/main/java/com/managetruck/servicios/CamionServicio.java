@@ -41,6 +41,7 @@ public class CamionServicio {
         camion.setAnio(anio);
         camion.setPatente(patente);
         camion.setPoliza(poliza);
+        camion.setAlta(true);
         camion.setFoto(fotos);
         repositorioCamion.save(camion);
     }
@@ -58,13 +59,14 @@ public class CamionServicio {
         if (patente == null || patente.isEmpty()) {
             throw new ErroresServicio("Debe ingresar una patante");
         }
+        buscarCamionPatente(patente);
         if (poliza == null) {
             throw new ErroresServicio("Debe ingresar una poliza");
         }
     }
 
     @Transactional
-    public void modificarCamion(String id, Integer pesoMaximo, String modelo,String descripcion, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos) throws ErroresServicio {
+    public void modificarCamion(String id, Integer pesoMaximo, String modelo,String descripcion, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos, Boolean alta) throws ErroresServicio {
         List<Foto> fotos = new ArrayList<>();
         for (MultipartFile archivo : archivos) {
             fotos.add(fotoServicio.guardar(archivo));
@@ -79,12 +81,29 @@ public class CamionServicio {
             camion.setAnio(anio);
             camion.setPatente(patente);
             camion.setPoliza(poliza);
+            camion.setAlta(alta);
             camion.setFoto(fotos);//REVISAR
             repositorioCamion.save(camion);
         } else {
             throw new ErroresServicio("No se encontro el camion solicitado");
         }
     }
+    //metodo para deshabilitar un camion
+    @Transactional
+    public void deshabilitarCamion(String id)throws ErroresServicio{
+       Camion camion=buscarCamionId(id);
+       camion.setAlta(false);
+       repositorioCamion.save(camion);
+    }
+    
+    //metodo para habilitar un camion
+    @Transactional
+    public void habilitarCamion(String id)throws ErroresServicio{
+       Camion camion=buscarCamionId(id);
+       camion.setAlta(true);
+       repositorioCamion.save(camion);
+    }
+    
     //metodo para buscar un camion por id
     public Camion buscarCamionId(String id) throws ErroresServicio{
         Optional <Camion> respuesta = repositorioCamion.findById(id);
@@ -93,6 +112,14 @@ public class CamionServicio {
             return camion;
         }else{
             throw new ErroresServicio ("No se encontro el camion");
+        }
+    }
+    //metodo para comprobar que el camion no exista mediante la patente
+    public void buscarCamionPatente(String patente)throws ErroresServicio{
+        List <Camion> respuesta = repositorioCamion.buscarCamionporPatente(patente);
+        if (respuesta.isEmpty()) {
+            Camion camion = respuesta.get(0);
+            throw new ErroresServicio ("El numero de patente ya esta asociado a otro camion");
         }
     }
 }
