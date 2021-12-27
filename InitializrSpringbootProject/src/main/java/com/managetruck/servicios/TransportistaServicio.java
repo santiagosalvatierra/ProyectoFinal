@@ -13,6 +13,7 @@ import com.managetruck.entidades.Transportista;
 import com.managetruck.entidades.Usuario;
 import com.managetruck.enumeracion.Role;
 import com.managetruck.errores.ErroresServicio;
+import com.managetruck.repositorios.RepositorioCamion;
 import com.managetruck.repositorios.RepositorioProveedor;
 import com.managetruck.repositorios.RepositorioTransportista;
 import com.managetruck.repositorios.RepositorioUsuario;
@@ -42,6 +43,9 @@ public class TransportistaServicio {
     @Autowired(required = true)
     RepositorioUsuario repositorioUsuario;
     
+    @Autowired
+    RepositorioCamion repositorioCamion;
+    
     @Autowired(required = true)
     NotificacionDeServicio notificacionServicio;
     
@@ -49,9 +53,9 @@ public class TransportistaServicio {
     FotoServicio fotoServicio;
 
     @Transactional 
-    public void crearTransportista(String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, String telefono, Camion camion, Integer cantidadViajes) throws ErroresServicio {
+    public void crearTransportista(String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, String telefono, String patente, Integer cantidadViajes) throws ErroresServicio {
         Foto foto= fotoServicio.guardar(archivo);
-        validarTransportista(nombre, apellido, mail, password, foto, zona, telefono, camion);
+        validarTransportista(nombre, apellido, mail, password, foto, zona, telefono, patente);
         Optional<Usuario> respuesta = repositorioUsuario.buscarPorMail(mail);
         if (respuesta.isPresent()) {
             throw new ErroresServicio("El mail ya esta utilizado");
@@ -68,7 +72,8 @@ public class TransportistaServicio {
             transportista.setFoto(foto);
             transportista.setZona(zona);
             transportista.setTelefono(telefono);
-            transportista.setCamion(camion);
+            List<Camion> camion=repositorioCamion.buscarCamionporPatente(patente);
+            transportista.setCamion((Camion)camion);
             transportista.setCantidadViajes(0);
             transportista.setValoracion(0);
             transportista.setRol(Role.Transportista);
@@ -125,7 +130,7 @@ public class TransportistaServicio {
         throw new ErroresServicio("No se encontro el usuario solicitado");
         }
     }
-    public void validarTransportista(String nombre, String apellido, String mail, String password, Foto foto, String zona, String telefono, Camion camion) throws ErroresServicio {
+    public void validarTransportista(String nombre, String apellido, String mail, String password, Foto foto, String zona, String telefono, String patente) throws ErroresServicio {
         if (nombre == null || nombre.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un nombre");
         }
@@ -147,8 +152,8 @@ public class TransportistaServicio {
         if (foto == null) {
             throw new ErroresServicio("Debe ingresar una foto");
         }
-        if (camion == null) {
-            throw new ErroresServicio("Debe ingresar un camion");
+        if (patente == null) {
+            throw new ErroresServicio("Debe ingresar una patente de un camion");
         }
 
     }

@@ -37,11 +37,7 @@ public class MainController {
         return "index";
     }
 
-    @PostMapping("")
-    public String crear(@RequestParam Integer pesoMaximo, String descripcion, @RequestParam String modelo, Integer anio, @RequestParam String patente, @RequestParam Integer poliza, List<MultipartFile> fotos) throws ErroresServicio {
-        camionServicio.crearCamion(pesoMaximo, modelo, descripcion, anio, patente, poliza, fotos);
-        return "index";
-    }
+    
 
     @GetMapping("/login")
     public String loginUs(ModelMap model, @RequestParam(required = false) String error) throws ErroresServicio {
@@ -52,15 +48,7 @@ public class MainController {
 
         return "login";
     }
-    @PostMapping("/registro")
-    public String registroProveedor(String nombre, String apellido,String mail,String password,MultipartFile foto,String zona,String telefono,String razonSocial,String cuilEmpresa, String nombreEmpresa) throws ErroresServicio{
-       proveedorServicio.crearProveedor(nombre, apellido, mail, password, foto, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
-        return "index";
-    }
-    @GetMapping("/registro")
-    public String mostrarPaginaRegistro(){
-        return "registroProveedor";
-    }
+    
     @PreAuthorize("hasAnyRole('ROLE_Proveedor')")
     @GetMapping("/inicio")
     public String inicio(){
