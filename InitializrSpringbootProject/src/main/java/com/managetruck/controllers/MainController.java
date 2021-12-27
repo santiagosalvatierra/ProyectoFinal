@@ -12,7 +12,9 @@ import com.managetruck.servicios.ProveedorServicio;
 import com.managetruck.servicios.ViajeServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,16 +27,44 @@ public class MainController {
 
     @Autowired
     CamionServicio camionServicio;
-
-    @GetMapping("")
-    public String index(){
-
-    return "index";
-    }
     
+    @Autowired
+    ProveedorServicio proveedorServicio;
+    
+    @GetMapping("")
+    public String index() {
+
+        return "index";
+    }
+
     @PostMapping("")
-    public String crear(@RequestParam Integer pesoMaximo,String descripcion,@RequestParam String modelo,Integer anio,@RequestParam String patente,@RequestParam Integer poliza,List<MultipartFile> fotos) throws ErroresServicio{
-        camionServicio.crearCamion(pesoMaximo, modelo,descripcion, anio,patente, poliza,fotos);
-    return "index";
+    public String crear(@RequestParam Integer pesoMaximo, String descripcion, @RequestParam String modelo, Integer anio, @RequestParam String patente, @RequestParam Integer poliza, List<MultipartFile> fotos) throws ErroresServicio {
+        camionServicio.crearCamion(pesoMaximo, modelo, descripcion, anio, patente, poliza, fotos);
+        return "index";
+    }
+
+    @GetMapping("/login")
+    public String loginUs(ModelMap model, @RequestParam(required = false) String error) throws ErroresServicio {
+        if (error != null) {
+            model.put("error", "El usuario o contraseña ingresada son incorrectas");
+
+        }
+
+        return "login";
+    }
+    @PostMapping("/registro")
+    public String registroProveedor(String nombre, String apellido,String mail,String password,MultipartFile foto,String zona,String telefono,String razonSocial,String cuilEmpresa, String nombreEmpresa) throws ErroresServicio{
+       proveedorServicio.crearProveedor(nombre, apellido, mail, password, foto, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
+        return "index";
+    }
+    @GetMapping("/registro")
+    public String mostrarPaginaRegistro(){
+        return "registroProveedor";
+    }
+    @PreAuthorize("hasAnyRole('ROLE_Proveedor')")
+    @GetMapping("/inicio")
+    public String inicio(){
+        
+       return"inicio";
     }
 }
