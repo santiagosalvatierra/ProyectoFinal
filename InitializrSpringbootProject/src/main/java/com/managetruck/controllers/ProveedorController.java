@@ -29,4 +29,5 @@ public class ProveedorController {
     public String mostrarPaginaRegistro(){
         return "registroProveedor";
     }
+    
 }
