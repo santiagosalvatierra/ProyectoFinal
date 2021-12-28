@@ -55,7 +55,7 @@ public class TransportistaServicio {
     @Transactional 
     public void crearTransportista(String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, String telefono) throws ErroresServicio {
         Foto foto= fotoServicio.guardar(archivo);
-        validarTransportista(nombre, apellido, mail, password, foto, zona, telefono);
+        validarTransportista(nombre, apellido, mail, password, archivo, zona, telefono);
         Optional<Usuario> respuesta = repositorioUsuario.buscarPorMail(mail);
         if (respuesta.isPresent()) {
             throw new ErroresServicio("El mail ya esta utilizado");
@@ -88,7 +88,7 @@ public class TransportistaServicio {
     public void modificarUsuario(String id, String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, String telefono, Camion camion, double valoracion, Integer cantidadViajes) throws ErroresServicio {
         
         Foto foto= fotoServicio.guardar(archivo);
-        validarTransportista(nombre, apellido, mail, password, foto, zona, telefono);
+        validarTransportista(nombre, apellido, mail, password, archivo, zona, telefono);
         Optional<Transportista> respuesta = repositorioTransportista.findById(id);
         if (respuesta.isPresent()) {
             Transportista transportista = respuesta.get();
@@ -131,7 +131,7 @@ public class TransportistaServicio {
         throw new ErroresServicio("No se encontro el usuario solicitado");
         }
     }
-    public void validarTransportista(String nombre, String apellido, String mail, String password, Foto foto, String zona, String telefono) throws ErroresServicio {
+    public void validarTransportista(String nombre, String apellido, String mail, String password, MultipartFile foto, String zona, String telefono) throws ErroresServicio {
         if (nombre == null || nombre.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un nombre");
         }
@@ -150,7 +150,7 @@ public class TransportistaServicio {
         if (zona == null || zona.isEmpty()) {
             throw new ErroresServicio("Debe ingresar una zona");
         }
-        if (foto == null) {
+        if (foto == null ) {
             throw new ErroresServicio("Debe ingresar una foto");
         }
         

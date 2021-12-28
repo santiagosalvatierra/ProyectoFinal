@@ -25,25 +25,26 @@ public class TransportistaController {
     RepositorioTransportista repositorioTransportista;
 
 
-    @PostMapping("/registro")
-    public String registroProveedor(ModelMap modelo, String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, String telefono) throws ErroresServicio {
+    @PostMapping("/registra")
+    public String registroProveedor(ModelMap modelo, String nombre, String apellido, String mail, String password, MultipartFile foto, String zona, String telefono) throws ErroresServicio {
         try {
-            transportistaServicio.crearTransportista(nombre, apellido, mail, password, archivo, zona, telefono);
+            transportistaServicio.crearTransportista(nombre, apellido, mail, password, foto, zona, telefono);
         } catch (ErroresServicio es) {
             modelo.put("error", es.getMessage());
             modelo.put("nombre", nombre);
             modelo.put("apellido", apellido);
             modelo.put("mail", mail);
             modelo.put("password", password);
-            modelo.put("archivo", archivo);
+            modelo.put("foto", foto);
             modelo.put("zona", zona);
             modelo.put("telefono", telefono);
-            return "registroTransportista";
+            System.out.println(es.getMessage());
+            return "index";
         }
         return "redirect:/registroTransportista";
     }
 
-    @GetMapping("/registro")
+    @GetMapping("/registra")
     public String mostrarPaginaRegistro() {
         return "registroTransportista";
     }
