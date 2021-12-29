@@ -4,6 +4,7 @@ import com.managetruck.entidades.Camion;
 import com.managetruck.entidades.Transportista;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.repositorios.RepositorioTransportista;
+import com.managetruck.servicios.CamionServicio;
 import com.managetruck.servicios.TransportistaServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/transportista")
 public class TransportistaController {
+    
+    @Autowired
+    CamionServicio camionServicio;
 
     @Autowired
     TransportistaServicio transportistaServicio;
@@ -27,18 +31,27 @@ public class TransportistaController {
     RepositorioTransportista repositorioTransportista;
 
     @PostMapping("/registra")
-    public String registroProveedor(ModelMap modelo, String nombre, String apellido, String mail, String password, MultipartFile foto, String zona, String telefono) throws ErroresServicio {
+    public String registroProveedor(ModelMap model, String nombre, String apellido, String mail, String password, MultipartFile foto, String zona, String telefono,Integer pesoMaximo, String descripcion, @RequestParam String modelo, Integer anio, String patente, Integer poliza, List<MultipartFile> fotos) throws ErroresServicio {
         try {
+            camionServicio.crearCamion(pesoMaximo, modelo, descripcion, anio, patente, poliza, fotos);
             transportistaServicio.crearTransportista(nombre, apellido, mail, password, foto, zona, telefono);
         } catch (ErroresServicio es) {
-            modelo.put("error", es.getMessage());
-            modelo.put("nombre", nombre);
-            modelo.put("apellido", apellido);
-            modelo.put("mail", mail);
-            modelo.put("password", password);
-            modelo.put("foto", foto);
-            modelo.put("zona", zona);
-            modelo.put("telefono", telefono);
+            model.put("error", es.getMessage());
+            model.put("nombre", nombre);
+            model.put("apellido", apellido);
+            model.put("mail", mail);
+            model.put("password", password);
+            model.put("foto", foto);
+            model.put("zona", zona);
+            model.put("telefono", telefono);
+            model.put("pesoMaximo", pesoMaximo);
+            model.put("modelo", modelo);
+            model.put("descripcion", descripcion);
+            model.put("anio", anio);
+            model.put("patente", patente);
+            model.put("poliza", poliza);
+            model.put("fotos", fotos);
+            
             return "index";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos
         }
         return "redirect:/registroTransportista";

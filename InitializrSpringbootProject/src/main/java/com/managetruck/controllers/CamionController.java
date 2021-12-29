@@ -34,4 +34,10 @@ public class CamionController {
         camionServicio.crearCamion(pesoMaximo, modelo, descripcion, anio, patente, poliza, fotos);
         return "crearCamion";
     }
+    @PostMapping("/modificar")
+    public String crearCamion(String id,@RequestParam Integer pesoMaximo, String descripcion, @RequestParam String modelo, Integer anio, @RequestParam String patente, @RequestParam Integer poliza, List<MultipartFile> fotos) throws ErroresServicio {
+        camionServicio.modificarCamion(id, pesoMaximo, modelo, descripcion, anio, patente, poliza, fotos, Boolean.FALSE);
+        return "crearCamion";//no debe retornar esa pagina, tenemos que ver si creamos una vista o hacemos un modal
+        
+    }
 }
