@@ -7,6 +7,7 @@ package com.managetruck.servicios;
 
 
 import com.managetruck.entidades.Camion;
+import com.managetruck.entidades.Comprobante;
 import com.managetruck.entidades.Foto;
 import com.managetruck.entidades.Proveedor;
 import com.managetruck.entidades.Transportista;
@@ -155,6 +156,17 @@ public class TransportistaServicio {
         }
         
 
+    }
+    //metodo para calcular el promedio de valoracion del transportista
+    public Double valoracion (Transportista transportista){
+        List<Comprobante> comprobante = transportista.getComprobante();
+        Integer cantidad = comprobante.size();
+        Integer valoracion=0;
+        for (Comprobante factura : comprobante) {
+                valoracion =factura.getValoracion()+valoracion ;
+        }
+        Double promedio=(double)valoracion/cantidad;
+        return promedio;
     }
 
 //    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
