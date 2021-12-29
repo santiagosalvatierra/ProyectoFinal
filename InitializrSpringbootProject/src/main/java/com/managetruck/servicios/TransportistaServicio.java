@@ -160,10 +160,13 @@ public class TransportistaServicio {
     //metodo para calcular el promedio de valoracion del transportista
     public Double valoracion (Transportista transportista){
         List<Comprobante> comprobante = transportista.getComprobante();
+        //comprobar que de la cantidad de elementos no nulos
         Integer cantidad = comprobante.size();
         Integer valoracion=0;
         for (Comprobante factura : comprobante) {
+            if (factura.getValoracion()!=null) {
                 valoracion =factura.getValoracion()+valoracion ;
+            }  
         }
         Double promedio=(double)valoracion/cantidad;
         return promedio;

@@ -5,7 +5,6 @@
  */
 package com.managetruck.servicios;
 
-
 import com.managetruck.entidades.Comprobante;
 import com.managetruck.entidades.Proveedor;
 import com.managetruck.entidades.Viaje;
@@ -22,12 +21,12 @@ public class ComprobanteServicio {
     @Autowired(required = true)
     RepositorioComprobante repositorioComprobante;
 
-    @Transactional
-    public void crearComprobante(Integer valoracion, Proveedor proveedor, Viaje viaje) throws ErroresServicio {
-        validarComprobante(valoracion, proveedor, viaje);
+    @Transactional //cambio el metodo porque cuando se crea un comprobante no se puede valorar porque no esta hecho el viaje
+    public void crearComprobante(Proveedor proveedor, Viaje viaje) throws ErroresServicio {
+        validarComprobante(proveedor, viaje);
         Comprobante comprobante = new Comprobante();
         comprobante.setProveedor(proveedor);
-        comprobante.setValoracion(valoracion);
+        comprobante.setValoracion(null);
         comprobante.setViaje(viaje);
         repositorioComprobante.save(comprobante);
     }
@@ -35,26 +34,37 @@ public class ComprobanteServicio {
     @Transactional
     private void ModificarComprobante(String id, Integer valoracion, Proveedor proveedor, Viaje viaje) throws ErroresServicio {
         Optional<Comprobante> respuesta = repositorioComprobante.findById(id);
-        validarComprobante(valoracion, proveedor, viaje);
+        validarComprobante(proveedor, viaje);
+
         if (respuesta.isPresent()) {
             Comprobante comprobante = respuesta.get();
-            comprobante.setProveedor(proveedor);
-            comprobante.setValoracion(valoracion);
-            comprobante.setViaje(viaje);
-            repositorioComprobante.save(comprobante);
-
+            if (comprobante.getViaje().isAlta() == false) {
+                //para cincorporar la valoracion al finalizar el viaje
+                validarvaloracion(valoracion);
+                comprobante.setValoracion(valoracion);
+                repositorioComprobante.save(comprobante);
+            } else {
+                //para modificar el comprobante completo
+                comprobante.setProveedor(proveedor);
+                validarvaloracion(valoracion);
+                comprobante.setValoracion(valoracion);
+                comprobante.setViaje(viaje);
+                repositorioComprobante.save(comprobante);
+            }
         }
     }
 
-    private void validarComprobante(Integer valoracion, Proveedor proveedor, Viaje viaje) throws ErroresServicio {
-        if (valoracion == null) {
-            throw new ErroresServicio("Debe ingresar una valoracion");
-        }
+    private void validarComprobante(Proveedor proveedor, Viaje viaje) throws ErroresServicio {
         if (proveedor == null) {
             throw new ErroresServicio("Debe ingresar un proveedor");
         }
         if (viaje == null) {
             throw new ErroresServicio("Debe ingresar un viaje");
+        }
+    }
+    private void validarvaloracion(Integer valoracion) throws ErroresServicio {
+        if (valoracion == null) {
+            throw new ErroresServicio("Debe ingresar una valoracion");
         }
     }
     /*private void Valoracion(){
