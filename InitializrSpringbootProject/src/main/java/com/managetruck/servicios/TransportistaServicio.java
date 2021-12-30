@@ -37,23 +37,23 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class TransportistaServicio {
- 
+
     @Autowired(required = true)
     RepositorioTransportista repositorioTransportista;
-    
+
     @Autowired(required = true)
     RepositorioUsuario repositorioUsuario;
-    
+
     @Autowired
     RepositorioCamion repositorioCamion;
-    
+
     @Autowired(required = true)
     NotificacionDeServicio notificacionServicio;
-    
+
     @Autowired
     FotoServicio fotoServicio;
 
-    @Transactional 
+    @Transactional
     public void crearTransportista(String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, String telefono) throws ErroresServicio {
         Foto foto= fotoServicio.guardar(archivo);
         validarTransportista(nombre, apellido, mail, password, archivo, zona, telefono);
@@ -87,7 +87,7 @@ public class TransportistaServicio {
 
     @Transactional
     public void modificarUsuario(String id, String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, String telefono, Camion camion, double valoracion, Integer cantidadViajes) throws ErroresServicio {
-        
+
         Foto foto= fotoServicio.guardar(archivo);
         validarTransportista(nombre, apellido, mail, password, archivo, zona, telefono);
         Optional<Transportista> respuesta = repositorioTransportista.findById(id);
@@ -121,7 +121,7 @@ public class TransportistaServicio {
         throw new ErroresServicio("No se encontro el usuario solicitado");
         }
     }
-    
+
     @Transactional
     public void habilitarTransportista(String id) throws ErroresServicio{
          Optional<Transportista> respuesta = repositorioTransportista.findById(id);
@@ -154,9 +154,11 @@ public class TransportistaServicio {
         if (foto == null ) {
             throw new ErroresServicio("Debe ingresar una foto");
         }
-        
+
+
 
     }
+
     //metodo para calcular el promedio de valoracion del transportista
     public Double valoracion (Transportista transportista){
         List<Comprobante> comprobante = transportista.getComprobante();
@@ -166,11 +168,12 @@ public class TransportistaServicio {
         for (Comprobante factura : comprobante) {
             if (factura.getValoracion()!=null) {
                 valoracion =factura.getValoracion()+valoracion ;
-            }  
+            }
         }
         Double promedio=(double)valoracion/cantidad;
         return promedio;
     }
+
 
 //    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
 //        Optional<Usuario> usuario = repositorioUsuario.buscarPorMail(mail);

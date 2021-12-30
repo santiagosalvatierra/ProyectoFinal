@@ -18,7 +18,6 @@ public class Viaje {
     private boolean alta = true;
     private String destino;
     private String origen;
-
     public Viaje() {
     }
 

@@ -26,7 +26,7 @@ public class ComprobanteServicio {
         validarComprobante(proveedor, viaje);
         Comprobante comprobante = new Comprobante();
         comprobante.setProveedor(proveedor);
-        comprobante.setValoracion(null);
+
         comprobante.setViaje(viaje);
         repositorioComprobante.save(comprobante);
     }
