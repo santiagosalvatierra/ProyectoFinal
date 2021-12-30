@@ -5,12 +5,15 @@
  */
 package com.managetruck.servicios;
 
+import com.managetruck.controllers.viajeController;
 import com.managetruck.entidades.Comprobante;
 import com.managetruck.entidades.Proveedor;
 import com.managetruck.entidades.Viaje;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.repositorios.RepositorioComprobante;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +29,7 @@ public class ComprobanteServicio {
         validarComprobante(proveedor, viaje);
         Comprobante comprobante = new Comprobante();
         comprobante.setProveedor(proveedor);
-
+        
         comprobante.setViaje(viaje);
         repositorioComprobante.save(comprobante);
     }
@@ -67,7 +70,11 @@ public class ComprobanteServicio {
             throw new ErroresServicio("Debe ingresar una valoracion");
         }
     }
-    /*private void Valoracion(){
-}*/
+    public void Valoracion(Integer valoracion,String id){
+        
+        Optional<Comprobante> respuesta = repositorioComprobante.findById(id);
+        respuesta.get().setValoracion(valoracion);
+        
+}
 
 }
