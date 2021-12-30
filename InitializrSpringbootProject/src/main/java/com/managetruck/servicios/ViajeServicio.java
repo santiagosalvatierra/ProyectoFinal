@@ -21,10 +21,16 @@ public class ViajeServicio {
 
     @Autowired(required = true)
     RepositorioViaje repositorioViaje;
-
+    
+    @Autowired
+    ComprobanteServicio comprobanteServicio;
+    
+    @Autowired
+    RepositorioProveedor repositorioProveedor;
+    
     @Transactional
 
-    public void crearViaje(Integer peso, Integer kmRecorridos, String tipoCargas, String destino, String origen) throws ErroresServicio {
+    public void crearViaje(String idProveedor,Integer peso, Integer kmRecorridos, String tipoCargas, String destino, String origen) throws ErroresServicio {
         ValidarViaje(peso, kmRecorridos, tipoCargas, destino, origen);
         Viaje viaje = new Viaje();
         viaje.setDestino(destino);
@@ -32,12 +38,12 @@ public class ViajeServicio {
         viaje.setOrigen(origen);
         viaje.setPeso(peso);
         viaje.setTipoCargas(tipoCargas);
+        Optional <Proveedor> proveedor = repositorioProveedor.findById(idProveedor);
+        comprobanteServicio.crearComprobante(proveedor.get(), viaje);
         repositorioViaje.save(viaje);
-
     }
 
     @Transactional
-
     public void ModificarViaje(String id, Integer peso, Integer kmRecorridos, String tipoCargas, String destino, String origen) throws ErroresServicio {
         Optional<Viaje> respuesta = repositorioViaje.findById(id);
         ValidarViaje(peso, kmRecorridos, tipoCargas, destino, origen);
