@@ -2,11 +2,13 @@ package com.managetruck.controllers;
 
 import com.managetruck.entidades.Camion;
 import com.managetruck.entidades.Transportista;
+import com.managetruck.entidades.Usuario;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.repositorios.RepositorioTransportista;
 import com.managetruck.servicios.CamionServicio;
 import com.managetruck.servicios.TransportistaServicio;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -98,7 +100,12 @@ public class TransportistaController {
     }
     
     @PostMapping("/modificar")
-    public String modificar(ModelMap modelo,String id, String nombre, String apellido, String mail, String password, MultipartFile foto, String zona, String telefono,Camion camion, double valoracion, Integer cantidadViajes) throws ErroresServicio{
+    public String modificar(HttpSession session,ModelMap modelo,String id, String nombre, String apellido, String mail, String password, MultipartFile foto, String zona, String telefono,Camion camion, double valoracion, Integer cantidadViajes) throws ErroresServicio{
+        //verificacion de que el usuario que esta modificando sea el mismo que va a modificar
+        Usuario login = (Usuario) session.getAttribute("usuariosession");
+        if (login == null || login.getId().equals(id)) {
+            return "redirect:/login";
+        }
         try{
         transportistaServicio.modificarUsuario(id, nombre, apellido, mail, password, foto, zona, telefono,camion, valoracion, cantidadViajes);
         } catch (ErroresServicio ex) {

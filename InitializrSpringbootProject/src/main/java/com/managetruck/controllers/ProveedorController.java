@@ -5,8 +5,10 @@
  */
 package com.managetruck.controllers;
 
+import com.managetruck.entidades.Usuario;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.servicios.ProveedorServicio;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,4 +32,18 @@ public class ProveedorController {
         return "registroProveedor";
     }
     
+    @GetMapping("/modificar-proveedor")
+    public String modificarProveedor(){
+        return null;
+    }
+    
+    @PostMapping("/modificar-proveedor")
+    public String modificacionProveedor(HttpSession session,String id){
+        //verificacion de que el usuario que esta modificando sea el mismo que va a modificar
+        Usuario login = (Usuario) session.getAttribute("usuariosession");
+        if (login == null || login.getId().equals(id)) {
+            return "redirect:/login";
+        }
+        return null;
+    }
 }
