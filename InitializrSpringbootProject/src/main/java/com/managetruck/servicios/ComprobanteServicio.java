@@ -27,7 +27,11 @@ public class ComprobanteServicio {
         validarComprobante(valoracion, proveedor, viaje);
         Comprobante comprobante = new Comprobante();
         comprobante.setProveedor(proveedor);
-        comprobante.setValoracion(valoracion);
+        if (viaje.isAlta()) {
+            throw new ErroresServicio("No puede emitir una valoracion si el viaje aun esta en proceso");
+        }else{
+            comprobante.setValoracion(valoracion);
+        }
         comprobante.setViaje(viaje);
         repositorioComprobante.save(comprobante);
     }

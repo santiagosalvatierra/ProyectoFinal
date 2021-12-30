@@ -7,6 +7,7 @@ package com.managetruck.servicios;
 
 
 import com.managetruck.entidades.Camion;
+import com.managetruck.entidades.Comprobante;
 import com.managetruck.entidades.Foto;
 import com.managetruck.entidades.Proveedor;
 import com.managetruck.entidades.Transportista;
@@ -153,10 +154,20 @@ public class TransportistaServicio {
         if (foto == null ) {
             throw new ErroresServicio("Debe ingresar una foto");
         }
+       
         
 
     }
-
+    @Transactional
+        public void valoracion(String id){
+        Optional<Transportista> respuesta = repositorioTransportista.findById(id);
+        List<Comprobante> comprobantes = respuesta.get().getComprobante();
+        int valoracionTotal=0;
+        for (Comprobante comprobante : comprobantes) {
+            valoracionTotal = valoracionTotal+comprobante.getValoracion();
+        }
+        respuesta.get().setValoracion(valoracionTotal);
+    }
 //    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
 //        Optional<Usuario> usuario = repositorioUsuario.buscarPorMail(mail);
 //        if (usuario != null) {
