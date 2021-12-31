@@ -18,10 +18,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ViajeServicio {
+    @Autowired(required = true)
+    NotificacionDeServicio notificacionServicio;
 
     @Autowired(required = true)
     RepositorioViaje repositorioViaje;
-    
+    @Autowired
+    RepositorioTransportista repositorioTransportista;
     @Autowired
     ComprobanteServicio comprobanteServicio;
     
@@ -91,5 +94,14 @@ public class ViajeServicio {
             throw new ErroresServicio("No se encontro el viaje solicitado");
         }
     }
+    @Transactional
+    public void aplicar(String id_transportista,String id_viaje){
+        Optional<Viaje> viaje = repositorioViaje.findById(id_viaje);
+        Optional<Transportista> transportista = repositorioTransportista.findById(id_transportista);
+        viaje.get().getListadoTransportista().add(transportista.get());
+        notificacionServicio.enviar("TEXTO DE APLICACION A VIAJE", "NOMBRE DE LA PAGINA", transportista.get().getMail());
+           
+    }//metodo para que un transportista aplique a un viaje, lo agrega dentro de un array
+    //luego el rpoveedor eligira entre todos los transportistas que haya en su viaje
 
 }
