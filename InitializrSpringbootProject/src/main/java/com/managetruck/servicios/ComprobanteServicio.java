@@ -11,6 +11,7 @@ import com.managetruck.entidades.Proveedor;
 import com.managetruck.entidades.Viaje;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.repositorios.RepositorioComprobante;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +30,7 @@ public class ComprobanteServicio {
         validarComprobante(proveedor, viaje);
         Comprobante comprobante = new Comprobante();
         comprobante.setProveedor(proveedor);
-        
+
         comprobante.setViaje(viaje);
         repositorioComprobante.save(comprobante);
     }
@@ -41,18 +42,25 @@ public class ComprobanteServicio {
 
         if (respuesta.isPresent()) {
             Comprobante comprobante = respuesta.get();
-            if (comprobante.getViaje().isAlta() == false) {
-                //para cincorporar la valoracion al finalizar el viaje
-                validarvaloracion(valoracion);
-                comprobante.setValoracion(valoracion);
-                repositorioComprobante.save(comprobante);
-            } else {
                 //para modificar el comprobante completo
                 comprobante.setProveedor(proveedor);
                 validarvaloracion(valoracion);
                 comprobante.setValoracion(valoracion);
                 comprobante.setViaje(viaje);
                 repositorioComprobante.save(comprobante);
+        }
+    }
+    public void ValorarTrasnportista(String id, Integer valoracion) throws ErroresServicio{
+        Optional<Comprobante> respuesta = repositorioComprobante.findById(id);
+        if (respuesta.isPresent()) {
+            Comprobante comprobante = respuesta.get();
+            if (comprobante.getViaje().isAlta() == false) {
+                //para incorporar la valoracion al finalizar el viaje
+                validarvaloracion(valoracion);
+                comprobante.setValoracion(valoracion);
+                repositorioComprobante.save(comprobante);
+            } else {
+                throw new ErroresServicio("El viaje no esta finalizado para poder valorarlo");
             }
         }
     }
@@ -65,16 +73,34 @@ public class ComprobanteServicio {
             throw new ErroresServicio("Debe ingresar un viaje");
         }
     }
+
     private void validarvaloracion(Integer valoracion) throws ErroresServicio {
         if (valoracion == null) {
             throw new ErroresServicio("Debe ingresar una valoracion");
         }
     }
-    public void Valoracion(Integer valoracion,String id){
-        
-        Optional<Comprobante> respuesta = repositorioComprobante.findById(id);
-        respuesta.get().setValoracion(valoracion);
-        
-}
 
+    public Comprobante buscarComprobanteId(String id) throws ErroresServicio{
+
+        Optional<Comprobante> respuesta = repositorioComprobante.findById(id);
+        if (respuesta.isPresent()) {
+            Comprobante comprobante = respuesta.get();
+            return comprobante;
+        }else{
+            throw new ErroresServicio("El comprobante no se encontro");
+        }
+
+    }
+
+
+    public Comprobante buscarComprobanteIdViaje(String id_viaje) throws ErroresServicio {
+        Optional <Comprobante> respuesta = repositorioComprobante.buscarComprobanteporIdViaje(id_viaje);
+        Comprobante comprobante;
+        if (respuesta.isPresent()) {
+            comprobante = respuesta.get();
+            return comprobante;
+        } else {
+            throw new ErroresServicio("El comprobante no se encuentra asociado al viaje y al proveedor indicado");
+        }
+    }
 }
