@@ -33,7 +33,11 @@ public class viajeController {
     }
 
     @PostMapping("/pedido")
-    public String comienzoViaje(String idProveedor, @RequestParam Integer peso, @RequestParam Integer kmRecorridos, @RequestParam String tipoCargas, @RequestParam String destino, @RequestParam String origen) {
+    public String comienzoViaje(HttpSession session,String idProveedor, @RequestParam Integer peso, @RequestParam Integer kmRecorridos, @RequestParam String tipoCargas, @RequestParam String destino, @RequestParam String origen) {
+        Usuario login =(Usuario) session.getAttribute("usuariosession");
+        if (login == null || !login.getId().equals(idProveedor)) {
+                return "redirect:/login";
+            }
         try {
             viajeServicio.crearViaje(idProveedor, peso, kmRecorridos, tipoCargas, destino, origen);
         } catch (ErroresServicio ex) {
@@ -70,7 +74,7 @@ public class viajeController {
         try {
             Comprobante comprobante = comprobanteServicio.buscarComprobanteIdViaje(id);
             Usuario login = (Usuario) session.getAttribute("usuariosession");
-            if (login == null || login.getId().equals(comprobante.getProveedor().getId())) {
+            if (login == null || !login.getId().equals(comprobante.getProveedor().getId())) {
                 return "redirect:/login";
             }
             viajeServicio.BajaViaje(id);
