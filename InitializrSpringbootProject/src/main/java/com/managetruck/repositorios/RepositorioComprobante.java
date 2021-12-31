@@ -18,8 +18,7 @@ import org.springframework.stereotype.Repository;
 public interface RepositorioComprobante extends JpaRepository<Comprobante, String> {
     @Query("SELECT c FROM Comprobante c WHERE c.id = :id")
     public List <Comprobante> buscarComprobanteporId(@Param("id")String id);
-    
-    
+
     @Query("SELECT c FROM Comprobante c WHERE c.viaje.id LIKE :viaje_id")
     public Optional <Comprobante> buscarComprobanteporIdViaje(@Param("viaje_id")String viaje_id);
 }

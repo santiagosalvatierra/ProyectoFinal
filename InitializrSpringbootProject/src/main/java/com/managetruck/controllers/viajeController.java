@@ -96,5 +96,12 @@ public class viajeController {
         }
         return null;
     }
-
+    @PostMapping("/aplicar")
+    public String aplicar(String id_transportista, String id_viaje){
+        
+        viajeServicio.aplicar(id_transportista, id_viaje);
+        
+        return null;
+    }
+    
 }
