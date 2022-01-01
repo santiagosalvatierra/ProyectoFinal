@@ -52,6 +52,9 @@ public class TransportistaServicio {
 
     @Autowired
     FotoServicio fotoServicio;
+    
+    @Autowired
+    ComprobanteServicio comprobanteServicio;
 
     @Transactional
     public void crearTransportista(String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, String telefono) throws ErroresServicio {
@@ -184,6 +187,12 @@ public class TransportistaServicio {
             throw new ErroresServicio("No se encuentra un transportista con ese id");
         }
     }
+    //metodo para asignar al trasnportista que escogio el proveedor al comprobante
+    public void asignacionTransportida(String id_viaje, String id_transportista) throws ErroresServicio{
+    Transportista transportista =buscarID(id_transportista);
+    Comprobante comprobante = comprobanteServicio.buscarComprobanteIdViaje(id_viaje);
+    transportista.getComprobante().add(comprobante);
+}
 
 
 //    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {

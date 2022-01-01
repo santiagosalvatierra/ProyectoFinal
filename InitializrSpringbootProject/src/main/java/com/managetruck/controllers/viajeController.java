@@ -103,7 +103,11 @@ public class viajeController {
     @PostMapping("/aplicar")
     public String aplicar(String id_transportista, String id_viaje){
         
-        viajeServicio.aplicar(id_transportista, id_viaje);
+        try {
+            viajeServicio.aplicar(id_transportista, id_viaje);
+        } catch (ErroresServicio ex) {
+            Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         return null;
     }

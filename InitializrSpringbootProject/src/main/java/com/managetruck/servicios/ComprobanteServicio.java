@@ -8,6 +8,7 @@ package com.managetruck.servicios;
 import com.managetruck.controllers.viajeController;
 import com.managetruck.entidades.Comprobante;
 import com.managetruck.entidades.Proveedor;
+import com.managetruck.entidades.Transportista;
 import com.managetruck.entidades.Viaje;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.repositorios.RepositorioComprobante;
@@ -24,7 +25,7 @@ public class ComprobanteServicio {
 
     @Autowired(required = true)
     RepositorioComprobante repositorioComprobante;
-
+    
     @Transactional //cambio el metodo porque cuando se crea un comprobante no se puede valorar porque no esta hecho el viaje
     public void crearComprobante(Proveedor proveedor, Viaje viaje) throws ErroresServicio {
         validarComprobante(proveedor, viaje);
@@ -103,4 +104,5 @@ public class ComprobanteServicio {
             throw new ErroresServicio("El comprobante no se encuentra asociado al viaje y al proveedor indicado");
         }
     }
+    
 }
