@@ -173,6 +173,17 @@ public class TransportistaServicio {
         Double promedio=(double)valoracion/cantidad;
         return promedio;
     }
+    
+    //metodo para buscar a un transportista por ID y separar la capa
+    public Transportista buscarID(String trasnportistaID)throws ErroresServicio{
+        Optional<Transportista> respuesta = repositorioTransportista.findById(trasnportistaID);
+        if (respuesta.isPresent()) {
+            Transportista transportista = respuesta.get();
+            return transportista;
+        }else{
+            throw new ErroresServicio("No se encuentra un transportista con ese id");
+        }
+    }
 
 
 //    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
