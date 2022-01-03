@@ -8,16 +8,19 @@ package com.managetruck.repositorios;
 import com.managetruck.entidades.Provincias;
 import com.managetruck.entidades.Transportista;
 import java.util.List;
+import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RepositorioProvincias {
-       @Query("SELECT c FROM Provincias c WHERE c.id = :id")
+public interface RepositorioProvincias extends JpaRepository<Provincias,String>{
+    @Query("SELECT c FROM Provincias c WHERE c.id = :id")
     public List <Provincias> buscarProvinciaporId(@Param("id")String id);
     
     @Query("SELECT c FROM Provincias c WHERE c.provincia LIKE :provincia%")
     public List <Provincias> buscarProvinciaPorNombre(@Param("provincia")String provincia);
+    
 }
 
