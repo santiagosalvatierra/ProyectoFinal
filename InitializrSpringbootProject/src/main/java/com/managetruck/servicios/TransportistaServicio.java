@@ -15,6 +15,7 @@ import com.managetruck.entidades.Usuario;
 import com.managetruck.enumeracion.Role;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.repositorios.RepositorioCamion;
+import com.managetruck.repositorios.RepositorioComprobante;
 import com.managetruck.repositorios.RepositorioProveedor;
 import com.managetruck.repositorios.RepositorioTransportista;
 import com.managetruck.repositorios.RepositorioUsuario;
@@ -43,7 +44,9 @@ public class TransportistaServicio {
 
     @Autowired(required = true)
     RepositorioUsuario repositorioUsuario;
-
+    @Autowired
+    RepositorioComprobante repositorioComprobante;
+    
     @Autowired
     RepositorioCamion repositorioCamion;
 
@@ -188,10 +191,26 @@ public class TransportistaServicio {
         }
     }
     //metodo para asignar al trasnportista que escogio el proveedor al comprobante
-    public void asignacionTransportida(String id_viaje, String id_transportista) throws ErroresServicio{
-    Transportista transportista =buscarID(id_transportista);
-    Comprobante comprobante = comprobanteServicio.buscarComprobanteIdViaje(id_viaje);
-    transportista.getComprobante().add(comprobante);
+    public void asignacionTransportida(String id_proveedor,String id_viaje, String id_transportista) throws ErroresServicio{
+    Optional<Comprobante> comprobante = repositorioComprobante.buscarComprobanteporIdViaje(id_viaje);
+            //comprueba que el id del proveedor sea igual al id del proveedor que creo el, comprobante
+            if (comprobante.isPresent()) {
+                if (id_proveedor.equals(comprobante.get().getProveedor().getId())) {
+                    Optional<Transportista> transportista = repositorioTransportista.findById(id_transportista);
+                    if(transportista.isPresent()){
+                    transportista.get().getComprobante().add(comprobante);
+                    }else{
+                         throw new ErroresServicio("El transportista no existe o no se pudo encontrar");
+               
+                    }
+                    //busca el transportista y le setea el comprobante
+                } else {
+                    throw new ErroresServicio("Usted no es el proveedor que creo el viaje, no puede elejir el transportista");
+                }
+            } else {
+                throw new ErroresServicio("El comprobante no existe o no se pudo encontrar");
+
+            }
 }
 
 
