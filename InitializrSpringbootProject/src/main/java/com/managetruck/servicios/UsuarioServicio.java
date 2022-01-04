@@ -58,12 +58,15 @@ public class UsuarioServicio implements UserDetailsService{
             throw new ErroresServicio ("No se encontro el usuario");
         }
     }
+
     //metodo para cambiar la contraseña segun las vistas
     public void modificarContrasena(String id, String claveNueva)throws ErroresServicio{
        Usuario usuario=buscarUsuarioId(id);
-        if (claveNueva.isEmpty()){
+        if (!claveNueva.isEmpty()){
             String encriptada = new BCryptPasswordEncoder().encode(claveNueva);
             usuario.setPassword(encriptada);
+        }else{
+            throw new ErroresServicio("La clave no puede ser nula");
         }
         
     }
@@ -79,11 +82,13 @@ public class UsuarioServicio implements UserDetailsService{
     }
     //metodo para recuperar contraseña
     public void olvideContrasena(String mail)throws ErroresServicio{
-        if (mail.isEmpty()) {
+        if (!mail.isEmpty()) {
             Usuario usuario = buscarUsuarioEmail(mail);
             String encriptada = new BCryptPasswordEncoder().encode(regenerar());
             usuario.setPassword(encriptada);
             //notificacionServicio.enviar("Cambio contraseña", "NOMBRE DE LA PAGINA",usuario.getMail());
+        }else{
+            throw new ErroresServicio ("No se encontro el usuario asociado a ese correo");
         }
     }
     //metodo para crear una contraseña aleatroria
@@ -96,4 +101,5 @@ public class UsuarioServicio implements UserDetailsService{
         }
         return claveRegenerada;
     }
+
 }
