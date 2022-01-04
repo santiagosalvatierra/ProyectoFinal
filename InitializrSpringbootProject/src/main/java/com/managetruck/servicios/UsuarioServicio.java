@@ -58,4 +58,13 @@ public class UsuarioServicio implements UserDetailsService{
             throw new ErroresServicio ("No se encontro el usuario");
         }
     }
+    //metodo para cambiar la contraseña segun las vistas
+    public void modificarContrasena(String id, String claveNueva)throws ErroresServicio{
+       Usuario usuario=buscarUsuarioId(id);
+        if (claveNueva.isEmpty()){
+            String encriptada = new BCryptPasswordEncoder().encode(claveNueva);
+            usuario.setPassword(encriptada);
+        }
+        
+    }
 }
