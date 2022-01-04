@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escribinos</title>
+</head>
+<body>
+    <header>
+
+    </header>
+    <div class="container" id="div1">
+        <h2>COMUNICATE CON NOSOTROS!</h2>
+        <div class="container" id="div2">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        <form action="" method="POST" class="needs-validation">
+            <div class="contanier" id="div3">
+                <div class="row g-2">
+                    <div class="form-floating col-md-6">
+                      <input type="text" class="form-control" id="floatingNombre" name="nombre" placeholder="Nombre"
+                        th:value="${nombre}" required>
+                      <label for="floatingNombre">Nombre</label>
+                    </div>
+                    <div class="form-floating col-md-6">
+                      <input type="apellido" class="form-control" id="floatingApellido" name="apellido" placeholder="Apellido"
+                        th:value="${apellido}" required>
+                      <label for="floatingApellido">Apellido</label>
+                    </div>
+                    <div class="form-floating mt-3 mb-3">
+                        <input type="email" class="form-control" id="floatingInput" name="mail" placeholder="name@example.com"
+                          th:value="${mail}" required>
+                        <label for="floatingInput">Correo Electronico</label>
+                      </div>
+                      <textarea name="comentario" id="" cols="30" rows="10"></textarea>
+                      <label for="comentario">Escribi tu comentario...</label>
+                  </div>
+            </div>
+            <div class="container" id="divBoton">
+                <div id="btnForm">
+                    <button type="submit" class="btn btn-primary">ENVIAR</button><br>
+                    <button type="reset" class="btn btn-secondary mt-1">
+                        <a th:href="@{/}">Cancelar</a>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <footer>
+        
+    </footer>
+</body>
+</html>
