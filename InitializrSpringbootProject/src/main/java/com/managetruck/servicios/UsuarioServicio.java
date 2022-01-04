@@ -67,4 +67,33 @@ public class UsuarioServicio implements UserDetailsService{
         }
         
     }
+    //metodo para buscar usuario por email
+    public Usuario buscarUsuarioEmail(String mail)throws ErroresServicio{
+        Optional <Usuario> respuesta = repositorioUsuario.buscarPorMail(mail);
+        if (respuesta.isPresent()) {
+            Usuario usuario = respuesta.get();
+            return usuario;
+        }else{
+            throw new ErroresServicio ("No se encontro el usuario asociado a ese correo");
+        }
+    }
+    //metodo para recuperar contraseña
+    public void olvideContrasena(String mail)throws ErroresServicio{
+        if (mail.isEmpty()) {
+            Usuario usuario = buscarUsuarioEmail(mail);
+            String encriptada = new BCryptPasswordEncoder().encode(regenerar());
+            usuario.setPassword(encriptada);
+            //notificacionServicio.enviar("Cambio contraseña", "NOMBRE DE LA PAGINA",usuario.getMail());
+        }
+    }
+    //metodo para crear una contraseña aleatroria
+    public String regenerar(){
+        String claveRegenerada="";
+        for (int i = 0; i < 10; i++) {
+            int aleatorio= (int)Math.random()*57+65;
+            char letra = (char)aleatorio;
+            claveRegenerada=claveRegenerada+letra;
+        }
+        return claveRegenerada;
+    }
 }
