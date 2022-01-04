@@ -58,8 +58,7 @@ public class UsuarioServicio implements UserDetailsService{
             throw new ErroresServicio ("No se encontro el usuario");
         }
     }
-<<<<<<< Updated upstream
-=======
+
     //metodo para cambiar la contraseña segun las vistas
     public void modificarContrasena(String id, String claveNueva)throws ErroresServicio{
        Usuario usuario=buscarUsuarioId(id);
@@ -102,5 +101,5 @@ public class UsuarioServicio implements UserDetailsService{
         }
         return claveRegenerada;
     }
->>>>>>> Stashed changes
+
 }
