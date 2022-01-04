@@ -16,6 +16,7 @@ public class Camion {
     private Integer anio;
     private String patente;
     private Integer poliza;
+    private Boolean alta;
     @Id
     @GeneratedValue(generator="uuid")
     @GenericGenerator(name="uuid",strategy="uuid2")
@@ -35,6 +36,14 @@ public class Camion {
         this.patente = patente;
         this.poliza = poliza;
         this.foto =  (List<Foto>) foto;
+    }
+
+    public Boolean getAlta() {
+        return alta;
+    }
+
+    public void setAlta(Boolean alta) {
+        this.alta = alta;
     }
 
     public String getDescripcion() {
@@ -96,8 +105,8 @@ public class Camion {
     public Foto getFoto() {
         return (Foto) foto;
     }
-
-    public void setFoto(Foto foto) {
+    
+    public void setFoto(List<Foto> foto) {
         this.foto =  (List<Foto>) foto;
     }
     

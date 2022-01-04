@@ -1,8 +1,10 @@
 package com.managetruck.entidades;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -18,11 +20,12 @@ public class Viaje {
     private boolean alta = true;
     private String destino;
     private String origen;
-
+    @OneToMany
+    private List <Transportista> listadoTransportista;
     public Viaje() {
     }
 
-    public Viaje(Integer peso, Integer kmRecorridos, String tipoCargas, boolean alta, String destino, String origen) {
+    public Viaje(List<Transportista> listadoTransportista,Integer peso, Integer kmRecorridos, String tipoCargas, boolean alta, String destino, String origen) {
 
         this.peso = peso;
         this.kmRecorridos = kmRecorridos;
@@ -30,7 +33,18 @@ public class Viaje {
         this.alta = alta;
         this.destino = destino;
         this.origen = origen;
+        this.listadoTransportista = listadoTransportista;
     }
+
+    public List<Transportista> getListadoTransportista() {
+        return listadoTransportista;
+    }
+
+    public void setListadoTransportista(List<Transportista> listadoTransportista) {
+        this.listadoTransportista = listadoTransportista;
+    }
+
+    
 
     @Override
     public String toString() {

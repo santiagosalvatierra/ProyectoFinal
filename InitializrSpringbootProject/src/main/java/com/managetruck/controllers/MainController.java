@@ -6,10 +6,15 @@
 package com.managetruck.controllers;
 
 import com.managetruck.errores.ErroresServicio;
+import com.managetruck.servicios.CamionServicio;
 import com.managetruck.servicios.FotoServicio;
+import com.managetruck.servicios.ProveedorServicio;
 import com.managetruck.servicios.ViajeServicio;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,19 +24,35 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/")
 public class MainController {
+
+    @Autowired
+    CamionServicio camionServicio;
     
     @Autowired
-    FotoServicio fotoServicio;
+    ProveedorServicio proveedorServicio;
     
     @GetMapping("")
-    public String index(){
-  
-    return "index";
+    public String index() {
+
+        return "index";
+    }
+
+    
+
+    @GetMapping("/login")
+    public String loginUs(ModelMap model, @RequestParam(required = false) String error) throws ErroresServicio {
+        if (error != null) {
+            model.put("error", "El usuario o contraseña ingresada son incorrectas");
+
+        }
+
+        return "login";
     }
     
-    @PostMapping("")
-    public String crear() throws ErroresServicio{
+    @PreAuthorize("hasAnyRole('ROLE_Proveedor')")
+    @GetMapping("/inicio")
+    public String inicio(){
         
-    return "index";
+       return"inicio";
     }
 }

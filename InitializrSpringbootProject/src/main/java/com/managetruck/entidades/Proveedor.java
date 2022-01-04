@@ -1,6 +1,7 @@
 
 package com.managetruck.entidades;
 
+import com.managetruck.enumeracion.Role;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,13 +12,13 @@ import org.hibernate.annotations.GenericGenerator;
 public class Proveedor extends Usuario{
 
     private String razonSocial;
-    private Integer cuilEmpresa;
+    private String cuilEmpresa;
     private String nombreEmpresa;
 
     public Proveedor() {
     }
 
-    public Proveedor(String razonSocial, Integer cuilEmpresa, String nombreEmpresa) {
+    public Proveedor(String razonSocial, String cuilEmpresa, String nombreEmpresa) {
         this.razonSocial = razonSocial;
         this.cuilEmpresa = cuilEmpresa;
         this.nombreEmpresa = nombreEmpresa;
@@ -31,11 +32,11 @@ public class Proveedor extends Usuario{
         this.razonSocial = razonSocial;
     }
 
-    public Integer getCuilEmpresa() {
+    public String getCuilEmpresa() {
         return cuilEmpresa;
     }
 
-    public void setCuilEmpresa(Integer cuilEmpresa) {
+    public void setCuilEmpresa(String cuilEmpresa) {
         this.cuilEmpresa = cuilEmpresa;
     }
 
@@ -51,5 +52,7 @@ public class Proveedor extends Usuario{
     public String toString() {
         return "Proveedor{" + "razonSocial=" + razonSocial + ", cuilEmpresa=" + cuilEmpresa + ", nombreEmpresa=" + nombreEmpresa + '}';
     }
+
+   
     
 }

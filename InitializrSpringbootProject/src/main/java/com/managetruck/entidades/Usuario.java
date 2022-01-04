@@ -5,7 +5,10 @@
  */
 package com.managetruck.entidades;
 
+import com.managetruck.enumeracion.Role;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -20,7 +23,8 @@ public class Usuario {
     private String apellido;
     private String mail;
     private String password;
-    
+    @Enumerated(EnumType.STRING)
+    private Role rol;
      @Id
     @GeneratedValue(generator="uuid")
     @GenericGenerator(name="uuid",strategy="uuid2")
@@ -30,9 +34,9 @@ public class Usuario {
     private Foto foto;
     private String zona;
     private boolean alta;
-    private Integer telefono;
+    private String telefono;
 
-    public Usuario(String nombre, String apellido, String mail, String password, Foto foto, String zona, boolean alta, Integer telefono) {
+    public Usuario(String nombre, String apellido, String mail, String password,Role rol, Foto foto, String zona, boolean alta, String telefono) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.mail = mail;
@@ -41,6 +45,15 @@ public class Usuario {
         this.zona = zona;
         this.alta = true;
         this.telefono = telefono;
+        this.rol=rol;
+    }
+
+    public Role getRol() {
+        return rol;
+    }
+
+    public void setRol(Role rol) {
+        this.rol = rol;
     }
 
     public Usuario() {
@@ -110,11 +123,11 @@ public class Usuario {
         this.alta = alta;
     }
 
-    public Integer getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Integer telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -122,5 +135,7 @@ public class Usuario {
     public String toString() {
         return "Usuario{" + "nombre=" + nombre + ", apellido=" + apellido + ", mail=" + mail + ", password=" + password + ", id=" + id + ", foto=" + foto + ", zona=" + zona + ", alta=" + alta + ", telefono=" + telefono + '}';
     }
+
+   
     
 }

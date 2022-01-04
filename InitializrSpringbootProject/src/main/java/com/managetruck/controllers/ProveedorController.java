@@ -5,17 +5,45 @@
  */
 package com.managetruck.controllers;
 
+import com.managetruck.entidades.Usuario;
+import com.managetruck.errores.ErroresServicio;
+import com.managetruck.servicios.ProveedorServicio;
+import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/proveedor")
 public class ProveedorController {
+    @Autowired
+    ProveedorServicio proveedorServicio;
     
-    @GetMapping("")
-    public String proveedorRegistro(){
-  
-    return "proveedor.html";
+    @PostMapping("/registro")
+    public String registroProveedor(String nombre, String apellido,String mail,String password,MultipartFile foto,String zona,String telefono,String razonSocial,String cuilEmpresa, String nombreEmpresa) throws ErroresServicio{
+       proveedorServicio.crearProveedor(nombre, apellido, mail, password, foto, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
+        return "registroProveedor";
+    }
+    @GetMapping("/registro")
+    public String mostrarPaginaRegistro(){
+        return "registroProveedor";
+    }
+    
+    @GetMapping("/modificar-proveedor")
+    public String modificarProveedor(){
+        return null;
+    }
+    
+    @PostMapping("/modificar-proveedor")
+    public String modificacionProveedor(HttpSession session,String id){
+        //verificacion de que el usuario que esta modificando sea el mismo que va a modificar
+        Usuario login = (Usuario) session.getAttribute("usuariosession");
+        if (login == null || login.getId().equals(id)) {
+            return "redirect:/login";
+        }
+        return null;
     }
 }
