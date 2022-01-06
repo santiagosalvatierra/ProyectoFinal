@@ -29,7 +29,7 @@ public class ProveedorController {
     }
     @GetMapping("/registro")
     public String mostrarPaginaRegistro(){
-        return "registroProveedor";
+        return "empresaForm";
     }
     
     @GetMapping("/modificar-proveedor")

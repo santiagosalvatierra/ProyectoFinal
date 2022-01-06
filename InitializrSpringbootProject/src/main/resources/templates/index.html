@@ -41,22 +41,21 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form th:action="@{/logincheck}" method="post">
+                                    <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Correo Electronico</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1"
+                                        <input th:value="${mail}" name="username" type="email" class="form-control" id="exampleInputEmail1"
                                             aria-describedby="emailHelp" placeholder="correo electronico">
                                     </div>
                                     <br>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Contraseña</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1"
+                                        <input th:value="${password}"name="password"type="password" class="form-control" id="exampleInputPassword1"
                                             placeholder="Clave">
+                                        <br>
                                     </div>
-
-                                </form>
-                            </div>
-                            <div>
+                                    <div>
                                 <div class="d-grid gap-2 col-6 mx-auto">
                                     <button type="submit" class="btn btn-primary">Ingresar</button>
                                 </div>
@@ -65,6 +64,9 @@
                                     <a href="">¿Olvidaste tu clave?</a>
                                 </div>
                             </div>
+                                </form>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -90,15 +92,15 @@
                                 <p class="col-4">Selecciona el tipo de usuario que se corresponde con tus necesidades</p>
                                 <!--ACA EMPIEZA EL DE EMPRESAS-->
                                 <button type="button" class="btn btn-primary d-grid gap-2 col-5 mt-5" data-bs-toggle="modal"
-                                    data-bs-target="#registroEmpresa">Empresa que necesita transportar
+                                    data-bs-target="#registroEmpresa"><a th:href="@{/proveedor/registro}">Empresa que necesita transportar<a/>
                                 </button>
                                 <div class="modal">
                                     
                                 </div>
                                 <!--ACA EMPIEZA EL DE TRANSPORTISTAS-->
                                 <button type="button" class="btn btn-primary d-grid gap-2 col-5 mt-3" data-bs-toggle="modal"
-                                    data-bs-target="#registroChofer">
-                                    Transportistas que ofrecen su trabajo
+                                        data-bs-target="#registroChofer"><a th:href="@{/transportista/registro}">
+                                        Transportistas que ofrecen su trabajo</a>
                                 </button>
                             </div>
                         </div>

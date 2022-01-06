@@ -55,4 +55,8 @@ public class MainController {
         
        return"inicio";
     }
+    @GetMapping("/fragmentos")
+    public String Fragmentos(){
+        return"fragments.html";
+    }
 }

@@ -13,7 +13,7 @@
 <body>
     <div class="container" id="div1">
         <h2 class="display-2">Registrarme como transportista</h2>
-        <form action="" class="needs-validation" method="POST" enctype="multipart/form-data">
+        <form th:action="@{/}" class="needs-validation" method="POST" enctype="multipart/form-data">
             <div class="container" id="div2">
                 <div class="row g-2">
                     <div class="form-floating col-md-6">
@@ -46,17 +46,22 @@
                             required>
                         <label for="clave2">Repetir Clave</label>
                     </div>
+                    <div class="form-floating col-md-12">
+                <form th:action="@{/provincia/provincias}" method="get">
+              <select  class="form-select" required >
+                  
+                <option selected disabled value="">Seleccione la Provincia</option>
+                <option th:each="zona : ${provincias}" th:text="${zona.nombre}" th:value="${zona.id}"></option>
+                
+              </select>
+                    </form>
+              <label for="zona" class="form-label">Zona</label>
+            </div>
                     <div>
                         <label for="archivo">Foto de perfil</label>
                         <input type="file" class="form-control" name="archivo" />
                     </div>
-                    <div class="form-floating">
-                        <select name="zona" id="zona" class="form-select" required>
-                            <option selected disable value="">Seleccione la provincia</option>
-                            <option th:each="$zona : ${zonas}" th:text=${zona.nombre} value="${zona.id}"></option>
-                        </select>
-                        <label for="zona" class="form-label">Provincia</label>
-                    </div>
+                    
                 </div>
             </div>
             <div class="container" id="div3">
@@ -68,8 +73,8 @@
                         <label for="modelo" class="form-label">Marca / Modelo</label>
                     </div>
                     <div>
-                        <label for="archivo">Foto de perfil</label>
-                        <input type="file" class="form-control" name="archivo" />
+                        <label for="archivo">Fotos del camion</label>
+                        <input type="file" class="form-control" name="archivo" multiple />
                     </div>
                     <div class="form-floating col-md-6">
                         <input type="number" class="form-control" id="anio" name="anio" placeholder="Año del modelo"

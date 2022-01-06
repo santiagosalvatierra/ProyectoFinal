@@ -16,7 +16,7 @@
   <!--<div th:insert="fragments/fragment :: cabezal"></div>-->
   <div class="container py-5 mb-3" id="form1">
       <h2 class="text-center mb-5">Registrarme como empresa</h2>
-      <form class="needs-validation" th:action="@{}" method="POST" enctype="multipart/form-data">
+      <form class="needs-validation" th:action="@{/}" method="POST" enctype="multipart/form-data">
         <div class="container" id="contenido1">
           <div class="row g-2">
             <div class="form-floating col-md-6">
@@ -58,10 +58,14 @@
               <input type="file" class="form-control" name="archivo" />
             </div>
             <div class="form-floating col-md-12">
-              <select name="zona" class="form-select" required>
+                <form th:action="@{/provincia/provincias}" method="get">
+              <select  class="form-select" required >
+                  
                 <option selected disabled value="">Seleccione la Provincia</option>
-                <option th:each="zona : ${zonas}" th:text="${zona.nombre}" th:value="${zona.id}"></option>
+                <option th:each="zona : ${provincias}" th:text="${zona.nombre}" th:value="${zona.id}"></option>
+                
               </select>
+                    </form>
               <label for="zona" class="form-label">Zona</label>
             </div>
           </div>
