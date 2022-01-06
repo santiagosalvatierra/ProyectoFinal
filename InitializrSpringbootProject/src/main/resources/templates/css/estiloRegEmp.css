@@ -1,7 +1,7 @@
-#form1{
+#form1 {
   background-color: rgb(215, 245, 250);
-    height: auto;
-    margin-bottom: 10rem;
+  height: auto;
+  margin-bottom: 10rem;
 }
 #contenido1 {
   float: left;
@@ -17,14 +17,14 @@
   padding-top: 75px;
 }
 
-#container1{
+#container1 {
   display: table;
   height: 100px;
   width: 100%;
-  text-align:center;
+  text-align: center;
 }
 
-#btnForm{
+#btnForm {
   vertical-align: middle;
   display: table-cell;
 }

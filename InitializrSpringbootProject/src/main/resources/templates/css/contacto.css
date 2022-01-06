@@ -1,0 +1,17 @@
+#divPrincipal {
+  background-color: rgb(215, 245, 250);
+  height: auto;
+  margin-bottom: 10rem;
+}
+
+#columna1 {
+  float: left;
+  width: 50%;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+#columna2 {
+  float: right;
+  width: 50%;
+}
