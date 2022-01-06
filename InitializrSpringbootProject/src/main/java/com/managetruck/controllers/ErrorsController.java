@@ -34,7 +34,7 @@ public class ErrorsController implements ErrorController {
         }
         model.addAttribute("codigo", codigoError);
         model.addAttribute("mensaje", errormensaje);
-        return "error";
+        return "403";
     }
 
 }
