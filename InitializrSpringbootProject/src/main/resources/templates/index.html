@@ -52,31 +52,32 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-
-                                <!-- /vistaSegunUsuario -->
-                                <form class="modal-body" action="#" method="post">
+                                <form th:action="@{/logincheck}" method="post">
+                                    <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1"></label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1"
+                                        <label for="exampleInputEmail1">Correo Electronico</label>
+                                        <input th:value="${mail}" name="username" type="email" class="form-control" id="exampleInputEmail1"
                                             aria-describedby="emailHelp" placeholder="correo electronico">
                                     </div>
                                     <br>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1"></label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1"
+                                        <label for="exampleInputPassword1">Contraseña</label>
+                                        <input th:value="${password}"name="password"type="password" class="form-control" id="exampleInputPassword1"
                                             placeholder="Clave">
+                                        <br>
                                     </div>
                                     <div>
-                                        <div class="d-grid gap-2 col-6 mx-auto">
-                                            <button type="submit" class="btn btn-primary">Ingresar</button>
-                                        </div>
-                                        <br>
-                                        <div class="mb-3 text-center">
-                                            <a href="">¿Olvidaste tu clave?</a>
-                                        </div>
-                                    </div>
+                                <div class="d-grid gap-2 col-6 mx-auto">
+                                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                                </div>
+                                <br>
+                                <div class="mb-3 text-center">
+                                    <a href="">¿Olvidaste tu clave?</a>
+                                </div>
+                            </div>
                                 </form>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -101,22 +102,17 @@
                                 <p class="col-4">Selecciona el tipo de usuario que se corresponde con tus necesidades
                                 </p>
                                 <!--ACA EMPIEZA EL DE EMPRESAS-->
-                                <a href="/empresaForm">
-                                    <button type="button" class="btn btn-primary d-grid gap-2 col-5 mt-5"
-                                        data-bs-toggle="modal" data-bs-target="/empresaForm.html">Empresa que necesita
-                                        transportar
-                                    </button>
-                                </a>
+                                <a th:href="@{/proveedor/registro}"><button type="button" class="btn btn-primary d-grid gap-2 col-5 mt-5" data-bs-toggle="modal"
+                                    data-bs-target="#registroEmpresa">Empresa que necesita transportar
+                                </button></a>
                                 <div class="modal">
 
                                 </div>
                                 <!--ACA EMPIEZA EL DE TRANSPORTISTAS-->
-                                <a href="/transportistaForm">
-                                    <button type="button" class="btn btn-primary d-grid gap-2 col-5 mt-3"
-                                        data-bs-toggle="modal" data-bs-target="/transportista_form.html">
+                                <a th:href="@{/transportista/registro}"><button type="button" class="btn btn-primary d-grid gap-2 col-5 mt-3" data-bs-toggle="modal"
+                                        data-bs-target="#registroChofer">
                                         Transportistas que ofrecen su trabajo
-                                    </button>
-                                </a>
+                                </button></a>
                             </div>
                         </div>
                     </div>
@@ -163,7 +159,7 @@
     </section>
 
 
-    <footer th:replace="fragment/fragmentos :: footer"></footer>
+    <!--<footer th:replace="fragmentos/footer"></footer> no me funcionan los fragments--> 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">

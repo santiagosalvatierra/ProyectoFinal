@@ -35,7 +35,7 @@ public class ProvinciasController {
         return null;
     }
 
-    @GetMapping("")
+    @GetMapping("/provincias")
     public String listarProvincias(Model modelo, @RequestParam(required = false) String nombre) {
         if (nombre != null) {
             List<Provincias> provincias = provinciasServicio.listarProvinciasPorNombre(nombre);

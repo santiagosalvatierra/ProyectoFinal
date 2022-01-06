@@ -14,27 +14,37 @@ public class ErrorsController implements ErrorController {
     public String paginaError(Model model, HttpServletRequest httpServletRequest) {
         String errormensaje = "";
         int codigoError = (int) httpServletRequest.getAttribute("javax.servlet.error.status_code");
+        String error = null;
         switch (codigoError) {
+            
             case 400:
+                
                 errormensaje = "El recurso solicitado no existe";
                 break;
             case 401:
                 errormensaje = "Usted no se encuentra autorizado, tiene que iniciar sesion";
                 break;
             case 403:
+                error="403";
                 errormensaje = "Usted no tiene los permisos para acceder a los recursos, no tiene el rol necesario";
                 break;
             case 404:
+                error="404";
                 errormensaje = "El recurso solicitado no se ha encontrado";
                 break;
             case 500:
+                error="500";
                 errormensaje = "El servidor no pudo realizar la peticion con exito";
                 break;
+            case 408:
+                error="408"; 
+                break;
+            
             default:
         }
         model.addAttribute("codigo", codigoError);
         model.addAttribute("mensaje", errormensaje);
-        return "403";
+        return error;
     }
 
 }

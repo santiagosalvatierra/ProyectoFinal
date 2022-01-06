@@ -45,9 +45,9 @@ public class ProveedorServicio {
     private FotoServicio fotoServicio;
 
     @Transactional
-    public void crearProveedor(String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
+    public void crearProveedor(String nombre, String apellido, String mail, String password,String password2, MultipartFile archivo, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
         Foto foto = fotoServicio.guardar(archivo);
-        validarProveedor(nombre, apellido, mail, password, archivo, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
+        validarProveedor(nombre, apellido, mail, password,password2, archivo, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
 
         Optional<Usuario> respuesta = repositorioUsuario.buscarPorMail(mail);
         if (respuesta.isPresent()) {
@@ -118,7 +118,7 @@ public class ProveedorServicio {
         }
     }
 
-    public void validarProveedor(String nombre, String apellido, String mail, String password, MultipartFile foto, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
+    public void validarProveedor(String nombre, String apellido, String mail, String password,String password2, MultipartFile foto, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
         if (nombre == null || nombre.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un nombre");
         }
@@ -134,6 +134,12 @@ public class ProveedorServicio {
         verificarnumeros(telefono);
         if (password == null || password.isEmpty()) {
             throw new ErroresServicio("Debe ingresar una contraseña");
+        }
+        if (password2 == null || password2.isEmpty()) {
+            throw new ErroresServicio("Debe ingresar una contraseña");
+        }
+        if (password !=password2) {
+            throw new ErroresServicio("Las dos contrasenas deben ser iguales");
         }
         if (zona == null || zona.isEmpty()) {
             throw new ErroresServicio("Debe ingresar una zona");

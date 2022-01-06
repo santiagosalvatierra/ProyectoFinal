@@ -56,12 +56,12 @@ public class TransportistaController {
             
             return "index";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos
         }
-        return "redirect:/registroTransportista";
+        return "redirect:/transportista_form";
     }
 
-    @GetMapping("/registra")
+    @GetMapping("/registro")
     public String mostrarPaginaRegistro() {
-        return "registroTransportista";
+        return "transportista_form";
     }
 
     @GetMapping("")
