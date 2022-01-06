@@ -12,7 +12,61 @@
     <header th:replace="fragment/fragmentos :: headerLoginTrans"></header>
 
     <main>
-
+        <img src="#imagenPerfil.jpg"/>
+        <h1> Nombre y Apellido</h1>
+        <p>Transportista</p>
+        <form action="/formulario.transportista" method="POST">
+            <label for="nombre"> Nombre</label>
+            <input type="" id="nombre" name="nombre" placeholder="Ej: Franco"/>  
+            <br>
+            <br> 
+            <label for="apellido"> Apellido</label>
+            <input type="" id="apellido" name="apellido" placeholder="Ej: Bullaude"/>  
+            <br>
+            <br>
+            <label for="zona"> Zona</label>
+            <input type="" id="zona" name="zona" placeholder="Ej: Mendoza, Argentina"/>
+            <br>
+            <br>
+            <label for="email"> Email</label>
+            <input type="email" id="email" name="email" placeholder="Ej: transportista@gmail.com"/>
+            <br>
+            <br>
+            <label for="telefono"> Telefono</label>
+            <input type="" id="telefono" name="telefono" placeholder="Ej: (261)1234567"/>
+            <br>
+            <br>
+            <label for="contraseña "> Contraseña</label>
+            <input type="password" id="contraseña" name="contraseña"/>
+            <br>
+            <br>
+            <button type= "sumbit"> Guardar </button>
+        </form>
+        <br>
+        <h1>Tu Camión</h1>
+        <form>
+            <label for="marca"> Marca</label>
+            <input type="" id="marca" name="marca" placeholder="Ej: Chevrolet"/>
+            <br>
+            <br>
+            <label for="modelo"> Modelo</label>
+            <input type="" id="modelo" name="modelo" placeholder="Ej: Kodiak"/>
+            <br>
+            <br>
+            <label for="año"> Año</label>
+            <input type="" id="año" name="año" placeholder="Ej: 1999"/>
+            <br>
+            <br>
+            <label for="patente"> Patente</label>
+            <input type="" id="patente" name="patente" placeholder="Ej: ABC-123 o AB-123-CD"/>
+            <br>
+            <br>
+            <label for="poliza"> Número de Poliza</label>
+            <input type="" id="poliza" name="poliza" placeholder="Número de póliza"/>
+            <br>
+            <br>
+            <button type= "sumbit"> Guardar </button>
+        </form>
 
 
 
