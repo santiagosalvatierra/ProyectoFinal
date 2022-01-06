@@ -33,7 +33,7 @@ public class ErrorsController implements ErrorController {
                 errormensaje = "El recurso solicitado no se ha encontrado";
                 break;
             case 500:
-                error="500";
+                error="500";//que carajo es esto
                 errormensaje = "El servidor no pudo realizar la peticion con exito";
                 break;
             case 408:
