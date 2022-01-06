@@ -49,14 +49,10 @@ public class MainController {
         return "login";
     }
     
-    @PreAuthorize("hasAnyRole('ROLE_Proveedor')")
     @GetMapping("/inicio")
     public String inicio(){
         
        return"inicio";
     }
-    @GetMapping("/fragmentos")
-    public String Fragmentos(){
-        return"fragments.html";
-    }
+    
 }

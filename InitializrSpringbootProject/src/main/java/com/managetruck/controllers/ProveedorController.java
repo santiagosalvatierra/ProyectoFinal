@@ -23,8 +23,9 @@ public class ProveedorController {
     ProveedorServicio proveedorServicio;
     
     @PostMapping("/registro")
-    public String registroProveedor(String nombre, String apellido,String mail,String password,MultipartFile foto,String zona,String telefono,String razonSocial,String cuilEmpresa, String nombreEmpresa) throws ErroresServicio{
-       proveedorServicio.crearProveedor(nombre, apellido, mail, password, foto, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
+    public String registroProveedor(String nombre, String apellido,String mail,String password,String password2,MultipartFile foto,String zona,String telefono,String razonSocial,String cuilEmpresa, String nombreEmpresa) throws ErroresServicio{
+        
+        proveedorServicio.crearProveedor(nombre, apellido, mail, password,password2, foto, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
         return "registroProveedor";
     }
     @GetMapping("/registro")

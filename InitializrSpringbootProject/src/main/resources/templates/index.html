@@ -91,17 +91,17 @@
                             <div class="modal-body">
                                 <p class="col-4">Selecciona el tipo de usuario que se corresponde con tus necesidades</p>
                                 <!--ACA EMPIEZA EL DE EMPRESAS-->
-                                <button type="button" class="btn btn-primary d-grid gap-2 col-5 mt-5" data-bs-toggle="modal"
-                                    data-bs-target="#registroEmpresa"><a th:href="@{/proveedor/registro}">Empresa que necesita transportar<a/>
-                                </button>
+                                <a th:href="@{/proveedor/registro}"><button type="button" class="btn btn-primary d-grid gap-2 col-5 mt-5" data-bs-toggle="modal"
+                                    data-bs-target="#registroEmpresa">Empresa que necesita transportar
+                                </button><a/>
                                 <div class="modal">
                                     
                                 </div>
                                 <!--ACA EMPIEZA EL DE TRANSPORTISTAS-->
-                                <button type="button" class="btn btn-primary d-grid gap-2 col-5 mt-3" data-bs-toggle="modal"
-                                        data-bs-target="#registroChofer"><a th:href="@{/transportista/registro}">
-                                        Transportistas que ofrecen su trabajo</a>
-                                </button>
+                                <a th:href="@{/transportista/registro}"><button type="button" class="btn btn-primary d-grid gap-2 col-5 mt-3" data-bs-toggle="modal"
+                                        data-bs-target="#registroChofer">
+                                        Transportistas que ofrecen su trabajo
+                                </button></a>
                             </div>
                         </div>
                     </div>
@@ -139,7 +139,7 @@
     </div>
 
 
-    <footer th:replace="fragment/fragmentos :: footer"></footer>
+    <!--<footer th:replace="fragmentos/footer"></footer> no me funcionan los fragments--> 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
