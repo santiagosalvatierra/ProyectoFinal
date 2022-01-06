@@ -47,4 +47,10 @@ public class ProveedorController {
         }
         return null;
     }
+    
+    @GetMapping("/indexEmpresa")
+public String indexEmpresa(){
+return "indexEmpresa";
+}
+    
 }

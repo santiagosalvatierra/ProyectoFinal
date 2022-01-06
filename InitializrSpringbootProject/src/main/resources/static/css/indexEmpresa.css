@@ -1,0 +1,40 @@
+
+   /* FONDO CARDS DESTACADAS */
+   .favs-conteiner {
+       margin: 4rem 8rem 8rem;
+       padding: 4rem 4rem 4rem 4rem;
+       background-color: #e2ebee;
+   }
+   
+
+   /* ALINEACIÓN DE CONTENIDO: Icono + Info */
+   #Truck {float:left;}
+   #Truck2 {float: right;}
+
+
+   /* ESTRELLAS */
+   .clasificacion label {
+        align-items: left;
+        font-size: 20px;
+        color:rgb(150, 150, 150);
+        cursor: pointer;
+   }
+
+    .clasificacion input[type='radio'] {
+        opacity: 0;
+        display:none;    
+    }
+
+    .clasificacion{
+        margin-right: 4rem;
+        margin-top: 1rem;
+        unicode-bidi: bidi-override; /* bidi de bidireccional */
+        direction: rtl; /* right to left */     
+    }
+
+    .clasificacion label:hover {color: #eccd04f6;}
+
+    .clasificacion label:hover ~ label{color: #eccd04f6;}
+    .input[type = 'radio']:checked ~ label{color: #eccd04f6;}
+    
+  
