@@ -1,4 +1,4 @@
-<!--ACA EMPIEZA EL HEADER CUANDO NO ESTAS CONECTADO-->
+<!--ACA EMPIEZA EL FRAGMENT NAV INDEX GENERAL-->
 <header th:fragment="headerNoLogin" class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
   <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
     <svg class="bi me-2" width="40" height="32"><use xlink:href="/"/></svg>
@@ -17,8 +17,8 @@
 </div>
 </header>
 
-<!--ACA EMPIEZA EL FRAGMENT de transportista DE LA BARRA DE CONECTADO-->
-<header th:fragment="headerLogin" class="py-3 mb-3 border-bottom">
+<!--ACA EMPIEZA EL FRAGMENT NAV INDEX TRANSPORTISTA-->
+<header th:fragment="headerLoginTrans" class="py-3 mb-3 border-bottom">
   <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
     <!--DESDE ACA EL MENU OFFCANVAS-->
     <button class="btn btn-toolbar" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
@@ -41,9 +41,9 @@
       <div class="offcanvas-body">
         <div class="text-center">
           <ul class="nav flex-column">
-            <li class="nav-item"><a class="btn btn-primary" href="">PERFIL</a></li>
-            <li class="nav-item"><a class="btn btn-primary" href="">COMPROBANTES</a></li>
-            <li class="nav-item"><a class="btn btn-primary" href="">PROCESO DE PEDIDO</a></li>
+            <li class="nav-item"><a class="btn btn-primary" href="#">PERFIL</a></li>
+            <li class="nav-item"><a class="btn btn-primary" href="#">COMPROBANTES</a></li>
+            <li class="nav-item"><a class="btn btn-primary" href="#">PROCESO DE PEDIDO</a></li>
           </ul>
         </div>
         <div class="m-5">
@@ -75,7 +75,7 @@
           </div>
         </div>
         <div>
-          <button class="btn btn-dark mt-3"><a class="" href="/">CERRAR SESIÓN</a>
+          <button class="btn btn-dark mt-3"><a class="" href="/index">CERRAR SESIÓN</a>
           </button>
         </div>
       </div>
@@ -89,13 +89,59 @@
   </div>
 </header>
 
+
+<!--ACA EMPIEZA EL FRAGMENT NAV INDEX EMPRESA-->
+<header th:fragment="headerLoginEmp" class="py-3 mb-3 border-bottom">
+  <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
+    <!--DESDE ACA EL MENU OFFCANVAS-->
+    <button class="btn btn-toolbar" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+      aria-controls="offcanvasScrolling">
+      <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="https://github.com/mdo.png" alt="mdo" width="52" height="52" class="rounded-circle">
+      </a>
+    </button>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasScrolling"
+      aria-labelledby="offcanvasLabel">
+      <div class="offcanvas-header">
+        <!--<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#my-offcanvas" aria-label="Close"></button>-->
+        <div class="justify-content-center">
+          <img
+            src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
+            class="img-thumbnail rounded-circle col-auto" alt="Perfil" width="250" height="300">
+        </div>
+      </div>
+      <div class="offcanvas-body">
+        <div class="text-center">
+          <ul class="nav flex-column">
+            <li class="nav-item"><a class="btn btn-primary" href="#">PERFIL</a></li>
+            <li class="nav-item"><a class="btn btn-primary" href="#">REGISTRO</a></li>
+            <li class="nav-item"><a class="btn btn-primary" href="#">NUEVA CARGA</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="btn btn-dark mt-3"><a class="" href="/index">CERRAR SESIÓN</a>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--HASTA ACA ES EL MENU OFFCANVAS-->
+    <div class="d-flex align-items-end">
+      <form class="w-100 me-3">
+        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+      </form>
+    </div>
+  </div>
+</header>
+
+
 <!--ACA EMPIEZA EL FOOTER-->
 <footer th:fragment="footer" class="py-3 bg-black fixed-bottom">
   <div class="container">
     <div class="row text-center text-white">
       <p>Contactanos   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
         <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
-      </svg> 261-5157680   /// <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+      </svg> 261-5157680   > <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
         <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
       </svg> consultas@managetruck.com</p>
     </div>
