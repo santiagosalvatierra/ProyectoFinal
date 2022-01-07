@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div> <span onclick = "overlay ()"> </sapn> </div>
+        <div style="width: 100%; height: 100%;">
+            <div id="modal-overlay">
+                <div class="modal-data">
+                     <span class = "sapnctyle0"> ACTUALIZA TU CONTRASEÑA </span>
+                    <span class="sapnctyle1"></span>
+                    <br>
+                    <br>
+
+                    
+                    <div class="bottom">
+                        <div class="trClass">
+                             <div class = "tdLabel"> Contraseña original </div>
+                            <div class="tdInput">
+                                <input class="inputbox" id="initpw" type="password" οnpaste="return false;" οndragenter="return false;" οncοntextmen="return false"></input>
+                            </div>
+                        </div>
+                        <div class="trClass" style="padding-right: 0rem;">
+                             <div class = "tdLabel" style = "width: 13.5%;"> Nueva contraseña </div>
+                            <div class="tdInput">
+                                <input id="pw" class="inputbox" type="password" placeholder="" onKeyUp="checkStrong(value)"></input><label class="lableCountNumStyle"></label>
+                            </div>
+                        </div>
+    
+                        <div class="trClass">
+                             <div class = "tdLabel"> Confirmar contraseña </div>
+                            <div class="tdInput"><input id="repw" class="inputbox" type="password" placeholder="" onKeyUp=""></input>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="trClass">
+                            <div class="tdChoose">
+                                 <button class = "bottomstyle" onclick = "submit ()"> Confirmar Cambio de Contraseña </button>
+                            </div>
+                            <br>
+                            <br>
+                        
+                            <div class="tdCancel">
+                                 <button class = "bottomstyle" onclick = "overlay ()"> Cancelar </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
