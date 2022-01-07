@@ -84,6 +84,7 @@ public class TransportistaServicio {
             transportista.setValoracion(0);
             transportista.setRol(Role.Transportista);
             transportista.setEstado(true);
+            transportista.setViajando(false);
             //se envia notificacion que lo realizo correctamente
             notificacionServicio.enviar("TEXTO DE BIENVENIDA", "NOMBRE DE LA PAGINA", transportista.getMail());
             //se guarda en el repositorio o base de datos
