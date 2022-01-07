@@ -1,8 +1,8 @@
 
 .contenidoOculto {
- margin-bottom: 4rem;
- padding-botton: 4rem;
- align-items: center;
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    padding-left: 38rem;
 }
 
 /* ALINEACIÓN DE CONTENIDO: Icono + Info 
@@ -12,25 +12,42 @@
 #weight {float:left;}
 #weight2 {float: right;}*/
 
- .card-body {
-     display:flex;
-     flex-direction: column;
- }
+.card-body {
+    display:flex;
+    flex-direction: column;
+}
 
- .card-title {
-     font-size: 1.2rem;
-     font-weight: 700;
- }
+.card-title {
+    font-size: 1rem;
+    font-weight: 700;
+}
 
- .textTitle {
+.card-text {
+    font-size: 0.8rem;
+}
+
+.textTitle {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.textTitle {
+     font-weight: 400;
+     font-size: 2.5rem;
      margin-top: 3rem;
      text-align: center;
- }
+}
+ 
+.bodyText {
+    padding: 4rem 8rem 2rem 8rem;
+    text-align: center;
+    font-size:1rem;
+}
 
 
  /* PROPIEDAD PARA DESTACAR INFO CUANDO SELECCIONAS CON EL CURSOR */
  ::selection {
-     color:white;
-     background-color: #032144f6;
+    color:white;
+    background-color: #032144f6;
  }
  
