@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" class="carga">
+<div class="carga">
+<label for="rubro-choice">Rubro:</label>
+<input list="rubros" id="rubro-choice" name="rubro-choice" required="required" />
+<datalist id="rubros">
+    <option value="Alimenticio">
+    <option value="Construccion">
+</datalist>
+</div>
+<div class="carga">
+<label for="partida-choice">Lugar de salida:</label>
+<input list="partida" id="partida-choice" name="partida-choice" required="required" />
+<datalist id="partida">
+    <option value="Mendoza-Godoy Cruz">
+    <option value="Buenos Aires-La Plata">
+</datalist>
+</div>
+<div class="carga">
+<label for="destino-choice">Lugar de destino:</label>
+<input list="destino" id="destino-choice" name="destino-choice" required="required" />
+<datalist id="destino">
+    <option value="Mendoza-Godoy Cruz">
+    <option value="Buenos Aires-La Plata">
+</datalist>
+</div>
+<div class="carga">
+<label for="tipo-carga-choice">Tipo de carga:</label>
+<input list="tipo-carga" id="tipo-carga-choice" name="tipo-carga-choice" required="required" />
+<datalist id="tipo-carga">
+    <option value="arena">
+    <option value="ripio">
+    <option value="ladrillos">
+    <option value="frio">    
+</datalist>
+</div>
+<div class="carga">
+<label for="peso">Peso Total(KG)</label>
+<input type="number" id="peso" name="peso" required="required">
+</div>
+<input class="carga"
+       type="submit"
+       value="Crear Viaje">
+</form>
+</body>
+</html>
