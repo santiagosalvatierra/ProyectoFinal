@@ -1,0 +1,36 @@
+
+.contenidoOculto {
+ margin-bottom: 4rem;
+ padding-botton: 4rem;
+ align-items: center;
+}
+
+/* ALINEACIÓN DE CONTENIDO: Icono + Info 
+#truck {float:left;}
+#truck2 {float: right;}
+
+#weight {float:left;}
+#weight2 {float: right;}*/
+
+ .card-body {
+     display:flex;
+     flex-direction: column;
+ }
+
+ .card-title {
+     font-size: 1.2rem;
+     font-weight: 700;
+ }
+
+ .textTitle {
+     margin-top: 3rem;
+     text-align: center;
+ }
+
+
+ /* PROPIEDAD PARA DESTACAR INFO CUANDO SELECCIONAS CON EL CURSOR */
+ ::selection {
+     color:white;
+     background-color: #032144f6;
+ }
+ 

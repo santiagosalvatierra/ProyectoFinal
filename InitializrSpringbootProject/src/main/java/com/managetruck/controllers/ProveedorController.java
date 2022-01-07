@@ -19,27 +19,29 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/proveedor")
 public class ProveedorController {
+
     @Autowired
     ProveedorServicio proveedorServicio;
-    
+
     @PostMapping("/registro")
-    public String registroProveedor(String nombre, String apellido,String mail,String password,String password2,MultipartFile foto,String zona,String telefono,String razonSocial,String cuilEmpresa, String nombreEmpresa) throws ErroresServicio{
-        
-        proveedorServicio.crearProveedor(nombre, apellido, mail, password,password2, foto, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
+    public String registroProveedor(String nombre, String apellido, String mail, String password, String password2, MultipartFile foto, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
+
+        proveedorServicio.crearProveedor(nombre, apellido, mail, password, password2, foto, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
         return "registroProveedor";
     }
+
     @GetMapping("/registro")
-    public String mostrarPaginaRegistro(){
+    public String mostrarPaginaRegistro() {
         return "empresaForm";
     }
-    
+
     @GetMapping("/modificar-proveedor")
-    public String modificarProveedor(){
+    public String modificarProveedor() {
         return null;
     }
-    
+
     @PostMapping("/modificar-proveedor")
-    public String modificacionProveedor(HttpSession session,String id){
+    public String modificacionProveedor(HttpSession session, String id) {
         //verificacion de que el usuario que esta modificando sea el mismo que va a modificar
         Usuario login = (Usuario) session.getAttribute("usuariosession");
         if (login == null || login.getId().equals(id)) {
@@ -47,10 +49,10 @@ public class ProveedorController {
         }
         return null;
     }
-    
+
     @GetMapping("/indexEmpresa")
-public String indexEmpresa(){
-return "indexEmpresa";
-}
-    
+    public String indexEmpresa() {
+        return "indexEmpresa";
+    }
+
 }

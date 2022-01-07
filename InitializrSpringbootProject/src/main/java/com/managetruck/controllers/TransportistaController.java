@@ -22,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/transportista")
 public class TransportistaController {
-    
+
     @Autowired
     CamionServicio camionServicio;
 
@@ -33,7 +33,7 @@ public class TransportistaController {
     RepositorioTransportista repositorioTransportista;
 
     @PostMapping("/registra")
-    public String registroProveedor(ModelMap model, String nombre, String apellido, String mail, String password, MultipartFile foto, String zona, String telefono,Integer pesoMaximo, String descripcion, @RequestParam String modelo, Integer anio, String patente, Integer poliza, List<MultipartFile> fotos) throws ErroresServicio {
+    public String registroProveedor(ModelMap model, String nombre, String apellido, String mail, String password, MultipartFile foto, String zona, String telefono, Integer pesoMaximo, String descripcion, @RequestParam String modelo, Integer anio, String patente, Integer poliza, List<MultipartFile> fotos) throws ErroresServicio {
         try {
             camionServicio.crearCamion(pesoMaximo, modelo, descripcion, anio, patente, poliza, fotos);
             transportistaServicio.crearTransportista(nombre, apellido, mail, password, foto, zona, telefono);
@@ -53,7 +53,7 @@ public class TransportistaController {
             model.put("patente", patente);
             model.put("poliza", poliza);
             model.put("fotos", fotos);
-            
+
             return "index";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos
         }
         return "redirect:/transportista_form";
@@ -98,16 +98,16 @@ public class TransportistaController {
         }
         return "redirect:/index";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos 
     }
-    
+
     @PostMapping("/modificar")
-    public String modificar(HttpSession session,ModelMap modelo,String id, String nombre, String apellido, String mail, String password, MultipartFile foto, String zona, String telefono,Camion camion, double valoracion, Integer cantidadViajes) throws ErroresServicio{
+    public String modificar(HttpSession session, ModelMap modelo, String id, String nombre, String apellido, String mail, String password, MultipartFile foto, String zona, String telefono, Camion camion, double valoracion, Integer cantidadViajes) throws ErroresServicio {
         //verificacion de que el usuario que esta modificando sea el mismo que va a modificar
         Usuario login = (Usuario) session.getAttribute("usuariosession");
         if (login == null || login.getId().equals(id)) {
             return "redirect:/login";
         }
-        try{
-        transportistaServicio.modificarUsuario(id, nombre, apellido, mail, password, foto, zona, telefono,camion, valoracion, cantidadViajes);
+        try {
+            transportistaServicio.modificarUsuario(id, nombre, apellido, mail, password, foto, zona, telefono, camion, valoracion, cantidadViajes);
         } catch (ErroresServicio ex) {
             modelo.put("error", ex.getMessage());
             modelo.put("id", id);
@@ -121,9 +121,14 @@ public class TransportistaController {
             modelo.put("camion", camion);
             modelo.put("valoracion", valoracion);
             modelo.put("cantidadViajes", cantidadViajes);
-            
+
         }
         return "index";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos 
     }
-    
+
+    @GetMapping("/indexTransportista")
+    public String indexTransportista() {
+        return "indexTransportista";
+    }
+
 }

@@ -56,32 +56,34 @@
                                     <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Correo Electronico</label>
-                                        <input th:value="${mail}" name="username" type="email" class="form-control" id="exampleInputEmail1"
-                                            aria-describedby="emailHelp" placeholder="correo electronico">
+                                        <input th:value="${mail}" name="username" type="email" class="form-control"
+                                            id="exampleInputEmail1" aria-describedby="emailHelp"
+                                            placeholder="correo electronico">
                                     </div>
                                     <br>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Contraseña</label>
-                                        <input th:value="${password}"name="password"type="password" class="form-control" id="exampleInputPassword1"
-                                            placeholder="Clave">
+                                        <input th:value="${password}" name="password" type="password"
+                                            class="form-control" id="exampleInputPassword1" placeholder="Clave">
                                         <br>
                                     </div>
                                     <div>
-                                <div class="d-grid gap-2 col-6 mx-auto">
-                                    <button type="submit" class="btn btn-primary">Ingresar</button>
-                                </div>
-                                <br>
-                                <div class="mb-3 text-center">
-                                    <a href="">¿Olvidaste tu clave?</a>
-                                </div>
-                            </div>
+                                        <div class="d-grid gap-2 col-6 mx-auto">
+                                            <button type="submit" class="btn btn-primary">Ingresar</button>
+                                        </div>
+                                        <br>
+                                        <div class="mb-3 text-center">
+                                            <a href="">¿Olvidaste tu clave?</a>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <!--ACA EMPIEZA EL MODAL DE REGISTRARME-->
             <div class="container pt-4">
@@ -102,25 +104,27 @@
                                 <p class="col-4">Selecciona el tipo de usuario que se corresponde con tus necesidades
                                 </p>
                                 <!--ACA EMPIEZA EL DE EMPRESAS-->
-                                <a th:href="@{/proveedor/registro}"><button type="button" class="btn btn-primary d-grid gap-2 col-5 mt-5" data-bs-toggle="modal"
-                                    data-bs-target="#registroEmpresa">Empresa que necesita transportar
-                                </button></a>
+                                <a th:href="@{/proveedor/registro}"><button type="button"
+                                        class="btn btn-primary d-grid gap-2 col-5 mt-5" data-bs-toggle="modal"
+                                        data-bs-target="#registroEmpresa">Empresa que necesita transportar
+                                    </button></a>
                                 <div class="modal">
 
                                 </div>
                                 <!--ACA EMPIEZA EL DE TRANSPORTISTAS-->
-                                <a th:href="@{/transportista/registro}"><button type="button" class="btn btn-primary d-grid gap-2 col-5 mt-3" data-bs-toggle="modal"
+                                <a th:href="@{/transportista/registro}"><button type="button"
+                                        class="btn btn-primary d-grid gap-2 col-5 mt-3" data-bs-toggle="modal"
                                         data-bs-target="#registroChofer">
                                         Transportistas que ofrecen su trabajo
-                                </button></a>
+                                    </button></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    
-       <br><br><br>
+
+        <br><br><br>
         <section class="container" id="carrusel">
             <div id="carouselExampleFade" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -134,14 +138,14 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="../static/img/amazon.jpg" class="d-block w-100 img-fluid mx-auto my-auto"
-                            alt="Amazon"/>
+                            alt="Amazon" />
                     </div>
                     <div class="carousel-item">
                         <img src="../static/img/nike.jpg" class="d-block w-100 img-fluid mx-auto my-auto" alt="Nike" />
                     </div>
                     <div class="carousel-item">
                         <img src="../static/img/p_g.png" class="d-block w-100 img-fluid mx-auto my-auto"
-                            alt="Procter and Grabler"/>
+                            alt="Procter and Grabler" />
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
@@ -155,12 +159,12 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-        </div>
-    </section>
+    </div>
+   
 
 
-    <footer th:replace="fragmentos/footer"></footer>
-
+    <footer th:replace="fragment/fragmentos :: footer"></footer>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
         </script>

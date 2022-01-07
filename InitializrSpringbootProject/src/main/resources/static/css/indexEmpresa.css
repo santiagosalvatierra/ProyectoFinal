@@ -6,6 +6,11 @@
        background-color: #e2ebee;
    }
    
+   .contenidoOculto {
+    margin-bottom: 4rem;
+    padding-botton: 4rem;
+    align-items: center;
+}
 
    /* ALINEACIÓN DE CONTENIDO: Icono + Info 
    #truck {float:left;}
@@ -29,7 +34,6 @@
         text-align: center;
     }
 
-    
    /* ESTRELLAS */
    .clasificacion label {
         align-items: left;
@@ -62,4 +66,5 @@
         background-color: #032144f6;
     }
     
+
   
