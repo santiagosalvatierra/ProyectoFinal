@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ES-ar" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 403</title>
+</head>
+<body>
+    <div class="pagenotfound">
+        <div class="copy-container center-xy">
+          
+          <h1>Listado de Comprobantes</h1>
+    <table class="table table-dark table-stripe">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>EMPRESA CONTRATANTE</th>
+                <th>VIAJE</th>
+                <th>DISTANCIA (KM)</th>
+                <th>CARGA</th>
+                <th>VALORACIÓN</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="comprobante,iterator:${comprobantes}">
+                <td th:text="${iterator.index+1}"></td>
+                <td th:text="${comprobante.proveedor.nombreEmpresa}"></td>
+                <td th:text="${comprobante.viaje.origen}" th:text="${comprobante.viaje.destino}"></td>
+                <td th:text="${comprobante.viaje.kmRecorridos}"></td>
+                <td th:text="${comprobante.viaje.tipoCargas}"></td>
+                <td th:text="${comprobante.valoracion}"></td>
+                
+            </tr>
+        </tbody>
+          <span class="handle"></span>
+      
+        </div>
+      </div>
+</body>
+</html>
