@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,9 +24,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/comprobante")
 public class ComprobanteController {
+
     @Autowired
     TransportistaServicio transportistaServicio;
-    
+
     @Autowired
     private ViajeServicio viajeServicio;
     @Autowired
@@ -52,5 +54,19 @@ public class ComprobanteController {
             Logger.getLogger(ComprobanteController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    @GetMapping("/listarComprobantes")
+    public String comprobanteListado(ModelMap modelo, String id_transportista) {
+        Transportista transportista;
+        try {
+            transportista = transportistaServicio.buscarID(id_transportista);
+            List<Comprobante> comprobantes = transportista.getComprobante();
+            modelo.put("comprobantes", comprobantes);
+        } catch (ErroresServicio ex) {
+            Logger.getLogger(ComprobanteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return "comprobanteListado";
     }
 }
