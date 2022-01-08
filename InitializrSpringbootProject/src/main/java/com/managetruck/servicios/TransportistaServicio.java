@@ -225,6 +225,10 @@ public class TransportistaServicio {
             transportista.setViajando(false);
         }
     }
+    public List listarTransportista(){
+        List<Transportista> listado = repositorioTransportista.findAll();
+        return listado;
+    }
 //    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
 //        Optional<Usuario> usuario = repositorioUsuario.buscarPorMail(mail);
 //        if (usuario != null) {

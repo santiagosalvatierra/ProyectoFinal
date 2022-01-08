@@ -14,7 +14,8 @@
     <header th:insert="fragment/fragmentos :: headerNoLogin"></header>
     <div class="container" id="div1">
         <h2 class="display-2">Registrarme como transportista</h2>
-        <form th:action="@{/}" class="needs-validation" method="POST" enctype="multipart/form-data">
+        <form th:action="@{/transportista/registra}" class="needs-validation" method="POST" enctype="multipart/form-data">
+            <p th:if="${error!=null}" th:text="${error}" style="color:red"></p>
             <div class="container" id="div2">
                 <div class="row g-2">
                     <div class="form-floating col-md-6">
@@ -38,21 +39,21 @@
                         <label for="telefono">Telefono</label>
                     </div>
                     <div class="form-floating col-md-6">
-                        <input type="password" class="form-control" id="clave" name="clave" placeholder="Clave"
+                        <input type="password" class="form-control" id="clave" name="clave1" placeholder="Clave"
                             required>
-                        <label for="clave">Clave</label>
+                        <label for="clave1">Clave</label>
                     </div>
                     <div class="form-floating col-md-6">
-                        <input type="password" class="form-control" id="clave1" name="clave1" placeholder="Clave"
+                        <input type="password" class="form-control" id="clave1" name="clave2" placeholder="Clave"
                             required>
-                        <label for="clave1">Repetir Clave</label>
+                        <label for="clave2">Repetir Clave</label>
                     </div>
                     <div class="form-floating col-md-12">
-                        <select name="zona" id="zona" class="form-select" required>
+                        <select name="provincia" id="zona" class="form-select" required>
                             <option selected disable value="">Seleccione la provincia</option>
-                            <option option th:each="provincia:${provincias}" th:value="${provincia.id}" th:text="${provincia.provincia}"></option>
+                            <option option th:each="provincia:${provincias}" th:value="${provincia}" th:text="${provincia.provincia}"></option>
                         </select>
-                        <label for="zona" class="form-label">Zona</label>
+                        <label for="provincia" class="form-label">Zona</label>
                     </div>
                     <div>
                         <label for="archivo">Foto de perfil</label>

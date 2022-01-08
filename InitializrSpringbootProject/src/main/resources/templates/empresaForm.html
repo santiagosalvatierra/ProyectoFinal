@@ -58,11 +58,11 @@
                             <input type="file" class="form-control" name="archivo" />
                         </div>
                         <div class="form-floating col-md-12">
-                            <select name="zona" id="zona" class="form-select" required>
+                            <select name="provincia" id="zona" class="form-select" required>
                             <option selected disable value="">Seleccione la provincia</option>
-                            <option option th:each="provincia:${provincias}" th:value="${provincia.id}" th:text="${provincia.provincia}"></option>
+                            <option option th:each="provincia:${provincias}" th:value="${provincia}" th:text="${provincia.provincia}"></option>
                         </select>
-                        <label for="zona" class="form-label">Zona</label>
+                        <label for="provincia" class="form-label">Zona</label>
                         </div>
                     </div>
                 </div>
