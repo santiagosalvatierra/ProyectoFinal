@@ -12,6 +12,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class Transportista extends Usuario {
 
     private boolean estado;
+    private boolean viajando;
     @OneToOne
     private Camion camion;
     private Integer cantidadViajes;
@@ -31,6 +32,15 @@ public class Transportista extends Usuario {
         this.comprobante = comprobante;
     }
 
+    public boolean isViajando() {
+        return viajando;
+    }
+
+    public void setViajando(boolean viajando) {
+        this.viajando = viajando;
+    }
+
+    
     public boolean isEstado() {
         return estado;
     }

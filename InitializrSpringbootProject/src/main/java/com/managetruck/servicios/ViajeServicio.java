@@ -10,6 +10,7 @@ import com.managetruck.repositorios.RepositorioProveedor;
 import com.managetruck.repositorios.RepositorioTransportista;
 import com.managetruck.repositorios.RepositorioUsuario;
 import com.managetruck.repositorios.RepositorioViaje;
+import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,4 +112,23 @@ public class ViajeServicio {
     }//metodo para que un transportista aplique a un viaje, lo agrega dentro de un array
     //luego el rpoveedor eligira entre todos los transportistas que haya en su viaje
 
+    //metodo para mostrar la lista de trasnportistas que estan en condiciones de aceptar el viaje
+    public List<Transportista> candidatosTrasnportistas(String id_viaje)throws ErroresServicio{
+        List<Transportista> depurada = null;
+        Optional<Viaje> viaje = repositorioViaje.findById(id_viaje);
+        if (viaje.isPresent()) {
+            //busco la lista completa para desmenuzar quien esta en condiciones de acpetar un viaje
+            List<Transportista> completa = viaje.get().getListadoTransportista();
+            for (Transportista transportista : completa) {
+                //porque pense que el boolean es true cuando viaja y false cuando no
+                if (transportista.isViajando()) {          
+                }else{
+                    depurada.add(transportista);
+                }
+            }
+        }else{
+           throw new ErroresServicio("no se ha encontrado el viaje"); 
+        }
+        return depurada;
+    }
 }

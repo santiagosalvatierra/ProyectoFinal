@@ -48,16 +48,12 @@
                         <label for="clave1">Repetir Clave</label>
                     </div>
                     <div class="form-floating col-md-12">
-                <form th:action="@{/provincia/provincias}" method="get">
-              <select  class="form-select" required >
-                  
-                <option selected disabled value="">Seleccione la Provincia</option>
-                <option th:each="zona : ${provincias}" th:text="${zona.nombre}" th:value="${zona.id}"></option>
-                
-              </select>
-                    </form>
-              <label for="zona" class="form-label">Zona</label>
-            </div>
+                        <select name="zona" id="zona" class="form-select" required>
+                            <option selected disable value="">Seleccione la provincia</option>
+                            <option option th:each="provincia:${provincias}" th:value="${provincia.id}" th:text="${provincia.provincia}"></option>
+                        </select>
+                        <label for="zona" class="form-label">Zona</label>
+                    </div>
                     <div>
                         <label for="archivo">Foto de perfil</label>
                         <input type="file" class="form-control" name="archivo" />

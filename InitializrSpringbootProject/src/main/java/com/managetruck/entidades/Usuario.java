@@ -32,6 +32,7 @@ public class Usuario {
      
     @OneToOne
     private Foto foto;
+    
     private String zona;
     private boolean alta;
     private String telefono;

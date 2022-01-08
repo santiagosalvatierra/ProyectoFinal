@@ -35,5 +35,10 @@ public class Provincias {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Provincias{" + "provincia=" + provincia + ", id=" + id + '}';
+    }
     
 }

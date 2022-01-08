@@ -38,4 +38,10 @@ public class ProvinciasServicio {
         List<Provincias> provincias = repositorioProvincias.buscarProvinciaPorNombre(nombre);
         return provincias;
     }
+    //metodo para buscar todas las provincias
+    public List<Provincias> listarProvinciasTotales(){
+        List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
+        return provincias;
+    }
+    
 }

@@ -22,5 +22,8 @@ public interface RepositorioProvincias extends JpaRepository<Provincias,String>{
     @Query("SELECT c FROM Provincias c WHERE c.provincia LIKE :provincia%")
     public List <Provincias> buscarProvinciaPorNombre(@Param("provincia")String provincia);
     
+    //query para traer todas las provicnias
+    @Query("SELECT c FROM Provincias c")
+    public List <Provincias> buscarProvinciastotales();
 }
 

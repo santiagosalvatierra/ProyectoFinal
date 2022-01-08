@@ -136,9 +136,9 @@ public class ProveedorServicio {
             throw new ErroresServicio("Debe ingresar una contraseña");
         }
         if (password2 == null || password2.isEmpty()) {
-            throw new ErroresServicio("Debe ingresar una contraseña");
+            throw new ErroresServicio("Debe ingresar una contraseña2");
         }
-        if (password !=password2) {
+        if (!password.equals(password2)) {
             throw new ErroresServicio("Las dos contrasenas deben ser iguales");
         }
         if (zona == null || zona.isEmpty()) {
