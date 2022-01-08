@@ -144,9 +144,9 @@ public class ProveedorServicio {
         if (zona == null || zona.isEmpty()) {
             throw new ErroresServicio("Debe ingresar una zona");
         }
-//        if (foto == null) {
-//            throw new ErroresServicio("Debe ingresar una foto");
-//        }
+        if (foto == null) {
+            throw new ErroresServicio("Debe ingresar una foto");
+        }
         if (razonSocial == null || razonSocial.isEmpty()) {
             throw new ErroresServicio("Debe ingresar una zona");
         }
