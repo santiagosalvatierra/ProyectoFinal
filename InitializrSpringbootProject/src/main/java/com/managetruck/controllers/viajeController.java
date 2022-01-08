@@ -1,16 +1,20 @@
 package com.managetruck.controllers;
 
 import com.managetruck.entidades.Comprobante;
+import com.managetruck.entidades.Provincias;
 import com.managetruck.entidades.Usuario;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.servicios.ComprobanteServicio;
+import com.managetruck.servicios.ProvinciasServicio;
 import com.managetruck.servicios.TransportistaServicio;
 import com.managetruck.servicios.ViajeServicio;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,24 +30,35 @@ public class viajeController {
     private TransportistaServicio transportistaServicio;
     @Autowired
     private ComprobanteServicio comprobanteServicio;
+    
+    @Autowired
+    ProvinciasServicio provinciaServicio;
 
     @GetMapping("/pedido")
-    public String inicioViaje() {
-        return null;
+    public String inicioViaje(ModelMap modelo) {
+        List<Provincias> provincias = provinciaServicio.listarProvinciasTotales();
+        modelo.put("provincias",provincias);
+        return "FormNuevaCarga";
     }
 
     @PostMapping("/pedido")
-    public String comienzoViaje(HttpSession session,String idProveedor, @RequestParam Integer peso, @RequestParam Integer kmRecorridos, @RequestParam String tipoCargas, @RequestParam String destino, @RequestParam String origen) {
-        Usuario login =(Usuario) session.getAttribute("usuariosession");
-        if (login == null || !login.getId().equals(idProveedor)) {
-                return "redirect:/login";
-            }
+    public String comienzoViaje(/*HttpSession session,String idProveedor,*/ @RequestParam String origen, @RequestParam String destino, @RequestParam String tipoCargas, @RequestParam Integer peso, @RequestParam Integer kmRecorridos) {
+//        Usuario login =(Usuario) session.getAttribute("usuariosession");
+//        if (login == null || !login.getId().equals(idProveedor)) {
+//                return "redirect:/login";
+//            }
+//System.out.println(idProveedor);
+System.out.println(peso);
+System.out.println(kmRecorridos);
+System.out.println(tipoCargas);
+System.out.println(destino);
+System.out.println(origen);
         try {
-            viajeServicio.crearViaje(idProveedor, peso, kmRecorridos, tipoCargas, destino, origen);
+            viajeServicio.crearViaje(/*idProveedor,*/ peso, kmRecorridos, tipoCargas, destino, origen);
         } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return "index";
     }
 
     @GetMapping("/modificar-viaje")
