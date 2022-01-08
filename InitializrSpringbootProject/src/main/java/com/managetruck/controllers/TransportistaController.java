@@ -68,7 +68,7 @@ public class TransportistaController {
     public String mostrarPaginaRegistro(ModelMap modelo) {
         List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
         System.out.println(provincias);
-        modelo.addAttribute("provincias", provincias);
+        modelo.put("provincias",provincias);
         return "transportista_form";
     }
 
