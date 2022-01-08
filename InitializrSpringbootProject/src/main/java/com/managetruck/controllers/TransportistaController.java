@@ -38,10 +38,10 @@ public class TransportistaController {
     RepositorioProvincias repositorioProvincias;
 
     @PostMapping("/registra")
-    public String registroProveedor(ModelMap model, String nombre, String apellido, String mail, String clave,String clave2, MultipartFile archivo, String zona, String telefono, Integer pesoMaximo, String descripcion, @RequestParam String modelo, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos) throws ErroresServicio {
+    public String registroProveedor(ModelMap model, String nombre, String apellido, String mail, String clave1,String clave2, MultipartFile archivo, String provincia, String telefono, Integer pesoMaximo, String descripcion, @RequestParam String modelo, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos) throws ErroresServicio {
         try {
             camionServicio.crearCamion(pesoMaximo, modelo, descripcion, anio, patente, poliza, archivos);
-            transportistaServicio.crearTransportista(nombre, apellido, mail, clave, archivo, zona, telefono);
+            transportistaServicio.crearTransportista(nombre, apellido, mail, clave1, archivo, provincia, telefono);
         } catch (ErroresServicio es) {
             List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
             model.put("provincias",provincias);
@@ -49,9 +49,9 @@ public class TransportistaController {
             model.put("nombre", nombre);
             model.put("apellido", apellido);
             model.put("mail", mail);
-            model.put("clave", clave);
+            model.put("clave", clave1);
             model.put("archivo", archivo);
-            model.put("zona", zona);
+            model.put("provincia", provincia);
             model.put("telefono", telefono);
             model.put("pesoMaximo", pesoMaximo);
             model.put("modelo", modelo);
