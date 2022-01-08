@@ -70,11 +70,20 @@
                             th:value="${modelo}" required>
                         <label for="modelo" class="form-label">Marca / Modelo</label>
                     </div>
+                    <div class="form-floating">
+                        <textarea class="form-control" id="modelo"th:value="${descripcion}" name="textarea" rows="10" cols="50" ></textarea>
+                        <label for="descripcion" class="form-label">Descripcion</label>
+                    </div>
+                    <div class="form-floating">
+                    <input type="text" class="form-control" id="modelo" name="pesoMaximo" placeholder="Peso Maximo"
+                            th:value="${pesoMaximo}" required>
+                        <label for="pesoMaximo" class="form-label">Peso Maximo</label>
+                    </div>
                     <div>
                         <label for="archivo">Fotos del camion</label>
-                        <input type="file" class="form-control" name="archivo" multiple />
+                        <input type="file" class="form-control" name="archivos" multiple />
                     </div>
-                    <div class="form-floating col-md-6">
+                    <div class="form-floating col-md-6"> 
                         <input type="number" class="form-control" id="anio" name="anio" placeholder="Año del modelo"
                             th:value="${anio}" required>
                         <label for="anio" class="form-label">Año del modelo</label>

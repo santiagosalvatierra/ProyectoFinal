@@ -38,9 +38,9 @@ public class ProveedorController {
     RepositorioProvincias repositorioProvincias;
 
     @PostMapping("/registro")
-    public String registroProveedor(ModelMap model,String nombre, String apellido, String mail, String clave1, String clave2, MultipartFile archivo, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
+    public String registroProveedor(ModelMap model,String nombre, String apellido, String mail, String clave1, String clave2, MultipartFile archivo1, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
         try{
-        proveedorServicio.crearProveedor(nombre, apellido, mail, clave1, clave2, archivo, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
+        proveedorServicio.crearProveedor(nombre, apellido, mail, clave1, clave2, archivo1, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
         } catch (ErroresServicio es) {
             List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
             model.put("error", es.getMessage());
@@ -49,7 +49,7 @@ public class ProveedorController {
             model.put("mail", mail);
             model.put("clave1", clave1);
             model.put("clave2", clave2);
-            model.put("archivo", archivo);
+            model.put("archivo", archivo1);
             model.put("provincias",provincias);
             model.put("zona", zona);
             model.put("telefono", telefono);

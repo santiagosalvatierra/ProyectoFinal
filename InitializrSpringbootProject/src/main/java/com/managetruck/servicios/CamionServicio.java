@@ -117,7 +117,7 @@ public class CamionServicio {
     //metodo para comprobar que el camion no exista mediante la patente
     public void buscarCamionPatente(String patente)throws ErroresServicio{
         List <Camion> respuesta = repositorioCamion.buscarCamionporPatente(patente);
-        if (respuesta.isEmpty()) {
+        if (!respuesta.isEmpty()) {
             Camion camion = respuesta.get(0);
             throw new ErroresServicio ("El numero de patente ya esta asociado a otro camion");
         }

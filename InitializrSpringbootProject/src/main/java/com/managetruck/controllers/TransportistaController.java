@@ -38,17 +38,19 @@ public class TransportistaController {
     RepositorioProvincias repositorioProvincias;
 
     @PostMapping("/registra")
-    public String registroProveedor(ModelMap model, String nombre, String apellido, String mail, String password, MultipartFile foto, String zona, String telefono, Integer pesoMaximo, String descripcion, @RequestParam String modelo, Integer anio, String patente, Integer poliza, List<MultipartFile> fotos) throws ErroresServicio {
+    public String registroProveedor(ModelMap model, String nombre, String apellido, String mail, String clave,String clave2, MultipartFile archivo, String zona, String telefono, Integer pesoMaximo, String descripcion, @RequestParam String modelo, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos) throws ErroresServicio {
         try {
-            camionServicio.crearCamion(pesoMaximo, modelo, descripcion, anio, patente, poliza, fotos);
-            transportistaServicio.crearTransportista(nombre, apellido, mail, password, foto, zona, telefono);
+            camionServicio.crearCamion(pesoMaximo, modelo, descripcion, anio, patente, poliza, archivos);
+            transportistaServicio.crearTransportista(nombre, apellido, mail, clave, archivo, zona, telefono);
         } catch (ErroresServicio es) {
+            List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
+            model.put("provincias",provincias);
             model.put("error", es.getMessage());
             model.put("nombre", nombre);
             model.put("apellido", apellido);
             model.put("mail", mail);
-            model.put("password", password);
-            model.put("foto", foto);
+            model.put("clave", clave);
+            model.put("archivo", archivo);
             model.put("zona", zona);
             model.put("telefono", telefono);
             model.put("pesoMaximo", pesoMaximo);
@@ -57,7 +59,7 @@ public class TransportistaController {
             model.put("anio", anio);
             model.put("patente", patente);
             model.put("poliza", poliza);
-            model.put("fotos", fotos);
+            model.put("archivos", archivos);
 
             return "transportista_form";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos
         }
