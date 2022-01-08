@@ -32,17 +32,6 @@ public class ProveedorController {
 
     @PostMapping("/registro")
     public String registroProveedor(String nombre, String apellido, String mail, String clave, String clave2, MultipartFile archivo, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
-        System.out.println(nombre);
-        System.out.println(apellido);
-        System.out.println(mail);
-        System.out.println(clave);
-        System.out.println(clave2);
-        System.out.println(archivo);
-        System.out.println(zona);
-        System.out.println(telefono);
-        System.out.println(razonSocial);
-        System.out.println(cuilEmpresa);
-        System.out.println(nombreEmpresa);
         
         proveedorServicio.crearProveedor(nombre, apellido, mail, clave, clave2, archivo, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
         return "index";
