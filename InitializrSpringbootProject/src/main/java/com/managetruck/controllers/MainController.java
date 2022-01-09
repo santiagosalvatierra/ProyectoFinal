@@ -35,20 +35,18 @@ public class MainController {
 
     @Autowired
     CamionServicio camionServicio;
-    
+
     @Autowired
     ProveedorServicio proveedorServicio;
-    
+
     @Autowired
     TransportistaServicio transportistaServicio;
-    
+
     @GetMapping("")
     public String index() {
 
         return "index";
     }
-
-    
 
     @GetMapping("/login")
     public String loginUs(ModelMap model, @RequestParam(required = false) String error) throws ErroresServicio {
@@ -59,22 +57,36 @@ public class MainController {
 
         return "login";
     }
-    
+
     @GetMapping("/inicio")
-    public String inicio(ModelMap model,HttpSession session){
+    public String inicio(ModelMap model, HttpSession session) {
         //tambien podemos usar un switch7inicio
         Usuario login = (Usuario) session.getAttribute("usuariosession");
         System.out.println(login.getRol());
         if (login.getRol().equals(Proveedor)) {
-            List <Transportista> transportistas = transportistaServicio.listarTransportista();
+            List<Transportista> transportistas = transportistaServicio.listarTransportista();
             model.put("transportistas", transportistas);
             return "indexEmpresa";
-        }else if(login.getRol().equals(Transportista)){
-            List <Proveedor> proveedores = proveedorServicio.listarProveedor();
+        } else if (login.getRol().equals(Transportista)) {
+            List<Proveedor> proveedores = proveedorServicio.listarProveedor();
             model.put("proveedores", proveedores);
             return "indexTransportista";
         }
         return "index";
     }
-    
+
+    @GetMapping("/servicios")
+    public String serviciosMT() {
+        return "servicios";
+    }
+
+    @GetMapping("/contacto")
+    public String contactoMG() {
+        return "contacto";
+    }
+
+    @GetMapping("/nosotros")
+    public String nosotros() {
+        return "null";
+    }
 }
