@@ -87,11 +87,21 @@ public class ProveedorController {
         
         return "pruebaLista";
     }
+    //para mi esta vista esta de mas ya que la decuelve en el inicio cuando se registra el proveedor
     @GetMapping("/indexEmpresa")
     public String indexEmpresa(Model model) {
         List<Transportista> listado = transportistaServicio.listarTransportista();
         model.addAttribute("transportistas", listado);
         return "indexEmpresa";
     }
+    @GetMapping("/perfil-proveedor")
+    public String perfilProveedor(){
+        return null;
+    }
+    @PostMapping("/perfil-proveedor")
+    public String cambioPerfilProveedor(){
+        return null;
+    }
+    
 
 }
