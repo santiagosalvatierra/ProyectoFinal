@@ -57,7 +57,6 @@ public class MainController {
     @GetMapping("/inicio")
     public String inicio(HttpSession session){
         //tambien podemos usar un switch7inicio
-        System.out.println("entro al inicio");
         Usuario login = (Usuario) session.getAttribute("usuariosession");
         System.out.println(login.getRol());
         if (login.getRol().equals(Proveedor)) {

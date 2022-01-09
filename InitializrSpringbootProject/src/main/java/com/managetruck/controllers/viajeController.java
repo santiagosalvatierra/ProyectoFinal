@@ -42,23 +42,17 @@ public class viajeController {
     }
 
     @PostMapping("/pedido")
-    public String comienzoViaje(/*HttpSession session,String idProveedor,*/ @RequestParam String origen, @RequestParam String destino, @RequestParam String tipoCargas, @RequestParam Integer peso, @RequestParam Integer kmRecorridos) {
-//        Usuario login =(Usuario) session.getAttribute("usuariosession");
-//        if (login == null || !login.getId().equals(idProveedor)) {
-//                return "redirect:/login";
-//            }
-//System.out.println(idProveedor);
-System.out.println(peso);
-System.out.println(kmRecorridos);
-System.out.println(tipoCargas);
-System.out.println(destino);
-System.out.println(origen);
+    public String comienzoViaje(HttpSession session,String idProveedor, @RequestParam String origen, @RequestParam String destino, @RequestParam String tipoCargas, @RequestParam Integer peso, @RequestParam Integer kmRecorridos) {
+        Usuario login =(Usuario) session.getAttribute("usuariosession");
+        if (login == null || !login.getId().equals(idProveedor)) {
+                return "redirect:/login";
+            }
         try {
-            viajeServicio.crearViaje(/*idProveedor,*/ peso, kmRecorridos, tipoCargas, destino, origen);
+            viajeServicio.crearViaje(idProveedor, peso, kmRecorridos, tipoCargas, destino, origen);
         } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "index";
+        return "indexEmpresa";
     }
 
     @GetMapping("/modificar-viaje")
