@@ -6,6 +6,8 @@
 package com.managetruck.controllers;
 
 import com.managetruck.entidades.Usuario;
+import static com.managetruck.enumeracion.Role.Proveedor;
+import static com.managetruck.enumeracion.Role.Transportista;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.servicios.CamionServicio;
 import com.managetruck.servicios.FotoServicio;
@@ -54,11 +56,13 @@ public class MainController {
     
     @GetMapping("/inicio")
     public String inicio(HttpSession session){
-        //tambien podemos usar un switch
+        //tambien podemos usar un switch7inicio
+        System.out.println("entro al inicio");
         Usuario login = (Usuario) session.getAttribute("usuariosession");
-        if (login.getRol().equals("Proveedor")) {
+        System.out.println(login.getRol());
+        if (login.getRol().equals(Proveedor)) {
             return "indexEmpresa";
-        }else if(login.getRol().equals("Transportista")){
+        }else if(login.getRol().equals(Transportista)){
             return "indexTransportista";
         }
         return "index";
