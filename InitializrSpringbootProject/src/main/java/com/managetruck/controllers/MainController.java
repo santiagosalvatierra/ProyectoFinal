@@ -5,12 +5,15 @@
  */
 package com.managetruck.controllers;
 
+import com.managetruck.entidades.Usuario;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.servicios.CamionServicio;
 import com.managetruck.servicios.FotoServicio;
 import com.managetruck.servicios.ProveedorServicio;
 import com.managetruck.servicios.ViajeServicio;
 import java.util.List;
+import javax.servlet.http.HttpSession;
+import jdk.nashorn.internal.ir.BreakNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -50,9 +53,15 @@ public class MainController {
     }
     
     @GetMapping("/inicio")
-    public String inicio(){
-        
-       return"inicio";
+    public String inicio(HttpSession session){
+        //tambien podemos usar un switch
+        Usuario login = (Usuario) session.getAttribute("usuariosession");
+        if (login.getRol().equals("Proveedor")) {
+            return "indexEmpresa";
+        }else if(login.getRol().equals("Transportista")){
+            return "indexTransportista";
+        }
+        return "index";
     }
     
 }
