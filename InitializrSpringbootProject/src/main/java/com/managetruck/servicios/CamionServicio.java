@@ -28,7 +28,7 @@ public class CamionServicio {
     FotoServicio fotoServicio;
 
     @Transactional
-    public void crearCamion(Integer pesoMaximo, String modelo,String descripcion, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos) throws ErroresServicio {
+    public Camion crearCamion(Integer pesoMaximo, String modelo,String descripcion, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos) throws ErroresServicio {
         List<Foto> fotos = new ArrayList<>();
         for (MultipartFile archivo : archivos) {
             fotos.add(fotoServicio.guardar(archivo));
@@ -44,6 +44,7 @@ public class CamionServicio {
         camion.setAlta(true);
         camion.setFoto(fotos);
         repositorioCamion.save(camion);
+        return camion;
     }
 
     public void validarCamion(Integer pesoMaximo, String modelo, Integer anio, String patente, Integer poliza/*, Foto foto*/) throws ErroresServicio {
