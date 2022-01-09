@@ -5,6 +5,8 @@
  */
 package com.managetruck.controllers;
 
+import com.managetruck.entidades.Proveedor;
+import com.managetruck.entidades.Transportista;
 import com.managetruck.entidades.Usuario;
 import static com.managetruck.enumeracion.Role.Proveedor;
 import static com.managetruck.enumeracion.Role.Transportista;
@@ -12,6 +14,7 @@ import com.managetruck.errores.ErroresServicio;
 import com.managetruck.servicios.CamionServicio;
 import com.managetruck.servicios.FotoServicio;
 import com.managetruck.servicios.ProveedorServicio;
+import com.managetruck.servicios.TransportistaServicio;
 import com.managetruck.servicios.ViajeServicio;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -36,6 +39,9 @@ public class MainController {
     @Autowired
     ProveedorServicio proveedorServicio;
     
+    @Autowired
+    TransportistaServicio transportistaServicio;
+    
     @GetMapping("")
     public String index() {
 
@@ -55,13 +61,17 @@ public class MainController {
     }
     
     @GetMapping("/inicio")
-    public String inicio(HttpSession session){
+    public String inicio(ModelMap model,HttpSession session){
         //tambien podemos usar un switch7inicio
         Usuario login = (Usuario) session.getAttribute("usuariosession");
         System.out.println(login.getRol());
         if (login.getRol().equals(Proveedor)) {
+            List <Transportista> transportistas = transportistaServicio.listarTransportista();
+            model.put("transportistas", transportistas);
             return "indexEmpresa";
         }else if(login.getRol().equals(Transportista)){
+            List <Proveedor> proveedores = proveedorServicio.listarProveedor();
+            model.put("proveedores", proveedores);
             return "indexTransportista";
         }
         return "index";
