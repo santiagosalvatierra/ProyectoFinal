@@ -116,13 +116,13 @@
       <div class="offcanvas-body">
         <div class="text-center">
           <ul class="nav flex-column">
-            <li class="nav-item"><a class="btn btn-primary" href="#">PERFIL</a></li>
+            <li class="nav-item"><a class="btn btn-primary" th:href="@{/proveedor/perfil-proveedor}">PERFIL</a></li>
             <li class="nav-item"><a class="btn btn-primary" href="#">REGISTRO</a></li>
             <li class="nav-item"><a class="btn btn-primary" th:href="@{/viaje/pedido}">NUEVA CARGA</a></li>
           </ul>
         </div>
         <div>
-          <button class="btn btn-dark mt-3"><a class="" href="/index">CERRAR SESIÓN</a>
+          <button class="btn btn-dark mt-3"><a class="" th:href="@{/logout}">CERRAR SESIÓN</a>
           </button>
         </div>
       </div>

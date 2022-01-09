@@ -89,4 +89,8 @@ public class MainController {
     public String nosotros() {
         return "null";
     }
+    @GetMapping("/logout")
+    public String salir(){
+        return "index";
+    }
 }
