@@ -34,7 +34,7 @@ public class ViajeServicio {
 
     @Transactional
 
-    public void crearViaje(/*String idProveedor,*/ Integer peso, Integer kmRecorridos, String tipoCargas, String destino, String origen) throws ErroresServicio {
+    public void crearViaje(String idProveedor,Integer peso, Integer kmRecorridos, String tipoCargas, String destino, String origen) throws ErroresServicio {
         ValidarViaje(peso, kmRecorridos, tipoCargas, destino, origen);
         Viaje viaje = new Viaje();
         viaje.setDestino(destino);
@@ -42,8 +42,8 @@ public class ViajeServicio {
         viaje.setOrigen(origen);
         viaje.setPeso(peso);
         viaje.setTipoCargas(tipoCargas);
-//        Optional<Proveedor> proveedor = repositorioProveedor.findById(idProveedor);
-//        comprobanteServicio.crearComprobante(proveedor.get(), viaje);
+        Optional<Proveedor> proveedor = repositorioProveedor.findById(idProveedor);
+        comprobanteServicio.crearComprobante(proveedor.get(), viaje);
         repositorioViaje.save(viaje);
     }
 

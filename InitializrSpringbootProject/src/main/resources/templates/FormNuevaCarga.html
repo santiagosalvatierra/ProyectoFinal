@@ -12,7 +12,8 @@
     <header th:replace="fragment/fragmentos :: headerLoginEmp"></header>
 
 
-    <form th:action="@{/viaje/pedido}" method="POST" class="carga">
+    <form  th:action="@{/viaje/pedido}" method="POST" class="carga">
+        <input type="hidden" name="idProveedor" th:value="${session.usuariosession.id}" />
         <div class="carga">
             <label for="rubro-choice">Rubro:</label>
             <input list="rubros" id="rubro-choice" name="rubro-choice" required="required" />
