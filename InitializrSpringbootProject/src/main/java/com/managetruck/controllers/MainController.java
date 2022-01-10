@@ -13,6 +13,7 @@ import static com.managetruck.enumeracion.Role.Transportista;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.servicios.CamionServicio;
 import com.managetruck.servicios.FotoServicio;
+import com.managetruck.servicios.NotificacionDeServicio;
 import com.managetruck.servicios.ProveedorServicio;
 import com.managetruck.servicios.TransportistaServicio;
 import com.managetruck.servicios.ViajeServicio;
@@ -41,7 +42,10 @@ public class MainController {
 
     @Autowired
     TransportistaServicio transportistaServicio;
-
+    
+    @Autowired
+    NotificacionDeServicio notificacionDeServicio;
+    
     @GetMapping("")
     public String index() {
 
@@ -83,6 +87,12 @@ public class MainController {
     @GetMapping("/contacto")
     public String contactoMG() {
         return "contacto";
+    }
+    @PostMapping("/contacto")
+    public String contactar(String nombre,String apellido,String mail,String comentario) {
+        notificacionDeServicio.contactar(comentario, mail);
+        notificacionDeServicio.enviar("Su mensaje ha sido enviado y esta siendo procesado", "ContactUs", mail);
+        return "index";
     }
 
     @GetMapping("/nosotros")
