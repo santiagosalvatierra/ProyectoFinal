@@ -34,7 +34,7 @@ public class ViajeServicio {
 
     @Transactional
 
-    public void crearViaje(String idProveedor, Integer peso, Integer kmRecorridos, String tipoCargas, String destino, String origen) throws ErroresServicio {
+    public void crearViaje(String idProveedor,Integer peso, Integer kmRecorridos, String tipoCargas, String destino, String origen) throws ErroresServicio {
         ValidarViaje(peso, kmRecorridos, tipoCargas, destino, origen);
         Viaje viaje = new Viaje();
         viaje.setDestino(destino);

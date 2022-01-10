@@ -18,6 +18,7 @@
         <div class="container py-5 mb-3 contenedor" id="form1">
             <h2 class="text-center mb-5">Registrarme como empresa</h2>
             <form class="needs-validation" th:action="@{/proveedor/registro}" method="POST" enctype="multipart/form-data">
+                <p th:if="${error!=null}" th:text="${error}" style="color:red"></p>
                 <div class="container" id="contenido1">
                     <div class="row g-2">
                         <div class="form-floating col-md-6">
@@ -43,12 +44,12 @@
                     </div>
                     <div class="row g-2 mb-3">
                         <div class="form-floating col-md-6">
-                            <input type="password" class="form-control" id="floatingPassword" name="clave" th:value="${clave}"
+                            <input type="password" class="form-control" id="floatingPassword" name="clave1" th:value="${clave}"
                                    placeholder="Clave" required>
                             <label for="floatingPassword">Clave</label>
                         </div>
                         <div class="form-floating col-md-6">
-                            <input type="password" class="form-control" id="floatingPassword2" name="clave2" th:value="${clave2}"
+                            <input type="password" class="form-control" id="floatingPassword2" name="clave2" 
                                    placeholder="Clave" required>
                             <label for="floatingPassword2">Repetir Clave</label>
                         </div>
@@ -56,14 +57,14 @@
                     <div class="row g-2">
                         <div class="col-md-12 mb-2">
                             <label for="archivo">Foto de perfil</label>
-                            <input type="file" class="form-control" name="archivo" />
+                            <input type="file" class="form-control" name="archivo1" />
                         </div>
                         <div class="form-floating col-md-12">
-                            <select name="zona" id="zona" class="form-select" required>
+                             <select name="provincia" id="zona" class="form-select" required>
                             <option selected disable value="">Seleccione la provincia</option>
-                            <option option th:each="provincia:${provincias}" th:value="${provincia.id}" th:text="${provincia.provincia}"></option>
+                            <option option th:each="provincia:${provincias}" th:value="${provincia}" th:text="${provincia.provincia}"></option>
                         </select>
-                        <label for="zona" class="form-label">Zona</label>
+                        <label for="provincia" class="form-label">Zona</label>
                         </div>
                     </div>
                 </div>

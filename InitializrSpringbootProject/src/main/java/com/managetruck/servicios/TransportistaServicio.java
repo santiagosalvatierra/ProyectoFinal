@@ -59,7 +59,7 @@ public class TransportistaServicio {
     ComprobanteServicio comprobanteServicio;
 
     @Transactional
-    public void crearTransportista(String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, String telefono) throws ErroresServicio {
+    public void crearTransportista(String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, String telefono, String id_camion) throws ErroresServicio {
         Foto foto = fotoServicio.guardar(archivo);
         validarTransportista(nombre, apellido, mail, password, archivo, zona, telefono);
         Optional<Usuario> respuesta = repositorioUsuario.buscarPorMail(mail);
@@ -78,14 +78,19 @@ public class TransportistaServicio {
             transportista.setFoto(foto);
             transportista.setZona(zona);
             transportista.setTelefono(telefono);
-            transportista.setCamion(null);
+            Optional<Camion> respuesta2 = repositorioCamion.findById(id_camion);
+            if (respuesta2.isPresent()) {
+                transportista.setCamion(respuesta2.get());
+            } else {
+                transportista.setCamion(null);
+            }
             transportista.setCantidadViajes(0);
             transportista.setValoracion(0);
             transportista.setRol(Role.Transportista);
             transportista.setEstado(true);
             transportista.setViajando(false);
             //se envia notificacion que lo realizo correctamente
-            notificacionServicio.enviar("TEXTO DE BIENVENIDA", "NOMBRE DE LA PAGINA", transportista.getMail());
+            //notificacionServicio.enviar("TEXTO DE BIENVENIDA", "NOMBRE DE LA PAGINA", transportista.getMail());
             //se guarda en el repositorio o base de datos
             repositorioTransportista.save(transportista);
         }
@@ -200,7 +205,7 @@ public class TransportistaServicio {
                 Optional<Transportista> transportista = repositorioTransportista.findById(id_transportista);
                 if (transportista.isPresent()) {
                     transportista.get().getComprobante().add(comprobante);
-                    enViaje(transportista.get().getId());   
+                    enViaje(transportista.get().getId());
                 } else {
                     throw new ErroresServicio("El transportista no existe o no se pudo encontrar");
 
@@ -224,6 +229,11 @@ public class TransportistaServicio {
         } else {
             transportista.setViajando(false);
         }
+    }
+
+    public List listarTransportista() {
+        List<Transportista> listado = repositorioTransportista.findAll();
+        return listado;
     }
 //    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
 //        Optional<Usuario> usuario = repositorioUsuario.buscarPorMail(mail);

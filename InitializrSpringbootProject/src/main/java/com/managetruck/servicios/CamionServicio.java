@@ -28,7 +28,7 @@ public class CamionServicio {
     FotoServicio fotoServicio;
 
     @Transactional
-    public void crearCamion(Integer pesoMaximo, String modelo,String descripcion, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos) throws ErroresServicio {
+    public Camion crearCamion(Integer pesoMaximo, String modelo,String descripcion, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos) throws ErroresServicio {
         List<Foto> fotos = new ArrayList<>();
         for (MultipartFile archivo : archivos) {
             fotos.add(fotoServicio.guardar(archivo));
@@ -44,6 +44,7 @@ public class CamionServicio {
         camion.setAlta(true);
         camion.setFoto(fotos);
         repositorioCamion.save(camion);
+        return camion;
     }
 
     public void validarCamion(Integer pesoMaximo, String modelo, Integer anio, String patente, Integer poliza/*, Foto foto*/) throws ErroresServicio {
@@ -117,7 +118,7 @@ public class CamionServicio {
     //metodo para comprobar que el camion no exista mediante la patente
     public void buscarCamionPatente(String patente)throws ErroresServicio{
         List <Camion> respuesta = repositorioCamion.buscarCamionporPatente(patente);
-        if (respuesta.isEmpty()) {
+        if (!respuesta.isEmpty()) {
             Camion camion = respuesta.get(0);
             throw new ErroresServicio ("El numero de patente ya esta asociado a otro camion");
         }

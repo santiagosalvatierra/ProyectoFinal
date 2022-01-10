@@ -12,7 +12,8 @@
     <header th:replace="fragment/fragmentos :: headerLoginEmp"></header>
 
 
-    <form action="" class="carga">
+    <form  th:action="@{/viaje/pedido}" method="POST" class="carga">
+        <input type="hidden" name="idProveedor" th:value="${session.usuariosession.id}" />
         <div class="carga">
             <label for="rubro-choice">Rubro:</label>
             <input list="rubros" id="rubro-choice" name="rubro-choice" required="required" />
@@ -23,23 +24,26 @@
         </div>
         <div class="carga">
             <label for="partida-choice">Lugar de salida:</label>
-            <input list="partida" id="partida-choice" name="partida-choice" required="required" />
-            <datalist id="partida">
-                <option value="Mendoza-Godoy Cruz">
-                <option value="Buenos Aires-La Plata">
-            </datalist>
+            <select name="origen" id="zona" class="form-select" required>
+                            <option selected disable value="">Seleccione la provincia</option>
+                            <option option th:each="provincia:${provincias}" th:value="${provincia.id}" th:text="${provincia.provincia}"></option>
+                        </select>
         </div>
         <div class="carga">
-            <label for="destino-choice">Lugar de destino:</label>
-            <input list="destino" id="destino-choice" name="destino-choice" required="required" />
-            <datalist id="destino">
-                <option value="Mendoza-Godoy Cruz">
-                <option value="Buenos Aires-La Plata">
-            </datalist>
+            <label for="provincia" class="form-label">Lugar de Destino</label>
+            <select name="destino" id="zona" class="form-select" required>
+                            <option selected disable value="">Seleccione la provincia</option>
+                            <option option th:each="provincia:${provincias}" th:value="${provincia.id}" th:text="${provincia.provincia}"></option>
+                        </select>
+                        
+        </div>
+        <div class="carga">
+            <label for="kmRecorridos">Km Recorridos</label>
+            <input type="number" id="peso" name="kmRecorridos" required="required">
         </div>
         <div class="carga">
             <label for="tipo-carga-choice">Tipo de carga:</label>
-            <input list="tipo-carga" id="tipo-carga-choice" name="tipo-carga-choice" required="required" />
+            <input list="tipo-carga" id="tipo-carga-choice" name="tipoCargas" required="required" />
             <datalist id="tipo-carga">
                 <option value="arena">
                 <option value="ripio">

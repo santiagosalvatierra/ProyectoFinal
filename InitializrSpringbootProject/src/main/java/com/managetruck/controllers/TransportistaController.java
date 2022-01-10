@@ -38,18 +38,20 @@ public class TransportistaController {
     RepositorioProvincias repositorioProvincias;
 
     @PostMapping("/registra")
-    public String registroProveedor(ModelMap model, String nombre, String apellido, String mail, String password, MultipartFile foto, String zona, String telefono, Integer pesoMaximo, String descripcion, @RequestParam String modelo, Integer anio, String patente, Integer poliza, List<MultipartFile> fotos) throws ErroresServicio {
+    public String registroProveedor(ModelMap model, String nombre, String apellido, String mail, String clave1,String clave2, MultipartFile archivo, String provincia, String telefono, Integer pesoMaximo, String descripcion, @RequestParam String modelo, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos) throws ErroresServicio {
         try {
-            camionServicio.crearCamion(pesoMaximo, modelo, descripcion, anio, patente, poliza, fotos);
-            transportistaServicio.crearTransportista(nombre, apellido, mail, password, foto, zona, telefono);
+            Camion camion=camionServicio.crearCamion(pesoMaximo, modelo, descripcion, anio, patente, poliza, archivos);
+            transportistaServicio.crearTransportista(nombre, apellido, mail, clave1, archivo, provincia, telefono,camion.getID());
         } catch (ErroresServicio es) {
+            List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
+            model.put("provincias",provincias);
             model.put("error", es.getMessage());
             model.put("nombre", nombre);
             model.put("apellido", apellido);
             model.put("mail", mail);
-            model.put("password", password);
-            model.put("foto", foto);
-            model.put("zona", zona);
+            model.put("clave", clave1);
+            model.put("archivo", archivo);
+            model.put("provincia", provincia);
             model.put("telefono", telefono);
             model.put("pesoMaximo", pesoMaximo);
             model.put("modelo", modelo);
@@ -57,11 +59,11 @@ public class TransportistaController {
             model.put("anio", anio);
             model.put("patente", patente);
             model.put("poliza", poliza);
-            model.put("fotos", fotos);
+            model.put("archivos", archivos);
 
-            return "index";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos
+            return "transportista_form";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos
         }
-        return "redirect:/transportista_form";
+        return "index";
     }
 
     @GetMapping("/registra")

@@ -136,6 +136,7 @@ public class ProveedorServicio {
             throw new ErroresServicio("Debe ingresar una contraseña");
         }
         if (password2 == null || password2.isEmpty()) {
+            
             throw new ErroresServicio("Debe ingresar una contraseña2");
         }
         if (!password.equals(password2)) {
@@ -167,6 +168,10 @@ public class ProveedorServicio {
         }
         
         
+    }
+    public List listarProveedor(){
+        List<Proveedor> listado = repositorioproveedor.findAll();
+        return listado;
     }
 //    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
 //        Optional <Usuario> usuario = repositorioUsuario.buscarPorMail(mail);
