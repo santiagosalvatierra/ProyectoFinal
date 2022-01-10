@@ -67,6 +67,7 @@ public class ComprobanteController {
             transportista = transportistaServicio.buscarID(login.getId());
             List<Comprobante> comprobantes = transportista.getComprobante();
             modelo.put("comprobantes", comprobantes);
+            
         } catch (ErroresServicio ex) {
             Logger.getLogger(ComprobanteController.class.getName()).log(Level.SEVERE, null, ex);
         }
