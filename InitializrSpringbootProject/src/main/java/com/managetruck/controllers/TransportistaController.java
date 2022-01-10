@@ -41,7 +41,7 @@ public class TransportistaController {
     public String registroProveedor(ModelMap model, String nombre, String apellido, String mail, String clave1,String clave2, MultipartFile archivo, String provincia, String telefono, Integer pesoMaximo, String descripcion, @RequestParam String modelo, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos) throws ErroresServicio {
         try {
             Camion camion=camionServicio.crearCamion(pesoMaximo, modelo, descripcion, anio, patente, poliza, archivos);
-            transportistaServicio.crearTransportista(nombre, apellido, mail, clave1, archivo, provincia, telefono,camion.getID());
+            transportistaServicio.crearTransportista(nombre, apellido, mail, clave1,clave2, archivo, provincia, telefono,camion.getID());
         } catch (ErroresServicio es) {
             List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
             model.put("provincias",provincias);
@@ -50,6 +50,7 @@ public class TransportistaController {
             model.put("apellido", apellido);
             model.put("mail", mail);
             model.put("clave", clave1);
+            model.put("clave", clave2);
             model.put("archivo", archivo);
             model.put("provincia", provincia);
             model.put("telefono", telefono);
@@ -109,21 +110,21 @@ public class TransportistaController {
     }
 
     @PostMapping("/modificar")
-    public String modificar(HttpSession session, ModelMap modelo, String id, String nombre, String apellido, String mail, String password, MultipartFile foto, String zona, String telefono, Camion camion, double valoracion, Integer cantidadViajes) throws ErroresServicio {
+    public String modificar(HttpSession session, ModelMap modelo, String id, String nombre, String apellido, String mail, String clave1,String clave2, MultipartFile foto, String zona, String telefono, Camion camion, double valoracion, Integer cantidadViajes) throws ErroresServicio {
         //verificacion de que el usuario que esta modificando sea el mismo que va a modificar
         Usuario login = (Usuario) session.getAttribute("usuariosession");
         if (login == null || login.getId().equals(id)) {
             return "redirect:/login";
         }
         try {
-            transportistaServicio.modificarUsuario(id, nombre, apellido, mail, password, foto, zona, telefono, camion, valoracion, cantidadViajes);
+            transportistaServicio.modificarUsuario(id, nombre, apellido, mail, clave1,clave2, foto, zona, telefono, camion, valoracion, cantidadViajes);
         } catch (ErroresServicio ex) {
             modelo.put("error", ex.getMessage());
             modelo.put("id", id);
             modelo.put("nombre", nombre);
             modelo.put("apellido", apellido);
             modelo.put("mail", mail);
-            modelo.put("password", password);
+            modelo.put("password", clave1);
             modelo.put("foto", foto);
             modelo.put("zona", zona);
             modelo.put("telefono", telefono);

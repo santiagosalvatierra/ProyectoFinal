@@ -101,8 +101,12 @@ public class ViajeServicio {
         if (viaje.isPresent()) {
             Optional<Transportista> transportista = repositorioTransportista.findById(id_transportista);
             if (transportista.isPresent()) {//si se cumplen la consiciones de que exita el viaje y el trasnportista
+                if(transportista.get().getCamion().getPesoMaximo()>= viaje.get().getPeso()){
                 viaje.get().getListadoTransportista().add(transportista.get());
                 notificacionServicio.enviar("TEXTO DE APLICACION A VIAJE", "NOMBRE DE LA PAGINA", transportista.get().getMail());
+                }else{
+                throw new ErroresServicio("la capacidad del camion no es la adecuada para aplicar a este viaje");
+            }
             }else{
                 throw new ErroresServicio("no se ha encontrado al trasnportista");
             }   

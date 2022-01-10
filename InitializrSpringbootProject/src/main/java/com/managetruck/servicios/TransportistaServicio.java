@@ -59,9 +59,9 @@ public class TransportistaServicio {
     ComprobanteServicio comprobanteServicio;
 
     @Transactional
-    public void crearTransportista(String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, String telefono, String id_camion) throws ErroresServicio {
+    public void crearTransportista(String nombre, String apellido, String mail, String clave1,String clave2, MultipartFile archivo, String zona, String telefono, String id_camion) throws ErroresServicio {
         Foto foto = fotoServicio.guardar(archivo);
-        validarTransportista(nombre, apellido, mail, password, archivo, zona, telefono);
+        validarTransportista(nombre, apellido, mail, clave1,clave2, archivo, zona, telefono);
         Optional<Usuario> respuesta = repositorioUsuario.buscarPorMail(mail);
         if (respuesta.isPresent()) {
             throw new ErroresServicio("El mail ya esta utilizado");
@@ -73,7 +73,7 @@ public class TransportistaServicio {
             transportista.setNombre(nombre);
             transportista.setApellido(apellido);
             transportista.setMail(mail);
-            String encriptada = new BCryptPasswordEncoder().encode(password);
+            String encriptada = new BCryptPasswordEncoder().encode(clave1);
             transportista.setPassword(encriptada);
             transportista.setFoto(foto);
             transportista.setZona(zona);
@@ -97,17 +97,17 @@ public class TransportistaServicio {
     }
 
     @Transactional
-    public void modificarUsuario(String id, String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, String telefono, Camion camion, double valoracion, Integer cantidadViajes) throws ErroresServicio {
+    public void modificarUsuario(String id, String nombre, String apellido, String mail, String clave1,String clave2, MultipartFile archivo, String zona, String telefono, Camion camion, double valoracion, Integer cantidadViajes) throws ErroresServicio {
 
         Foto foto = fotoServicio.guardar(archivo);
-        validarTransportista(nombre, apellido, mail, password, archivo, zona, telefono);
+        validarTransportista(nombre, apellido, mail, clave1,clave2, archivo, zona, telefono);
         Optional<Transportista> respuesta = repositorioTransportista.findById(id);
         if (respuesta.isPresent()) {
             Transportista transportista = respuesta.get();
             transportista.setNombre(nombre);
             transportista.setApellido(apellido);
             transportista.setMail(mail);
-            String encriptada = new BCryptPasswordEncoder().encode(password);
+            String encriptada = new BCryptPasswordEncoder().encode(clave1);
             transportista.setPassword(encriptada);
             transportista.setFoto(foto);
             transportista.setZona(zona);
@@ -145,7 +145,7 @@ public class TransportistaServicio {
         }
     }
 
-    public void validarTransportista(String nombre, String apellido, String mail, String password, MultipartFile foto, String zona, String telefono) throws ErroresServicio {
+    public void validarTransportista(String nombre, String apellido, String mail, String clave1,String clave2, MultipartFile foto, String zona, String telefono) throws ErroresServicio {
         if (nombre == null || nombre.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un nombre");
         }
@@ -158,8 +158,14 @@ public class TransportistaServicio {
         if (telefono == null) {
             throw new ErroresServicio("Debe ingresar un telefono ");
         }
-        if (password == null || password.isEmpty()) {
+        if (clave1 == null || clave1.isEmpty()) {
             throw new ErroresServicio("Debe ingresar una contraseña");
+        }
+        if (clave2 == null || clave2.isEmpty()) {
+            throw new ErroresServicio("Debe ingresar una contraseña para verificar");
+        }
+        if (clave2 != clave1) {
+            throw new ErroresServicio("Las claves ingresadas no son iguales");
         }
         if (zona == null || zona.isEmpty()) {
             throw new ErroresServicio("Debe ingresar una zona");
