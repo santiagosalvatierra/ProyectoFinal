@@ -2,6 +2,7 @@ package com.managetruck.controllers;
 
 import com.managetruck.entidades.Comprobante;
 import com.managetruck.entidades.Transportista;
+import com.managetruck.entidades.Usuario;
 import com.managetruck.entidades.Viaje;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.repositorios.RepositorioComprobante;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,10 +59,12 @@ public class ComprobanteController {
     }
 
     @GetMapping("/listarComprobantes")
-    public String comprobanteListado(ModelMap modelo, String id_transportista) {
+    public String comprobanteListado(ModelMap modelo, HttpSession session) {
         Transportista transportista;
+        Usuario login = (Usuario) session.getAttribute("usuariosession");
         try {
-            transportista = transportistaServicio.buscarID(id_transportista);
+            
+            transportista = transportistaServicio.buscarID(login.getId());
             List<Comprobante> comprobantes = transportista.getComprobante();
             modelo.put("comprobantes", comprobantes);
         } catch (ErroresServicio ex) {

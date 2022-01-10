@@ -28,7 +28,8 @@
             <tr th:each="comprobante,iterator:${comprobantes}">
                 <td th:text="${iterator.index+1}"></td>
                 <td th:text="${comprobante.proveedor.nombreEmpresa}"></td>
-                <td th:text="${comprobante.viaje.origen}" th:text="${comprobante.viaje.destino}"></td>
+                <td th:text="${comprobante.viaje.origen}" ></td>
+                <td th:text="${comprobante.viaje.destino}" ></td>
                 <td th:text="${comprobante.viaje.kmRecorridos}"></td>
                 <td th:text="${comprobante.viaje.tipoCargas}"></td>
                 <td th:text="${comprobante.valoracion}"></td>
