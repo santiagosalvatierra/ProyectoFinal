@@ -15,6 +15,8 @@ import com.managetruck.repositorios.RepositorioProvincias;
 import com.managetruck.servicios.ProveedorServicio;
 import com.managetruck.servicios.TransportistaServicio;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -95,13 +98,21 @@ public class ProveedorController {
         return "indexEmpresa";
     }
     @GetMapping("/perfil-proveedor")
-    public String perfilProveedor(){
-        return null;
+    public String perfilProveedor(@RequestParam(required = true) String id,ModelMap modelo,Model model){
+        try {
+            System.out.println(id);
+            Proveedor proveedor = proveedorServicio.buscarID(id);
+            model.addAttribute("perfil", proveedor);
+            List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
+            modelo.put("provincias",provincias);
+            
+            return "perfilEmpresa";
+        } catch (ErroresServicio ex) {
+            Logger.getLogger(ProveedorController.class.getName()).log(Level.SEVERE, null, ex);
+            return "redirect:/inicio";
+        }
     }
-    @PostMapping("/perfil-proveedor")
-    public String cambioPerfilProveedor(){
-        return null;
-    }
+    
     
 
 }

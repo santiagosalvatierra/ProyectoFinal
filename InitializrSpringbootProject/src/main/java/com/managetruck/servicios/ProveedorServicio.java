@@ -173,6 +173,18 @@ public class ProveedorServicio {
         List<Proveedor> listado = repositorioproveedor.findAll();
         return listado;
     }
+    
+    //metodo para buscar por id
+    public Proveedor buscarID(String id_proveedor)throws ErroresServicio{
+        Proveedor proveedor;
+        Optional <Proveedor> respuesta = repositorioproveedor.findById(id_proveedor);
+        if (respuesta.isPresent()) {
+            proveedor=respuesta.get();
+            return proveedor;
+        }else{
+            throw new ErroresServicio("No se encontro ningun proveedor con ese id");
+        }
+    }
 //    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
 //        Optional <Usuario> usuario = repositorioUsuario.buscarPorMail(mail);
 //        if (usuario != null) {

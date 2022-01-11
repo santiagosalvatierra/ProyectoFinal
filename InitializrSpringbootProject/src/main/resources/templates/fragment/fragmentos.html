@@ -116,7 +116,7 @@
       <div class="offcanvas-body">
         <div class="text-center">
           <ul class="nav flex-column">
-            <li class="nav-item"><a class="btn btn-primary" th:href="@{/proveedor/perfil-proveedor}">PERFIL</a></li>
+            <li class="nav-item"><a class="btn btn-primary" th:href="@{/proveedor/perfil-proveedor}+'?id='+${session.usuariosession.id}">PERFIL</a></li>
             <li class="nav-item"><a class="btn btn-primary" href="#">REGISTRO</a></li>
             <li class="nav-item"><a class="btn btn-primary" th:href="@{/viaje/pedido}">NUEVA CARGA</a></li>
           </ul>

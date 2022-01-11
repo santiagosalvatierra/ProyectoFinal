@@ -22,7 +22,7 @@
                 <img th:if="${perfil.foto == null}" class="img-fluid rounded-circle"
                     src="/src/main/resources/static/img/perfil.png" width="200" height="200" alt="" />
             </div>
-            <form action="/transportista/modificar" method="POST" enctype="multipart/form-data">
+            <form action="/transportista/modificar" method="POST" enctype="multipart/form-data" th:object="${perfil}">
 
                 <input type="hidden" name="id" th:value="${perfil.id}" />
 
@@ -36,14 +36,20 @@
                 <p>Empresa</p>
                 <div class="row g-2">
                     <div class="col-md-6">
-                        <label for="zona"> Zona</label>
-                        <input type="text" id="zona" name="zona" th:value="${perfil.zona}" />
+                        <label for="provincia" class="form-label">Zona</label>
+                        <select name="zona" id="zona" class="form-select" required>
+                            <option th:selected disable value="${provincia.provincia}" th:text="${perfil.zona}"></option>
+                            <option option th:each="provincia:${provincias}" th:value="${provincia}" th:text="${provincia.provincia}"></option>
+                        </select>
+                        
+                     <!--   <label for="zona"> Zona</label>
+                        <input type="text" id="zona" name="zona" th:value="${perfil.zona}" />-->
                 
                     </div>
-                    <div class="col-md-6">
+                    <!--<div class="col-md-6">
                         <label for="rubro"> Rubro</label>
                         <input type="text" id="rubro" name="rubro" th:value="${perfil.rubro}" />
-                    </div>
+                    </div>-->
                 </div>
                 <br>
                 <div class="row g-2">
@@ -75,7 +81,7 @@
                     <label for="staticEmail" class="col-form-label">Clave</label>
                     <div class="col-sm-9">
                         <input type="password" readonly class="form-control-plaintext" id="clave1"
-                            th:value="${perfil.clave1}">
+                               th:value="${perfil.password}">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">Editar</button>
                         <!--ACA EMPIEZA EL MODAL CAMBIO CLAVE-->
