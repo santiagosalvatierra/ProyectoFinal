@@ -97,7 +97,7 @@ public class MainController {
 
     @GetMapping("/nosotros")
     public String nosotros() {
-        return "null";
+        return "nosotros";
     }
     @GetMapping("/logout")
     public String salir(){
