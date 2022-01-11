@@ -100,7 +100,9 @@
       aria-controls="offcanvasScrolling">
       <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
         data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="https://github.com/mdo.png" alt="mdo" width="52" height="52" class="rounded-circle">
+        <!--<img src="https://github.com/mdo.png" alt="mdo" width="52" height="52" class="rounded-circle">-->
+        <!-- FORMA EN MOSTRAR LA IMAGEN QUE TIENE EL USUARIO GUARDADA-->
+         <img th:src="${'/foto/usuario-imagen/'+session.usuariosession.id}" alt="mdo" width="52" height="52" class="rounded-circle">
       </a>
     </button>
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasScrolling"
