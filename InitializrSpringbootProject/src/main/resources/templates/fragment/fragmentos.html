@@ -100,7 +100,7 @@
       aria-controls="offcanvasScrolling">
       <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
         data-bs-toggle="dropdown" aria-expanded="false">
-        <!--<img src="https://github.com/mdo.png" alt="mdo" width="52" height="52" class="rounded-circle">-->
+        <img th:if="${session.usuariosession.foto == null}" src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg" alt="mdo" width="52" height="52" class="rounded-circle">
         <!-- FORMA EN MOSTRAR LA IMAGEN QUE TIENE EL USUARIO GUARDADA-->
          <img th:if="${session.usuariosession.foto != null}" th:src="${'/foto/usuario-imagen/'+session.usuariosession.id}" alt="mdo" width="52" height="52" class="rounded-circle">
       </a>
