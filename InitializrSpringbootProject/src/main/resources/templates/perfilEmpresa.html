@@ -22,7 +22,7 @@
                 <img th:if="${perfil.foto == null}" class="img-fluid rounded-circle"
                     src="/src/main/resources/static/img/perfil.png" width="200" height="200" alt="" />
             </div>
-            <form action="/transportista/modificar" method="POST" enctype="multipart/form-data" th:object="${perfil}">
+            <form th:action="@{/transportista/modificar}" method="POST" enctype="multipart/form-data" th:object="${perfil}">
 
                 <input type="hidden" name="id" th:value="${perfil.id}" />
 
@@ -42,14 +42,10 @@
                             <option option th:each="provincia:${provincias}" th:value="${provincia}" th:text="${provincia.provincia}"></option>
                         </select>
                         
-                     <!--   <label for="zona"> Zona</label>
-                        <input type="text" id="zona" name="zona" th:value="${perfil.zona}" />-->
+                   
                 
                     </div>
-                    <!--<div class="col-md-6">
-                        <label for="rubro"> Rubro</label>
-                        <input type="text" id="rubro" name="rubro" th:value="${perfil.rubro}" />
-                    </div>-->
+                   
                 </div>
                 <br>
                 <div class="row g-2">
