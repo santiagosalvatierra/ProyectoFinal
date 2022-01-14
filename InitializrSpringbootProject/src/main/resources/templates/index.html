@@ -5,170 +5,172 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <link href="/css/estiloIndex.css" rel="stylesheet" type="text/css" />
-    <script src="/animacion.js"></script>
-    <link href="../static/css/estiloIndex.css" rel="stylesheet" type="text/css"/>
+    <link href="../static/css/estiloIndex.css" rel="stylesheet" type="text/css" />
+    <link href="../static/css/Footer.css" rel="stylesheet" type="text/css" />
     <title>ManageTruck</title>
 </head>
 
-<body>
-    <!-- NAV INDEX GENERAL SIN BOTONES LOGIN / SINGUP -->
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-            <svg class="bi me-2" width="40" height="32">
-                <use xlink:href="/" />
-            </svg>
-            <span class="fs-4">ManageTruck</span>
-        </a>
 
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a href="/nosotros" class="nav-link">NOSOTROS</a></li>
-            <li class="nav-item"><a href="/servicios" class="nav-link">SERVICIOS</a></li>
-            <li class="nav-item"><a href="/contacto" class="nav-link">CONTACTO</a></li>
-        </ul>
+<body>
+    <header class="topheader">
+        <div class="container">
+            <nav class="nav">
+                <a href="/index.html" class="logo"><img src="../static/img/ManageTruck_logo-Blanco.png"
+                        class="logo"></a>
+
+                <ul class="nav__items">
+                    <li class="nav__items"><a href="/nosotros.html">NOSOTROS</a></li>
+                    <li class="nav__items"><a href="/servicios.html">SERVICIOS</a></li>
+                    <li class="nav__items"><a href="/contacto.html">ESCRIBINOS</a></li>
+                </ul>
+            </nav>
+
+            <section class="topheader-container">
+                <h2 class="topheader-title">BIENVENIDOS</h2>
+                <p class="topheader-texts">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam posuere sit amet lectus quis congue. Nunc fermentum quam et auctor porta. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas eu ex leo. </p>
+
+            </section>
+        
+        </div>
     </header>
 
-    <div class="container contenedor">
-        <h1 class="display-1">Bienvenidos a ManageTruck</h1>
-        <div id="banner">
-            <h2>banner</h2>
-        </div>
 
-        <!-- ACA EMPIEZA EL MODAL LOG IN -->
+    <!-- ACA EMPIEZA EL MODAL LOG IN y REGISTRARME -->
+    <div class="container">
         <div class="container">
-            <div class="container">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary d-grid gap-2 col-3 mx-auto" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">Log In</button>
-                <!-- Modal Log In-->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title text-center" id="exampleModalLabel">Ingresar</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form th:action="@{/logincheck}" method="post">
-                                    <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Correo Electronico</label>
-                                        <input th:value="${mail}" name="username" type="email" class="form-control"
-                                            id="exampleInputEmail1" aria-describedby="emailHelp"
-                                            placeholder="correo electronico">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary d-grid gap-2 col-3 mx-auto" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">Log In</button>
+            <!-- Modal Log In-->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center" id="exampleModalLabel">Ingresar</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form th:action="@{/logincheck}" method="post">
+                                <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Correo Electronico</label>
+                                    <input th:value="${mail}" name="username" type="email" class="form-control"
+                                        id="exampleInputEmail1" aria-describedby="emailHelp"
+                                        placeholder="correo electronico">
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Contraseña</label>
+                                    <input th:value="${password}" name="password" type="password" class="form-control"
+                                        id="exampleInputPassword1" placeholder="Clave">
+                                    <br>
+                                </div>
+                                <div>
+                                    <div class="d-grid gap-2 col-6 mx-auto">
+                                        <button type="submit" class="btn btn-primary">Ingresar</button>
                                     </div>
                                     <br>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Contraseña</label>
-                                        <input th:value="${password}" name="password" type="password"
-                                            class="form-control" id="exampleInputPassword1" placeholder="Clave">
-                                        <br>
+                                    <div class="mb-3 text-center">
+                                        <a href="">¿Olvidaste tu clave?</a>
                                     </div>
-                                    <div>
-                                        <div class="d-grid gap-2 col-6 mx-auto">
-                                            <button type="submit" class="btn btn-primary">Ingresar</button>
-                                        </div>
-                                        <br>
-                                        <div class="mb-3 text-center">
-                                            <a href="">¿Olvidaste tu clave?</a>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!--ACA EMPIEZA EL MODAL DE REGISTRARME-->
-            <div class="container pt-4">
-                <button type="button" class="btn btn-primary d-grid gap-2 col-3 mx-auto" data-bs-toggle="modal"
-                    data-bs-target="#registroModal">Registrarme</button>
-
-                <!-- Modal Registro-->
-                <div class="modal fade" id="registroModal" tabindex="-1" aria-labelledby="registroModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3>Registrarme</h3>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p class="col-4">Selecciona el tipo de usuario que se corresponde con tus necesidades
-                                </p>
-                                <!--ACA EMPIEZA EL DE EMPRESAS-->
-                                <a th:href="@{/proveedor/registro}"><button type="button"
-                                        class="btn btn-primary d-grid gap-2 col-5 mt-5" data-bs-toggle="modal"
-                                        data-bs-target="#registroEmpresa">Empresa que necesita transportar
-                                    </button></a>
-                                <div class="modal">
-
                                 </div>
-                                <!--ACA EMPIEZA EL DE TRANSPORTISTAS-->
-                                <a th:href="@{/transportista/registra}"><button type="button"
-                                        class="btn btn-primary d-grid gap-2 col-5 mt-3" data-bs-toggle="modal"
-                                        data-bs-target="#registroChofer">
-                                        Transportistas que ofrecen su trabajo
-                                    </button></a>
-                            </div>
+                            </form>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
 
-        <br><br><br>
-        <section class="container" id="carrusel">
-            <div id="carouselExampleFade" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
+
+        <!--ACA EMPIEZA EL MODAL DE REGISTRARME-->
+        <div class="container pt-4">
+            <button type="button" class="btn btn-primary d-grid gap-2 col-3 mx-auto" data-bs-toggle="modal"
+                data-bs-target="#registroModal">Registrarme</button>
+
+            <!-- Modal Registro-->
+            <div class="modal fade" id="registroModal" tabindex="-1" aria-labelledby="registroModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Registrarme</h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="col-4">Selecciona el tipo de usuario que se corresponde con tus necesidades
+                            </p>
+                            <!--ACA EMPIEZA EL DE EMPRESAS-->
+                            <a th:href="@{/proveedor/registro}"><button type="button"
+                                    class="btn btn-primary d-grid gap-2 col-5 mt-5" data-bs-toggle="modal"
+                                    data-bs-target="#registroEmpresa">Empresa que necesita transportar
+                                </button></a>
+                            <div class="modal">
+
+                            </div>
+                            <!--ACA EMPIEZA EL DE TRANSPORTISTAS-->
+                            <a th:href="@{/transportista/registra}"><button type="button"
+                                    class="btn btn-primary d-grid gap-2 col-5 mt-3" data-bs-toggle="modal"
+                                    data-bs-target="#registroChofer">
+                                    Transportistas que ofrecen su trabajo
+                                </button></a>
+                        </div>
+                    </div>
                 </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="../img/amazon.jpg" class="d-block w-100 img-fluid mx-auto my-auto"
-                            alt="Amazon" />
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../img/nike.jpg" class="d-block w-100 img-fluid mx-auto my-auto" alt="Nike" />
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../img/p_g.png" class="d-block w-100 img-fluid mx-auto my-auto"
-                            alt="Procter and Grabler" />
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
+        </div>
     </div>
-   
+
+    <!-- ACA EMPIEZA EL CARRUSEL -->
+    <section class="container" id="carrusel">
+        <div id="carouselExampleFade" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../img/amazon.jpg" class="d-block w-100 img-fluid mx-auto my-auto" alt="Amazon" />
+                </div>
+                <div class="carousel-item">
+                    <img src="../img/nike.jpg" class="d-block w-100 img-fluid mx-auto my-auto" alt="Nike" />
+                </div>
+                <div class="carousel-item">
+                    <img src="../img/p_g.png" class="d-block w-100 img-fluid mx-auto my-auto"
+                        alt="Procter and Grabler" />
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        </div>
 
 
-    <footer th:replace="fragment/fragmentos :: footer"></footer>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-        </script>
+
+        <footer th:replace="fragment/fragmentos :: footer"></footer>
+
+        <script src="/animacion.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+            </script>
 </body>
 
 </html>
