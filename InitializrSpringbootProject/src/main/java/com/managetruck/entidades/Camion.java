@@ -109,5 +109,10 @@ public class Camion {
     public void setFoto(List<Foto> foto) {
         this.foto =  (List<Foto>) foto;
     }
+
+    @Override
+    public String toString() {
+        return "PesoMaximo=" + pesoMaximo + ", Modelo=" + modelo + ", Año=" + anio;
+    }
     
 }

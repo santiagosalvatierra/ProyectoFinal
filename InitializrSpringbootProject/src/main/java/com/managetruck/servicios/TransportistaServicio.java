@@ -164,7 +164,7 @@ public class TransportistaServicio {
         if (clave2 == null || clave2.isEmpty()) {
             throw new ErroresServicio("Debe ingresar una contraseña para verificar");
         }
-        if (clave2 != clave1) {
+        if (!clave2.equals(clave1) ) {
             throw new ErroresServicio("Las claves ingresadas no son iguales");
         }
         if (zona == null || zona.isEmpty()) {

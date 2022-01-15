@@ -18,4 +18,5 @@ public interface RepositorioViaje extends JpaRepository <Viaje,String>{
     @Query("SELECT c FROM Viaje c WHERE c.id = :id")
     public List <Viaje> buscarViajeporId(@Param("id")String id);
     
+    
 }

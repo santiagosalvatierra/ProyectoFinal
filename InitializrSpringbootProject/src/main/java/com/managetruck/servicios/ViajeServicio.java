@@ -1,15 +1,18 @@
 package com.managetruck.servicios;
 
+import com.managetruck.entidades.Comprobante;
 import com.managetruck.entidades.Foto;
 import com.managetruck.entidades.Proveedor;
 import com.managetruck.entidades.Transportista;
 import com.managetruck.entidades.Usuario;
 import com.managetruck.entidades.Viaje;
 import com.managetruck.errores.ErroresServicio;
+import com.managetruck.repositorios.RepositorioComprobante;
 import com.managetruck.repositorios.RepositorioProveedor;
 import com.managetruck.repositorios.RepositorioTransportista;
 import com.managetruck.repositorios.RepositorioUsuario;
 import com.managetruck.repositorios.RepositorioViaje;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
@@ -32,8 +35,10 @@ public class ViajeServicio {
     @Autowired
     RepositorioProveedor repositorioProveedor;
 
+    @Autowired
+    RepositorioComprobante repositorioComprobante;
+    
     @Transactional
-
     public void crearViaje(String idProveedor,Integer peso, Integer kmRecorridos, String tipoCargas, String destino, String origen) throws ErroresServicio {
         ValidarViaje(peso, kmRecorridos, tipoCargas, destino, origen);
         Viaje viaje = new Viaje();
@@ -134,5 +139,21 @@ public class ViajeServicio {
            throw new ErroresServicio("no se ha encontrado el viaje"); 
         }
         return depurada;
+    }
+    //metodo para traer los viajes del proveedor
+    public List<Viaje> viajesCreadosProveedor(String proveedor_id)throws ErroresServicio{
+        List<Viaje> viajes=new ArrayList();
+        List<Comprobante> comprobantes = repositorioComprobante.buscarComprobanteporIdPorveedor(proveedor_id);
+        if (comprobantes.isEmpty()) {
+            System.out.println("entra al if");
+            throw new ErroresServicio("Nose encontro ningun comprobante creado por este proveedor");
+        }
+            System.out.println("entra al else");
+            for (Comprobante comprobante : comprobantes) {
+                System.out.println(comprobante.getViaje());
+                viajes.add(comprobante.getViaje());
+            }
+        
+        return viajes;
     }
 }
