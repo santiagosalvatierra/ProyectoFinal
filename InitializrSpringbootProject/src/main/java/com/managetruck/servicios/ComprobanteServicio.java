@@ -10,6 +10,7 @@ import com.managetruck.entidades.Comprobante;
 import com.managetruck.entidades.Proveedor;
 import com.managetruck.entidades.Transportista;
 import com.managetruck.entidades.Viaje;
+import com.managetruck.enumeracion.EstadoEnum;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.repositorios.RepositorioComprobante;
 import java.util.List;
@@ -59,6 +60,7 @@ public class ComprobanteServicio {
                 //para incorporar la valoracion al finalizar el viaje
                 validarvaloracion(valoracion);
                 comprobante.setValoracion(valoracion);
+                comprobante.getViaje().setEstado(EstadoEnum.FINALIZADA);
                 repositorioComprobante.save(comprobante);
             } else {
                 throw new ErroresServicio("El viaje no esta finalizado para poder valorarlo");

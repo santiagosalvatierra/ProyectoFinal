@@ -122,14 +122,15 @@ public class viajeController {
         return null;
     }
     @GetMapping("/listar-viajes")
-    public String listarviajes(@RequestParam(required = true)String id,ModelMap modelo){
+    public String listarviajes(@RequestParam (required=true)String id,ModelMap modelo){
         try {
-            System.out.println(id);
+            System.out.println("id proveedor" +id);
             List<Viaje> viajes = viajeServicio.viajesCreadosProveedor(id);
             modelo.put("viajes",viajes);
             return "ListadoCargas";
         } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         return "redirect:/inicio";
     }

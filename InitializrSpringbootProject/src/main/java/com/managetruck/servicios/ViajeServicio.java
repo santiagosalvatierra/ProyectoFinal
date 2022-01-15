@@ -6,6 +6,7 @@ import com.managetruck.entidades.Proveedor;
 import com.managetruck.entidades.Transportista;
 import com.managetruck.entidades.Usuario;
 import com.managetruck.entidades.Viaje;
+import com.managetruck.enumeracion.EstadoEnum;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.repositorios.RepositorioComprobante;
 import com.managetruck.repositorios.RepositorioProveedor;
@@ -24,7 +25,9 @@ public class ViajeServicio {
 
     @Autowired(required = true)
     NotificacionDeServicio notificacionServicio;
-
+    @Autowired
+    TransportistaServicio transportistaServicio;
+    
     @Autowired(required = true)
     RepositorioViaje repositorioViaje;
     @Autowired
@@ -49,6 +52,7 @@ public class ViajeServicio {
         viaje.setTipoCargas(tipoCargas);
         Optional<Proveedor> proveedor = repositorioProveedor.findById(idProveedor);
         comprobanteServicio.crearComprobante(proveedor.get(), viaje);
+        viaje.setEstado(EstadoEnum.ELEGIR);
         repositorioViaje.save(viaje);
     }
 
@@ -156,4 +160,6 @@ public class ViajeServicio {
         
         return viajes;
     }
+    
+    
 }
