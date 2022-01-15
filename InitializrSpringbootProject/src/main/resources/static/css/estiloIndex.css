@@ -4,13 +4,13 @@
   box-sizing: border-box;
 }
 
-#carrusel{
-  height: 350px;
-  width: 100%;
-  margin-top: 30px;
-  background-color: chartreuse;
-  margin-block-start: auto;
+#carouselExampleFade{
+  height: auto;
+  width: 440px;
+  margin: 50px auto;
+  overflow: hidden;
 }
+
 
 
 #footer{
