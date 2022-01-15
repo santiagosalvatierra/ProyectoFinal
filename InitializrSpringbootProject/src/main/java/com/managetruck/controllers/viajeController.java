@@ -124,7 +124,8 @@ public class viajeController {
     @GetMapping("/listar-viajes")
     public String listarviajes(@RequestParam(required = true)String id,ModelMap modelo){
         try {
-            List<Viaje> viajes = viajeServicio.listarViajesDelProveedor(id);
+            System.out.println(id);
+            List<Viaje> viajes = viajeServicio.viajesCreadosProveedor(id);
             modelo.put("viajes",viajes);
             return "ListadoCargas";
         } catch (ErroresServicio ex) {
