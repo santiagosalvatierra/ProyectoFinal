@@ -11,6 +11,7 @@ import com.managetruck.entidades.Foto;
 import com.managetruck.entidades.Proveedor;
 import com.managetruck.entidades.Transportista;
 import com.managetruck.entidades.Usuario;
+import com.managetruck.enumeracion.EstadoEnum;
 import com.managetruck.enumeracion.Role;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.repositorios.RepositorioCamion;
@@ -211,6 +212,8 @@ public class TransportistaServicio {
                 Optional<Transportista> transportista = repositorioTransportista.findById(id_transportista);
                 if (transportista.isPresent()) {
                     transportista.get().getComprobante().add(comprobante);
+                    comprobante.get().getViaje().setTransportistaAplicado(transportista.get());
+                    comprobante.get().getViaje().setEstado(EstadoEnum.VIAJANDO);
                     enViaje(transportista.get().getId());
                 } else {
                     throw new ErroresServicio("El transportista no existe o no se pudo encontrar");
@@ -232,6 +235,7 @@ public class TransportistaServicio {
         Transportista transportista = buscarID(id_trasnportista);
         if (transportista.isViajando()) {
             transportista.setViajando(true);
+            
         } else {
             transportista.setViajando(false);
         }

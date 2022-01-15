@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html lang="ES-ar" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,9 +25,9 @@
             <td th:text="${viaje.origen}"></td>
             <td th:text="${viaje.destino}"></td>
             <td th:text="${viaje.tipoCargas}"> destino</td>
-            <td> trasnportista</td>
+            <td th:text="${viaje.transportistaAplicado}"></td>
             <!--<td> <img width='80' height='80' src='img/".$mostrar['imagen'] ?></td>-->
-            <td> estado</td>
+            <td th:text="${viaje.estado}"> </td>
         </tr>
     </table>
 </body>
