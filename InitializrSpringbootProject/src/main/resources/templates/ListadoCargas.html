@@ -20,11 +20,12 @@
         <th>Estado</th>
 
         </tr>
-        <tr>
-            <td> partida</td>
-            <td> destino</td>
-            <td> tipo-carga</td>
-            <td> <img width='80' height='80' src='img/".$mostrar['imagen'] ?></td>
+        <tr th:each="viaje,iterator:${viajes}">
+            <td th:text="${viaje.origen}"></td>
+            <td th:text="${viaje.destino}"></td>
+            <td th:text="${viaje.tipoCargas}"> destino</td>
+            <td> trasnportista</td>
+            <!--<td> <img width='80' height='80' src='img/".$mostrar['imagen'] ?></td>-->
             <td> estado</td>
         </tr>
     </table>

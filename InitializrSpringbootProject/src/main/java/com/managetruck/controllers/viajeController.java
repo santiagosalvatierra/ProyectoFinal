@@ -3,6 +3,7 @@ package com.managetruck.controllers;
 import com.managetruck.entidades.Comprobante;
 import com.managetruck.entidades.Provincias;
 import com.managetruck.entidades.Usuario;
+import com.managetruck.entidades.Viaje;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.servicios.ComprobanteServicio;
 import com.managetruck.servicios.ProvinciasServicio;
@@ -120,5 +121,15 @@ public class viajeController {
         
         return null;
     }
-    
+    @GetMapping("/listar-viajes")
+    public String listarviajes(@RequestParam(required = true)String id,ModelMap modelo){
+        try {
+            List<Viaje> viajes = viajeServicio.listarViajesDelProveedor(id);
+            modelo.put("viajes",viajes);
+            return "ListadoCargas";
+        } catch (ErroresServicio ex) {
+            Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "redirect:/inicio";
+    }
 }
