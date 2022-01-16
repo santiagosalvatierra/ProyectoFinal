@@ -50,7 +50,7 @@
                 <br>
                 <br>
                 <label for="zona"> Zona</label>
-                <select name="zona" id="zona" class="form-select" required>
+                        <select name="zona" id="zona" class="form-select" required>
                             <option th:selected disable value="${provincia.provincia}" th:text="${perfil.zona}"></option>
                             <option option th:each="provincia:${provincias}" th:value="${provincia}" th:text="${provincia.provincia}"></option>
                         </select>
