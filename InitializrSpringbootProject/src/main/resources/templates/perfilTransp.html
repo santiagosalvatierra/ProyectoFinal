@@ -50,7 +50,11 @@
                 <br>
                 <br>
                 <label for="zona"> Zona</label>
-                <input type="text" id="zona" name="zona" th:value="${perfil.zona}" />
+                <select name="zona" id="zona" class="form-select" required>
+                            <option th:selected disable value="${provincia.provincia}" th:text="${perfil.zona}"></option>
+                            <option option th:each="provincia:${provincias}" th:value="${provincia}" th:text="${provincia.provincia}"></option>
+                        </select>
+                <!--<input type="text" id="zona" name="zona" th:value="${perfil.zona}" />-->
                 <br>
                 <br>
                 <label for="mail"> Correo Electronico</label>

@@ -9,7 +9,10 @@ import com.managetruck.repositorios.RepositorioProvincias;
 import com.managetruck.repositorios.RepositorioTransportista;
 import com.managetruck.servicios.CamionServicio;
 import com.managetruck.servicios.TransportistaServicio;
+import com.managetruck.servicios.UsuarioServicio;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +39,9 @@ public class TransportistaController {
     
     @Autowired
     RepositorioProvincias repositorioProvincias;
+    
+    @Autowired
+    UsuarioServicio usuarioServicio;
 
     @PostMapping("/registra")
     public String registroProveedor(ModelMap model, String nombre, String apellido, String mail, String clave1,String clave2, MultipartFile archivo, String provincia, String telefono, Integer pesoMaximo, String descripcion, @RequestParam String modelo, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos) throws ErroresServicio {
@@ -139,6 +145,21 @@ public class TransportistaController {
     @GetMapping("/indexTransportista")
     public String indexTransportista() {
         return "indexTransportista";
+    }
+    
+    @GetMapping("/perfil-transportista")
+    public String perfilTransportista(String id,ModelMap modelo, Model model){
+        try {
+            System.out.println(id);
+            Transportista transportista = transportistaServicio.buscarID(id);
+            model.addAttribute("perfil", transportista);
+            List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
+            modelo.put("provincias",provincias);
+            return "perfilTransp";
+        } catch (ErroresServicio ex) {
+            Logger.getLogger(TransportistaController.class.getName()).log(Level.SEVERE, null, ex);
+            return "redirect:/inicio";
+        }
     }
 
 }
