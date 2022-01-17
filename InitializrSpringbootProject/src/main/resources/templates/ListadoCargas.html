@@ -31,10 +31,10 @@
                  <button th:if="${viaje.transportistaAplicado == null}" th:text="Seleccionar"></button>
              </td>
             <!--<td> <img width='80' height='80' src='img/".$mostrar['imagen'] ?></td>-->
-            <td> <!--th:text="${viaje.estado}"--> 
-                <img src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg" alt="mdo" width="52" height="52" class="rounded-circle">
-                <img src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg" alt="mdo" width="52" height="52" class="rounded-circle">
-                <img src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg" alt="mdo" width="52" height="52" class="rounded-circle">
+            <td> <!--th:text="${viaje.estado}"-->        
+                <img th:if="${#strings.toString(viaje.estado)== 'ELEGIR'}" src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg" alt="mdo" width="52" height="52" class="rounded-circle">
+                <img th:if="${#strings.toString(viaje.estado)== 'FINALIZADA'}" src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg" alt="mdo" width="52" height="52" class="rounded-circle">
+                <img th:if="${#strings.toString(viaje.estado)== 'VIAJANDO'}" src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg" alt="mdo" width="52" height="52" class="rounded-circle">
             </td>
         </tr>
     </table>
