@@ -24,7 +24,10 @@
       aria-controls="offcanvasScrolling">
       <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
         data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="https://github.com/mdo.png" alt="mdo" width="52" height="52" class="rounded-circle">
+          <img th:if="${session.usuariosession.foto == null}" src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg" alt="mdo" width="52" height="52" class="rounded-circle">
+        <!-- FORMA EN MOSTRAR LA IMAGEN QUE TIENE EL USUARIO GUARDADA-->
+         <img th:if="${session.usuariosession.foto != null}" th:src="${'/foto/usuario-imagen/'+session.usuariosession.id}" alt="mdo" width="52" height="52" class="rounded-circle">
+        <!--<img src="https://github.com/mdo.png" alt="mdo" width="52" height="52" class="rounded-circle">-->
       </a>
     </button>
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasScrolling"
@@ -32,16 +35,24 @@
       <div class="offcanvas-header">
         <!--<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#my-offcanvas" aria-label="Close"></button>-->
         <div class="justify-content-center">
-          <img
+           <img
+              th:if="${session.usuariosession.foto == null}"
             src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
             class="img-thumbnail rounded-circle col-auto" alt="Perfil" width="250" height="300">
+          <img
+              th:if="${session.usuariosession.foto != null}"
+            th:src="${'/foto/usuario-imagen/'+session.usuariosession.id}"
+            class="img-thumbnail rounded-circle col-auto" alt="Perfil" width="250" height="300">
+          <!--<img
+            src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
+            class="img-thumbnail rounded-circle col-auto" alt="Perfil" width="250" height="300">-->
         </div>
       </div>
       <div class="offcanvas-body">
         <div class="text-center">
           <ul class="nav flex-column">
-            <li class="nav-item"><a class="btn btn-primary" href="#">PERFIL</a></li>
-            <li class="nav-item"><a class="btn btn-primary" href="#">COMPROBANTES</a></li>
+            <li class="nav-item"><a class="btn btn-primary" th:href="@{/transportista/perfil-transportista}+'?id='+${session.usuariosession.id}">PERFIL</a></li>
+            <li class="nav-item"><a class="btn btn-primary" th:href="@{comprobante/listarComprobantes}">COMPROBANTES</a></li>
             <li class="nav-item"><a class="btn btn-primary" href="#">PROCESO DE PEDIDO</a></li>
           </ul>
         </div>
