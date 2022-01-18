@@ -13,7 +13,7 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
-.container {
+.nav-container {
   width: 90%;
   margin: 0 auto;
 }
@@ -95,13 +95,40 @@ nav .nav__items a:hover {
 }
 
 
-/* MODALS + CARRUSEL */
-/*
-.container .contenedor{
+/* MODALS */
+
+.container {
   min-height: 100%;
-  padding-bottom: 70px;
+  
+
 }
 
+.buttom-mod-container {
+  position: relative;
+  background-color: none;
+  margin: 1rem;
+  
+}
+
+.btn-primary {
+  background: #6930C3;
+  padding: 1rem;
+  width: 15rem;
+  
+}
+
+.btn-primary :hover {
+  color: #6930C3;
+  background: #E0E0E0;
+}
+
+d-grid gap-2 col-3 mx-auto
+
+
+
+
+/* CARRUSEL */
+/*
 #carrusel{
   height: 350px;
   width: 100%;
@@ -109,7 +136,5 @@ nav .nav__items a:hover {
   background-color: chartreuse;
   margin-block-start: auto;
 }
-
-
 
 */
