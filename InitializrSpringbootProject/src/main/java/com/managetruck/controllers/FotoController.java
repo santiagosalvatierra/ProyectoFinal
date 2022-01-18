@@ -42,6 +42,7 @@ public class FotoController {
     
     @Autowired
     private ComprobanteServicio comprobanteServicio;
+    
     //metodo get para la foto del usuario
     @GetMapping("/usuario-imagen/{id}")
     public ResponseEntity <byte[]> fotoUsuario(@PathVariable String id){
