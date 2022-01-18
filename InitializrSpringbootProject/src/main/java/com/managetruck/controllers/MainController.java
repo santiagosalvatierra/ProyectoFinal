@@ -63,10 +63,9 @@ public class MainController {
     public String loginUs(ModelMap model, @RequestParam(required = false) String error) throws ErroresServicio {
         if (error != null) {
             model.put("error", "El usuario o contraseña ingresada son incorrectas");
-
         }
 
-        return "login";
+        return "index";
     }
 
     @GetMapping("/inicio")
