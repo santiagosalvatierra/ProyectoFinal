@@ -38,7 +38,8 @@
             <div th:each="comprobantes,stat:${comprobantes}">
             <div class="col mx-2">
                 <div class="card" style="width: 13rem;">
-                    <img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto Empresa">
+                    
+                    <img th:src="@{'/foto/comprobante-imagenes/'+${comprobantes.ID}}" class="card-img-top" alt="Foto Empresa">
                     <div class="card-body">
                         <h5 class="card-title" th:text="${comprobantes.proveedor}">Nombre Empresa</h5>
                         <p class="card-text" th:text="${comprobantes.viaje}">Rubro</p>

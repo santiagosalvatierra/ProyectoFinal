@@ -2,9 +2,11 @@
 package com.managetruck.controllers;
 
 import com.managetruck.entidades.Camion;
+import com.managetruck.entidades.Comprobante;
 import com.managetruck.entidades.Usuario;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.servicios.CamionServicio;
+import com.managetruck.servicios.ComprobanteServicio;
 import com.managetruck.servicios.ProveedorServicio;
 import com.managetruck.servicios.TransportistaServicio;
 import com.managetruck.servicios.UsuarioServicio;
@@ -38,6 +40,8 @@ public class FotoController {
     @Autowired
     private UsuarioServicio usuarioServicio;
     
+    @Autowired
+    private ComprobanteServicio comprobanteServicio;
     //metodo get para la foto del usuario
     @GetMapping("/usuario-imagen/{id}")
     public ResponseEntity <byte[]> fotoUsuario(@PathVariable String id){
@@ -67,6 +71,26 @@ public class FotoController {
             throw new ErroresServicio ("El usuario no tiene una imagen para mostrar");
         }
         byte[] foto = camion.getFoto().getContenido();
+        
+        HttpHeaders headers = new HttpHeaders();
+        //coloco all para probar sino la voy a cambiar a jpeg
+        headers.setContentType(MediaType.IMAGE_JPEG);
+        
+        return new ResponseEntity<>(foto, headers,HttpStatus.OK);
+        }catch(ErroresServicio ex){
+            Logger.getLogger(FotoController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    //metodo get para la foto del proveedor del comprobante
+    @GetMapping("/comprobante-imagenes/{id}")
+    public ResponseEntity <byte[]> fotoComprobanteProveedor(@PathVariable String id){
+        try{
+        Comprobante comprobante = comprobanteServicio.buscarComprobanteId(id);
+        if ( comprobante.getProveedor().getFoto()== null) {
+            throw new ErroresServicio ("El proveedor no tiene una imagen para mostrar");
+        }
+        byte[] foto = comprobante.getProveedor().getFoto().getContenido();
         
         HttpHeaders headers = new HttpHeaders();
         //coloco all para probar sino la voy a cambiar a jpeg
