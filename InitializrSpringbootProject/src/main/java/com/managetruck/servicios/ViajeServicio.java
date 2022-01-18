@@ -50,6 +50,7 @@ public class ViajeServicio {
         viaje.setOrigen(origen);
         viaje.setPeso(peso);
         viaje.setTipoCargas(tipoCargas);
+        viaje.setListadoTransportista(new ArrayList()); //esto agrego a ver si la lista deja de salir nula
         Optional<Proveedor> proveedor = repositorioProveedor.findById(idProveedor);
         comprobanteServicio.crearComprobante(proveedor.get(), viaje);
         viaje.setEstado(EstadoEnum.ELEGIR);
