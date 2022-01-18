@@ -68,8 +68,9 @@
                 <div class="mb-3 row">
                     <label for="staticEmail" class="col-form-label">Clave</label>
                     <div class="col-sm-9">
-                        <input type="password" readonly class="form-control-plaintext" id="clave1"
-                            th:value="${perfil.clave1}">
+                        <input type="password" readonly class="form-control-plaintext" id="password"
+                            th:value="${perfil.password}">
+                            <br>
                         <button type="button" class="btn btn-primary d-grid gap-2 col-3 mx-auto" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">Editar</button>
                         <!--ACA EMPIEZA EL MODAL CAMBIO CLAVE-->

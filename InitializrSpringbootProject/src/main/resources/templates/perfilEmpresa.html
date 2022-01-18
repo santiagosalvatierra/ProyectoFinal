@@ -22,10 +22,10 @@
                 <img th:if="${perfil.foto == null}" class="img-fluid rounded-circle"
                     src="/src/main/resources/static/img/perfil.png" width="200" height="200" alt="" />
             </div>
-            <form th:action="@{/transportista/modificar}" method="POST" enctype="multipart/form-data" th:object="${perfil}">
-
+            <form th:action="@{/proveedor/modificar}" method="POST" enctype="multipart/form-data" th:object="${perfil}">
+                <
                 <input type="hidden" name="id" th:value="${perfil.id}" />
-
+                
                 <div class="row g-2">
                     <div class="col-md-4">
                         <label for="nombreEmpresa" class="visually-hidden"> Nombre</label>
@@ -74,10 +74,10 @@
                     <button class="btn btn-success">Guardar</button>
                 </div>
                 <div class="row">
-                    <label for="staticEmail" class="col-form-label">Clave</label>
+                    <!--<label for="staticEmail" class="col-form-label">Clave</label>-->
                     <div class="col-sm-9">
-                        <input type="password" readonly class="form-control-plaintext" id="clave1"
-                               th:value="${perfil.password}">
+                        <!--<input type="password" readonly class="form-control-plaintext" id="clave1"
+                               th:value="${perfil.password}">-->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">Editar</button>
                         <!--ACA EMPIEZA EL MODAL CAMBIO CLAVE-->
