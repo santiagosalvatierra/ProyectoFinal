@@ -95,34 +95,36 @@ nav .nav__items a:hover {
 }
 
 
-/* MODALS */
-
+/* MODALS BUTTONS */
 .container {
   min-height: 100%;
-  
-
 }
 
 .buttom-mod-container {
   position: relative;
   background-color: none;
-  margin: 1rem;
-  
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
 
 .btn-primary {
+  color: #fcfcfc;
   background: #6930C3;
-  padding: 1rem;
-  width: 15rem;
-  
+  font-weight: 400;
+  padding: 0.5rem;
+  width: 13rem;
+  box-shadow: 0px 4px 4px rgba(31, 31, 31, 0.25);
+  border-radius: 10px;
+  border-color: #6930C3;
+  overflow: hidden;
+  cursor: pointer;
 }
 
-.btn-primary :hover {
+.btn-primary:hover {
   color: #6930C3;
   background: #E0E0E0;
+  border-width: 0.2rem;
+  border-color: #6930C3;
 }
 
-d-grid gap-2 col-3 mx-auto
-
-
-*/
