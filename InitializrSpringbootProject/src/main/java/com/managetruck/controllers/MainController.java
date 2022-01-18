@@ -12,6 +12,7 @@ import com.managetruck.entidades.Usuario;
 import static com.managetruck.enumeracion.Role.Proveedor;
 import static com.managetruck.enumeracion.Role.Transportista;
 import com.managetruck.errores.ErroresServicio;
+import com.managetruck.repositorios.RepositorioTransportista;
 import com.managetruck.servicios.CamionServicio;
 import com.managetruck.servicios.ComprobanteServicio;
 import com.managetruck.servicios.FotoServicio;
@@ -48,6 +49,9 @@ public class MainController {
     TransportistaServicio transportistaServicio;
     
     @Autowired
+    RepositorioTransportista repositorioTransportista;
+    
+    @Autowired
     NotificacionDeServicio notificacionDeServicio;
     
     @Autowired
@@ -76,6 +80,11 @@ public class MainController {
         if (login.getRol().equals(Proveedor)) {
             List<Transportista> transportistas = transportistaServicio.listarTransportista();
             model.put("transportistas", transportistas);
+            List<Transportista> transportistas2 = repositorioTransportista.buscarTransportistaPorZona(login.getZona());
+            if (!transportistas2.isEmpty()) {
+                model.addAttribute("tittle", "Listado Transportistas");
+            model.addAttribute("transportistas2", transportistas2);
+            }
             return "indexEmpresa";
         } else if (login.getRol().equals(Transportista)) {
             List<Comprobante> comprobantes;

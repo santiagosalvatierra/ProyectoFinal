@@ -85,7 +85,9 @@ public class TransportistaController {
     public String listarTransportista(ModelMap modelo, @RequestParam(required = false) String error, @RequestParam(required = false) HttpSession session) {
         if (session != null) {
             Usuario login = (Usuario) session.getAttribute("usuariosession");
+            System.out.println(login.getZona());
             List<Transportista> transportistas2 = repositorioTransportista.buscarTransportistaPorZona(login.getZona());
+            
             if (!transportistas2.isEmpty()) {
                 modelo.addAttribute("tittle", "Listado Transportistas");
             modelo.addAttribute("transportistas2", transportistas2);
