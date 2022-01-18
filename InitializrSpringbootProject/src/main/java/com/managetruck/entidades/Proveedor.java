@@ -50,7 +50,7 @@ public class Proveedor extends Usuario{
 
     @Override
     public String toString() {
-        return "Proveedor{" + "razonSocial=" + razonSocial + ", cuilEmpresa=" + cuilEmpresa + ", nombreEmpresa=" + nombreEmpresa + '}';
+        return nombreEmpresa;
     }
 
    

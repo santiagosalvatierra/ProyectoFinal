@@ -81,7 +81,7 @@ public class Viaje {
 
     @Override
     public String toString() {
-        return "Viaje{" + "ID=" + ID + ", peso=" + peso + ", kmRecorridos=" + kmRecorridos + ", tipoCargas=" + tipoCargas + ", alta=" + alta + ", destino=" + destino + ", origen=" + origen + '}';
+        return "Peso en Kilogramos=" + peso  + " Tipo de Cargas=" + tipoCargas + " Origen=" + origen + " Destino=" + destino+ " kmRecorrer=" + kmRecorridos;
     }
 
     public String getID() {

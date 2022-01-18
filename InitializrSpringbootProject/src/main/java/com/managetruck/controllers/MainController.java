@@ -5,6 +5,7 @@
  */
 package com.managetruck.controllers;
 
+import com.managetruck.entidades.Comprobante;
 import com.managetruck.entidades.Proveedor;
 import com.managetruck.entidades.Transportista;
 import com.managetruck.entidades.Usuario;
@@ -12,12 +13,15 @@ import static com.managetruck.enumeracion.Role.Proveedor;
 import static com.managetruck.enumeracion.Role.Transportista;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.servicios.CamionServicio;
+import com.managetruck.servicios.ComprobanteServicio;
 import com.managetruck.servicios.FotoServicio;
 import com.managetruck.servicios.NotificacionDeServicio;
 import com.managetruck.servicios.ProveedorServicio;
 import com.managetruck.servicios.TransportistaServicio;
 import com.managetruck.servicios.ViajeServicio;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import jdk.nashorn.internal.ir.BreakNode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +50,9 @@ public class MainController {
     @Autowired
     NotificacionDeServicio notificacionDeServicio;
     
+    @Autowired
+    ComprobanteServicio comprobanteServicio;
+    
     @GetMapping("")
     public String index() {
 
@@ -72,9 +79,15 @@ public class MainController {
             model.put("transportistas", transportistas);
             return "indexEmpresa";
         } else if (login.getRol().equals(Transportista)) {
-            List<Proveedor> proveedores = proveedorServicio.listarProveedor();
-            model.put("proveedores", proveedores);
-            return "indexTransportista";
+            List<Comprobante> comprobantes;
+            try {
+                comprobantes = comprobanteServicio.comprobantesAbiertos();
+                model.put("comprobantes", comprobantes);
+                return "indexTransportista";
+            } catch (ErroresServicio ex) {
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
         return "index";
     }

@@ -11,8 +11,10 @@ import com.managetruck.entidades.Proveedor;
 import com.managetruck.entidades.Transportista;
 import com.managetruck.entidades.Viaje;
 import com.managetruck.enumeracion.EstadoEnum;
+import static com.managetruck.enumeracion.EstadoEnum.ELEGIR;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.repositorios.RepositorioComprobante;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -105,6 +107,18 @@ public class ComprobanteServicio {
         } else {
             throw new ErroresServicio("El comprobante no se encuentra asociado al viaje y al proveedor indicado");
         }
+    }
+    //METODO PARA TRAER TODOS LOS COMPROBANTES ABIERTOS PARA MOSTRAR AL TRANSPORTISTA
+    public List<Comprobante> comprobantesAbiertos()throws ErroresServicio{
+        System.out.println("entra al metodo del service");
+        List<Comprobante> comprobantes = repositorioComprobante.buscarComprobanteporAbiertos(new Viaje().getEstado().ELEGIR);
+        if (comprobantes.isEmpty()) {
+            throw new ErroresServicio("no hay ningun comprobante abierto para mostrar");
+        }else{
+            System.out.println(comprobantes);
+            return comprobantes;
+        }
+        
     }
     
 }
