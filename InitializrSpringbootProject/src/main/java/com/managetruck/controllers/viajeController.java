@@ -110,16 +110,17 @@ public class viajeController {
         }
         return null;
     }
-    @PostMapping("/aplicar")
-    public String aplicar(String id_transportista, String id_viaje){
-        
+    @GetMapping("/aplicar")
+    public String aplicar(@RequestParam(required = true)String id_transportista, @RequestParam(required = true)String id_viaje){
+        System.out.println("este es el id trasnportista="+id_transportista);
+        System.out.println("este el id comprobante="+id_viaje);
         try {
             viajeServicio.aplicar(id_transportista, id_viaje);
         } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return null;
+        return "redirect:/inicio";
     }
     @GetMapping("/listar-viajes")
     public String listarviajes(@RequestParam (required=true)String id,ModelMap modelo){
