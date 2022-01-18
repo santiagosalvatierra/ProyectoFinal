@@ -11,6 +11,7 @@ import com.managetruck.servicios.CamionServicio;
 import com.managetruck.servicios.TransportistaServicio;
 import com.managetruck.servicios.UsuarioServicio;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
@@ -81,11 +82,15 @@ public class TransportistaController {
     }
 
     @GetMapping("")
-    public String listarTransportista(ModelMap modelo, @RequestParam(required = false) String error, @RequestParam(required = false) String nombre) {
-        if (nombre != null) {
-            List<Transportista> transportistas = repositorioTransportista.buscarTransportistaPorNombre2(nombre);
-            modelo.addAttribute("tittle", "Listado Transportistas");
-            modelo.addAttribute("transportistas", transportistas);
+    public String listarTransportista(ModelMap modelo, @RequestParam(required = false) String error, @RequestParam(required = false) HttpSession session) {
+        if (session != null) {
+            Usuario login = (Usuario) session.getAttribute("usuariosession");
+            List<Transportista> transportistas2 = repositorioTransportista.buscarTransportistaPorZona(login.getZona());
+            if (!transportistas2.isEmpty()) {
+                modelo.addAttribute("tittle", "Listado Transportistas");
+            modelo.addAttribute("transportistas2", transportistas2);
+            }
+            
         } else {
             List<Transportista> transportistas = repositorioTransportista.findAll();
             modelo.addAttribute("tittle", "Listado Transportistas");
