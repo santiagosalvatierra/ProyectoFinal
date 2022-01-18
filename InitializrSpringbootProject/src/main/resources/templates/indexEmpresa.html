@@ -29,96 +29,53 @@
 
     <main class="favs-conteiner">
        
-        <!-- TARJETAS -->
-        <div class="row mx-5">
+        <section th:fragment="truckCardsFeatured" style="margin: 0rem 8rem 2rem; padding: 0rem 4rem 2rem 4rem;">
 
-            <!-- TARJETA 1 
-            Deberian conectarse todos los datos con la base de datos según usuario-->
-            
-            <div class="col mx-3">
-                <div class="card" style="width: 13rem;">
-                    <div class="stars">
-                        <p class="clasificacion">
-                            <input id="radio1" type="radio" name="estrellas" value="1">
-                            <label for="radio1" class="fas fa-star"></label>
-                            <input id="radio2" type="radio" name="estrellas" value="2">
-                            <label for="radio2" class="fas fa-star"></label>
-                            <input id="radio3" type="radio" name="estrellas" value="3">
-                            <label for="radio3" class="fas fa-star"></label>
-                            <input id="radio4" type="radio" name="estrellas" value="4">
-                            <label for="radio4" class="fas fa-star"></label>
-                            <input id="radio5" type="radio" name="estrellas" value="5">
-                            <label for="radio5" class="fas fa-star"></label>
-                        </p>
-                    </div>
-
-
-                    <img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto perfil Transportista">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Apellido</h5>
-                        <p class="card-text">Zona</p>
-                        <p class="card-text">Marca/Modelo/Año</p>
-                        <p class="card-text">Carga máxima en kg</p>
-                        <a href="#" class="btn btn-primary btn-sm">Conocer más</a>
-                    </div>
-                </div>
-            </div>
-            <!--<div class="col mx-3">
-                <div class="card" style="width: 13rem;">
-                    <div class="stars">
-                        <p class="clasificacion">
-                            <input id="radio1" type="radio" name="estrellas" value="1">
-                            <label for="radio1" class="fas fa-star"></label>
-                            <input id="radio2" type="radio" name="estrellas" value="2">
-                            <label for="radio2" class="fas fa-star"></label>
-                            <input id="radio3" type="radio" name="estrellas" value="3">
-                            <label for="radio3" class="fas fa-star"></label>
-                            <input id="radio4" type="radio" name="estrellas" value="4">
-                            <label for="radio4" class="fas fa-star"></label>
-                            <input id="radio5" type="radio" name="estrellas" value="5">
-                            <label for="radio5" class="fas fa-star"></label>
-                        </p>
-                    </div>
-
-
-                    <img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto perfil Transportista">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Apellido</h5>
-                        <p class="card-text">Zona</p>
-                        <p class="card-text">Marca/Modelo/Año</p>
-                        <p class="card-text">Carga máxima en kg</p>
-                        <a href="#" class="btn btn-primary btn-sm">Conocer más</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col mx-3">
-                <div class="card" style="width: 13rem;">
-                    <div class="stars">
-                        <p class="clasificacion">
-                            <input id="radio1" type="radio" name="estrellas" value="1">
-                            <label for="radio1" class="fas fa-star"></label>
-                            <input id="radio2" type="radio" name="estrellas" value="2">
-                            <label for="radio2" class="fas fa-star"></label>
-                            <input id="radio3" type="radio" name="estrellas" value="3">
-                            <label for="radio3" class="fas fa-star"></label>
-                            <input id="radio4" type="radio" name="estrellas" value="4">
-                            <label for="radio4" class="fas fa-star"></label>
-                            <input id="radio5" type="radio" name="estrellas" value="5">
-                            <label for="radio5" class="fas fa-star"></label>
-                        </p>
-                    </div>
-
-                    <img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto perfil Transportista">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Apellido</h5>
-                        <p class="card-text">Zona</p>
-                        <p class="card-text">Marca/Modelo/Año</p>
-                        <p class="card-text">Carga máxima en kg</p>
-                        <a href="#" class="btn btn-primary btn-sm">Conocer más</a>
-                    </div>
-                </div>
-            </div>-->
+     <!-- TARJETA 1 SECUNDARIA
+  Deberian conectarse todos los datos con la base de datos según usuario-->
+  <div class="row mx-5" style="margin: 2rem 2rem 2rem;">
+      <div th:each="transportista,stat:${transportistas2}">
+    <div class="col mx-3">
+      <div class="card" style="width: 13rem;">
+        <div class="stars">
+          <p class="clasificacion">
+            <input id="radio1" type="radio" name="estrellas" value="1">
+            <label for="radio1" class="fas fa-star"></label>
+            <input id="radio2" type="radio" name="estrellas" value="2">
+            <label for="radio2" class="fas fa-star"></label>
+            <input id="radio3" type="radio" name="estrellas" value="3">
+            <label for="radio3" class="fas fa-star"></label>
+            <input id="radio4" type="radio" name="estrellas" value="4">
+            <label for="radio4" class="fas fa-star"></label>
+            <input id="radio5" type="radio" name="estrellas" value="5">
+            <label for="radio5" class="fas fa-star"></label>
+          </p>
         </div>
+          <img
+              th:if="${transportista.foto == null}"
+            src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
+            class="card-img-top" alt="Foto perfil Transportista">
+          <img
+              th:if="${transportista.foto != null}"
+            th:src="${'/foto/usuario-imagen/'+transportista.id}"
+            class="card-img-top" alt="Foto perfil Transportista">
+        <!--<img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto perfil Transportista">-->
+        <div class="card-body">
+          <h5 class="card-title" th:text="${transportista.apellido}">Nombre Apellido</h5>
+          <p class="card-text" th:text="${transportista.zona}">Zona</p>
+          <p class="card-text" th:text="${transportista.camion}">Marca/Modelo/Año</p>
+          <!--<p class="card-text">Carga máxima en kg</p>-->
+          <a href="#" class="btn btn-primary btn-sm">Conocer más</a>
+        </div>
+      </div>
+    </div>
+      </div>
+
+  </div>
+
+
+</section> 
+        
     </main>
 
     <section th:replace="fragment/fragmentosCards :: truckCards"></section>
