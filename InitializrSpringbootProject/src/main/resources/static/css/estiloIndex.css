@@ -40,10 +40,10 @@ nav .logo {
 }
 
 nav .nav__items {
-    padding: 1rem 2rem;
+    padding: 1.3rem;
     display: flex;    
     font-size: 11pt;
-    font-style: normal;
+    font-style: italic;
     font-weight: 500;
     display: inline-block;
 }
@@ -52,16 +52,15 @@ nav .nav__items a {
   color: #fcfcfc;
   text-decoration: none;
   font-weight: bold;
+  padding: 5px;
+  transition: all 0.10s linear; 
+  border-radius: 5px;  
 }
 
 nav .nav__items a:hover {
-    padding: 5px;
-    transition: all 0.3s linear; 
-    border-radius: 5px;  
     background: #6930C3;
 }
-/* FIN BARRA NAV-HEADER*/
-
+/* ////////////////////////////////////////////////////////////////////////*/
 
 /* TÍTULO + TEXTO INTRODUCTORIO */
 .topheader-container {
@@ -93,9 +92,9 @@ nav .nav__items a:hover {
   margin: 50px auto;
   overflow: hidden;
 }
+/* ////////////////////////////////////////////////////////////////////////*/
 
-
-/* MODALS BUTTONS */
+/* BUTTONS */
 .container {
   min-height: 100%;
 }
@@ -123,8 +122,122 @@ nav .nav__items a:hover {
 
 .btn-primary:hover {
   color: #6930C3;
-  background: #E0E0E0;
+  background: #FCFCFC;
   border-width: 0.2rem;
   border-color: #6930C3;
 }
+
+/* MODALS */
+.modal-dialog {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.modal-content {
+  margin: 0 auto;
+}
+
+.modal-content .btn-close {
+  background-color: none;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.modal-content .close-btn :hover {
+  color: #31175a;
+}
+
+.modal-title {
+  color: #31175a;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.modal-body {
+  margin: 0 3rem;
+}
+
+.form-group {
+  margin: 1rem 0rem;
+}
+
+.form-control {
+  height: 3rem;
+  font-size: 0.8rem;
+}
+
+.forgotpass {
+  margin-top: 0.2rem;
+  margin-bottom: 1rem;
+  text-align: right;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.forgotpass a {
+  text-decoration: none;
+  color: #6930C3;
+}
+
+.forgotpass a:hover {
+  text-decoration: underline;
+}
+
+form .btn-primary {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+/* Modal largo de bootstrap -> registrarme*/
+.modal-dialog .modal-lg {
+
+}
+
+.reg {
+  display:flex;
+  margin: 1rem;
+}
+
+.left {
+  height: 100vh;
+  width: 50%;
+  margin-top: 7rem;
+  padding: 0rem 3rem;
+}
+
+
+.right {
+ /* background-image: url(/img/modal\ tipousuario.png);*/
+  background-size: cover;
+  background-position: center;
+  width: 50%;
+  height: 100vh;
+}
+
+.right img {
+  width: 350px;
+  height: auto;
+}
+
+.modal-subtitle {
+  color: #4a2488;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.modal-lg .btn-primary {
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+
+
+/* ////////////////////////////////////////////////////////////////////////*/
 
