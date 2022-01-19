@@ -23,7 +23,7 @@
                     src="/src/main/resources/static/img/perfil.png" width="200" height="200" alt="" />
             </div>
             <form th:action="@{/proveedor/modificar}" method="POST" enctype="multipart/form-data" th:object="${perfil}">
-                <
+                
                 <input type="hidden" name="id" th:value="${perfil.id}" />
                 
                 <div class="row g-2">
@@ -41,11 +41,7 @@
                             <option th:selected disable value="${provincia.provincia}" th:text="${perfil.zona}"></option>
                             <option option th:each="provincia:${provincias}" th:value="${provincia}" th:text="${provincia.provincia}"></option>
                         </select>
-                        
-                   
-                
                     </div>
-                   
                 </div>
                 <br>
                 <div class="row g-2">
