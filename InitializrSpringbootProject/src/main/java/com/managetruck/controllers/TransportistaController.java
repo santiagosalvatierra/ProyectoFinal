@@ -159,6 +159,9 @@ public class TransportistaController {
         try {
             System.out.println(id);
             Transportista transportista = transportistaServicio.buscarID(id);
+            Camion camion = transportista.getCamion();
+            model.addAttribute("camion", camion);
+//            System.out.println(camion);
             model.addAttribute("perfil", transportista);
             List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
             modelo.put("provincias",provincias);
