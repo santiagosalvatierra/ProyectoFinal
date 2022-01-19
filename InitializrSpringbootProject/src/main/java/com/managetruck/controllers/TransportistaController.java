@@ -146,7 +146,7 @@ public class TransportistaController {
             modelo.put("cantidadViajes", cantidadViajes);
 
         }
-        return "index";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos 
+        return "indexEmpresa";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos 
     }
 
     @GetMapping("/indexTransportista")
@@ -159,6 +159,9 @@ public class TransportistaController {
         try {
             System.out.println(id);
             Transportista transportista = transportistaServicio.buscarID(id);
+            Camion camion = transportista.getCamion();
+            model.addAttribute("camion", camion);
+//            System.out.println(camion);
             model.addAttribute("perfil", transportista);
             List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
             modelo.put("provincias",provincias);
