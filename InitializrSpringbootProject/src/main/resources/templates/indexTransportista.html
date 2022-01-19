@@ -24,7 +24,7 @@
     <header th:replace="fragment/fragmentos :: headerLoginTrans"></header>
 
     <h3 class="textTitle"> Empresas que te buscan </h3>
-    <p class="bodyText">Descripción sobre qué va a encontrar como transportista</p>
+    <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
 
     <section style="margin: 0rem 8rem 2rem; padding: 0rem 4rem 2rem 4rem;">
 
@@ -45,7 +45,9 @@
                         <p class="card-text" th:text="${comprobantes.viaje}">Rubro</p>
                         <!--<p class="card-text">Peso de carga</p>
                         <p class="card-text">Trayecto</p>-->
+                        
                         <a th:href="@{'/viaje/aplicar'+'?id_transportista='+${session.usuariosession.id}+'&id_viaje='+${comprobantes.ID}}" class="btn btn-primary btn-sm">Aplicar a viaje</a>
+                        
                     </div>
                 </div>
             </div>

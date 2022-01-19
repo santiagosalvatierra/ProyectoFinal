@@ -22,10 +22,9 @@
                 <img th:if="${perfil.foto == null}" class="img-fluid rounded-circle"
                     src="/src/main/resources/static/img/perfil.png" width="200" height="200" alt="" />
             </div>
-            <form action="/transportista/modificar" method="POST" enctype="multipart/form-data">
+            <form th:action="@{/transportista/modificar}" method="POST" enctype="multipart/form-data">
 
                 <input type="hidden" name="id" th:value="${perfil.id}" />
-
                 <div class="row g-2">
                     <div class="col-md-4">
                         <label for="nombre" class="visually-hidden"> Nombre</label>
@@ -73,6 +72,7 @@
                             <br>
                         <button type="button" class="btn btn-primary d-grid gap-2 col-3 mx-auto" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">Editar</button>
+                                </form>
                         <!--ACA EMPIEZA EL MODAL CAMBIO CLAVE-->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
@@ -119,36 +119,43 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <br>
                         <h1>Tu Camión</h1>
-                        <form>
-                            <label for="marca"> Marca</label>
-                            <input type="" id="marca" name="marca" placeholder="Ej: Chevrolet" />
+                 
+                        <form th:action="@{/camion/modificar}" method="POST" enctype="multipart/form-data">
+                            <!--<label for="marca"> Marca</label>
+                            <input type="text" id="marca" placeholder="Ej: Chevrolet" th:value="${camion.modelo}" />
                             <br>
-                            <br>
+                            <br>-->
                             <label for="modelo"> Modelo</label>
-                            <input type="" id="modelo" name="modelo" placeholder="Ej: Kodiak" />
+                            <input type="" id="modelo" name="modelo" placeholder="Ej: Kodiak" th:value="${camion.modelo}"/>
                             <br>
                             <br>
                             <label for="año"> Año</label>
-                            <input type="" id="año" name="año" placeholder="Ej: 1999" />
+                            <input type="number" id="año" name="anio" placeholder="Ej: 1999" th:value="${camion.anio}"/>
                             <br>
                             <br>
                             <label for="patente"> Patente</label>
-                            <input type="" id="patente" name="patente" placeholder="Ej: ABC-123 o AB-123-CD" />
+                            <input type="text" id="patente" name="patente" placeholder="Ej: ABC-123 o AB-123-CD" th:value="${camion.patente}"/>
                             <br>
                             <br>
                             <label for="poliza"> Número de Poliza</label>
-                            <input type="" id="poliza" name="poliza" placeholder="Número de póliza" />
+                            <input type="number" id="poliza" name="poliza" placeholder="Número de póliza" th:value="${camion.poliza}"/>
                             <br>
                             <br>
                             <button type="sumbit"> Guardar </button>
                         </form>
                     </div>
-                </div>
-            </form>
+              <!--  </div>
+            </form> -->
         </div>
     </main>
+    <br>
+        <br>
+            <br>
+                <br>
+                    <br>
     <div>
         <a class="btn btn-primary" href="" role="button">COMPROBANTES</a>
     </div>

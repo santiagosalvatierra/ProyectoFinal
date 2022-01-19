@@ -2,6 +2,7 @@ package com.managetruck.controllers;
 
 import com.managetruck.entidades.Comprobante;
 import com.managetruck.entidades.Provincias;
+import com.managetruck.entidades.Transportista;
 import com.managetruck.entidades.Usuario;
 import com.managetruck.entidades.Viaje;
 import com.managetruck.errores.ErroresServicio;
@@ -111,14 +112,17 @@ public class viajeController {
         return null;
     }
     @GetMapping("/aplicar")
-    public String aplicar(@RequestParam(required = true)String id_transportista, @RequestParam(required = true)String id_viaje){
+    public String aplicar(ModelMap model, @RequestParam(required = true)String id_transportista,@RequestParam(required = false) String error, @RequestParam(required = true)String id_viaje){
         System.out.println("este es el id trasnportista="+id_transportista);
         System.out.println("este el id comprobante="+id_viaje);
         try {
             viajeServicio.aplicar(id_transportista, id_viaje);
+                  
+
         } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
-            return "redirect:/inicio";
+            model.put("error", "Usted no puede aplicar al viaje");
+            return "inicio";
         }
         
         return "redirect:/inicio";
@@ -132,8 +136,20 @@ public class viajeController {
             return "ListadoCargas";
         } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
-            
+            return "redirect:/inicio";
         }
-        return "redirect:/inicio";
+        
+    }
+    @GetMapping("/listar-postulantes")
+    public String postulantes(@RequestParam(required = true)String id_viaje, ModelMap modelo){
+        try {
+            Viaje viaje=viajeServicio.buscarViajeId(id_viaje);
+            List<Transportista> postulantes = viaje.getListadoTransportista();
+            modelo.put("transportistas", postulantes); 
+            return "indexEmpresa";
+        } catch (ErroresServicio ex){
+            Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
+            return "redirect:/inicio";
+        }
     }
 }
