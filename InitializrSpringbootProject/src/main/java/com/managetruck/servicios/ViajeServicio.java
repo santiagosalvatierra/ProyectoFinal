@@ -183,5 +183,16 @@ public class ViajeServicio {
             }
         }
     }
+    
+    //metodo para devolver un viaje por su id
+    public Viaje buscarViajeId(String id_viaje)throws ErroresServicio{
+       Optional<Viaje> respuesta=repositorioViaje.findById(id_viaje);
+        if (respuesta.isPresent()) {
+            Viaje viaje= respuesta.get(); 
+            return viaje;
+        }else{
+           throw new ErroresServicio("No se encontro ningun viaje con ese ID");
+        }  
+    }
 
 }
