@@ -29,9 +29,6 @@
 </head>
 
 <body>
-
-    <header class="top-header"><h1>Nueva Carga</h1></header>
-    <header th:replace="fragment/fragmentos :: headerLoginEmp"></header>
     <header class="topheader">
         <div class="nav-container">
             <nav class="nav">
@@ -43,6 +40,10 @@
                     <li class="nav__items"><a th:href="@{/contacto}">ESCRIBINOS</a></li>
                 </ul>
             </nav>
+            
+    <header class="top-titulo"><h1>Nueva Carga</h1></header>
+    <header th:replace="fragment/fragmentos :: headerLoginEmp"></header>
+
 
 
     <form  th:action="@{/viaje/pedido}" method="POST" class="NuevaCarga">
