@@ -7,6 +7,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import org.hibernate.annotations.GenericGenerator;
@@ -27,7 +28,7 @@ public class Viaje {
     @Enumerated(EnumType.STRING)
     private EstadoEnum estado;
     private String origen;
-    @OneToMany
+    @ManyToMany
     private List <Transportista> listadoTransportista;
     @OneToOne
     private Transportista transportistaAplicado;
