@@ -122,7 +122,7 @@ public class viajeController {
         } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
             model.put("error", "Usted no puede aplicar al viaje");
-            return "inicio";
+            return "redirect:/inicio";
         }
         
         return "redirect:/inicio";

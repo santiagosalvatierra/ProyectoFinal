@@ -86,19 +86,9 @@ nav .nav__items a:hover {
   ;
 }
 
-#carouselExampleFade{
-  height: auto;
-  width: 440px;
-  margin: 50px auto;
-  overflow: hidden;
-}
 /* ////////////////////////////////////////////////////////////////////////*/
 
 /* BUTTONS */
-.container {
-  min-height: 100%;
-}
-
 .buttom-mod-container {
   position: relative;
   background-color: none;
@@ -159,7 +149,7 @@ nav .nav__items a:hover {
   font-size: 2rem;
 }
 
-.modal-body {
+#ing {
   margin: 0 3rem;
 }
 
@@ -195,35 +185,30 @@ form .btn-primary {
 }
 
 /* Modal largo de bootstrap -> registrarme*/
-.modal-dialog .modal-lg {
-
-}
-
-.reg {
+.modal-content .reg {
+  width: 100%;
+  height: 400px;
+  position: relative;
   display:flex;
-  margin: 1rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 
 .left {
   height: 100vh;
-  width: 50%;
-  margin-top: 7rem;
-  padding: 0rem 3rem;
-}
+  width: 45%;
+  margin: 3rem;
+  overflow-y:auto; /* Scroll automatico si se achica pantalla */
 
+}
 
 .right {
- /* background-image: url(/img/modal\ tipousuario.png);*/
+  width: 55%;
+  background-image: url(../img/modal\ tipousuario.png);
   background-size: cover;
   background-position: center;
-  width: 50%;
-  height: 100vh;
-}
-
-.right img {
-  width: 350px;
-  height: auto;
-}
+} 
 
 .modal-subtitle {
   color: #4a2488;
@@ -237,7 +222,34 @@ form .btn-primary {
   margin: 0.5rem 0;
 }
 
-
-
 /* ////////////////////////////////////////////////////////////////////////*/
+
+/* Carrousel de marcas */
+.carrusel {
+  margin-top: 8rem;
+}
+
+.text-subtitle {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 26px;
+  color: #999798;
+}
+
+#carouselExampleFade{
+  height: 170px;
+  width: 900px;
+  /* background-color: red; */
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.carousel-inner {
+  width: 300px;
+}
 

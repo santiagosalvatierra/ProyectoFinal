@@ -47,16 +47,16 @@ public class MainController {
 
     @Autowired
     TransportistaServicio transportistaServicio;
-    
+
     @Autowired
     RepositorioTransportista repositorioTransportista;
-    
+
     @Autowired
     NotificacionDeServicio notificacionDeServicio;
-    
+
     @Autowired
     ComprobanteServicio comprobanteServicio;
-    
+
     @GetMapping("")
     public String index() {
 
@@ -73,7 +73,7 @@ public class MainController {
     }
 
     @GetMapping("/inicio")
-    public String inicio(ModelMap model, HttpSession session) {
+    public String inicio(ModelMap model, HttpSession session, @RequestParam(required = false) String error) {
         //tambien podemos usar un switch7inicio
         Usuario login = (Usuario) session.getAttribute("usuariosession");
         System.out.println(login.getRol());
@@ -83,8 +83,12 @@ public class MainController {
             List<Transportista> transportistas2 = repositorioTransportista.buscarTransportistaPorZona(login.getZona());
             if (!transportistas2.isEmpty()) {
                 model.addAttribute("tittle", "Listado Transportistas");
-            model.addAttribute("transportistas2", transportistas2);
+                model.addAttribute("transportistas2", transportistas2);
+                if (error != null) {
+                    model.put("error", "Usted no puede aplicar al viaje");
+                }
             }
+
             return "indexEmpresa";
         } else if (login.getRol().equals(Transportista)) {
             List<Comprobante> comprobantes;
@@ -95,7 +99,7 @@ public class MainController {
             } catch (ErroresServicio ex) {
                 Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
         return "index";
     }
@@ -109,8 +113,9 @@ public class MainController {
     public String contactoMG() {
         return "contacto";
     }
+
     @PostMapping("/contacto")
-    public String contactar(String nombre,String apellido,String mail,String comentario) {
+    public String contactar(String nombre, String apellido, String mail, String comentario) {
         notificacionDeServicio.contactar(comentario, mail);
         notificacionDeServicio.enviar("Su mensaje ha sido enviado y esta siendo procesado", "ContactUs", mail);
         return "index";
@@ -120,8 +125,9 @@ public class MainController {
     public String nosotros() {
         return "nosotros";
     }
+
     @GetMapping("/logout")
-    public String salir(){
+    public String salir() {
         return "index";
     }
 }
