@@ -205,6 +205,9 @@ public class TransportistaServicio {
 
     //metodo para asignar al trasnportista que escogio el proveedor al comprobante
     public void asignacionTransportida(String id_proveedor, String id_viaje, String id_transportista) throws ErroresServicio {
+        System.out.println(id_proveedor);
+        System.out.println(id_viaje);
+        System.out.println(id_transportista);
         Optional<Comprobante> comprobante = repositorioComprobante.buscarComprobanteporIdViaje(id_viaje);
         //comprueba que el id del proveedor sea igual al id del proveedor que creo el, comprobante
         if (comprobante.isPresent()) {
