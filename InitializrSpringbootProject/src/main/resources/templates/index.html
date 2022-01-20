@@ -11,7 +11,8 @@
 
     <link href="/css/estiloIndex.css" rel="stylesheet" type="text/css" />
     <link href="../static/css/estiloIndex.css" rel="stylesheet" type="text/css" />
-    <link href="../static/css/Footer.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/Footer.css}">
+    <link rel="stylesheet" th:href="@{../static/css/estilos.css}">
 
     <!-- TIPOGRAFÍAS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,7 +67,7 @@
                     <div class="modal-content">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
-                        <div class="modal-body">
+                        <div class="modal-body" id="ing">
                             <div class="modal-title" id="exampleModalLabel">Ingresar</div>
                             <form th:action="@{/logincheck}" method="post">
                                 <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
@@ -102,10 +103,10 @@
                 aria-hidden="true">
 
                 <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-content reg">
 
                         <div class="modal-body reg">
+
                             <div class="left">
                                 <div class="modal-title" id="exampleModalLabel">Registrarme</div>
                                 <p class="modal-subtitle">Selecciona el tipo de usuario que se corresponde con tus necesidades</p>
@@ -116,9 +117,11 @@
                                 <!--ACA EMPIEZA EL DE TRANSPORTISTAS-->
                                 <a th:href="@{/transportista/registra}"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registroChofer"> Transportistas de grandes cargas</button></a>
                             </div>
+                            <div class="right"></div>
 
-                            <div class="right"><img src="../static/img/modal tipousuario.png"></div>
+                            <button type="button" class="btn-close" id="reg" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -126,7 +129,9 @@
 
 
         <!-- ACA EMPIEZA EL CARRUSEL -->
-        <section class="container" id="carrusel">
+        <section class="carrusel">
+            <div class="text-subtitle">
+                <p>Marcas que ya confiaron en nosotros</p></div>
             <div id="carouselExampleFade" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="3000">
