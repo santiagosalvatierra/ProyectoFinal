@@ -55,7 +55,7 @@ public class ComprobanteController {
         } catch (ErroresServicio ex) {
             Logger.getLogger(ComprobanteController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "indexEmpresa";
+        return "redirect:/viaje/listar-viajes?id="+id_proveedor;
     }
 
     @GetMapping("/listarComprobantes")

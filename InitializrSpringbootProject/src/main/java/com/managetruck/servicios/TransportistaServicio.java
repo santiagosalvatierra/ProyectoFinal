@@ -5,6 +5,7 @@
  */
 package com.managetruck.servicios;
 
+import com.managetruck.controllers.ComprobanteController;
 import com.managetruck.entidades.Camion;
 import com.managetruck.entidades.Comprobante;
 import com.managetruck.entidades.Foto;
@@ -22,6 +23,8 @@ import com.managetruck.repositorios.RepositorioUsuario;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -204,20 +207,23 @@ public class TransportistaServicio {
     }
 
     //metodo para asignar al trasnportista que escogio el proveedor al comprobante
+    @Transactional
     public void asignacionTransportida(String id_proveedor, String id_viaje, String id_transportista) throws ErroresServicio {
-        System.out.println(id_proveedor);
-        System.out.println(id_viaje);
-        System.out.println(id_transportista);
+        
         Optional<Comprobante> comprobante = repositorioComprobante.buscarComprobanteporIdViaje(id_viaje);
         //comprueba que el id del proveedor sea igual al id del proveedor que creo el, comprobante
         if (comprobante.isPresent()) {
             if (id_proveedor.equals(comprobante.get().getProveedor().getId())) {
                 Optional<Transportista> transportista = repositorioTransportista.findById(id_transportista);
                 if (transportista.isPresent()) {
-                    transportista.get().getComprobante().add(comprobante);
+                    
+                    transportista.get().getComprobante().add(comprobante.get());
+                    System.out.println(comprobante.get());
                     comprobante.get().getViaje().setTransportistaAplicado(transportista.get());
+                    
                     comprobante.get().getViaje().setEstado(EstadoEnum.VIAJANDO);
                     enViaje(transportista.get().getId());
+                    
                 } else {
                     throw new ErroresServicio("El transportista no existe o no se pudo encontrar");
 

@@ -86,7 +86,30 @@
             <input class="cargaButton" type="submit" value="Crear Viaje">
         </form></div>
 
+
         <div class="col-md-6"><img src="../img/ManageTruck_logo-Blanco.png" class="imagen"></div>
+
+        <div class="cargaDiv1">
+            
+            <input list="tipo-carga" id="tipo-carga-choice" name="tipoCargas" placeholder="Tipo de carga" required="required" />
+            <datalist id="tipo-carga">
+                <option value="arena">
+                <option value="ripio">
+                <option value="ladrillos">
+                <option value="frio">
+            </datalist>
+        </div>
+        <div class="cargaDiv2">
+            
+            <input type="number" id="peso" name="peso" placeholder="Peso (Kg)" required="required">
+        </div>
+        <div class="cargaDiv2">
+            
+            <input type="number" id="peso" name="kmRecorridos" placeholder="Peso (Kg)" required="required">
+        </div>
+        <input class="cargaButton" type="submit" value="Crear Viaje">
+    </form>
+
 
     </div>
     <footer th:replace="fragment/fragmentos :: footer"></footer>
