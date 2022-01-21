@@ -11,7 +11,10 @@
 
   <link href="/css/FormNuevaCarga.css" rel="stylesheet" type="text/css" />
     <link href="../static/css/FormNuevaCarga.css" rel="stylesheet" type="text/css" />
-    <link href="../static/css/Footer.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/Footer.css}">
+    <link rel="stylesheet" th:href="@{../static/css/Footer.css}">
+    <link rel="stylesheet" th:href="@{/css/NavGeneral.css}">
+    <link rel="stylesheet" th:href="@{../static/css/NavGeneral.css}">
 
         <!-- TIPOGRAFÍAS -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,56 +35,60 @@
     <header class="topheader">
         <div class="nav-container">
             <nav class="nav">
-                <a href="/" class="logo"><img src="../img/ManageTruck_logo-Blanco.png" class="logo"></a>
-
+                <a href="/" class="logo"><img src="/img/ManageTruck_logo-Blanco.png" class="logo"></a>
                 <ul class="nav__items">
                     <li class="nav__items"><a th:href="@{/nosotros}">NOSOTROS</a></li>
                     <li class="nav__items"><a th:href="@{/servicios}">SERVICIOS</a></li>
                     <li class="nav__items"><a th:href="@{/contacto}">ESCRIBINOS</a></li>
                 </ul>
             </nav>
-            
-    <header class="top-titulo"><h1>Nueva Carga</h1></header>
-    <header th:replace="fragment/fragmentos :: headerLoginEmp"></header>
-
-
-
-    <form  th:action="@{/viaje/pedido}" method="POST" class="NuevaCarga">
-        <input type="hidden" name="idProveedor" th:value="${session.usuariosession.id}" />
- 
-        <div class="cargaDiv">
-            
-            <select name="origen" id="zona" class="form-select"  required>
-                            <option selected disable value="">Partida</option>
-                            <option option th:each="provincia:${provincias}" th:value="${provincia.provincia}" th:text="${provincia.provincia}"></option>
-                        </select>
         </div>
-        <div class="cargaDiv">
+    </header>
             
-            <select name="destino" id="zona" class="form-select" required>
-                            <option selected disable value="">Destino</option>
-                            <option option th:each="provincia:${provincias}" th:value="${provincia.provincia}" th:text="${provincia.provincia}"></option>
-                        </select>
-                        
-        </div>
+    <main class="top-titulo"><h1>Nueva Carga</h1></main>
+    <!--<div th:replace="fragment/fragmentos :: headerLoginEmp"></div>-->
 
-        <div class="cargaDiv1">
-            
-            <input list="tipo-carga" id="tipo-carga-choice" name="tipoCargas" placeholder="Tipo de carga" required="required" />
-            <datalist id="tipo-carga">
-                <option value="arena">
-                <option value="ripio">
-                <option value="ladrillos">
-                <option value="frio">
-            </datalist>
-        </div>
-        <div class="cargaDiv2">
-            
-            <input type="number" id="peso" name="peso" placeholder="Peso (Kg)" required="required">
-        </div>
-        <input class="cargaButton" type="submit" value="Crear Viaje">
-    </form>
 
+    <div class="row g-2">
+        <div class="col-md-6">    <form  th:action="@{/viaje/pedido}" method="POST" class="NuevaCarga">
+            <input type="hidden" name="idProveedor" th:value="${session.usuariosession.id}" />
+     
+            <div class="cargaDiv">
+                
+                <select name="origen" id="zona" class="form-select"  required>
+                                <option selected disable value="">Partida</option>
+                                <option option th:each="provincia:${provincias}" th:value="${provincia.provincia}" th:text="${provincia.provincia}"></option>
+                            </select>
+            </div>
+            <div class="cargaDiv">
+                
+                <select name="destino" id="zona" class="form-select" required>
+                                <option selected disable value="">Destino</option>
+                                <option option th:each="provincia:${provincias}" th:value="${provincia.provincia}" th:text="${provincia.provincia}"></option>
+                            </select>
+                            
+            </div>
+    
+            <div class="cargaDiv1">
+                
+                <input list="tipo-carga" id="tipo-carga-choice" name="tipoCargas" placeholder="Tipo de carga" required="required" />
+                <datalist id="tipo-carga">
+                    <option value="arena">
+                    <option value="ripio">
+                    <option value="ladrillos">
+                    <option value="frio">
+                </datalist>
+            </div>
+            <div class="cargaDiv2">
+                
+                <input type="number" id="peso" name="peso" placeholder="Peso (Kg)" required="required">
+            </div>
+            <input class="cargaButton" type="submit" value="Crear Viaje">
+        </form></div>
+
+        <div class="col-md-6"><img src="../img/ManageTruck_logo-Blanco.png" class="imagen"></div>
+
+    </div>
     <footer th:replace="fragment/fragmentos :: footer"></footer>
 </body>
 
