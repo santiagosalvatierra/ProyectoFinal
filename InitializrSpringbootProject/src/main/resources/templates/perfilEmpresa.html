@@ -33,12 +33,22 @@
                 <img th:if="${perfil.foto != null}" class="img-fluid rounded-circle"
                     th:src="${'/foto/usuario-imagen/' + perfil.id}" width="200" height="200" alt="" />
                 <img th:if="${perfil.foto == null}" class="img-fluid rounded-circle"
-                    src="/src/main/resources/static/img/perfil.png" width="200" height="200" alt="" />
+                    src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg" width="200" height="200" alt="" />
             </div>
-            <form th:action="@{/proveedor/modificar}" method="POST" enctype="multipart/form-data" th:object="${perfil}">
-                <
-                <input type="hidden" name="id" th:value="${perfil.id}" />
+            <form th:action="@{/proveedor/modificar-proveedor}" method="POST" enctype="multipart/form-data" th:object="${perfil}">
                 
+                <input type="hidden" name="id" th:value="${perfil.id}" />
+                 <div class="row g-2">
+                    <div class="col-md-6">
+                        <label for="nombre"> Nombre</label>
+                        <input type="text" id="nombre" name="nombre" th:value="${perfil.nombre}" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="apellido"> Apellido</label>
+                        <input type="text" id="apellido" name="apellido" th:value="${perfil.apellido}" />
+                    </div>
+                </div>
+                <br>
                 <div class="row g-2">
                     <div class="col-md-4">
                         <label for="nombreEmpresa" class="visually-hidden"> Nombre</label>
@@ -51,7 +61,7 @@
                     <div class="col-md-6">
                         <label for="provincia" class="form-label">Zona</label>
                         <select name="zona" id="zona" class="form-select" required>
-                            <option th:selected disable value="${provincia.provincia}" th:text="${perfil.zona}"></option>
+                            <option th:selected disable th:value="${perfil.zona}" th:text="${perfil.zona}"></option>
                             <option option th:each="provincia:${provincias}" th:value="${provincia}" th:text="${provincia.provincia}"></option>
                         </select>
                         
@@ -75,17 +85,25 @@
                 <div class="row g-2">
                     <div class="col-md-6">
                         <label for="telefono"> Telefono</label>
-                        <input type="" id="telefono" name="telefono" th:value="${perfil.telefono}" />
+                        <input type="text" id="telefono" name="telefono" th:value="${perfil.telefono}" />
                     </div>
                     <div class="col-md-6">
                         <label for="cuilEmpresa"> CUIT</label>
                         <input type="text" id="cuilEmpresa" name="cuilEmpresa" th:value="${perfil.cuilEmpresa}" />
                     </div>
                 </div>
+                    <br>
+                    <div class="row g-2">
+                    <div class="col-md-6">
+                        <label for="foto"> Foto de Perfil</label>
+                        <input type="file" id="foto" name="foto"/>
+                    </div>
+                </div>
                 <br>
                 <div>
                     <button class="btn btn-success">Guardar</button>
                 </div>
+                    </form>
                 <div class="row">
                     <!--<label for="staticEmail" class="col-form-label">Clave</label>-->
                     <div class="col-sm-9">
@@ -143,7 +161,7 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            
         </div>
     </main>
     <div class="container text-center">

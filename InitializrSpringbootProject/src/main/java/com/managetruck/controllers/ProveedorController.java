@@ -77,13 +77,33 @@ public class ProveedorController {
     }
 
     @PostMapping("/modificar-proveedor")
-    public String modificacionProveedor(HttpSession session, String id) {
-        //verificacion de que el usuario que esta modificando sea el mismo que va a modificar
+    public String modificacionProveedor(HttpSession session, String id, String nombreEmpresa,String zona,String mail,String razonSocial,String telefono, String cuilEmpresa,@RequestParam(required = false)MultipartFile foto, String nombre, String apellido) {
+        System.out.println(session);
+        System.out.println(id);
+        System.out.println(nombreEmpresa);
+        System.out.println(zona);
+        System.out.println(mail);
+        System.out.println(razonSocial);
+        System.out.println(telefono);
+        System.out.println(cuilEmpresa);
+        System.out.println(foto);
+        System.out.println(nombre);
+        System.out.println(apellido);
+
+
+
+//verificacion de que el usuario que esta modificando sea el mismo que va a modificar
         Usuario login = (Usuario) session.getAttribute("usuariosession");
-        if (login == null || login.getId().equals(id)) {
+        if (login == null || !login.getId().equals(id)) {
             return "redirect:/login";
         }
-        return null;
+        try {
+            proveedorServicio.modificarUsuario(id, nombre, apellido, mail, foto, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
+        } catch (ErroresServicio ex) {
+            Logger.getLogger(ProveedorController.class.getName()).log(Level.SEVERE, null, ex);
+            return "redirect:/proveedor//perfil-proveedor?id="+login.getId();
+        }
+        return "redirect:/inicio";
     }
     @GetMapping("/listarProveedor")
     public String listarProveedores() {

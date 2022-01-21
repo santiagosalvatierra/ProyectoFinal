@@ -45,9 +45,9 @@ public class ProveedorServicio {
     private FotoServicio fotoServicio;
 
     @Transactional
-    public void crearProveedor(String nombre, String apellido, String mail, String password,String password2, MultipartFile archivo, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
+    public void crearProveedor(String nombre, String apellido, String mail, String password, String password2, MultipartFile archivo, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
         Foto foto = fotoServicio.guardar(archivo);
-        validarProveedor(nombre, apellido, mail, password,password2, archivo, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
+        validarProveedor(nombre, apellido, mail, password, password2, archivo, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
 
         Optional<Usuario> respuesta = repositorioUsuario.buscarPorMail(mail);
         if (respuesta.isPresent()) {
@@ -73,23 +73,27 @@ public class ProveedorServicio {
     }
 
     @Transactional
-    public void modificarUsuario(String id, String nombre, String apellido, String mail, String password, MultipartFile archivo, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
+    public void modificarUsuario(String id, String nombre, String apellido, String mail, MultipartFile archivo, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
         Optional<Proveedor> respuesta = repositorioproveedor.findById(id);
         if (respuesta.isPresent()) {
             Proveedor proveedor = respuesta.get();
+            System.out.println("la contraseña sale asi" + proveedor.getPassword());
             proveedor.setNombre(nombre);
             proveedor.setApellido(apellido);
             proveedor.setMail(mail);
-            String encriptada = new BCryptPasswordEncoder().encode(password);
-            proveedor.setPassword(encriptada);
-            Foto foto = fotoServicio.guardar(archivo);
-            proveedor.setFoto(foto);
+//            String encriptada = new BCryptPasswordEncoder().encode(password)
+//            proveedor.setPassword(encriptada);
+            if (archivo != null && !archivo.isEmpty()) {
+                Foto foto = fotoServicio.guardar(archivo);
+                proveedor.setFoto(foto);
+            }
+
             proveedor.setZona(zona);
             proveedor.setTelefono(telefono);
             proveedor.setRazonSocial(razonSocial);
             proveedor.setCuilEmpresa(cuilEmpresa);
             proveedor.setNombreEmpresa(nombreEmpresa);
-            notificacionServicio.enviar("TEXTO DE MODIFICACION DE CREDENCIALES", "NOMBRE DE LA PAGINA", proveedor.getMail());
+            //notificacionServicio.enviar("TEXTO DE MODIFICACION DE CREDENCIALES", "NOMBRE DE LA PAGINA", proveedor.getMail());
             repositorioproveedor.save(proveedor);
         } else {
             throw new ErroresServicio("No se encontro el usuario solicitado");
@@ -118,7 +122,7 @@ public class ProveedorServicio {
         }
     }
 
-    public void validarProveedor(String nombre, String apellido, String mail, String password,String password2, MultipartFile foto, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
+    public void validarProveedor(String nombre, String apellido, String mail, String password, String password2, MultipartFile foto, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
         if (nombre == null || nombre.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un nombre");
         }
@@ -136,7 +140,7 @@ public class ProveedorServicio {
             throw new ErroresServicio("Debe ingresar una contraseña");
         }
         if (password2 == null || password2.isEmpty()) {
-            
+
             throw new ErroresServicio("Debe ingresar una contraseña2");
         }
         if (!password.equals(password2)) {
@@ -160,28 +164,29 @@ public class ProveedorServicio {
         }
     }
 //para verificar que los datos ingresados sean numeros
-    public void verificarnumeros(String datos)throws ErroresServicio{
+
+    public void verificarnumeros(String datos) throws ErroresServicio {
         try {
-           Long numero= Long.parseLong(datos); 
+            Long numero = Long.parseLong(datos);
         } catch (Exception e) {
-            throw new ErroresServicio("El dato de" + datos +" ingresado no es un numero");
+            throw new ErroresServicio("El dato de" + datos + " ingresado no es un numero");
         }
-        
-        
+
     }
-    public List listarProveedor(){
+
+    public List listarProveedor() {
         List<Proveedor> listado = repositorioproveedor.findAll();
         return listado;
     }
-    
+
     //metodo para buscar por id
-    public Proveedor buscarID(String id_proveedor)throws ErroresServicio{
+    public Proveedor buscarID(String id_proveedor) throws ErroresServicio {
         Proveedor proveedor;
-        Optional <Proveedor> respuesta = repositorioproveedor.findById(id_proveedor);
+        Optional<Proveedor> respuesta = repositorioproveedor.findById(id_proveedor);
         if (respuesta.isPresent()) {
-            proveedor=respuesta.get();
+            proveedor = respuesta.get();
             return proveedor;
-        }else{
+        } else {
             throw new ErroresServicio("No se encontro ningun proveedor con ese id");
         }
     }
