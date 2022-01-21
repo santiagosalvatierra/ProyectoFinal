@@ -13,11 +13,6 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
-.nav-container {
-  width: 90%;
-  margin: 0 auto;
-}
-
 .topheader {
   height: 150vh;
   background-image: url("../img/IndexBanner3.png");
@@ -27,6 +22,11 @@ body {
 }
 
 /* BARRA NAV-HEADER */
+.nav-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
 nav {
   align-items: center;
   margin: auto;
@@ -37,6 +37,7 @@ nav .logo {
     padding: 1rem;
     width: 45%;
     margin-right: 6rem;
+    margin-bottom: 8px;
 }
 
 nav .nav__items {

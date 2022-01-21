@@ -8,7 +8,9 @@
     <link href="/css/estiloRegEmp.css" rel="stylesheet" type="text/css" />
     <link href="../static/css/estiloRegEmp.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" th:href="@{/css/Footer.css}">
-    <link rel="stylesheet" th:href="@{../static/css/estilos.css}">
+    <link rel="stylesheet" th:href="@{../static/css/Footer.css}">
+    <link rel="stylesheet" th:href="@{/css/NavGeneral.css}">
+    <link rel="stylesheet" th:href="@{../static/css/NavGeneral.css}">
 
     <!-- TIPOGRAFÍAS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,9 +40,9 @@
             </div>
         </header>
 
-
-        <div class="container py-5 mb-3 contenedor" id="form1">
-            <h2 class="text-center mb-5">Registrarme como empresa</h2>
+        <div class="container py-5 mb-  3 contenedor" id="form1">
+            <h2 class="header-title">Registrarme como empresa</h2>
+            
             <form class="needs-validation" th:action="@{/proveedor/registro}" method="POST" enctype="multipart/form-data">
                 <p th:if="${error!=null}" th:text="${error}" style="color:red"></p>
                 <div class="container" id="contenido1">

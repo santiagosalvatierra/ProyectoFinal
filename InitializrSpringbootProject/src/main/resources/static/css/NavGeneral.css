@@ -1,0 +1,66 @@
+
+* ::before ::after {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root { 
+  background-color: #fcfcfc;
+}
+
+body {
+  background-color:#fcfcfc;
+  font-family: 'Raleway', sans-serif;
+}
+
+.topheader {
+  height: 100px;
+  background-color: #6930C3;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/* BARRA NAV-HEADER */
+.nav-container {
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  nav {
+    align-items: center;
+    justify-content: center;
+  }
+  
+  nav .logo {
+      padding: 1rem;
+      width: 45%;
+      margin-right: 6rem;
+      margin-bottom: 8px;
+  }
+  
+  nav .nav__items {
+      padding: 1.3rem;
+      display: flex;    
+      font-size: 11pt;
+      font-style: italic;
+      font-weight: 500;
+      display: inline-block;
+  }
+  
+  nav .nav__items a {
+    color: #fcfcfc;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px;
+    transition: all 0.10s linear; 
+    border-radius: 5px;  
+  }
+  
+  nav .nav__items a:hover {
+      background: #6930C3;
+  }
+
+  /*///////////////////////////////////////////////////////////*/
+
+  
