@@ -1,53 +1,13 @@
-body{
-    align-items: center;
-    background-color: #fcfcfc;
+* ::before ::after {
+  margin: 0;
+  box-sizing: border-box;
+}
 
-    justify-content: left;
-    height: 100vh;
+body{
+    background-color: #fcfcfc;
     font-family: 'Raleway', sans-serif;
 }
 
-.nav-container {
-  width: 90%;
-  margin: 0 auto;
-}
-
-
-
-/* BARRA NAV-HEADER */
-nav {
-  align-items: center;
-  margin: auto;
-  justify-content: center;
-}
-
-nav .logo {
-    padding: 1rem;
-    width: 45%;
-    margin-right: 6rem;
-}
-
-nav .nav__items {
-    padding: 1.3rem;
-    display: flex;    
-    font-size: 11pt;
-    font-style: italic;
-    font-weight: 500;
-    display: inline-block;
-}
-
-nav .nav__items a {
-  color: #fcfcfc;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 5px;
-  transition: all 0.10s linear; 
-  border-radius: 5px;  
-}
-
-nav .nav__items a:hover {
-    background: #6930C3;
-}
 
 .top-titulo{
   background-color: #fcfcfc;
