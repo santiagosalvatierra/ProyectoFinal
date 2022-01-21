@@ -29,14 +29,16 @@
 
     <main>
         <div class="container contenedor">
+   
             <div class="p-5">
                 <img th:if="${perfil.foto != null}" class="img-fluid rounded-circle"
                     th:src="${'/foto/usuario-imagen/' + perfil.id}" width="200" height="200" alt="" />
                 <img th:if="${perfil.foto == null}" class="img-fluid rounded-circle"
                     src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg" width="200" height="200" alt="" />
             </div>
+            
             <form th:action="@{/proveedor/modificar-proveedor}" method="POST" enctype="multipart/form-data" th:object="${perfil}">
-                
+                <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
                 <input type="hidden" name="id" th:value="${perfil.id}" />
                  <div class="row g-2">
                     <div class="col-md-6">
@@ -110,7 +112,7 @@
                         <!--<input type="password" readonly class="form-control-plaintext" id="clave1"
                                th:value="${perfil.password}">-->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">Editar</button>
+                            data-bs-target="#exampleModal">Cambiar Contraseña</button>
                         <!--ACA EMPIEZA EL MODAL CAMBIO CLAVE-->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
@@ -123,38 +125,38 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row g-3" th:action="@{/logincheck}" method="post">
+                                        <form class="row g-3" th:action="@{'/usuario/cambio-password?id='+${session.usuariosession.id}}" method="post">
                                             <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
                                             <div class="form-group col-auto">
-                                                <label for="password" class="col-form-label">Clave Actual</label>
-                                                <input type="password" readonly class="form-control-plaintext"
+                                                <!--<label for="password" class="col-form-label">Clave Actual</label>-->
+                                                <input type="hidden" name="claveVieja"readonly class="form-control-plaintext"
                                                     id="password" th:value="${perfil.password}">
                                             </div>
                                             <br>
                                             <div class="form-group col-auto">
                                                 <label for="password">Clave nueva</label>
-                                                <input th:value="${password}" name="password" type="password"
-                                                    class="form-control" id="password" placeholder="Clave">
+                                                <input th:value="${password}" name="claveNueva" type="password"
+                                                    class="form-control" id="password" placeholder="Clave Nueva">
                                                 <br>
                                             </div>
                                             <div class="form-group col-auto">
                                                 <label for="password2">Confirmar clave</label>
-                                                <input th:value="${password2}" name="password2" type="password"
-                                                    class="form-control" id="password2" placeholder="Repetir la clave">
+                                                <input th:value="${password2}" name="claveNueva1" type="password"
+                                                    class="form-control" id="password2" placeholder="Repetir clave Nueva">
                                                 <br>
                                             </div>
                                             <div>
                                                 <div class="d-grid gap-2 col-6 mx-auto">
-                                                    <button type="submit" class="btn btn-primary">Confirmar Cambio de
-                                                        Contraseña</button>
+                                                    <button type="submit" class="btn btn-primary">Confirmar</button>
                                                 </div>
+                                                </form>
                                                 <br>
                                                 <div class="tdCancel">
                                                     <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"
                                                     aria-label="Close">Cancelar</button>
                                                 </div>
                                             </div>
-                                        </form>
+                                        
                                     </div>
                                 </div>
                             </div>
