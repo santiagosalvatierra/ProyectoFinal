@@ -48,14 +48,14 @@ public class ComprobanteController {
         return null;
     }
 
-    @PostMapping("/votacion")//proveedor elije el transportista que va a ser responsable del viaje
+    @PostMapping("/seleccionar")//proveedor elije el transportista que va a ser responsable del viaje
     public String votacion(String id_proveedor, String id_transportista, String id_viaje) throws ErroresServicio {
         try {
             transportistaServicio.asignacionTransportida(id_proveedor, id_viaje, id_transportista);
         } catch (ErroresServicio ex) {
             Logger.getLogger(ComprobanteController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return "indexEmpresa";
     }
 
     @GetMapping("/listarComprobantes")
