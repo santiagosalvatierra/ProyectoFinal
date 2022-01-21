@@ -95,6 +95,7 @@ public class viajeController {
         }
         return "redirect:/valorar";
     }
+    
     @GetMapping("/valorar")
     public String puntear (String id_comprobante){
         return null;
@@ -145,6 +146,7 @@ public class viajeController {
         try {
             Viaje viaje=viajeServicio.buscarViajeId(id_viaje);
             List<Transportista> postulantes = viaje.getListadoTransportista();
+            modelo.put("id_viaje", id_viaje);
             modelo.put("transportistas", postulantes); 
             return "indexEmpresa";
         } catch (ErroresServicio ex){

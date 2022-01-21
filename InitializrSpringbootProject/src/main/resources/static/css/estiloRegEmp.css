@@ -1,8 +1,30 @@
-#form1{
-  background-color: rgb(215, 245, 250);
-    height: auto;
-    margin-bottom: 10rem;
+
+* ::before ::after {
+  margin: 0;
+  box-sizing: border-box;
 }
+
+:root { 
+  background-color: #fcfcfc;
+}
+
+body {
+  background-color:#fcfcfc;
+  font-family: 'Raleway', sans-serif;
+}
+
+#form1{
+    height: auto;
+    margin-bottom: 6rem;
+}
+
+.header-title {
+  margin: 2rem auto;
+  text-align: center;
+  font-weight: 700;
+  color: #31175a;
+}
+
 #contenido1 {
   float: left;
   width: 50%;
