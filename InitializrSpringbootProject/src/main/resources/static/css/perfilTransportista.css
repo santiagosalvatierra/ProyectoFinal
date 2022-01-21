@@ -1,62 +1,88 @@
+body{
+  background-color: #fcfcfc;
+  font-family: 'Raleway', sans-serif;
+}
 
+input[type=checkbox].toggle{
+  display: none;
+}
 
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 3.75em;
-    height: 2.125em;
-    font-size: 2rem;
-  }
-  
-  .switch input { 
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 1.625em;
-    width: 1.625em;
-    left: 0.25em;
-    bottom: 0.25em;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  input:checked + .slider {
-    background-color: #2196F3;
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .slider:before {
-    -webkit-transform: translateX(1.625em);
-    -ms-transform: translateX(1.625em);
-    transform: translateX(1.625em);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 2.125em;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
+input[type=checkbox].toggle + label{
+  display: inline-block;
+  height: 55px;
+  width: 200px;
+  position: relative;
+  font-size: 20px;
+  border: 2px solid black;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: all 0.5s ease;
+}
+
+input[type=checkbox].toggle + label:before{
+  position: absolute;
+  top: 3px;
+  height: 44px;
+  width: 44px;
+  content: '';
+  transition: all 0.5s ease;
+  z-index: 3;
+}
+
+input[type=checkbox].toggle + label:after{
+  width: 140px;
+  text-align: center;
+  z-index: 2;
+  text-transform: uppercase;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+input[type=checkbox].toggle + label.rounded{
+  border-radius: 30px;
+}
+
+input[type=checkbox].toggle + label.rounded:before{
+  border-radius: 50%;
+}
+
+input[type=checkbox].toggle:not(checked) + label{
+  background-color: transparent;
+  text-align: right;
+}
+
+input[type=checkbox].toggle:not(checked) + label:after{
+  content: attr(data-unchecked);
+  right: 0;
+  left: auto;
+  opacity: 1;
+  color: rgb(15, 5, 5);
+}
+
+input[type=checkbox].toggle:not(checked) + label:before{
+  left: 4px;
+  background-color: rgb(230, 75, 75);
+}
+
+input[type=checkbox].toggle:checked + label{
+  text-align: left;
+  border-color: rgb(34, 92, 179);
+}
+
+input[type=checkbox].toggle:checked + label:after{
+  content: attr(data-checked);
+  left: 4px;
+  right: auto;
+  opacity: 1;
+  color: rgb(10, 23, 143);
+}
+
+input[type=checkbox].toggle:checked + label:before{
+  left: 144px;
+  background-color: rgb(77, 172, 228);
+}
