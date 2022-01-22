@@ -23,6 +23,8 @@
                              <div class = "tdLabel"> Contraseña original </div>
                             <div class="tdInput">
                                 <input class="inputbox" id="initpw" type="password" οnpaste="return false;" οndragenter="return false;" οncοntextmen="return false"></input>
+                            <input type="password" name="claveVieja"readonly class="form-control-plaintext"
+                                                    id="password" th:value="${perfil.password}">
                             </div>
                         </div>
                         <div class="trClass" style="padding-right: 0rem;">

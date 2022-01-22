@@ -27,7 +27,6 @@ public class UsuarioController {
             return "redirect:/login";
         }
         try {
-            System.out.println("esta por entrar al try de cambio de pass");
             usuarioServicio.modificarContrasena(id,claveNueva,claveNueva1,claveVieja);
         } catch (ErroresServicio ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);

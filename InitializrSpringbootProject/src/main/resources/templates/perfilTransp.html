@@ -82,18 +82,57 @@
                     <br>
                         <button type="submit" class="btn btn-primary d-grid gap-2 col-3 mx-auto">Editar</button>
                 </form>
-                <div class="mb-3 row">
-                    <!--<label for="clave1" class="col-form-label">Clave</label>-->
-                    <div class="col-sm-3">
-                        <input type="password" readonly class="form-control-plaintext form-control-lg" id="clave1"
-                        th:value="${clave1}">
-                    </div>        
-                        <br>
-                        <button type="button" class="btn btn-primary d-grid gap-2 col-3 mx-auto" data-bs-toggle="modal"
+            <button type="button" class="btn btn-primary d-grid gap-2 col-3 mx-auto" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">Cambiar Contraseña
                         </button>
-
-                </div>
+                        <!--ACA EMPIEZA EL MODAL CAMBIO CLAVE-->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-center" id="exampleModalLabel">ACTUALIZA TU
+                                            CONTRASEÑA</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="row g-3" th:action="@{'/usuario/cambio-password?id='+${session.usuariosession.id}}" method="post">
+                                            <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
+                                            <div class="form-group col-auto">
+                                                <!--<label for="password" class="col-form-label">Clave Actual</label>-->
+                                                <input type="hidden" name="claveVieja"readonly class="form-control-plaintext"
+                                                    id="password" th:value="${perfil.password}">
+                                            </div>
+                                            <br>
+                                            <div class="form-group col-auto">
+                                                <label for="password">Clave nueva</label>
+                                                <input th:value="${password}" name="claveNueva" type="password"
+                                                    class="form-control" id="password" placeholder="Clave Nueva">
+                                                <br>
+                                            </div>
+                                            <div class="form-group col-auto">
+                                                <label for="password2">Confirmar clave</label>
+                                                <input th:value="${password2}" name="claveNueva1" type="password"
+                                                    class="form-control" id="password2" placeholder="Repetir clave Nueva">
+                                                <br>
+                                            </div>
+                                            
+                                                <div class="d-grid gap-2 col-6 mx-auto">
+                                                    <button type="submit" class="btn btn-primary">Confirmar</button>
+                                                </div>
+                                                </form>
+                                                <br>
+                                                <div class="tdCancel">
+                                                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"
+                                                    aria-label="Close">Cancelar</button>
+                                                </div>
+                                            </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+              
             
                         <br>
         <div class="container">
