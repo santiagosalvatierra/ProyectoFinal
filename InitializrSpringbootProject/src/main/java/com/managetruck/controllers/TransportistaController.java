@@ -123,30 +123,38 @@ public class TransportistaController {
     }
 
     @PostMapping("/modificar")
-    public String modificar(HttpSession session, ModelMap modelo, String id, String nombre, String apellido, String mail, String clave1,String clave2, MultipartFile foto, String zona, String telefono, Camion camion, double valoracion, Integer cantidadViajes) throws ErroresServicio {
+    public String modificar(HttpSession session, ModelMap modelo, String id, String nombre, String apellido, String mail,@RequestParam(required = false) MultipartFile foto, String zona, String telefono) throws ErroresServicio {
         //verificacion de que el usuario que esta modificando sea el mismo que va a modificar
+        System.out.println(session);
+        System.out.println(id);
+        System.out.println(nombre);
+        System.out.println(apellido);
+        System.out.println(mail);
+        System.out.println(foto);
+        System.out.println(zona);
+        System.out.println(telefono);
         Usuario login = (Usuario) session.getAttribute("usuariosession");
-        if (login == null || login.getId().equals(id)) {
+        if (login == null || !login.getId().equals(id)) {
             return "redirect:/login";
         }
+        
         try {
-            transportistaServicio.modificarUsuario(id, nombre, apellido, mail, clave1,clave2, foto, zona, telefono, camion, valoracion, cantidadViajes);
+            transportistaServicio.modificarUsuario(id, nombre, apellido, mail, foto, zona, telefono);
         } catch (ErroresServicio ex) {
             modelo.put("error", ex.getMessage());
             modelo.put("id", id);
             modelo.put("nombre", nombre);
             modelo.put("apellido", apellido);
             modelo.put("mail", mail);
-            modelo.put("password", clave1);
             modelo.put("foto", foto);
             modelo.put("zona", zona);
             modelo.put("telefono", telefono);
-            modelo.put("camion", camion);
-            modelo.put("valoracion", valoracion);
-            modelo.put("cantidadViajes", cantidadViajes);
+//            modelo.put("camion", camion);
+//            modelo.put("valoracion", valoracion);
+//            modelo.put("cantidadViajes", cantidadViajes);
 
         }
-        return "indexEmpresa";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos 
+        return "indexTransportista";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos 
     }
 
     @GetMapping("/indexTransportista")

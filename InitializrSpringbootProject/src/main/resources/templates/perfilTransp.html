@@ -60,7 +60,7 @@
                 <br>
                 <label for="zona"> Zona</label>
                 <select name="zona" id="zona" class="form-select-lg" required>
-                    <option th:selected disable value="${provincia.provincia}" th:text="${perfil.zona}"></option>
+                    <option th:selected disable value="${perfil.zona}" th:text="${perfil.zona}"></option>
                     <option option th:each="provincia:${provincias}" th:value="${provincia}"
                         th:text="${provincia.provincia}"></option>
                 </select>
@@ -76,19 +76,25 @@
                     th:value="${perfil.telefono}" />
                 <br>
                 <br>
+                <label for="Archivo"> Foto de Perfil</label>
+                <input type="file"class="form-control form-control-lg" id="archivo" name="archivo"/>
+                <br>
+                    <br>
+                        <button type="submit" class="btn btn-primary d-grid gap-2 col-3 mx-auto">Editar</button>
+                </form>
                 <div class="mb-3 row">
-                    <label for="clave1" class="col-form-label">Clave</label>
+                    <!--<label for="clave1" class="col-form-label">Clave</label>-->
                     <div class="col-sm-3">
                         <input type="password" readonly class="form-control-plaintext form-control-lg" id="clave1"
                         th:value="${clave1}">
                     </div>        
                         <br>
                         <button type="button" class="btn btn-primary d-grid gap-2 col-3 mx-auto" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">Editar
+                            data-bs-target="#exampleModal">Cambiar Contraseña
                         </button>
 
                 </div>
-            </form>
+            
                         <br>
         <div class="container">
             <h1>Tu Camión</h1>

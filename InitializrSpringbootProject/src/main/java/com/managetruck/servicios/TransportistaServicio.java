@@ -63,9 +63,9 @@ public class TransportistaServicio {
     ComprobanteServicio comprobanteServicio;
 
     @Transactional
-    public void crearTransportista(String nombre, String apellido, String mail, String clave1,String clave2, MultipartFile archivo, String zona, String telefono, String id_camion) throws ErroresServicio {
+    public void crearTransportista(String nombre, String apellido, String mail, String clave1, String clave2, MultipartFile archivo, String zona, String telefono, String id_camion) throws ErroresServicio {
         Foto foto = fotoServicio.guardar(archivo);
-        validarTransportista(nombre, apellido, mail, clave1,clave2, archivo, zona, telefono);
+        validarTransportista(nombre, apellido, mail, clave1, clave2, archivo, zona, telefono);
         Optional<Usuario> respuesta = repositorioUsuario.buscarPorMail(mail);
         if (respuesta.isPresent()) {
             throw new ErroresServicio("El mail ya esta utilizado");
@@ -101,27 +101,28 @@ public class TransportistaServicio {
     }
 
     @Transactional
-    public void modificarUsuario(String id, String nombre, String apellido, String mail, String clave1,String clave2, MultipartFile archivo, String zona, String telefono, Camion camion, double valoracion, Integer cantidadViajes) throws ErroresServicio {
+    public void modificarUsuario(String id, String nombre, String apellido, String mail, MultipartFile archivo, String zona, String telefono) throws ErroresServicio {
 
-        Foto foto = fotoServicio.guardar(archivo);
-        validarTransportista(nombre, apellido, mail, clave1,clave2, archivo, zona, telefono);
+        validarTransportista2(nombre, apellido, mail, zona, telefono);
         Optional<Transportista> respuesta = repositorioTransportista.findById(id);
         if (respuesta.isPresent()) {
             Transportista transportista = respuesta.get();
             transportista.setNombre(nombre);
             transportista.setApellido(apellido);
             transportista.setMail(mail);
-            String encriptada = new BCryptPasswordEncoder().encode(clave1);
-            transportista.setPassword(encriptada);
-            transportista.setFoto(foto);
+//            String encriptada = new BCryptPasswordEncoder().encode(clave1);
+//            transportista.setPassword(encriptada);
+            if (archivo != null && !archivo.isEmpty()) {
+                Foto foto = fotoServicio.guardar(archivo);
+                transportista.setFoto(foto);
+            }
             transportista.setZona(zona);
             transportista.setTelefono(telefono);
-            transportista.setCamion(camion);
             //no debe estar la valoracion y cantidad de viajes porque eso no lo deberia poder cambiar el transportista
-            transportista.setValoracion(valoracion);
-            transportista.setCantidadViajes(cantidadViajes);
-            notificacionServicio.enviar("TEXTO DE MODIFICACION DE CREDENCIALES", "NOMBRE DE LA PAGINA", transportista.getMail());
-            repositorioTransportista.save(transportista);
+            //transportista.setValoracion(valoracion);
+            //transportista.setCantidadViajes(cantidadViajes);
+            //notificacionServicio.enviar("TEXTO DE MODIFICACION DE CREDENCIALES", "NOMBRE DE LA PAGINA", transportista.getMail());
+            //repositorioTransportista.save(transportista);
         } else {
             throw new ErroresServicio("No se encontro el usuario solicitado");
         }
@@ -149,7 +150,27 @@ public class TransportistaServicio {
         }
     }
 
-    public void validarTransportista(String nombre, String apellido, String mail, String clave1,String clave2, MultipartFile foto, String zona, String telefono) throws ErroresServicio {
+    public void validarTransportista(String nombre, String apellido, String mail, String clave1, String clave2, MultipartFile foto, String zona, String telefono) throws ErroresServicio {
+        
+        validarTransportista2(nombre,apellido,mail,zona,telefono);
+        
+        if (clave1 == null || clave1.isEmpty()) {
+            throw new ErroresServicio("Debe ingresar una contraseña");
+        }
+        if (clave2 == null || clave2.isEmpty()) {
+            throw new ErroresServicio("Debe ingresar una contraseña para verificar");
+        }
+        if (!clave2.equals(clave1)) {
+            throw new ErroresServicio("Las claves ingresadas no son iguales");
+        }
+        if (foto == null) {
+            throw new ErroresServicio("Debe ingresar una foto");
+        }
+
+    }
+    
+    //metodo para verificar en el metodo modificar ya que son menos campos, y se usa ese metodo dentro del otro para cuando creamos
+    public void validarTransportista2(String nombre, String apellido, String mail, String zona, String telefono) throws ErroresServicio {
         if (nombre == null || nombre.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un nombre");
         }
@@ -159,23 +180,21 @@ public class TransportistaServicio {
         if (mail == null || mail.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un mail");
         }
-        if (telefono == null) {
+        if (telefono == null || telefono.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un telefono ");
         }
-        if (clave1 == null || clave1.isEmpty()) {
-            throw new ErroresServicio("Debe ingresar una contraseña");
-        }
-        if (clave2 == null || clave2.isEmpty()) {
-            throw new ErroresServicio("Debe ingresar una contraseña para verificar");
-        }
-        if (!clave2.equals(clave1) ) {
-            throw new ErroresServicio("Las claves ingresadas no son iguales");
-        }
+        verificarnumeros(telefono);
         if (zona == null || zona.isEmpty()) {
             throw new ErroresServicio("Debe ingresar una zona");
         }
-        if (foto == null) {
-            throw new ErroresServicio("Debe ingresar una foto");
+    }
+    //para verificar que los datos ingresados sean numeros
+
+    public void verificarnumeros(String datos) throws ErroresServicio {
+        try {
+            Long numero = Long.parseLong(datos);
+        } catch (Exception e) {
+            throw new ErroresServicio("El dato de" + datos + " ingresado no es un numero");
         }
 
     }
@@ -209,21 +228,21 @@ public class TransportistaServicio {
     //metodo para asignar al trasnportista que escogio el proveedor al comprobante
     @Transactional
     public void asignacionTransportida(String id_proveedor, String id_viaje, String id_transportista) throws ErroresServicio {
-        
+
         Optional<Comprobante> comprobante = repositorioComprobante.buscarComprobanteporIdViaje(id_viaje);
         //comprueba que el id del proveedor sea igual al id del proveedor que creo el, comprobante
         if (comprobante.isPresent()) {
             if (id_proveedor.equals(comprobante.get().getProveedor().getId())) {
                 Optional<Transportista> transportista = repositorioTransportista.findById(id_transportista);
                 if (transportista.isPresent()) {
-                    
+
                     transportista.get().getComprobante().add(comprobante.get());
                     System.out.println(comprobante.get());
                     comprobante.get().getViaje().setTransportistaAplicado(transportista.get());
-                    
+
                     comprobante.get().getViaje().setEstado(EstadoEnum.VIAJANDO);
                     enViaje(transportista.get().getId());
-                    
+
                 } else {
                     throw new ErroresServicio("El transportista no existe o no se pudo encontrar");
 
@@ -244,7 +263,7 @@ public class TransportistaServicio {
         Transportista transportista = buscarID(id_trasnportista);
         if (transportista.isViajando()) {
             transportista.setViajando(true);
-            
+
         } else {
             transportista.setViajando(false);
         }
