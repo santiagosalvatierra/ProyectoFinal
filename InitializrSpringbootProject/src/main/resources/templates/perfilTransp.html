@@ -99,7 +99,7 @@
         <div class="container">
             <h1>Tu Camión</h1>
 
-                        <form th:action="@{/camion/modificar}" method="POST" enctype="multipart/form-data">
+                        <form th:action="@{'/camion/modificar-camion?id_transportista='+${perfil.id}}" method="POST" enctype="multipart/form-data">
                             <div class="row g-2">
                                 <div class="col-md-6">
                                     <!--<img th:if="${camion.foto != null}" class="img-fluid rounded-circle"
@@ -108,14 +108,25 @@
                                     height="200" alt="" />
                                 </div>
                                 <div class="col-md-6">
+                                    <input type="hidden" name="id" th:value="${camion.ID}" />
                                     <label for="modelo"> Modelo</label>
-                                    <input type="" id="modelo" name="modelo" placeholder="Ej: Kodiak"
+                                    <input type="text" id="modelo" name="modelo" placeholder="Ej: Kodiak"
                                     th:value="${camion.modelo}" />
                                     <br>
                                     <br>
                                     <label for="año"> Año</label>
                                     <input type="number" id="año" name="anio" placeholder="Ej: 1999"
                                     th:value="${camion.anio}" />
+                                    <br>
+                                    <br>
+                                    <label for="descripcion"> Descripción</label>
+                                    <input type="text" id="modelo" name="descripcion" placeholder="Ej: Kodiak"
+                                    th:value="${camion.descripcion}" />
+                                    <br>
+                                    <br>
+                                    <label for="pesoMaximo"> Carga</label>
+                                    <input type="number" id="año" name="pesoMaximo" placeholder="Ej: 150"
+                                    th:value="${camion.pesoMaximo}" />
                                     <br>
                                     <br>
                                     <label for="patente"> Patente</label>
@@ -126,12 +137,18 @@
                                     <label for="poliza"> Número de Poliza</label>
                                     <input type="number" id="poliza" name="poliza" placeholder="Número de póliza"
                                     th:value="${camion.poliza}" />
+                                    <br>
+                                    <br>
+                                    <label for="archivo">Fotos del camión</label>
+                                    <input type="file" class="form-control selectfoto" name="archivos" multiple />
+                                        
                                 </div>
                             </div>
+                            <button class="btn btn-primary" type="sumbit"> Guardar </button>
                         </form>
                     <br>
                     <br>
-                    <button class="btn btn-primary" type="sumbit"> Guardar </button>
+                    
         </div>
                     
     </main>

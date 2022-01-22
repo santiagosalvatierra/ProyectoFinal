@@ -145,7 +145,7 @@ public class TransportistaController {
 //            modelo.put("cantidadViajes", cantidadViajes);
 
         }
-        return "indexTransportista";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos 
+        return "redirect:/inicio";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos 
     }
 
     @GetMapping("/indexTransportista")
