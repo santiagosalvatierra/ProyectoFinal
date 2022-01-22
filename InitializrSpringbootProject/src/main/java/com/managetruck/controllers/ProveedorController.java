@@ -109,7 +109,9 @@ public class ProveedorController {
     public String listarProveedores() {
         
         return "pruebaLista";
+        
     }
+    
     //para mi esta vista esta de mas ya que la decuelve en el inicio cuando se registra el proveedor
     @GetMapping("/indexEmpresa")
     public String indexEmpresa(Model model) {
@@ -131,6 +133,7 @@ public class ProveedorController {
             Logger.getLogger(ProveedorController.class.getName()).log(Level.SEVERE, null, ex);
             return "redirect:/inicio";
         }
+        
     }
     
     
