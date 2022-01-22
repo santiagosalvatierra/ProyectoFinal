@@ -50,7 +50,8 @@
 
 
     <div class="row g-2">
-        <div class="col-md-6">    <form  th:action="@{/viaje/pedido}" method="POST" class="NuevaCarga">
+        <div class="col-md-6">   
+            <form  th:action="@{/viaje/pedido}" method="POST" class="NuevaCarga">
             <input type="hidden" name="idProveedor" th:value="${session.usuariosession.id}" />
      
             <div class="cargaDiv">
@@ -68,7 +69,11 @@
                             </select>
                             
             </div>
-    
+    <div class="cargaDiv1">
+                
+                <input list="tipo-carga" id="kmRecorridos" name="kmRecorridos" placeholder="kmRecorridos" required="required" tipe="number"/>
+                                   
+            </div>
             <div class="cargaDiv1">
                 
                 <input list="tipo-carga" id="tipo-carga-choice" name="tipoCargas" placeholder="Tipo de carga" required="required" />
