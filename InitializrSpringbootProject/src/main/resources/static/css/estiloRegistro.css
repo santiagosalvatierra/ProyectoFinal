@@ -73,14 +73,17 @@ label {
   float: right;
   width: 49%;
   height: 432px;
-  margin-top: 35px;
 }
 
 .container3 {
   display: inline-block;
   height: 100px;
   width: 100%;
-    text-align:center;
+  text-align:center;
+}
+
+.plus {
+  margin-top:3rem;
 }
 
 .btn-primary {
