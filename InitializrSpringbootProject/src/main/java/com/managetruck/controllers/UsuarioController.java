@@ -22,8 +22,6 @@ public class UsuarioController {
     
     @PostMapping("/cambio-password")
     public String cambiocontrasenia(HttpSession session,@RequestParam(required = true) String id,String claveVieja, String claveNueva, String claveNueva1,ModelMap modelo){
-        System.out.println(id);
-        System.out.println(session);
         Usuario login = (Usuario) session.getAttribute("usuariosession");
         if (login == null || !login.getId().equals(id)) {
             return "redirect:/login";

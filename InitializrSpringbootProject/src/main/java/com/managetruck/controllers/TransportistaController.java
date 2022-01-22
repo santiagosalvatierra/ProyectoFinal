@@ -125,19 +125,10 @@ public class TransportistaController {
     @PostMapping("/modificar")
     public String modificar(HttpSession session, ModelMap modelo, String id, String nombre, String apellido, String mail,@RequestParam(required = false) MultipartFile foto, String zona, String telefono) throws ErroresServicio {
         //verificacion de que el usuario que esta modificando sea el mismo que va a modificar
-        System.out.println(session);
-        System.out.println(id);
-        System.out.println(nombre);
-        System.out.println(apellido);
-        System.out.println(mail);
-        System.out.println(foto);
-        System.out.println(zona);
-        System.out.println(telefono);
         Usuario login = (Usuario) session.getAttribute("usuariosession");
         if (login == null || !login.getId().equals(id)) {
             return "redirect:/login";
-        }
-        
+        }  
         try {
             transportistaServicio.modificarUsuario(id, nombre, apellido, mail, foto, zona, telefono);
         } catch (ErroresServicio ex) {
@@ -165,11 +156,9 @@ public class TransportistaController {
     @GetMapping("/perfil-transportista")
     public String perfilTransportista(String id,ModelMap modelo, Model model){
         try {
-            System.out.println(id);
             Transportista transportista = transportistaServicio.buscarID(id);
             Camion camion = transportista.getCamion();
             model.addAttribute("camion", camion);
-//            System.out.println(camion);
             model.addAttribute("perfil", transportista);
             List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
             modelo.put("provincias",provincias);
