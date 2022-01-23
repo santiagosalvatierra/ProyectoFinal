@@ -61,12 +61,10 @@
                 </div>
                 <br>
                 <br>
-                <div class="row g-2">
-                    <div class="col-md-6">
-                        <label for="zona"> Zona</label>
-                        <select name="zona" id="zona" class="form-select-lg" required>
-                        <option th:selected disable th:value="${perfil.zona}" th:text="${perfil.zona}"></option>
-                        <option option th:each="provincia:${provincias}" th:value="${provincia}"
+                <label for="zona"> Zona</label>
+                <select name="zona" id="zona" class="form-select-lg" required>
+                    <option th:selected disable th:value="${perfil.zona}" th:text="${perfil.zona}"></option>
+                    <option option th:each="provincia:${provincias}" th:value="${provincia}"
                         th:text="${provincia.provincia}"></option>
                         </select>
                         <br>

@@ -63,7 +63,7 @@ public class TransportistaServicio {
     ComprobanteServicio comprobanteServicio;
 
     @Transactional
-    public void crearTransportista(String nombre, String apellido, String mail, String clave1, String clave2, MultipartFile archivo, String zona, String telefono, String id_camion) throws ErroresServicio {
+    public void crearTransportista(String nombre, String apellido, String mail, String clave1, String clave2, MultipartFile archivo, String zona, String telefono) throws ErroresServicio {
         Foto foto = fotoServicio.guardar(archivo);
         validarTransportista(nombre, apellido, mail, clave1, clave2, archivo, zona, telefono);
         Optional<Usuario> respuesta = repositorioUsuario.buscarPorMail(mail);
@@ -81,13 +81,8 @@ public class TransportistaServicio {
             transportista.setPassword(encriptada);
             transportista.setFoto(foto);
             transportista.setZona(zona);
-            transportista.setTelefono(telefono);
-            Optional<Camion> respuesta2 = repositorioCamion.findById(id_camion);
-            if (respuesta2.isPresent()) {
-                transportista.setCamion(respuesta2.get());
-            } else {
-                transportista.setCamion(null);
-            }
+            transportista.setTelefono(telefono); 
+            transportista.setCamion(null);
             transportista.setCantidadViajes(0);
             transportista.setValoracion(0);
             transportista.setRol(Role.Transportista);
@@ -99,7 +94,20 @@ public class TransportistaServicio {
             repositorioTransportista.save(transportista);
         }
     }
-
+//metodo para setear un camion aun trnasportista
+    @Transactional
+    public void SetearCamion(String id_camion, String mail)throws ErroresServicio{
+        Optional<Usuario> respuesta = repositorioUsuario.buscarPorMail(mail);
+        if (respuesta.isPresent()) {
+        Optional<Camion> respuesta2 = repositorioCamion.findById(id_camion);
+            if (respuesta2.isPresent()) {
+                Transportista transportista = (Transportista) respuesta.get();
+                transportista.setCamion(respuesta2.get());
+            }      
+        } else {
+        throw new ErroresServicio("No se encontro un usuario con ese correo electronico");
+        }
+    }
     @Transactional
     public void modificarUsuario(String id, String nombre, String apellido, String mail, MultipartFile archivo, String zona, String telefono) throws ErroresServicio {
 
