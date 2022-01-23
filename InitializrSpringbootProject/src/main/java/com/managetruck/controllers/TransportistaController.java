@@ -124,14 +124,14 @@ public class TransportistaController {
     }
 
     @PostMapping("/modificar")
-    public String modificar(HttpSession session, ModelMap modelo, String id, String nombre, String apellido, String mail,@RequestParam(required = false) MultipartFile foto, String zona, String telefono) throws ErroresServicio {
-        //verificacion de que el usuario que esta modificando sea el mismo que va a modificar
+    public String modificar(HttpSession session, ModelMap modelo, String id, String nombre, String apellido, String mail,@RequestParam(required = false) MultipartFile archivo, String zona, String telefono) throws ErroresServicio {
+        //verificacion de que el usuario que esta modificando sea el mismo que va a modifica
         Usuario login = (Usuario) session.getAttribute("usuariosession");
         if (login == null || !login.getId().equals(id)) {
             return "redirect:/login";
         }  
         try {
-            transportistaServicio.modificarUsuario(id, nombre, apellido, mail, foto, zona, telefono);
+            transportistaServicio.modificarUsuario(id, nombre, apellido, mail, archivo, zona, telefono);
         } catch (ErroresServicio ex) {
             modelo.put("error", ex.getMessage());
             modelo.put("id", id);
