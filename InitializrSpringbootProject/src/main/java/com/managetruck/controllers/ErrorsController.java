@@ -1,4 +1,4 @@
-package com.managetruck.controllers;
+    package com.managetruck.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.boot.web.servlet.error.ErrorController;
@@ -22,7 +22,7 @@ public class ErrorsController implements ErrorController {
                 errormensaje = "El recurso solicitado no existe";
                 break;
             case 401:
-                errormensaje = "Usted no se encuentra autorizado, tiene que iniciar sesion";
+                errormensaje = "Usted no se encuentra autorizado, tiene que iniciar sesión";
                 break;
             case 403:
                 error="403";
@@ -34,7 +34,7 @@ public class ErrorsController implements ErrorController {
                 break;
             case 500:
                 error="500";//que carajo es esto
-                errormensaje = "El servidor no pudo realizar la peticion con exito";
+                errormensaje = "El servidor no pudo realizar la petición con éxito";
                 break;
             case 408:
                 error="408"; 
