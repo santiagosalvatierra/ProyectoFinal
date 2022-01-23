@@ -122,7 +122,7 @@ public class TransportistaServicio {
             //transportista.setValoracion(valoracion);
             //transportista.setCantidadViajes(cantidadViajes);
             //notificacionServicio.enviar("TEXTO DE MODIFICACION DE CREDENCIALES", "NOMBRE DE LA PAGINA", transportista.getMail());
-            //repositorioTransportista.save(transportista);
+            repositorioTransportista.save(transportista);
         } else {
             throw new ErroresServicio("No se encontro el usuario solicitado");
         }
