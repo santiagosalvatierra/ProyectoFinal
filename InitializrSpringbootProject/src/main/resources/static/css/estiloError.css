@@ -1,0 +1,36 @@
+
+* ::before ::after {
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  :root { 
+    background-color: #fcfcfc;
+  }
+  
+  body {
+    background-color:#fcfcfc;
+    font-family: 'Raleway', sans-serif;
+  }
+
+  .btn-primary {
+    color: #fcfcfc;
+    background: #6930C3;
+    font-weight: 400;
+    padding: 0.5rem;
+    width: 13rem;
+    box-shadow: 0px 4px 4px rgba(31, 31, 31, 0.25);
+    border-radius: 10px;
+    border-color: #6930C3;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    color: #6930C3;
+    background: #FCFCFC;
+    border-width: 0.2rem;
+    border-color: #6930C3;
+  }
+
+  
