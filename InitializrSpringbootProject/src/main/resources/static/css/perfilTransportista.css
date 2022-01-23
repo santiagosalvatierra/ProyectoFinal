@@ -1,6 +1,7 @@
 body{
   background-color: #fcfcfc;
   font-family: 'Raleway', sans-serif;
+  min-height: 100vh;
 }
 
 /* BUTTONS */
@@ -114,4 +115,63 @@ input[type=checkbox].toggle:checked + label:after{
 input[type=checkbox].toggle:checked + label:before{
   left: 144px;
   background-color: rgb(77, 172, 228);
+}
+/*FLEXBOX
+.contenedor{
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  gap: 20px;
+  background-color: cadetblue;
+}
+
+.contenedor-fotos{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 550px;
+  margin-bottom: 10px;
+  background-color: darkcyan;
+}*/
+
+.foto{
+  margin-bottom: 10px;
+  object-fit: fill;
+}
+
+.contenedor-texto{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+/*GRID*/
+.contenedor{
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 48px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: cornflowerblue;
+  gap: 20px;
+}
+
+.contenedor-fotos{
+  background-color: cadetblue;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: center;
+}
+
+.contenedor-texto input{
+  width: 400px;
+  margin-bottom: 20px;
 }

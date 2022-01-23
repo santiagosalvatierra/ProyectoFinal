@@ -27,7 +27,7 @@
     <header th:replace="fragment/fragmentos :: headerLoginTrans"></header>
     <main>
         <!--ESTE DIV ENGLOBA TODA LA PAGINA-->
-        <article class="container contenedor">
+        <article class="container">
             <div class="text-center">
                 <img th:if="${perfil.foto != null}" class="img-fluid rounded-circle"
                     th:src="${'/foto/usuario-imagen/' + perfil.id}" width="400" height="400" alt="" />
@@ -61,33 +61,46 @@
                 </div>
                 <br>
                 <br>
-                <label for="zona"> Zona</label>
-                <select name="zona" id="zona" class="form-select-lg" required>
-                    <option th:selected disable value="${perfil.zona}" th:text="${perfil.zona}"></option>
-                    <option option th:each="provincia:${provincias}" th:value="${provincia}"
+                <div class="row g-2">
+                    <div class="col-md-6">
+                        <label for="zona"> Zona</label>
+                        <select name="zona" id="zona" class="form-select-lg" required>
+                        <option th:selected disable th:value="${perfil.zona}" th:text="${perfil.zona}"></option>
+                        <option option th:each="provincia:${provincias}" th:value="${provincia}"
                         th:text="${provincia.provincia}"></option>
-                </select>
+                        </select>
+                        <br>
+                        <br>
+                        <label for="mail"> Correo Electronico</label>
+                        <input class="form-control form-control-lg" type="email" id="mail" name="mail"
+                        th:value="${perfil.mail}" />
+                        <br>
+                        <br>
+                        <label for="telefono"> Telefono</label>
+                        <input class="form-control form-control-lg" type="" id="telefono" name="telefono"
+                        th:value="${perfil.telefono}" />
+                        <br>
+                        <br>
+                        <label for="Archivo"> Foto de Perfil</label>
+                        <input type="file" class="form-control form-control-lg" id="archivo" name="archivo" />
+                    </div>
+                    <div class="col-md-6">
+                        <div class="buttom-mod-container">
+                            <button type="submit" class="btn btn-primary">Editar</button>
+                        </div>
+                        <div class="buttom-mod-container">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">Cambiar Contraseña</button>
+                        </div>
+                    </div>
+                </div>
+                
                 <br>
                 <br>
-                <label for="mail"> Correo Electronico</label>
-                <input class="form-control form-control-lg" type="email" id="mail" name="mail"
-                    th:value="${perfil.mail}" />
-                <br>
-                <br>
-                <label for="telefono"> Telefono</label>
-                <input class="form-control form-control-lg" type="" id="telefono" name="telefono"
-                    th:value="${perfil.telefono}" />
-                <br>
-                <br>
-                <label for="Archivo"> Foto de Perfil</label>
-                <input type="file" class="form-control form-control-lg" id="archivo" name="archivo" />
-                <br>
-                <br>
-                <button type="submit" class="btn btn-primary d-grid gap-2 col-3 mx-auto">Editar</button>
+                
+                
             </form>
-            <button type="button" class="btn btn-primary d-grid gap-2 col-3 mx-auto" data-bs-toggle="modal"
-                data-bs-target="#exampleModal">Cambiar Contraseña
-            </button>
+            
             <!--ACA EMPIEZA EL MODAL CAMBIO CLAVE-->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -121,7 +134,7 @@
                                         class="form-control" id="password2" placeholder="Repetir clave Nueva">
                                     <br>
                                 </div>
-                                <div class="d-grid gap-2 col-6 mx-auto">
+                                <div class="buttom-mod-container">
                                     <button type="submit" class="btn btn-primary">Confirmar</button>
                                 </div>
                             </form>
@@ -138,61 +151,59 @@
 
 
             <br>
-            <section class="container">
+            <section>
                 <h1 class="text-center">Tu Camión</h1>
                 <div class="container">
                     <form th:action="@{'/camion/modificar-camion?id_transportista='+${perfil.id}}" method="POST"
                         enctype="multipart/form-data">
-                        <div class="row g-2">
-                            <div class="col-md-6" th:each="fotos,iterator:${fotos}">
-                                <img th:if="${iterator.index != null}" class="img-fluid rounded-2"
+                        <div class="contenedor">
+                            <div class="contenedor-fotos">
+                                <div class="foto" th:each="fotos,iterator:${fotos}">
+                                    <img th:if="${iterator.index != null}" class="img-fluid rounded-2"
                                     th:src="@{'/foto/camion-imagenes/'+${camion.ID}+'?orden='+${iterator.index}}"
                                     width="200" height="200" alt="" />
                                 <!--<img th:if="${camion.foto != null}" class="img-fluid rounded-circle"
                                         th:src="${'/foto/camion-imagenes/' + perfil.id}" width="200" height="200" alt="" />-->
                                 <img th:if="${iterator.index == null}" class="img-fluid rounded-2"
                                     src="/img/Foto sin foto.jpg" width="200" height="200" alt="" />
+                                </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="contenedor-texto">
                                 <input type="hidden" name="id" th:value="${camion.ID}" />
-                                <label for="modelo"> Modelo</label>
-                                <input type="text" id="modelo" name="modelo" placeholder="Ej: Kodiak"
-                                    th:value="${camion.modelo}" />
-                                <br>
-                                <br>
-                                <label for="año"> Año</label>
-                                <input type="number" id="año" name="anio" placeholder="Ej: 1999"
-                                    th:value="${camion.anio}" />
-                                <br>
-                                <br>
-                                <label for="descripcion"> Descripción</label>
-                                <input type="text" id="modelo" name="descripcion" placeholder="Ej: Kodiak"
-                                    th:value="${camion.descripcion}" />
-                                <br>
-                                <br>
-                                <label for="pesoMaximo"> Carga</label>
-                                <input type="number" id="año" name="pesoMaximo" placeholder="Ej: 150"
-                                    th:value="${camion.pesoMaximo}" />
-                                <br>
-                                <br>
-                                <label for="patente"> Patente</label>
-                                <input type="text" id="patente" name="patente" placeholder="Ej: ABC-123 o AB-123-CD"
-                                    th:value="${camion.patente}" />
-                                <br>
-                                <br>
-                                <label for="poliza"> Número de Poliza</label>
-                                <input type="number" id="poliza" name="poliza" placeholder="Número de póliza"
-                                    th:value="${camion.poliza}" />
-                                <br>
-                                <br>
-                                <label for="archivo">Fotos del camión</label>
-                                <input type="file" class="form-control selectfoto" name="archivos" multiple />
 
+                                <label for="modelo"> Modelo</label>
+                                <input type="text" class="form-control form-control-lg" id="modelo" name="modelo" placeholder="Ej: Kodiak"
+                                th:value="${camion.modelo}" />
+
+                                <label for="año"> Año</label>
+                                <input type="number" class="form-control form-control-lg" id="año" name="anio" placeholder="Ej: 1999"
+                                th:value="${camion.anio}" />
+
+                                <label for="patente"> Patente</label>
+                                <input type="text" class="form-control form-control-lg" id="patente" name="patente" placeholder="Ej: ABC-123 o AB-123-CD"
+                                th:value="${camion.patente}" />
+
+                                <label for="descripcion"> Descripción</label>
+                                <input type="text" class="form-control form-control-lg" id="modelo" name="descripcion" placeholder="Ej: Kodiak"
+                                th:value="${camion.descripcion}" />
+
+                                <label for="pesoMaximo"> Carga</label>
+                                <input type="number" class="form-control form-control-lg" id="año" name="pesoMaximo" placeholder="Ej: 150"
+                                th:value="${camion.pesoMaximo}" />
+
+                                <label for="poliza"> Número de Poliza</label>
+                                <input type="number" class="form-control form-control-lg" id="poliza" name="poliza" placeholder="Número de póliza"
+                                th:value="${camion.poliza}" />
+
+                                <label for="archivo">Fotos del camión</label>
+                                <input type="file" class="form-control form-control-lg selectfoto" name="archivos" multiple />
+
+                                <div class="buttom-mod-container">
+                                    <button class="btn btn-primary" type="sumbit"> Guardar </button>
+                                </div>
                             </div>
                         </div>
-                        <div class="d-grid gap-2 col-6 mx-auto">
-                            <button class="btn btn-primary" type="sumbit"> Guardar </button>
-                        </div>
+                        
                     </form>
                 </div>
                 <br>
@@ -201,7 +212,7 @@
         </article>
     </main>
 
-    <div class="d-grid gap-2 col-6 mx-auto">
+    <div class="buttom-mod-container">
         <a class="btn btn-primary" th:href="@{../comprobante/listarComprobantes}" role="button">COMPROBANTES</a>
     </div>
 

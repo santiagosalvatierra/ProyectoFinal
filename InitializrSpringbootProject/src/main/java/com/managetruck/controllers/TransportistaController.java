@@ -138,7 +138,7 @@ public class TransportistaController {
             modelo.put("nombre", nombre);
             modelo.put("apellido", apellido);
             modelo.put("mail", mail);
-            modelo.put("foto", foto);
+            modelo.put("archivo", archivo);
             modelo.put("zona", zona);
             modelo.put("telefono", telefono);
 //            modelo.put("camion", camion);
