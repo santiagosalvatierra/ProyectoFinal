@@ -58,7 +58,7 @@
                 data-bs-target="#exampleModal">Ingresar</button>
 
             <!-- Modal Log In-->
-            <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1"
+            <div class="modal fade" id="exampleModal"  tabindex="-1"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
 
                 <div class="modal-dialog">
@@ -78,9 +78,29 @@
                                     <input th:value="${password}" name="password" type="password" class="form-control"
                                         id="exampleInputPassword1" placeholder="Password" required>
 
-                                    <div class="forgotpass"><a href="#">¿Olvidaste tu clave?</a></div>
+                                        <div class="forgotpass" data-bs-toggle="modal"
+                data-bs-target="#cambiarContrasena"><a >¿Olvidaste tu clave?</a></div>
                                 </div>
+                                <div class="modal fade" id="cambiarContrasena" tabindex="-1" aria-labelledby="cambiarContrasenaLabel"
+                aria-hidden="true">
 
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content reg">
+
+                        <div class="modal-body reg">
+
+                            <div class="left">
+                                <div class="modal-title" id="exampleModalLabel">Recuperar Contrasena</div>
+                                <p class="modal-subtitle">Ingrese su correo electronico y se le enviara su nueva contrasena</p>
+</div>
+                            <div class="right"></div>
+
+                            <button type="button" class="btn-close" id="reg" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
                                 <button type="submit" class="btn btn-primary">Aceptar</button>
                             </form>
                         </div>
