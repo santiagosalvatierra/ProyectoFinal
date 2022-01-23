@@ -26,38 +26,39 @@
 </head>
 
 <body>
-    <a href="#openModal">Lanzar el modal</a>
-
     <!-- INCORPORAR ESTE MODAL AL REGISTRO DE CADA USUARIO. CON UN THYMELEAF QUE SOLO LO ACTIVE CUANDO LA INFORMACIÓN DE LOS CASILLEROS ESTE COMPLETA-->
-    <div class="container">
-        <div class="buttom-mod-container">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#exampleModal">Ingresar</button>
+    <div class="row g-2 btns">
+        <div class="container flex">
+            <div class="buttom-mod-container">
+                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    onclick="pregunta()">Confirmar registro</button><br>
 
-            <!-- Modal Log In-->
-            <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-dialog sec">
+                        <div class="modal-content sec">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
-                        <div class="modal-body">
-                            <div class="modal-title" id="exampleModalLabel">Registro Exitoso</div>
-                            <p class="text-ok">Tus datos fueron registrados con éxito.
-                                Ingresa a tu email y verifica la cuenta
-                                para poder loguearte en nuestra web.</p>
+                            <div class="modal-bodysec">
+                                <div class="modal-titlesec" id="exampleModalLabel">Registro Exitoso</div>
+                                <p class="text-ok">Tus datos fueron registrados con éxito.
+                                    Ingresa a tu email y verifica la cuenta
+                                    para poder loguearte en nuestra web.</p>
 
-                            <button type="reset" class="btn btn-primary">Aceptar</button>
+                                <a th:href="@{/}"><button type="reset"
+                                        class="btn btn-primary sec-ok">Aceptar</button></a>
+                            </div>
                         </div>
                     </div>
                 </div>
+            
+                <button type="reset" class="btn btn-primary close">
+                    <a th:href="@{/}">X</a>
+                </button>
             </div>
         </div>
     </div>
-
-
 
 
     <script src="/animacion.js"></script>
