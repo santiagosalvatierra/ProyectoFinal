@@ -1,6 +1,7 @@
 package com.managetruck.controllers;
 
 import com.managetruck.entidades.Camion;
+import com.managetruck.entidades.Foto;
 import com.managetruck.entidades.Provincias;
 import com.managetruck.entidades.Transportista;
 import com.managetruck.entidades.Usuario;
@@ -158,6 +159,10 @@ public class TransportistaController {
         try {
             Transportista transportista = transportistaServicio.buscarID(id);
             Camion camion = transportista.getCamion();
+            List<Foto> fotos = camion.getFoto();
+            System.out.println("la lista de fotos es");
+            System.out.println(fotos);
+            model.addAttribute("fotos", fotos);
             model.addAttribute("camion", camion);
             model.addAttribute("perfil", transportista);
             List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();

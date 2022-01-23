@@ -140,10 +140,12 @@
 
                         <form th:action="@{'/camion/modificar-camion?id_transportista='+${perfil.id}}" method="POST" enctype="multipart/form-data">
                             <div class="row g-2">
-                                <div class="col-md-6">
+                                <div class="col-md-6" th:each="fotos,iterator:${fotos}">
+                                    <img th:if="${iterator.index != null}" class="img-fluid rounded-circle" th:src="@{'/foto/camion-imagenes/'+${camion.ID}+'?orden='+${iterator.index}}" width="200"
+                                    height="200" alt="" />
                                     <!--<img th:if="${camion.foto != null}" class="img-fluid rounded-circle"
                                         th:src="${'/foto/camion-imagenes/' + perfil.id}" width="200" height="200" alt="" />-->
-                                    <img class="img-fluid rounded-circle" src="/img/Foto sin foto.jpg" width="200"
+                                    <img th:if="${iterator.index == null}"class="img-fluid rounded-circle" src="/img/Foto sin foto.jpg" width="200"
                                     height="200" alt="" />
                                 </div>
                                 <div class="col-md-6">
