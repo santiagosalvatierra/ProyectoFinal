@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,8 +53,9 @@ public class UsuarioController {
             int contrasena = usuarioServicio.getFiveDigitsNumber();
             String convertida = String.valueOf(contrasena);
             notif.enviar("Su nueva contrasena es "+contrasena+" puede utilizarla para ingresar y posteriormente cambiarla", "Contrasena nueva", mail);
-            usuario.get().setPassword(convertida);
+            String encriptada = new BCryptPasswordEncoder().encode(convertida);
+            usuario.get().setPassword(encriptada);
         }
-       return "redirect:/inicio";  
+       return "index";  
     }
 }

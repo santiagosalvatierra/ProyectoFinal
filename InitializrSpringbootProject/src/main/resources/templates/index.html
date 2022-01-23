@@ -78,9 +78,19 @@
                                     <input th:value="${password}" name="password" type="password" class="form-control"
                                         id="exampleInputPassword1" placeholder="Password" required>
 
-                                        <div class="forgotpass" data-bs-toggle="modal"
-                data-bs-target="#cambiarContrasena"><a >¿Olvidaste tu clave?</a></div>
+                                        <div class="forgotpass" ><a href="#" data-bs-toggle="modal"
+                data-bs-target="#cambiarContrasena">¿Olvidaste tu clave?</a></div>
                                 </div>
+
+                                <button type="submit" class="btn btn-primary">Aceptar</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
                                 <div class="modal fade" id="cambiarContrasena" tabindex="-1" aria-labelledby="cambiarContrasenaLabel"
                 aria-hidden="true">
 
@@ -92,7 +102,14 @@
                             <div class="left">
                                 <div class="modal-title" id="exampleModalLabel">Recuperar Contrasena</div>
                                 <p class="modal-subtitle">Ingrese su correo electronico y se le enviara su nueva contrasena</p>
-</div>
+                            </div>                          <form th:action="@{usuario/recuperar-password}" method="post">
+                                <div class="form-group"> 
+                                <input  name="mail" type="email" class="form-control"
+                                        id="exampleInputEmail1" aria-describedby="emailHelp"
+                                        placeholder="Email@managetruck.com" required>
+                                    </div>
+                                <button type="submit" class="btn btn-primary">Aceptar</button>
+                            </form>
                             <div class="right"></div>
 
                             <button type="button" class="btn-close" id="reg" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -101,16 +118,6 @@
                     </div>
                 </div>
             </div>
-                                <button type="submit" class="btn btn-primary">Aceptar</button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
         <!--ACA EMPIEZA EL MODAL DE REGISTRARME-->
         <div class="buttom-mod-container">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
