@@ -13,24 +13,66 @@
     font-family: 'Raleway', sans-serif;
   }
 
+  .pagenotfound {
+    padding: 3rem;
+    margin: 7rem auto;
+    background-color:#6930C3;
+    width: 50%;
+    height: auto;
+    max-height: 260px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+
   .btn-primary {
-    color: #fcfcfc;
-    background: #6930C3;
+    color: #6930C3;
+    margin: 0 auto 0;
+    background: #fcfcfc;
     font-weight: 400;
     padding: 0.5rem;
     width: 13rem;
     box-shadow: 0px 4px 4px rgba(31, 31, 31, 0.25);
     border-radius: 10px;
-    border-color: #6930C3;
+    border-color: #fcfcfc;
     overflow: hidden;
     cursor: pointer;
   }
   
   .btn-primary:hover {
-    color: #6930C3;
-    background: #FCFCFC;
+    color: #fcfcfc;
+    background: #6930C3;
     border-width: 0.2rem;
-    border-color: #6930C3;
+    border-color: #fcfcfc;
   }
+
+  .text-body {
+      text-align: center;
+  }
+
+  .error-title {
+      color: #fcfcfc;
+      font-weight: 700;
+      font-size: 35px;
+  }
+
+  .error-text {
+    color: #fcfcfc;
+    font-weight: 400;
+    font-size: 18px;
+  }
+
+  .error-solution {
+    color: #fcfcfc;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 14px;
+  }
+
+
+
+
 
   
