@@ -78,7 +78,21 @@ public class ProveedorController {
 
     @PostMapping("/modificar-proveedor")
     public String modificacionProveedor(HttpSession session, String id, String nombreEmpresa,String zona,String mail,String razonSocial,String telefono, String cuilEmpresa,@RequestParam(required = false)MultipartFile foto, String nombre, String apellido) {
-      //verificacion de que el usuario que esta modificando sea el mismo que va a modificar
+        System.out.println(session);
+        System.out.println(id);
+        System.out.println(nombreEmpresa);
+        System.out.println(zona);
+        System.out.println(mail);
+        System.out.println(razonSocial);
+        System.out.println(telefono);
+        System.out.println(cuilEmpresa);
+        System.out.println(foto);
+        System.out.println(nombre);
+        System.out.println(apellido);
+
+
+
+//verificacion de que el usuario que esta modificando sea el mismo que va a modificar
         Usuario login = (Usuario) session.getAttribute("usuariosession");
         if (login == null || !login.getId().equals(id)) {
             return "redirect:/login";

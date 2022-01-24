@@ -63,15 +63,5 @@ public class FotoServicio {
         }
         return null;
     }
-    //metodo pra buscar una foto
-    public MultipartFile buscarFotoId(String id)throws ErroresServicio{
-        Optional<Foto> respuesta = repositorioFoto.findById(id);
-        if (respuesta.isPresent()) {
-            MultipartFile foto = (MultipartFile) respuesta.get();
-            return foto;
-        }else{
-            throw new ErroresServicio("No se encontro esa foto con el id indicado");
-        }
-    }
     
 }

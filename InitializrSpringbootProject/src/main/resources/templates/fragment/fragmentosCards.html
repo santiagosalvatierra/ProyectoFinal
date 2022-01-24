@@ -35,9 +35,9 @@
           <p class="card-text" th:text="${transportista.zona}">Zona</p>
           <p class="card-text" th:text="${transportista.camion}">Marca/Modelo/Año</p>
           <!--<p class="card-text">Carga máxima en kg</p>-->
-          <!--<form th:action="@{/comprobante/seleccionar}+'?id_proveedor='+${session.usuariosession.id}+'&id_transportista='+${transportista.id}+'&id_viaje='+${id_viaje}" method="post">-->
-              <button class="btn btn-primary btn-sm">ver mas</button>
-          <!--</form>-->
+          <form th:action="@{/comprobante/seleccionar}+'?id_proveedor='+${session.usuariosession.id}+'&id_transportista='+${transportista.id}+'&id_viaje='+${id_viaje}" method="post">
+              <button class="btn btn-primary btn-sm">Seleccionar</button>
+          </form>
           
         </div>
       </div>

@@ -1,7 +1,6 @@
 package com.managetruck.controllers;
 
 import com.managetruck.entidades.Camion;
-import com.managetruck.entidades.Foto;
 import com.managetruck.entidades.Provincias;
 import com.managetruck.entidades.Transportista;
 import com.managetruck.entidades.Usuario;
@@ -47,10 +46,9 @@ public class TransportistaController {
 
     @PostMapping("/registra")
     public String registroProveedor(ModelMap model, String nombre, String apellido, String mail, String clave1,String clave2, MultipartFile archivo, String provincia, String telefono, Integer pesoMaximo, String descripcion, @RequestParam String modelo, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos) throws ErroresServicio {
-        try{    
-            transportistaServicio.crearTransportista(nombre, apellido, mail, clave1,clave2, archivo, provincia, telefono);
+        try {
             Camion camion=camionServicio.crearCamion(pesoMaximo, modelo, descripcion, anio, patente, poliza, archivos);
-            transportistaServicio.SetearCamion(camion.getID(), mail);
+            transportistaServicio.crearTransportista(nombre, apellido, mail, clave1,clave2, archivo, provincia, telefono,camion.getID());
         } catch (ErroresServicio es) {
             List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
             model.put("provincias",provincias);
@@ -125,29 +123,30 @@ public class TransportistaController {
     }
 
     @PostMapping("/modificar")
-    public String modificar(HttpSession session, ModelMap modelo, String id, String nombre, String apellido, String mail,@RequestParam(required = false) MultipartFile archivo, String zona, String telefono) throws ErroresServicio {
-        //verificacion de que el usuario que esta modificando sea el mismo que va a modifica
+    public String modificar(HttpSession session, ModelMap modelo, String id, String nombre, String apellido, String mail, String clave1,String clave2, MultipartFile foto, String zona, String telefono, Camion camion, double valoracion, Integer cantidadViajes) throws ErroresServicio {
+        //verificacion de que el usuario que esta modificando sea el mismo que va a modificar
         Usuario login = (Usuario) session.getAttribute("usuariosession");
-        if (login == null || !login.getId().equals(id)) {
+        if (login == null || login.getId().equals(id)) {
             return "redirect:/login";
-        }  
+        }
         try {
-            transportistaServicio.modificarUsuario(id, nombre, apellido, mail, archivo, zona, telefono);
+            transportistaServicio.modificarUsuario(id, nombre, apellido, mail, clave1,clave2, foto, zona, telefono, camion, valoracion, cantidadViajes);
         } catch (ErroresServicio ex) {
             modelo.put("error", ex.getMessage());
             modelo.put("id", id);
             modelo.put("nombre", nombre);
             modelo.put("apellido", apellido);
             modelo.put("mail", mail);
-            modelo.put("archivo", archivo);
+            modelo.put("password", clave1);
+            modelo.put("foto", foto);
             modelo.put("zona", zona);
             modelo.put("telefono", telefono);
-//            modelo.put("camion", camion);
-//            modelo.put("valoracion", valoracion);
-//            modelo.put("cantidadViajes", cantidadViajes);
+            modelo.put("camion", camion);
+            modelo.put("valoracion", valoracion);
+            modelo.put("cantidadViajes", cantidadViajes);
 
         }
-        return "redirect:/inicio";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos 
+        return "indexEmpresa";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos 
     }
 
     @GetMapping("/indexTransportista")
@@ -158,13 +157,11 @@ public class TransportistaController {
     @GetMapping("/perfil-transportista")
     public String perfilTransportista(String id,ModelMap modelo, Model model){
         try {
+            System.out.println(id);
             Transportista transportista = transportistaServicio.buscarID(id);
             Camion camion = transportista.getCamion();
-            List<Foto> fotos = camion.getFoto();
-            System.out.println("la lista de fotos es");
-            System.out.println(fotos);
-            model.addAttribute("fotos", fotos);
             model.addAttribute("camion", camion);
+//            System.out.println(camion);
             model.addAttribute("perfil", transportista);
             List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
             modelo.put("provincias",provincias);

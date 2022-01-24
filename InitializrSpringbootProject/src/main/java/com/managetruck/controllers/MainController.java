@@ -76,6 +76,7 @@ public class MainController {
     public String inicio(ModelMap model, HttpSession session, @RequestParam(required = false) String error) {
         //tambien podemos usar un switch7inicio
         Usuario login = (Usuario) session.getAttribute("usuariosession");
+        System.out.println(login.getRol());
         if (login.getRol().equals(Proveedor)) {
             List<Transportista> transportistas = transportistaServicio.listarTransportista();
             model.put("transportistas", transportistas);
@@ -93,14 +94,10 @@ public class MainController {
             List<Comprobante> comprobantes;
             try {
                 comprobantes = comprobanteServicio.comprobantesAbiertos();
-                if (!comprobantes.isEmpty()) {
-                    model.put("comprobantes", comprobantes);
-                }
-                
+                model.put("comprobantes", comprobantes);
                 return "indexTransportista";
             } catch (ErroresServicio ex) {
                 Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-                
             }
 
         }

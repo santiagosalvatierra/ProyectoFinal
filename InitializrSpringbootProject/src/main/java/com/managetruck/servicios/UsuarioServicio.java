@@ -33,8 +33,6 @@ public class UsuarioServicio implements UserDetailsService {
 
     @Autowired
     RepositorioUsuario repositorioUsuario;
-    @Autowired
-    private NotificacionDeServicio notificacion;
 
     public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
         Optional<Usuario> usuario = repositorioUsuario.buscarPorMail(mail);
@@ -52,10 +50,7 @@ public class UsuarioServicio implements UserDetailsService {
             return null;
         }
     }
-    public int getFiveDigitsNumber() {
-    double fiveDigits = 10000 + Math.random() * 90000;
-    return (int) fiveDigits;
-}
+
     //metodo para buscar el usuario por id
     public Usuario buscarUsuarioId(String id) throws ErroresServicio {
         Optional<Usuario> respuesta = repositorioUsuario.findById(id);
@@ -93,6 +88,8 @@ public class UsuarioServicio implements UserDetailsService {
     //metodo para verificar que la clave vieja ingresada sea correcta
     public void verificarPassword(String claveVieja, Usuario usuario) throws ErroresServicio {
 
+        System.out.println("La contraseña nueva encriptada es= " + claveVieja);
+        System.out.println("La contraseña vieja encriptada es= " + usuario.getPassword());
         if (!claveVieja.equals(usuario.getPassword())) {
             throw new ErroresServicio("La clave actual no coincide con la clave guardada");
         }
@@ -110,18 +107,15 @@ public class UsuarioServicio implements UserDetailsService {
     }
 
     //metodo para recuperar contraseña
-    @Transactional
     public void olvideContrasena(String mail) throws ErroresServicio {
         if (!mail.isEmpty()) {
             Usuario usuario = buscarUsuarioEmail(mail);
-            String claveNueva=regenerar();
-            String encriptada = new BCryptPasswordEncoder().encode(claveNueva);
+            String encriptada = new BCryptPasswordEncoder().encode(regenerar());
             usuario.setPassword(encriptada);
-            notificacion.enviar("Su nueva contrasena es "+claveNueva+" puede utilizarla para ingresar y posteriormente cambiarla", "Contrasena nueva", mail);
+            //notificacionServicio.enviar("Cambio contraseña", "NOMBRE DE LA PAGINA",usuario.getMail());
         } else {
             throw new ErroresServicio("No se encontro el usuario asociado a ese correo");
         }
-        
     }
 
     //metodo para crear una contraseña aleatroria

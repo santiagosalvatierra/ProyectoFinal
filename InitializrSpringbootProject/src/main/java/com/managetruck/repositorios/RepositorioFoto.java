@@ -15,5 +15,4 @@ import org.springframework.stereotype.Repository;
 public interface RepositorioFoto extends JpaRepository<Foto, String>{
      @Query("SELECT c FROM Foto c WHERE c.id = :id")
     public List <Foto> buscarFotoporId(@Param("id")String id);
-    
 }
