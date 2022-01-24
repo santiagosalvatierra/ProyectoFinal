@@ -47,7 +47,10 @@
         
         
         <div class="row mx-5" style="margin: 2rem 2rem 2rem;">
-            <div th:each="comprobantes,stat:${comprobantes}">
+            <div >
+            <h1  th:if="${{comprobantes}==null}" class="textTitle">No hay viajes creados para mostrar</h1>
+             
+            <div th:if="${{comprobantes}!=null}" th:each="comprobantes,stat:${comprobantes}">
             <div class="col mx-2">
                 <div class="card" style="width: 13rem;">
                     
@@ -64,6 +67,9 @@
                 </div>
             </div>
             </div>
+                </div>
+            
+                 
 
             <!--<div class="col mx-2">
                 <div class="card" style="width: 13rem;">

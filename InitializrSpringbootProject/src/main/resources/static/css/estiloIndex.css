@@ -138,7 +138,7 @@ nav .nav__items a:hover {
   cursor: pointer;
 }
 
-.modal-content .close-btn :hover {
+.modal-content .btn-close :hover {
   color: #31175a;
 }
 
@@ -242,7 +242,6 @@ form .btn-primary {
 #carouselExampleFade{
   height: 170px;
   width: 900px;
-  /* background-color: red; */
   margin: 0 auto;
   overflow: hidden;
   display: flex;

@@ -12,6 +12,9 @@
     <link rel="stylesheet" th:href="@{/css/NavGeneral.css}">
     <link rel="stylesheet" th:href="@{../static/css/NavGeneral.css}">
 
+    <link href="/css/registroOK.css" rel="stylesheet" type="text/css" />
+    <link href="../static/css/registroOK.css" rel="stylesheet" type="text/css" />
+
     <!-- TIPOGRAFÍAS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,7 +70,7 @@
                     <label for="floatingInput">Correo Electrónico</label>
                 </div>
                 <div class="form-floating col-md-12 mb-3">
-                    <input id="floatingTelefono" type="tel" name="telefono" class="form-control" placeholder="Telefono"
+                    <input id="floatingTelefono" type="text" name="telefono" class="form-control" placeholder="Telefono"
                         th:value="${telefono}" required />
                     <label for="floatingTelefono" class="form-label">Teléfono</label>
                 </div>
@@ -108,6 +111,7 @@
                             th:value="${nombreEmpresa}" placeholder="Nombre de la Empresa" required />
                         <label for="nombreEmpresa" class="form-label">Nombre de la Empresa</label>
                     </div>
+                    <!-- CARGAR LISTA Y ATRIBUTO RUBRO 
                     <div class="form-floating col-md-12 mb-2">
                         <select name="provincia" id="zona" class="form-select" required>
                             <option selected disable value="" class="label">Seleccione el tipo de mercadería</option>
@@ -115,7 +119,7 @@
                                 th:text="${provincia.provincia}"></option>
                         </select>
                         <label for="provincia" class="select-title">Rubro</label>
-                    </div>
+                    </div> -->
                     <div class="form-floating col-md-12 mb-2">
                         <input id="razonSocial" type="text" name="razonSocial" class="form-control"
                             th:value="${razonSocial}" placeholder="Razón Social" required />
@@ -128,15 +132,43 @@
                     </div>
                 </div>
             </div>
-            <div class="container3">
-                
-                <div id="btnForm" class="row g-2 btns">
-                    <button type="submit" class="btn btn-primary" onclick="pregunta()">Confirmar registro</button><br>
-                    <button type="reset" class="btn btn-primary close">
-                        <a th:href="@{/}">X</a>
-                    </button>
+
+            <!-- BOTONES DE CHECK Y CANCEL / CON MODAL DE REGISTRO EXITOSO INCLUIDO 
+            FALTA INCORPORAR THYMELEAF PARA QUE EL MODAL SÓLO SE ACTIVE SI TODA LA INFO ESTA OK-->
+            <div class="row g-2 btns">
+                <div class="container flex">
+                    <div class="buttom-mod-container">
+                        <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" onclick="pregunta()">Confirmar registro</button><br>
+
+                        <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                            <div class="modal-dialog sec">
+                                <div class="modal-content sec">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+
+                                    <div class="modal-bodysec">
+                                        <div class="modal-titlesec" id="exampleModalLabel">Registro Exitoso</div>
+                                        <p class="text-ok">Tus datos fueron registrados con éxito.
+                                            Ingresa a tu email y verifica la cuenta
+                                            para poder loguearte en nuestra web.</p>
+
+                                        <a th:href="@{/}"><button type="reset"
+                                                class="btn btn-primary sec-ok">Aceptar</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="reset" class="btn btn-primary close">
+                            <a th:href="@{/}">X</a>
+                        </button>
+                    </div>
                 </div>
             </div>
+
         </form>
     </div>
 

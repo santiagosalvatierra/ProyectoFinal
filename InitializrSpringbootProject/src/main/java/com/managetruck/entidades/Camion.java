@@ -102,9 +102,13 @@ public class Camion {
         this.ID = ID;
     }
 
-    public Foto getFoto() {
-        return (Foto) foto;
+    public List<Foto> getFoto() {
+        return foto;
     }
+
+//    public Foto getFoto() {
+//        return (Foto) foto;
+//    }
     
     public void setFoto(List<Foto> foto) {
         this.foto =  (List<Foto>) foto;
