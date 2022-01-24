@@ -30,8 +30,8 @@
 <body>
   <div class="pagenotfound">
     <div class="text-body">
-      <h1 th:text="${codigoError}" class="error-title">Error</h1>
-      <p th:text="${errormensaje}" class="error-text">Mensaje del error</p>
+      <h1 th:text="'Error ' + ${codigo}" class="error-title">Error</h1>
+      <p th:text="${mensaje}" class="error-text">Mensaje del error</p>
       <p class="error-solution">
         Intente luego nuevamente o haz click aquí abajo
       </p>
