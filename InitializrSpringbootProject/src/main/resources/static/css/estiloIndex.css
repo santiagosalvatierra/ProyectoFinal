@@ -39,7 +39,7 @@ nav {
 nav .logo {
     padding: 1rem;
     width: 45%;
-    margin-right: 300px;
+    margin-right: 250px;
     margin-bottom: 8px;
 }
 
@@ -88,8 +88,8 @@ nav .nav__items a:hover {
   font-style: normal;
   font-weight: 400;
   max-width :85%;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 10%;
+  margin-right: 10%;
   text-shadow: 0px 6px 6px 0px #00000040;
   ;
 }
@@ -237,6 +237,9 @@ form .btn-primary {
 .carrusel {
   margin-top: 8rem;
 }
+.carousel-item {
+  transition: transform 10s ease-in-out;
+}
 
 .text-subtitle {
   text-align: center;
@@ -249,7 +252,7 @@ form .btn-primary {
 
 #carouselExampleFade{
   height: 170px;
-  width: 900px;
+  width: 1300px;
   margin: 0 auto;
   overflow: hidden;
   display: flex;
@@ -258,6 +261,6 @@ form .btn-primary {
 }
 
 .carousel-inner {
-  width: 300px;
+  width: 1300px;
 }
 
