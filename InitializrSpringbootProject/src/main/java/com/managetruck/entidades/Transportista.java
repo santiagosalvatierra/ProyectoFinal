@@ -83,7 +83,7 @@ public class Transportista extends Usuario {
 
     @Override
     public String toString() {
-        return "Transportista{" + "estado=" + estado + ", camion=" + camion + ", cantidadViajes=" + cantidadViajes + ", valoracion=" + valoracion + ", comprobante=" + comprobante + '}';
+        return "Camion : " + camion + " Cantidad de Viajes : " + cantidadViajes + " Valoracion: " + valoracion ;
     }
 
 }
