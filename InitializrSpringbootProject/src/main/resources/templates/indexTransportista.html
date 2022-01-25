@@ -45,14 +45,14 @@
         Se visualizarían 9 en principio. A partir del boton ver más se despliegan 
         otras 9, y así -->
         
-        
-        <div class="row mx-5" style="margin: 2rem 2rem 2rem;">
-            <div >
-            <h1  th:if="${{comprobantes}==null}" class="textTitle">No hay viajes creados para mostrar</h1>
-             
-            <div th:if="${{comprobantes}!=null}" th:each="comprobantes,stat:${comprobantes}">
-            <div class="col mx-2">
-                <div class="card" style="width: 13rem;">
+        <div class="row mx-5" style="margin:3rem 3rem 3rem 3rem;">
+ 
+    <div class="container">   
+    <div class="card-group mt-3">
+
+      <div th:each="comprobantes,stat:${comprobantes}">
+    <div class="col mx-3">
+      <div class="card" style="width: 13rem;">
                     
                     <img th:src="@{'/foto/comprobante-imagenes/'+${comprobantes.ID}}" class="card-img-top" alt="Foto Empresa">
                     <div class="card-body">
@@ -65,9 +65,14 @@
                         
                     </div>
                 </div>
-            </div>
-            </div>
-                </div>
+      </div>
+    </div>      
+</div>
+    </div>
+  </div>  
+</div> 
+        
+               
             
                  
 
