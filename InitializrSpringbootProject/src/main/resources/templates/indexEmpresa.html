@@ -44,13 +44,11 @@
 
     <main class="favs-conteiner">
        
+        <section th:fragment="truckCardsFeatured" style="margin: 0rem 8rem 2rem; padding: 0rem 4rem 2rem 4rem;">
+
      <!-- TARJETA 1 SECUNDARIA
   Deberian conectarse todos los datos con la base de datos según usuario-->
-  <div class="row mx-5" style="margin:3rem 3rem 3rem 3rem;">
- 
-    <div class="container">   
-    <div class="card-group mt-3">
-
+  <div class="row mx-5" style="margin: 2rem 2rem 2rem;">
       <div th:each="transportista,stat:${transportistas2}">
     <div class="col mx-3">
       <div class="card" style="width: 13rem;">
@@ -68,11 +66,11 @@
             <label for="radio5" class="fas fa-star"></label>
           </p>
         </div>
-          <img id="imagen"
+          <img
               th:if="${transportista.foto == null}"
             src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
             class="card-img-top" alt="Foto perfil Transportista">
-          <img id="imagen"
+          <img
               th:if="${transportista.foto != null}"
             th:src="${'/foto/usuario-imagen/'+transportista.id}"
             class="card-img-top" alt="Foto perfil Transportista">
@@ -82,18 +80,16 @@
           <p class="card-text" th:text="${transportista.zona}">Zona</p>
           <p class="card-text" th:text="${transportista.camion}">Marca/Modelo/Año</p>
           <!--<p class="card-text">Carga máxima en kg</p>-->
-          <form th:action="@{/comprobante/seleccionar}+'?id_proveedor='+${session.usuariosession.id}+'&id_transportista='+${transportista.id}+'&id_viaje='+${id_viaje}" method="post">
-              <button class="btn btn-primary btn-sm">Seleccionar</button>
-          </form>
-         </div> 
+          <a href="#" class="btn btn-primary btn-sm">Conocer más</a>
         </div>
       </div>
-    </div>      
-</div>
     </div>
-  </div>  
-</div> 
+      </div>
 
+  </div>
+
+
+</section> 
         
     </main>
 
