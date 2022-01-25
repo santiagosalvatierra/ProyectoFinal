@@ -4,7 +4,11 @@ body{
     font-family: 'Raleway', sans-serif;
     min-height: 100vh;
   }
+  #imagen{
+      height: 150px;
 
+width: 200px;
+  }
   /* BUTTONS */
   .buttom-mod-container {
     position: relative;
