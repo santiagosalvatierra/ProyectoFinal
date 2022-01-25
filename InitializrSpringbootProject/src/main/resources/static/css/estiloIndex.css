@@ -14,16 +14,18 @@ body {
 }
 
 .topheader {
-  height: 150vh;
+  background-position: bottom;
+  height :125vh;
+  
   background-image: url("../img/IndexBanner3.png");
   background-size: cover;
-  background-position: center;
   position: relative;
 }
 
 /* BARRA NAV-HEADER */
 .nav-container {
-  width: 90%;
+  
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -31,12 +33,13 @@ nav {
   align-items: center;
   margin: auto;
   justify-content: center;
+  width: 100%;
 }
 
 nav .logo {
     padding: 1rem;
     width: 45%;
-    margin-right: 6rem;
+    margin-right: 300px;
     margin-bottom: 8px;
 }
 
@@ -68,7 +71,8 @@ nav .nav__items a:hover {
   width: 55%;
   text-align: center;
   margin: auto;
-  margin-top: 4rem;
+  
+  margin-top: 1.rem;
 }
 
 .topheader-title{
@@ -83,6 +87,9 @@ nav .nav__items a:hover {
   font-size: 1.2rem;
   font-style: normal;
   font-weight: 400;
+  max-width :85%;
+  margin-left: 15%;
+  margin-right: 15%;
   text-shadow: 0px 6px 6px 0px #00000040;
   ;
 }
@@ -103,7 +110,8 @@ nav .nav__items a:hover {
   background: #6930C3;
   font-weight: 400;
   padding: 0.5rem;
-  width: 13rem;
+  width: 17rem;
+  height: 3rem;
   box-shadow: 0px 4px 4px rgba(31, 31, 31, 0.25);
   border-radius: 10px;
   border-color: #6930C3;
