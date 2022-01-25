@@ -148,7 +148,7 @@
                 <div class="container flex">
                     <div class="buttom-mod-container">
                         <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" onclick="pregunta()">Confirmar registro</button><br>
+                            data-bs-target="#exampleModal" id="checkReg" onclick="pregunta()">Confirmar registro</button><br>
                         <!-- Se cliquea boton confirmar -> validar información,
                         se recarga la página -> SE ACTIVA MODAL SI SE PERSISTIÓ -->
 
@@ -194,9 +194,9 @@
 
     <!-- JQUERY para hacer validar formulario y a partir de eso: modal exito -->
     <script>
-        $(document).ready(function (nombreFuncionValidaciónSpring)) {
-            if (nombreFunciónValidaciónSpring == true) {
-                $("#exampleModal").modal();
+        $("#checkReg").click(function (parametroBooleanSpring) {
+            if (parametroBooleanSpring == true) 
+                $("#exampleModal").modal("show");
             });
     </script>
 </body>
