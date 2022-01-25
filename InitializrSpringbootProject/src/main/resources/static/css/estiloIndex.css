@@ -104,6 +104,19 @@ nav .nav__items a:hover {
   justify-content: center;
   margin-bottom: 1rem;
 }
+#boton2{
+    background:#64ded3;
+    
+  border-color: #64ded3;
+    
+}
+
+#boton2:hover {
+  color: #64ded3;
+  background: #FCFCFC;
+  border-width: 0.2rem;
+  border-color: #64ded3;
+}
 
 .btn-primary {
   color: #fcfcfc;
@@ -211,7 +224,9 @@ form .btn-primary {
   overflow-y:auto; /* Scroll automatico si se achica pantalla */
 
 }
-
+#imagen2{
+    border-radius: 5px;
+}
 .right {
   width: 55%;
   background-image: url(../img/modal\ tipousuario.png);
