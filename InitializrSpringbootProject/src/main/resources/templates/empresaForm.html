@@ -113,10 +113,10 @@
                     </div>
     
                     <div class="form-floating col-md-12 mb-2">
-                        <select name="provincia" id="zona" class="form-select" required>
+                        <select name="rubro" id="rubro" class="form-select" required>
                             <option selected disable value="" class="label">Seleccione el tipo de mercadería</option>
-                            <option option th:each="provincia:${provincias}" th:value="${provincia.provincia}"
-                                th:text="${provincia.provincia}"></option>
+                            <option option th:each="rubro:${rubros}" th:value="${rubro}"
+                                th:text="${rubro}"></option>
                         </select>
                         <label for="provincia" class="select-title">Rubro</label>
                     </div>

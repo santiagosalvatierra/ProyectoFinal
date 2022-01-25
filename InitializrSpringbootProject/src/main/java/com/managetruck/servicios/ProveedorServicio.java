@@ -9,6 +9,7 @@ import com.managetruck.entidades.Foto;
 import com.managetruck.entidades.Proveedor;
 import com.managetruck.entidades.Usuario;
 import com.managetruck.enumeracion.Role;
+import com.managetruck.enumeracion.Rubro;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.repositorios.RepositorioProveedor;
 import com.managetruck.repositorios.RepositorioUsuario;
@@ -45,7 +46,7 @@ public class ProveedorServicio {
     private FotoServicio fotoServicio;
 
     @Transactional
-    public void crearProveedor(String nombre, String apellido, String mail, String password, String password2, MultipartFile archivo, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
+    public void crearProveedor(String nombre, String apellido, String mail, String password, String password2, MultipartFile archivo, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa,Rubro rubro) throws ErroresServicio {
         Foto foto = fotoServicio.guardar(archivo);
         validarProveedor(nombre, apellido, mail, password, password2, archivo, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
 
@@ -64,6 +65,7 @@ public class ProveedorServicio {
             proveedor.setZona(zona);
             proveedor.setTelefono(telefono);
             proveedor.setRazonSocial(razonSocial);
+            proveedor.setRubro(rubro);
             proveedor.setCuilEmpresa(cuilEmpresa);
             proveedor.setNombreEmpresa(nombreEmpresa);
             proveedor.setRol(Role.Proveedor);
@@ -73,7 +75,7 @@ public class ProveedorServicio {
     }
 
     @Transactional
-    public void modificarUsuario(String id, String nombre, String apellido, String mail, MultipartFile archivo, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
+    public void modificarUsuario(String id, String nombre, String apellido, String mail, MultipartFile archivo, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa, Rubro rubro) throws ErroresServicio {
         Optional<Proveedor> respuesta = repositorioproveedor.findById(id);
         if (respuesta.isPresent()) {
             Proveedor proveedor = respuesta.get();
@@ -87,7 +89,7 @@ public class ProveedorServicio {
                 Foto foto = fotoServicio.guardar(archivo);
                 proveedor.setFoto(foto);
             }
-
+            proveedor.setRubro(rubro);//se agrega rubro
             proveedor.setZona(zona);
             proveedor.setTelefono(telefono);
             proveedor.setRazonSocial(razonSocial);

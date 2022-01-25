@@ -2,8 +2,11 @@
 package com.managetruck.entidades;
 
 import com.managetruck.enumeracion.Role;
+import com.managetruck.enumeracion.Rubro;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
@@ -14,6 +17,9 @@ public class Proveedor extends Usuario{
     private String razonSocial;
     private String cuilEmpresa;
     private String nombreEmpresa;
+    
+    @Enumerated(EnumType.STRING)
+    private Rubro rubro;
 
     public Proveedor() {
     }
@@ -46,6 +52,14 @@ public class Proveedor extends Usuario{
 
     public void setNombreEmpresa(String nombreEmpresa) {
         this.nombreEmpresa = nombreEmpresa;
+    }
+
+    public Rubro getRubro() {
+        return rubro;
+    }
+
+    public void setRubro(Rubro rubro) {
+        this.rubro = rubro;
     }
 
     @Override
