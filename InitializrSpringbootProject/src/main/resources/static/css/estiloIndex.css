@@ -7,7 +7,10 @@
 :root { 
   background-color: #fcfcfc;
 }
-
+main{
+    zoom: 110%;
+    -moz-box-sizing:zoom: 110%;
+}
 body {
   background-color:#fcfcfc;
   font-family: 'Raleway', sans-serif;
@@ -204,6 +207,9 @@ nav .nav__items a:hover {
 form .btn-primary {
   width: 100%;
   margin-bottom: 2rem;
+}
+.container{
+    margin-top: -100px;
 }
 
 /* Modal largo de bootstrap -> registrarme*/
