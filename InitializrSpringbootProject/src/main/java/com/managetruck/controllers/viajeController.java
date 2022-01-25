@@ -146,14 +146,24 @@ public class viajeController {
         System.out.println("Esta por entrar al try");
         try {
             Viaje viaje=viajeServicio.buscarViajeId(id_viaje);
-            System.out.println("el id del viaje es :"+id_viaje);
-            System.out.println("El viaje es"+viaje);
             List<Transportista> postulantes = viaje.getListadoTransportista();
             System.out.println(postulantes);
             modelo.put("id_viaje", id_viaje);
             modelo.put("transportistas", postulantes); 
             return "TransportistasPostulados";
         } catch (ErroresServicio ex){
+            Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
+            return "redirect:/inicio";
+        }
+    }
+    @GetMapping("/perfil-aplicado")
+    public String perfilAplicado(@RequestParam(required = true)String id_viaje, ModelMap modelo){
+        try {
+            Viaje viaje=viajeServicio.buscarViajeId(id_viaje);
+            Transportista transportista= viaje.getTransportistaAplicado();
+            modelo.put("perfil", transportista);
+            return null;
+        } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
             return "redirect:/inicio";
         }

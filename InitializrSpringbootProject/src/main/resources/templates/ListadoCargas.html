@@ -55,7 +55,9 @@
             <td th:text="${viaje.tipoCargas}"> destino</td>
             <!--<td th:if="${viaje.transportistaAplicado != null}" th:text="${viaje.transportistaAplicado}"</td>-->
             <td>  
-                 <button th:if="${viaje.transportistaAplicado != null}" th:text="${viaje.transportistaAplicado}">Eliminar viaje</button>   
+                <!--<button th:if="${viaje.transportistaAplicado != null}" th:text="${viaje.transportistaAplicado}">Eliminar viaje</button>--> 
+                 <img th:if="${viaje.transportistaAplicado != null}" th:src="@{'/foto/viaje-transportista/'+${viaje.ID}}" alt="mdo" width="52" height="52" class="rounded-circle">
+                <a th:if="${viaje.transportistaAplicado != null}" class="btn btn-success" th:href="@{'/viaje/listar-postulantes'+'?id_viaje='+${viaje.ID}}">Ver perfil</a>
                  <a th:if="${viaje.transportistaAplicado == null}" class="btn btn-primary" th:href="@{'/viaje/listar-postulantes'+'?id_viaje='+${viaje.ID}}">Aplicados</a>
              </td>
             <!--<td> <img width='80' height='80' src='img/".$mostrar['imagen'] ?></td>-->
