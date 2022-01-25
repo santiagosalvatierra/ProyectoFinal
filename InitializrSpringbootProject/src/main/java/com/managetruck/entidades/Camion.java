@@ -116,7 +116,7 @@ public class Camion {
 
     @Override
     public String toString() {
-        return "PesoMaximo=" + pesoMaximo + ", Modelo=" + modelo + ", Año=" + anio;
+        return "PesoMaximo: " + pesoMaximo + " Modelo: " + modelo + " Año: " + anio;
     }
     
 }
