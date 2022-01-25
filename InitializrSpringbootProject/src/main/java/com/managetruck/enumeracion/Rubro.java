@@ -10,5 +10,5 @@ package com.managetruck.enumeracion;
  * @author emaor
  */
 public enum Rubro {
-    Frigorifico, Alimenticion,Construccion,A_granel,Drogueria,Industrial;
+    Frigorifico, Alimenticion,Construccion,A_Granel,Drogueria,Industrial,Varios;
 }

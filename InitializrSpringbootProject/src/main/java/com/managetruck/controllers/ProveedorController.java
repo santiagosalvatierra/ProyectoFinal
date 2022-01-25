@@ -10,6 +10,7 @@ import com.managetruck.entidades.Provincias;
 import com.managetruck.entidades.Transportista;
 import com.managetruck.entidades.Usuario;
 import static com.managetruck.enumeracion.Role.Transportista;
+import com.managetruck.enumeracion.Rubro;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.repositorios.RepositorioProvincias;
 import com.managetruck.servicios.ProveedorServicio;
@@ -41,9 +42,9 @@ public class ProveedorController {
     RepositorioProvincias repositorioProvincias;
 
     @PostMapping("/registro")
-    public String registroProveedor(ModelMap model,String nombre, String apellido, String mail, String clave1, String clave2, MultipartFile archivo1, String provincia, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
+    public String registroProveedor(ModelMap model,String nombre, String apellido, String mail, String clave1, String clave2, MultipartFile archivo1, String provincia, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa, Rubro rubro) throws ErroresServicio {
         try{
-        proveedorServicio.crearProveedor(nombre, apellido, mail, clave1, clave2, archivo1, provincia, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
+        proveedorServicio.crearProveedor(nombre, apellido, mail, clave1, clave2, archivo1, provincia, telefono, razonSocial, cuilEmpresa, nombreEmpresa,rubro);
         } catch (ErroresServicio es) {
             List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
             model.put("error", es.getMessage());
@@ -59,6 +60,7 @@ public class ProveedorController {
             model.put("razonSocial", razonSocial);
             model.put("cuilEmpresa", cuilEmpresa);
             model.put("nombreEmpresa", nombreEmpresa);
+            model.put("rubros", Rubro.values());
             return "empresaForm";
         }
         return "index";
@@ -68,6 +70,7 @@ public class ProveedorController {
     public String mostrarPaginaRegistro(ModelMap modelo) {
         List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
         modelo.put("provincias",provincias);
+        modelo.put("rubros", Rubro.values());
         return "empresaForm";
     }
 
@@ -77,14 +80,15 @@ public class ProveedorController {
     }
 
     @PostMapping("/modificar-proveedor")
-    public String modificacionProveedor(HttpSession session, String id, String nombreEmpresa,String zona,String mail,String razonSocial,String telefono, String cuilEmpresa,@RequestParam(required = false)MultipartFile foto, String nombre, String apellido) {
+    public String modificacionProveedor(HttpSession session, String id, String nombreEmpresa,String zona,String mail,String razonSocial,String telefono, String cuilEmpresa,@RequestParam(required = false)MultipartFile foto, String nombre, String apellido,Rubro rubro) {
       //verificacion de que el usuario que esta modificando sea el mismo que va a modificar
         Usuario login = (Usuario) session.getAttribute("usuariosession");
         if (login == null || !login.getId().equals(id)) {
             return "redirect:/login";
         }
         try {
-            proveedorServicio.modificarUsuario(id, nombre, apellido, mail, foto, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
+            proveedorServicio.modificarUsuario(id, nombre, apellido, mail, foto, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa, rubro);
+            
         } catch (ErroresServicio ex) {
             Logger.getLogger(ProveedorController.class.getName()).log(Level.SEVERE, null, ex);
             return "redirect:/proveedor//perfil-proveedor?id="+login.getId();
@@ -113,6 +117,7 @@ public class ProveedorController {
             model.addAttribute("perfil", proveedor);
             List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
             modelo.put("provincias",provincias);
+            modelo.put("rubros", Rubro.values());
             
             return "perfilEmpresa";
         } catch (ErroresServicio ex) {

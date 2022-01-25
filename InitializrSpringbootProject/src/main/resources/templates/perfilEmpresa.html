@@ -41,16 +41,7 @@
                 th:object="${perfil}">
                 <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
                 <input type="hidden" name="id" th:value="${perfil.id}" />
-                <!--<div class="row g-2">
-                    <div class="col-md-6">
-                        <label for="nombre"> Nombre</label>
-                        <input type="text" id="nombre" name="nombre" th:value="${perfil.nombre}" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="apellido"> Apellido</label>
-                        <input type="text" id="apellido" name="apellido" th:value="${perfil.apellido}" />
-                    </div>
-                </div>-->
+                
 
                 <div class="col-md-4">
                     <label for="nombreEmpresa" class="visually-hidden"> Nombre</label>
@@ -64,11 +55,29 @@
                         <select name="zona" id="zona" class="form-select" required>
                             <option th:selected disable th:value="${perfil.zona}" th:text="${perfil.zona}"></option>
                             <option option th:each="provincia:${provincias}" th:value="${provincia}"
-                                th:text="${provincia.provincia}"></option>
+                                th:text="${provincia.provincia}" ></option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="rubro" class="form-label">Rubro</label>
+                        <select name="rubro" id="zona" class="form-select" required>
+                            <!--<option th:selected disable th:value="${rubro}" th:text="${rubro}"></option>-->
+                            <option option th:each="rubro:${rubros}" th:value="${rubro}"
+                                th:text="${rubro}" th:selected="${perfil.rubro != null && rubro == perfil.rubro}"></option>
                         </select>
                     </div>
                 </div>
                 <br>
+                 <div class="row g-2">
+                    <div class="col-md-6">
+                        <label for="nombre"> Nombre</label>
+                        <input type="text" class="form-control form-control-lg"id="nombre" name="nombre" th:value="${perfil.nombre}" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="apellido"> Apellido</label>
+                        <input type="text" class="form-control form-control-lg"id="apellido" name="apellido" th:value="${perfil.apellido}" />
+                    </div>
+                </div>
                 <div class="row g-2">
                     <div class="col-md-6">
                         <label for="mail"> Correo Electronico</label>
