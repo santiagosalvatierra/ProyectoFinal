@@ -69,8 +69,9 @@
                 <img th:if="${#strings.toString(viaje.estado)== 'VIAJANDO'}" src="https://www.pngmart.com/files/16/Tick-Green-Check-Mark-PNG-Clipart.png" alt="mdo" width="52" height="52" class="rounded-circle">
             </td>
             <td>
-                <a th:if="${#strings.toString(viaje.estado)!= 'FINALIZADA'}"  class="btn btn-warning" th:href="@{'/viaje/perfil-aplicado'+'?id_viaje='+${viaje.ID}}">Modificar</a>
-                <a th:if="${#strings.toString(viaje.estado)!= 'FINALIZADA'}"  class="btn btn-danger" th:href="@{'/viaje/perfil-aplicado'+'?id_viaje='+${viaje.ID}}">Eliminar</a>
+                <a th:if="${#strings.toString(viaje.estado)== 'ELEGIR'}"  class="btn btn-warning" th:href="@{'/viaje/perfil-aplicado'+'?id_viaje='+${viaje.ID}}">Modificar</a>
+                <a th:if="${#strings.toString(viaje.estado)== 'ELEGIR'}"  class="btn btn-danger" th:href="@{'/viaje/perfil-aplicado'+'?id_viaje='+${viaje.ID}}">Eliminar</a>
+            <a th:if="${#strings.toString(viaje.estado)== 'FINALIZADA'}"  class="btn btn-light" th:href="@{'/viaje/perfil-aplicado'+'?id_viaje='+${viaje.ID}}">Valorar</a>
             </td>
         </tr>
     </table>
