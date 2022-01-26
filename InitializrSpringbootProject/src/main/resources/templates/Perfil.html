@@ -51,16 +51,7 @@
                         </div>
                     </div>
                     <p>Transportista</p>
-                    <div >
-                        <div>
-                            
-                        </div>
-                        <div>
-                            <h5>ESTADO ACTUAL</h5>
-                            <input type="checkbox" class="toggle" id="rounded">
-                            <label for="rounded" data-checked="Disponible" class="rounded" data-unchecked="Ocupado"></label>
-                        </div>
-                    </div>
+                    
                     <br>
                     <br>
                     <div class="row g-2">
@@ -80,8 +71,6 @@
                             <input class="form-control form-control-lg" type="" id="telefono" name="telefono"
                                 th:value="${perfil.telefono}" />
                             <br>
-                            <label for="Archivo">Cambiar foto de Perfil</label>
-                            <input type="file" class="form-control form-control-lg" id="archivo" name="archivo" />
                         </div>
                         
                     </div>
@@ -132,9 +121,6 @@
                                 <input type="number" class="form-control form-control-lg" id="poliza" name="poliza"
                                     placeholder="Número de póliza" th:value="${camion.poliza}" />
 
-                                <label for="archivo">Cambiar fotos del camión</label>
-                                <input type="file" class="form-control form-control-lg selectfoto" name="archivos"
-                                    multiple />
 
                                 
                             </div>
@@ -148,9 +134,9 @@
         </article>
     </main>
 
-    <div class="buttom-mod-container">
+    <!--<div class="buttom-mod-container">
         <a class="btn btn-primary" th:href="@{../comprobante/listarComprobantes}" role="button">COMPROBANTES</a>
-    </div>
+    </div>-->
 
     <footer th:replace="fragment/fragmentos :: footer"></footer>
 
