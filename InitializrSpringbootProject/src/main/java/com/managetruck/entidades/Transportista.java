@@ -18,30 +18,20 @@ public class Transportista extends Usuario {
     private Camion camion;
     private Integer cantidadViajes;
     private Integer valoracion;
-    @ElementCollection(targetClass=Integer.class)
-    private List<Integer>valoracionFinal;
     @OneToMany
     private List<Comprobante> comprobante;
     
     public Transportista() {
     }
 
-    public Transportista(boolean estado, Camion camion, Integer cantidadViajes, Integer valoracion,List valoracionFinal, List comprobante) {
+    public Transportista(boolean estado, Camion camion, Integer cantidadViajes, Integer valoracion, List comprobante) {
         this.estado = estado;
         this.camion = camion;
         this.cantidadViajes = cantidadViajes;
         this.valoracion = valoracion;
         this.comprobante = comprobante;
-        this.valoracionFinal = valoracionFinal;
     }
 
-    public List<Integer> getValoracionFinal() {
-        return valoracionFinal;
-    }
-
-    public void setValoracionFinal(List<Integer> valoracionFinal) {
-        this.valoracionFinal = valoracionFinal;
-    }
 
     public boolean isViajando() {
         return viajando;

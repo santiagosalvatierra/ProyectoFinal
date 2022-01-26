@@ -219,9 +219,7 @@ public class TransportistaServicio {
             }
         }
         Integer promedio = (int) valoracion / cantidad;
-        for (int i = 0; i < promedio; i++) {
-            transportista.getValoracionFinal().add(promedio);
-        }
+        
         return promedio;
     }
 

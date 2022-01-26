@@ -1,6 +1,6 @@
 <!-- CARDS Index Empresa -->
 <section th:fragment="truckCards" style="margin: 0rem 8rem 2rem; padding: 0rem 4rem 2rem 4rem;">
-
+   
   <!-- TARJETA 1 SECUNDARIA
   Deberian conectarse todos los datos con la base de datos según usuario-->
   <div class="row mx-5" style="margin:3rem 3rem 3rem 3rem;">
@@ -11,12 +11,18 @@
       <div th:each="transportista,stat:${transportistas}">
     <div class="col mx-3">
       <div class="card" style="width: 13rem;">
-        <div class="stars">
-          <p class="clasificacion" th:each="valor, stat:${transportista.valoracionFinal}">
-            <input id="radio1" type="radio" name="estrellas" value="1">
-            <label for="radio1" class="fas fa-star"></label>
-          </p>
+          <div class="container-fluid" id="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-2" th:if="${transportista.valoracion!=0}" th:each="i: ${#numbers.sequence( transportista.valoracion, 1)}">
+            <i class="fas fa-star"></i>
+                  </div>
+            </div>
         </div>
+    </div>
+          
+          
+        
           <img id="imagen"
               th:if="${transportista.foto == null}"
             src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"

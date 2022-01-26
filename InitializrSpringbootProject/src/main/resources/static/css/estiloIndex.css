@@ -119,6 +119,7 @@ nav .nav__items a:hover {
     
 }
 
+
 #boton2:hover {
   color: #64ded3;
   background: #FCFCFC;
@@ -292,4 +293,5 @@ form .btn-primary {
 .carousel-inner {
   width: 1300px;
 }
+
 
