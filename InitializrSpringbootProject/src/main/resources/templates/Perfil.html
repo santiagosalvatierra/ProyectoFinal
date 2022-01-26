@@ -24,7 +24,7 @@
 </head>
 
 <body>
-    <header th:replace="fragment/fragmentos :: headerLoginTrans"></header>
+  <header th:replace="fragment/fragmentos :: headerLoginEmp"></header>
     <main>
         <!--ESTE DIV ENGLOBA TODA LA PAGINA-->
         <article class="container">
@@ -36,18 +36,17 @@
             </div>
             <section class="contenedor1">
                 <form th:action="@{/transportista/modificar}" method="POST" enctype="multipart/form-data">
-
-                    <input type="hidden" name="id" th:value="${perfil.id}" />
+                 
                     <div class="row g-2">
                         <div class="col-md-3">
                             <label for="nombre" class="visually-hidden"> Nombre</label>
                             <input class="form-control form-control-lg" type="text" id="nombre" name="nombre"
-                                th:value="${perfil.nombre}" />
+                                th:value="${perfil.nombre}" disabled />
                         </div>
                         <div class="col-md-3">
                             <label for="apellido" class="visually-hidden">Apellido</label>
                             <input class="form-control form-control-lg" type="text" id="apellido" name="apellido"
-                                th:value="${perfil.apellido}" />
+                                th:value="${perfil.apellido}"disabled />
                         </div>
                     </div>
                     <p>Transportista</p>
@@ -65,11 +64,11 @@
                             <br>
                             <label for="mail"> Correo Electronico</label>
                             <input class="form-control form-control-lg" type="email" id="mail" name="mail"
-                                th:value="${perfil.mail}" />
+                                th:value="${perfil.mail}"disabled />
                             <br>
                             <label for="telefono"> Telefono</label>
                             <input class="form-control form-control-lg" type="" id="telefono" name="telefono"
-                                th:value="${perfil.telefono}" />
+                                th:value="${perfil.telefono}"disabled />
                             <br>
                         </div>
                         
@@ -95,31 +94,30 @@
                                 </div>
                             </div>
                             <div class="contenedor2-texto">
-                                <input type="hidden" name="id" th:value="${camion.ID}" />
-
+                                
                                 <label for="modelo"> Modelo</label>
                                 <input type="text" class="form-control form-control-lg" id="modelo" name="modelo"
-                                    placeholder="Ej: Kodiak" th:value="${camion.modelo}" />
+                                    placeholder="Ej: Kodiak" th:value="${camion.modelo}" disabled/>
 
                                 <label for="año"> Año</label>
                                 <input type="number" class="form-control form-control-lg" id="año" name="anio"
-                                    placeholder="Ej: 1999" th:value="${camion.anio}" />
+                                    placeholder="Ej: 1999" th:value="${camion.anio}" disabled/>
 
                                 <label for="patente"> Patente</label>
                                 <input type="text" class="form-control form-control-lg" id="patente" name="patente"
-                                    placeholder="Ej: ABC-123 o AB-123-CD" th:value="${camion.patente}" />
+                                    placeholder="Ej: ABC-123 o AB-123-CD" th:value="${camion.patente}" disabled/>
 
                                 <label for="descripcion"> Descripción</label>
                                 <input type="text" class="form-control form-control-lg" id="modelo" name="descripcion"
-                                    placeholder="Ej: Kodiak" th:value="${camion.descripcion}" />
+                                    placeholder="Ej: Kodiak" th:value="${camion.descripcion}" disabled/>
 
                                 <label for="pesoMaximo"> Carga</label>
                                 <input type="number" class="form-control form-control-lg" id="año" name="pesoMaximo"
-                                    placeholder="Ej: 150" th:value="${camion.pesoMaximo}" />
+                                    placeholder="Ej: 150" th:value="${camion.pesoMaximo}"disabled />
 
                                 <label for="poliza"> Número de Poliza</label>
                                 <input type="number" class="form-control form-control-lg" id="poliza" name="poliza"
-                                    placeholder="Número de póliza" th:value="${camion.poliza}" />
+                                    placeholder="Número de póliza" th:value="${camion.poliza}" disabled/>
 
 
                                 
