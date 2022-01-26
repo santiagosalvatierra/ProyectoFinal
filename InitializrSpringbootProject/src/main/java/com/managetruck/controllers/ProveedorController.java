@@ -111,8 +111,7 @@ public class ProveedorController {
     }
     @GetMapping("/perfil-proveedor")
     public String perfilProveedor(@RequestParam(required = true) String id,ModelMap modelo,Model model){
-        try {
-            System.out.println(id);
+        try {           
             Proveedor proveedor = proveedorServicio.buscarID(id);
             model.addAttribute("perfil", proveedor);
             List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();

@@ -159,13 +159,11 @@ public class ViajeServicio {
     public List<Viaje> viajesCreadosProveedor(String proveedor_id) throws ErroresServicio {
         List<Viaje> viajes = new ArrayList();
         List<Comprobante> comprobantes = repositorioComprobante.buscarComprobanteporIdPorveedor(proveedor_id);
-        if (comprobantes.isEmpty()) {
-            System.out.println("entra al if");
+        if (comprobantes.isEmpty()) {          
             throw new ErroresServicio("Nose encontro ningun comprobante creado por este proveedor");
         }
-        System.out.println("entra al else");
-        for (Comprobante comprobante : comprobantes) {
-            System.out.println(comprobante.getViaje());
+       
+        for (Comprobante comprobante : comprobantes) {           
             viajes.add(comprobante.getViaje());
         }
 

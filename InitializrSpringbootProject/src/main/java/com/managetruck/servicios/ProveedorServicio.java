@@ -79,7 +79,7 @@ public class ProveedorServicio {
         Optional<Proveedor> respuesta = repositorioproveedor.findById(id);
         if (respuesta.isPresent()) {
             Proveedor proveedor = respuesta.get();
-            System.out.println("la contraseña sale asi" + proveedor.getPassword());
+           
             proveedor.setNombre(nombre);
             proveedor.setApellido(apellido);
             proveedor.setMail(mail);

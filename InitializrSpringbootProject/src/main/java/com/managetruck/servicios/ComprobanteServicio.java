@@ -110,12 +110,12 @@ public class ComprobanteServicio {
     }
     //METODO PARA TRAER TODOS LOS COMPROBANTES ABIERTOS PARA MOSTRAR AL TRANSPORTISTA
     public List<Comprobante> comprobantesAbiertos()throws ErroresServicio{
-        System.out.println("entra al metodo del service");
+        
         List<Comprobante> comprobantes = repositorioComprobante.buscarComprobanteporAbiertos(new Viaje().getEstado().ELEGIR);
         if (comprobantes.isEmpty()) {
             throw new ErroresServicio("no hay ningun comprobante abierto para mostrar");
         }else{
-            System.out.println(comprobantes);
+           
             return comprobantes;
         }
         
