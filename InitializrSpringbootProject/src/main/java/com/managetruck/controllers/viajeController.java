@@ -146,7 +146,7 @@ public class viajeController {
     }
     @GetMapping("/listar-postulantes")
     public String postulantes(@RequestParam(required = true)String id_viaje, ModelMap modelo){
-        System.out.println("Esta por entrar al try");
+      
         try {
             Viaje viaje=viajeServicio.buscarViajeId(id_viaje);
             List<Transportista> postulantes = viaje.getListadoTransportista();
