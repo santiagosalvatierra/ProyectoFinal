@@ -1,6 +1,8 @@
 package com.managetruck.controllers;
 
+import com.managetruck.entidades.Camion;
 import com.managetruck.entidades.Comprobante;
+import com.managetruck.entidades.Foto;
 import com.managetruck.entidades.Provincias;
 import com.managetruck.entidades.Transportista;
 import com.managetruck.entidades.Usuario;
@@ -16,6 +18,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -146,14 +149,28 @@ public class viajeController {
         System.out.println("Esta por entrar al try");
         try {
             Viaje viaje=viajeServicio.buscarViajeId(id_viaje);
-            System.out.println("el id del viaje es :"+id_viaje);
-            System.out.println("El viaje es"+viaje);
             List<Transportista> postulantes = viaje.getListadoTransportista();
             System.out.println(postulantes);
             modelo.put("id_viaje", id_viaje);
             modelo.put("transportistas", postulantes); 
             return "TransportistasPostulados";
         } catch (ErroresServicio ex){
+            Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
+            return "redirect:/inicio";
+        }
+    }
+    @GetMapping("/perfil-aplicado")
+    public String perfilAplicado(@RequestParam(required = true)String id_viaje, ModelMap modelo,Model model){
+        try {
+            Viaje viaje=viajeServicio.buscarViajeId(id_viaje);
+            Transportista transportista= viaje.getTransportistaAplicado();
+            Camion camion = transportista.getCamion();
+            List<Foto> fotos = camion.getFoto();
+            model.addAttribute("fotos", fotos);
+            modelo.put("perfil", transportista);
+            modelo.put("camion", camion);
+            return "Perfil";
+        } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
             return "redirect:/inicio";
         }

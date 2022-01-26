@@ -161,8 +161,6 @@ public class TransportistaController {
             Transportista transportista = transportistaServicio.buscarID(id);
             Camion camion = transportista.getCamion();
             List<Foto> fotos = camion.getFoto();
-            System.out.println("la lista de fotos es");
-            System.out.println(fotos);
             model.addAttribute("fotos", fotos);
             model.addAttribute("camion", camion);
             model.addAttribute("perfil", transportista);
