@@ -7,7 +7,10 @@
 :root { 
   background-color: #fcfcfc;
 }
-
+main{
+    zoom: 110%;
+    -moz-box-sizing:zoom: 110%;
+}
 body {
   background-color:#fcfcfc;
   font-family: 'Raleway', sans-serif;
@@ -105,9 +108,14 @@ nav .nav__items a:hover {
   margin-bottom: 1rem;
 }
 #boton2{
-    background:#64ded3;
-    
-  border-color: #64ded3;
+    background:#3CE2D1;
+    font-weight: 500;
+    margin-top:20px;
+    color:#18524c;
+  border-color: #3CE2D1;
+  text-transform: capitalize;
+  padding-top: 10px;
+
     
 }
 
@@ -131,7 +139,9 @@ nav .nav__items a:hover {
   overflow: hidden;
   cursor: pointer;
 }
-
+.card {
+    min-height: 570px;
+}
 .btn-primary:hover {
   color: #6930C3;
   background: #FCFCFC;
@@ -205,6 +215,9 @@ form .btn-primary {
   width: 100%;
   margin-bottom: 2rem;
 }
+.container{
+    margin-top: -100px;
+}
 
 /* Modal largo de bootstrap -> registrarme*/
 .modal-content .reg {
@@ -226,6 +239,7 @@ form .btn-primary {
 }
 #imagen2{
     border-radius: 5px;
+    height: 50%;
 }
 .right {
   width: 55%;
