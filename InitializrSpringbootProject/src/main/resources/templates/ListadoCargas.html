@@ -36,21 +36,21 @@
 
     <h1 class="textTitle">Viajes Registrados</h1>
     <section style="margin: 0rem 8rem 2rem; padding: 0rem 4rem 2rem 4rem;">
-    <table>
+    <table class="table">
         
         <tr><th colspan="5"></th></tr>
         <tr>
     <thead>
-        <th>Partida</th>
-        <th>Destino</th>
-        <th>Tipo de carga</th>
-        <th>Transportista</th>
-        <th>Estado</th>
-        <th>Acciones</th>
+        <th scope="col">Partida</th>
+        <th scope="col">Destino</th>
+        <th scope="col">Tipo de carga</th>
+        <th scope="col">Transportista</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Acciones</th>
     </thead>
 
         </tr>
-        <tr th:each="viaje,iterator:${viajes}">
+        <tr scope="row" th:each="viaje,iterator:${viajes}">
             <td th:text="${viaje.origen}"></td>
             <td th:text="${viaje.destino}"></td>
             <td th:text="${viaje.tipoCargas}"> destino</td>
