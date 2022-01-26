@@ -175,5 +175,23 @@ public class viajeController {
             return "redirect:/inicio";
         }
     }
+    @GetMapping("/eliminar")
+    public String eliminarViaje(HttpSession session,@RequestParam(required = true)String id_viaje,ModelMap modelo){
+        
+        try {
+            Comprobante comprobante = comprobanteServicio.buscarComprobanteIdViaje(id_viaje);
+            Usuario login = (Usuario) session.getAttribute("usuariosession");
+            if (login == null || !login.getId().equals(comprobante.getProveedor().getId())) {
+                return "redirect:/login";
+            }
+            viajeServicio.BajaViaje(id_viaje);
+            List<Viaje> viajes = viajeServicio.viajesCreadosProveedor(comprobante.getProveedor().getId());
+            modelo.put("viajes",viajes);
+            return "ListadoCargas";
+        } catch (ErroresServicio ex) {
+            Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
+            return "redirect:/inicio";
+        }        
+    }
     
 }
