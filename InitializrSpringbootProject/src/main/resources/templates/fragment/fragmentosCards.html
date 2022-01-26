@@ -1,332 +1,111 @@
 <!-- CARDS Index Empresa -->
 <section th:fragment="truckCards" style="margin: 0rem 8rem 2rem; padding: 0rem 4rem 2rem 4rem;">
 
-     <!-- TARJETA 1 SECUNDARIA
+  <!-- TARJETA 1 SECUNDARIA
   Deberian conectarse todos los datos con la base de datos según usuario-->
   <div class="row mx-5" style="margin:3rem 3rem 3rem 3rem;">
- 
-    <div class="container">   
-    <div class="card-group mt-3">
 
-      <div th:each="transportista,stat:${transportistas}">
-    <div class="col mx-3">
-      <div class="card" style="width: 13rem;">
-        <div class="stars">
-          <p class="clasificacion">
-            <input id="radio1" type="radio" name="estrellas" value="1">
-            <label for="radio1" class="fas fa-star"></label>
-            <input id="radio2" type="radio" name="estrellas" value="2">
-            <label for="radio2" class="fas fa-star"></label>
-            <input id="radio3" type="radio" name="estrellas" value="3">
-            <label for="radio3" class="fas fa-star"></label>
-            <input id="radio4" type="radio" name="estrellas" value="4">
-            <label for="radio4" class="fas fa-star"></label>
-            <input id="radio5" type="radio" name="estrellas" value="5">
-            <label for="radio5" class="fas fa-star"></label>
-          </p>
-        </div>
-          <img id="imagen"
-              th:if="${transportista.foto == null}"
-            src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
-            class="card-img-top" alt="Foto perfil Transportista">
-          <img id="imagen"
-              th:if="${transportista.foto != null}"
-            th:src="${'/foto/usuario-imagen/'+transportista.id}"
-            class="card-img-top" alt="Foto perfil Transportista">
-        <!--<img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto perfil Transportista">-->
-        <div class="card-body">
-          <h5 class="card-title" th:text="${transportista.apellido}">Nombre Apellido</h5>
-          <p class="card-text" th:text="${transportista.zona}">Zona</p>
-          <p class="card-text" th:text="${transportista.camion}">Marca/Modelo/Año</p>
-          <!--<p class="card-text">Carga máxima en kg</p>-->
-          <form th:action="@{/comprobante/seleccionar}+'?id_proveedor='+${session.usuariosession.id}+'&id_transportista='+${transportista.id}+'&id_viaje='+${id_viaje}" method="post">
-              <button class="btn btn-primary btn-sm">Ver Mas</button>
-          </form>
-         </div> 
-        </div>
-      </div>
-    </div>      
-</div>
-    </div>
-  </div>  
-</div> 
+    <div class="container">
+      <div class="card-group mt-3">
 
-    <!--<div class="col mx-3">
-      <div class="card" style="width: 13rem;">
-        <div class="stars">
-          <p class="clasificacion">
-            <input id="radio1" type="radio" name="estrellas" value="1">
-            <label for="radio1" class="fas fa-star"></label>
-            <input id="radio2" type="radio" name="estrellas" value="2">
-            <label for="radio2" class="fas fa-star"></label>
-            <input id="radio3" type="radio" name="estrellas" value="3">
-            <label for="radio3" class="fas fa-star"></label>
-            <input id="radio4" type="radio" name="estrellas" value="4">
-            <label for="radio4" class="fas fa-star"></label>
-            <input id="radio5" type="radio" name="estrellas" value="5">
-            <label for="radio5" class="fas fa-star"></label>
-          </p>
-        </div>
-        <img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto perfil Transportista">
-        <div class="card-body">
-          <h5 class="card-title">Nombre Apellido</h5>
-          <p class="card-text">Zona</p>
-          <p class="card-text">Marca/Modelo/Año</p>
-          <p class="card-text">Carga máxima en kg</p>
-          <a href="#" class="btn btn-primary btn-sm">Conocer más</a>
+        <div th:each="transportista,stat:${transportistas}">
+          <div class="col mx-3">
+            <div class="card" style="width: 13rem;">
+              <div class="stars">
+                <p class="clasificacion">
+                  <input id="radio1" type="radio" name="estrellas" value="1">
+                  <label for="radio1" class="fas fa-star"></label>
+                  <input id="radio2" type="radio" name="estrellas" value="2">
+                  <label for="radio2" class="fas fa-star"></label>
+                  <input id="radio3" type="radio" name="estrellas" value="3">
+                  <label for="radio3" class="fas fa-star"></label>
+                  <input id="radio4" type="radio" name="estrellas" value="4">
+                  <label for="radio4" class="fas fa-star"></label>
+                  <input id="radio5" type="radio" name="estrellas" value="5">
+                  <label for="radio5" class="fas fa-star"></label>
+                </p>
+              </div>
+              <img id="imagen" th:if="${transportista.foto == null}"
+                src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
+                class="card-img-top" alt="Foto perfil Transportista">
+              <img id="imagen" th:if="${transportista.foto != null}"
+                th:src="${'/foto/usuario-imagen/'+transportista.id}" class="card-img-top"
+                alt="Foto perfil Transportista">
+              <!--<img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto perfil Transportista">-->
+              <div class="card-body">
+                <h5 class="card-title" th:text="${transportista.apellido}">Nombre Apellido</h5>
+                <p class="card-text" th:text="${transportista.zona}">Zona</p>
+                <p class="card-text" th:text="${transportista.camion}">Marca/Modelo/Año</p>
+                <!--<p class="card-text">Carga máxima en kg</p>-->
+                <form
+                  th:action="@{/comprobante/seleccionar}+'?id_proveedor='+${session.usuariosession.id}+'&id_transportista='+${transportista.id}+'&id_viaje='+${id_viaje}"
+                  method="post">
+                  <button class="btn btn-primary btn-sm">Ver Mas</button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="col mx-3">
-      <div class="card" style="width: 13rem;">
-        <div class="stars">
-          <p class="clasificacion">
-            <input id="radio1" type="radio" name="estrellas" value="1">
-            <label for="radio1" class="fas fa-star"></label>
-            <input id="radio2" type="radio" name="estrellas" value="2">
-            <label for="radio2" class="fas fa-star"></label>
-            <input id="radio3" type="radio" name="estrellas" value="3">
-            <label for="radio3" class="fas fa-star"></label>
-            <input id="radio4" type="radio" name="estrellas" value="4">
-            <label for="radio4" class="fas fa-star"></label>
-            <input id="radio5" type="radio" name="estrellas" value="5">
-            <label for="radio5" class="fas fa-star"></label>
-          </p>
-        </div>
-        <img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto perfil Transportista">
-        <div class="card-body">
-          <h5 class="card-title">Nombre Apellido</h5>
-          <p class="card-text">Zona</p>
-          <p class="card-text">Marca/Modelo/Año</p>
-          <p class="card-text">Carga máxima en kg</p>
-          <a href="#" class="btn btn-primary btn-sm">Conocer más</a>
-        </div>
-      </div>
-    </div>-->
   </div>
 
 
-  <!-- TARJETA 2 SECUNDARIA
-  Deberian conectarse todos los datos con la base de datos según usuario-->
-  <!--<div class="row mx-5" style="margin: 2rem 2rem 2rem;">
-    <div class="col mx-3">
-      <div class="card" style="width: 13rem;">
-        <div class="stars">
-          <p class="clasificacion">
-            <input id="radio1" type="radio" name="estrellas" value="1">
-            <label for="radio1" class="fas fa-star"></label>
-            <input id="radio2" type="radio" name="estrellas" value="2">
-            <label for="radio2" class="fas fa-star"></label>
-            <input id="radio3" type="radio" name="estrellas" value="3">
-            <label for="radio3" class="fas fa-star"></label>
-            <input id="radio4" type="radio" name="estrellas" value="4">
-            <label for="radio4" class="fas fa-star"></label>
-            <input id="radio5" type="radio" name="estrellas" value="5">
-            <label for="radio5" class="fas fa-star"></label>
-          </p>
-        </div>
-        <img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto perfil Transportista">
-        <div class="card-body">
-          <h5 class="card-title">Nombre Apellido</h5>
-          <p class="card-text">Zona</p>
-          <p class="card-text">Marca/Modelo/Año</p>
-          <p class="card-text">Carga máxima en kg</p>
-          <a href="#" class="btn btn-primary btn-sm">Conocer más</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col mx-3">
-      <div class="card" style="width: 13rem;">
-        <div class="stars">
-          <p class="clasificacion">
-            <input id="radio1" type="radio" name="estrellas" value="1">
-            <label for="radio1" class="fas fa-star"></label>
-            <input id="radio2" type="radio" name="estrellas" value="2">
-            <label for="radio2" class="fas fa-star"></label>
-            <input id="radio3" type="radio" name="estrellas" value="3">
-            <label for="radio3" class="fas fa-star"></label>
-            <input id="radio4" type="radio" name="estrellas" value="4">
-            <label for="radio4" class="fas fa-star"></label>
-            <input id="radio5" type="radio" name="estrellas" value="5">
-            <label for="radio5" class="fas fa-star"></label>
-          </p>
-        </div>
-        <img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto perfil Transportista">
-        <div class="card-body">
-          <h5 class="card-title">Nombre Apellido</h5>
-          <p class="card-text">Zona</p>
-          <p class="card-text">Marca/Modelo/Año</p>
-          <p class="card-text">Carga máxima en kg</p>
-          <a href="#" class="btn btn-primary btn-sm">Conocer más</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col mx-3">
-      <div class="card" style="width: 13rem;">
-        <div class="stars">
-          <p class="clasificacion">
-            <input id="radio1" type="radio" name="estrellas" value="1">
-            <label for="radio1" class="fas fa-star"></label>
-            <input id="radio2" type="radio" name="estrellas" value="2">
-            <label for="radio2" class="fas fa-star"></label>
-            <input id="radio3" type="radio" name="estrellas" value="3">
-            <label for="radio3" class="fas fa-star"></label>
-            <input id="radio4" type="radio" name="estrellas" value="4">
-            <label for="radio4" class="fas fa-star"></label>
-            <input id="radio5" type="radio" name="estrellas" value="5">
-            <label for="radio5" class="fas fa-star"></label>
-          </p>
-        </div>
-        <img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto perfil Transportista">
-        <div class="card-body">
-          <h5 class="card-title">Nombre Apellido</h5>
-          <p class="card-text">Zona</p>
-          <p class="card-text">Marca/Modelo/Año</p>
-          <p class="card-text">Carga máxima en kg</p>
-          <a href="#" class="btn btn-primary btn-sm">Conocer más</a>
-        </div>
-      </div>
-    </div>
-  </div>-->
-
-  <!-- TARJETA 3 SECUNDARIA
-  Deberian conectarse todos los datos con la base de datos según usuario-->
-  <!--<div class="row mx-5" style="margin: 2rem 2rem 2rem;">
-    <div class="col mx-3">
-      <div class="card" style="width: 13rem;">
-        <div class="stars">
-          <p class="clasificacion">
-            <input id="radio1" type="radio" name="estrellas" value="1">
-            <label for="radio1" class="fas fa-star"></label>
-            <input id="radio2" type="radio" name="estrellas" value="2">
-            <label for="radio2" class="fas fa-star"></label>
-            <input id="radio3" type="radio" name="estrellas" value="3">
-            <label for="radio3" class="fas fa-star"></label>
-            <input id="radio4" type="radio" name="estrellas" value="4">
-            <label for="radio4" class="fas fa-star"></label>
-            <input id="radio5" type="radio" name="estrellas" value="5">
-            <label for="radio5" class="fas fa-star"></label>
-          </p>
-        </div>
-        <img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto perfil Transportista">
-        <div class="card-body">
-          <h5 class="card-title">Nombre Apellido</h5>
-          <p class="card-text">Zona</p>
-          <p class="card-text">Marca/Modelo/Año</p>
-          <p class="card-text">Carga máxima en kg</p>
-          <a href="#" class="btn btn-primary btn-sm">Conocer más</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col mx-3">
-      <div class="card" style="width: 13rem;">
-        <div class="stars">
-          <p class="clasificacion">
-            <input id="radio1" type="radio" name="estrellas" value="1">
-            <label for="radio1" class="fas fa-star"></label>
-            <input id="radio2" type="radio" name="estrellas" value="2">
-            <label for="radio2" class="fas fa-star"></label>
-            <input id="radio3" type="radio" name="estrellas" value="3">
-            <label for="radio3" class="fas fa-star"></label>
-            <input id="radio4" type="radio" name="estrellas" value="4">
-            <label for="radio4" class="fas fa-star"></label>
-            <input id="radio5" type="radio" name="estrellas" value="5">
-            <label for="radio5" class="fas fa-star"></label>
-          </p>
-        </div>
-        <img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto perfil Transportista">
-        <div class="card-body">
-          <h5 class="card-title">Nombre Apellido</h5>
-          <p class="card-text">Zona</p>
-          <p class="card-text">Marca/Modelo/Año</p>
-          <p class="card-text">Carga máxima en kg</p>
-          <a href="#" class="btn btn-primary btn-sm">Conocer más</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col mx-3">
-      <div class="card" style="width: 13rem;">
-        <div class="stars">
-          <p class="clasificacion">
-            <input id="radio1" type="radio" name="estrellas" value="1">
-            <label for="radio1" class="fas fa-star"></label>
-            <input id="radio2" type="radio" name="estrellas" value="2">
-            <label for="radio2" class="fas fa-star"></label>
-            <input id="radio3" type="radio" name="estrellas" value="3">
-            <label for="radio3" class="fas fa-star"></label>
-            <input id="radio4" type="radio" name="estrellas" value="4">
-            <label for="radio4" class="fas fa-star"></label>
-            <input id="radio5" type="radio" name="estrellas" value="5">
-            <label for="radio5" class="fas fa-star"></label>
-          </p>
-        </div>
-        <img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto perfil Transportista">
-        <div class="card-body">
-          <h5 class="card-title">Nombre Apellido</h5>
-          <p class="card-text">Zona</p>
-          <p class="card-text">Marca/Modelo/Año</p>
-          <p class="card-text">Carga máxima en kg</p>
-          <a href="#" class="btn btn-primary btn-sm">Conocer más</a>
-        </div>
-      </div>
-    </div>
-  </div>-->
-
-</section> 
+  <!-- SECCIÓN NOTICIAS INDEX -->
+</section>
 <section th:fragment="newCards" style="margin: 0rem 8rem 2rem; padding: 0rem 4rem 2rem 4rem;">
-    <br>
-    <br>
-     <div class="text-subtitle">
-                <p style="font-size:  20px">Noticias Destacadas</p></div>
-    <br>
-    <div class="row">
-  <div class="col-sm-4">
-    <div class="card text-left">
-      <div class="card-body">
+  <br>
+  <br>
+  <div class="text-subtitle">
+    <p style="font-size:  20px">Noticias Destacadas</p>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card text-left">
+        <div class="card-body">
           <img id="imagen2"
             src="https://phantom-marca.unidadeditorial.es/c96531b374e9634d02eecaf6f7048e1c/resize/1320/f/jpg/assets/multimedia/imagenes/2020/12/23/16087422153115.jpg"
             class="card-img-top" alt="Foto perfil Transportista">
           <br>
           <br>
-          
-        <h5 class="card-title" style="font-size:  15px">Titulo noticia</h5>
-        <p class="card-text" style="font-size:  10px">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="http://www.camionesybuses.com.ar/"  id="boton2" class="btn btn-primary">Saber mas</a>
+
+          <h5 class="card-title" style="font-size:  15px">Titulo noticia</h5>
+          <p class="card-text" style="font-size:  10px">With supporting text below as a natural lead-in to additional
+            content.</p>
+          <a href="http://www.camionesybuses.com.ar/" id="boton2" class="btn btn-primary">Saber mas</a>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card text-left">
-      <div class="card-body">
+    <div class="col-sm-4">
+      <div class="card text-left">
+        <div class="card-body">
           <img id="imagen2"
             src="data:image/jpeg;base64,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"
             class="card-img-top" alt="Foto perfil Transportista">
           <br>
           <br>
-        <h5 class="card-title" style="font-size:  15px">Titulo noticia</h5>
-        <p class="card-text" style="font-size:  10px">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="http://www.camionesybuses.com.ar/" id="boton2" class="btn btn-primary">Saber mas</a>
+          <h5 class="card-title" style="font-size:  15px">Titulo noticia</h5>
+          <p class="card-text" style="font-size:  10px">With supporting text below as a natural lead-in to additional
+            content.</p>
+          <a href="http://www.camionesybuses.com.ar/" id="boton2" class="btn btn-primary">Saber mas</a>
+        </div>
       </div>
     </div>
-  </div>
-        <div class="col-sm-4">
-    <div class="card text-left">
-      <div class="card-body">
+    <div class="col-sm-4">
+      <div class="card text-left">
+        <div class="card-body">
           <img id="imagen2"
             src="https://viapais.com.ar/resizer/pI9wZMJY9ZguMyOr1GDdQUCDG_0=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/PYMY6JJBORGZ7HOM74O4WVWGQU.png"
             class="card-img-top" alt="Foto perfil Transportista">
           <br>
           <br>
-        <h5 class="card-title" style="font-size:  15px">Titulo noticia</h5>
-        <p class="card-text" style="font-size:  10px">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="http://www.camionesybuses.com.ar/"  id="boton2" class="btn btn-primary">Saber mas</a>
+          <h5 class="card-title" style="font-size:  15px">Titulo noticia</h5>
+          <p class="card-text" style="font-size:  10px">With supporting text below as a natural lead-in to additional
+            content.</p>
+          <a href="http://www.camionesybuses.com.ar/" id="boton2" class="btn btn-primary">Saber mas</a>
+        </div>
       </div>
     </div>
   </div>
-</div> 
 </section>

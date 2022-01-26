@@ -18,7 +18,32 @@ myModal.addEventListener('shown.bs.modal', function () {
   myInput.focus()
 })
 
+/* OPCION PARA QUE NO SE CIERRE EL MODAL
+#1
+onclick="logincheck()"
+alert(sweetAlert);
+event.stopPropagation();  
 
+
+#2
+<script>
+$(window).on("navigate", function (event, data) {
+  var direction = data.state.direction;
+  if (direction == 'back') {
+    event.preventDefault();//evita hacer la acción por defecto, volver atrás
+    $(elementoModal).hide();
+    window.history.forward(1);//volvemos donde estabamos
+  }
+});
+</script>
+
+*/
+
+
+
+}
+
+/* 
 function stars() {
   $(".clasificacion").find("input").change(function () {
     var valor = $(this).val()
@@ -42,3 +67,4 @@ function stars() {
     })
   })
 }
+*/
