@@ -6,8 +6,8 @@ body{
   }
   #imagen{
       height: 150px;
-
-width: 200px;
+object-fit: cover;
+width: 100%;
   }
   /* BUTTONS */
   .buttom-mod-container {
@@ -17,12 +17,22 @@ width: 200px;
     justify-content: center;
     margin-bottom: 1rem;
   }
+  .estrella{
+      color: #e49a00;
+      border: 1px;
+      border-color: black;
+  }
+  .estrella2{
+    color:#e49a00;
+  }
   
 ul, li {
 	margin: 5px;
 	list-style-type: none;
 }
-  
+p{
+   margin-bottom: 2px; 
+}
   .btn-primary {
     color: #fcfcfc;
      padding-top: 50px;

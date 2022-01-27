@@ -10,14 +10,19 @@
 
         <div th:each="transportista,stat:${transportistas}">
           <div class="col mx-3">
-            <div class="card" style="width: 13rem;">
+            <div class="card" style="width: 13rem; margin-bottom: 15px; margin-top:15px;">
               <div class="container-fluid" id="main-content">
                 <div class="container">
                   <div class="row">
                     <div class="col-2" th:if="${transportista.valoracion!=0}"
                       th:each="i: ${#numbers.sequence( transportista.valoracion, 1)}">
-                      <i class="fas fa-star"></i>
+                      <i class="estrella fas fa-star"></i>
                     </div>
+                      <div class="col-2" th:if="${transportista.valoracion<5}"
+                      th:each="i: ${#numbers.sequence( transportista.valoracion, 4)}">
+                      <i class="estrella2 far fa-star"></i>
+                    </div>
+                    
                   </div>
                 </div>
               </div>
@@ -34,7 +39,9 @@
               <div class="card-body">
                 <h5 class="card-title" th:text="${transportista.apellido}">Nombre Apellido</h5>
                 <p class="card-text" th:text="${transportista.zona}">Zona</p>
-                <p class="card-text" th:text="${transportista.camion}">Marca/Modelo/Año</p>
+                <p class="card-text" th:text="${transportista.camion.modelo}">Modelo</p>
+                <p class="card-text" th:text="${transportista.camion.anio}">Ano</p>
+                <p class="card-text" th:text="${transportista.camion.patente}">patente</p>
                 <!--<p class="card-text">Carga máxima en kg</p>-->
                 <form
                   th:action="@{/comprobante/seleccionar}+'?id_proveedor='+${session.usuariosession.id}+'&id_transportista='+${transportista.id}+'&id_viaje='+${id_viaje}"

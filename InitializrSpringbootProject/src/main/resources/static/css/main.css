@@ -133,7 +133,6 @@ iframe {
 .container-table100 {
   width: 100%;
   min-height: 100vh;
-
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -150,12 +149,14 @@ iframe {
 }
 .wrap-table100 {
   width: 1170px;
+  
 }
 
 /*//////////////////////////////////////////////////////////////////
 [ Table ]*/
 .table100 {
   background-color: #fff;
+  
 }
 
 table {
@@ -203,6 +204,7 @@ th, td {
 .table100 {
   position: relative;
   padding-top: 60px;
+  
 }
 
 .table100-head {
@@ -216,6 +218,9 @@ th, td {
   max-height: 585px;
   overflow: auto;
   overflow-x: hidden;
+  scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
+    scrollbar-width: none;
+  
 }
 
 
