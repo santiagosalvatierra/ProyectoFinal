@@ -93,7 +93,7 @@ rel="stylesheet">
                                 <a th:if="${#strings.toString(viaje.estado)== 'ELEGIR'}"  class="btn btn-warning" th:href="@{'/viaje/modificar-viaje'+'?id_viaje='+${viaje.ID}}">Modificar</a>
                                 </div>
                                 <div class="row">
-                                <a th:if="${#strings.toString(viaje.estado)== 'ELEGIR'&& #lists.isEmpty(viaje.listadoTransportista)}"  class="btn btn-danger central" th:href="@{'/viaje/perfil-aplicado'+'?id_viaje='+${viaje.ID}}">Eliminar</a>
+                                <a th:if="${#strings.toString(viaje.estado)== 'ELEGIR'&& #lists.isEmpty(viaje.listadoTransportista)}"  class="btn btn-danger central" th:href="@{'/viaje/eliminar'+'?id_viaje='+${viaje.ID}}">Eliminar</a>
                                 </div>
                                 <div class="row">
                                 <a th:if="${#strings.toString(viaje.estado)== 'FINALIZADA'}"  class="btn btn-light" th:href="@{'/viaje/perfil-aplicado'+'?id_viaje='+${viaje.ID}}">Valorar</a>
