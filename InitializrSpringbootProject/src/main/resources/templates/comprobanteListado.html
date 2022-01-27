@@ -30,42 +30,106 @@
     <!-- LOGUITO EN PESTAÑA -->
     <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
-
+        
+     <!-- ESTILO TABLA -->
+     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <title>Empresa</title>
 </head>
 <body>
-    <header th:replace="fragment/fragmentos :: headerLoginEmp"></header>
+    <header th:replace="fragment/fragmentos :: headerLoginTrans"></header>
     
     <div class="pagenotfound">
         <div class="copy-container center-xy">
           
-          <h1>Listado de Comprobantes</h1>
-    <table class="table table-dark table-stripe">
-        <thead>
-            <tr>
-                <th>N°</th>
-                <th>EMPRESA CONTRATANTE</th>
-                <th>VIAJE</th>
-                <th>DISTANCIA (KM)</th>
-                <th>CARGA</th>
-                <th>VALORACIÓN</th>
+          <h2 class="topheader-title">Listado de Comprobantes</h2>
+  
+<div class="container-table100">
+<div class="wrap-table100">
+<div class="table100 ver1 m-b-110">
+        <div class="table100-head">
+                <table>
+                        <thead>
+                                <tr class="row100 head">
+                                        <th class="cell100 column2">Empresa</th>
+                                        <th class="cell100 column2">Recorrido</th>
+                                        <th class="cell100 column2">KM Total</th>
+                                        <th class="cell100 column2">Tipo de Carga</th>
+                                        <th class="cell100 column2">Valoracion</th>
+                                </tr>
+                        </thead>
+                </table>
+        </div>
 
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="comprobante,iterator:${comprobantes}">
-                <td th:text="${iterator.index+1}"></td>
-                <td th:text="${comprobante.proveedor.nombreEmpresa}"></td>
-                <td th:text="${comprobante.viaje.origen}" ></td>
-                <td th:text="${comprobante.viaje.destino}" ></td>
-                <td th:text="${comprobante.viaje.kmRecorridos}"></td>
-                <td th:text="${comprobante.viaje.tipoCargas}"></td>
-                <td th:text="${comprobante.valoracion}"></td>
-                
-            </tr>
-        </tbody>
-          <span class="handle"></span>
-      
+        <div class="table100-body js-pscroll">
+                <table>
+                        <tbody>
+                                <tr class="row100 body" th:each="comprobante,iterator:${comprobantes}">
+                                    <td class="cell100 column2"  >
+                                        <div class="row">
+                                            <div class="col">
+                                        <img 
+              th:if="${comprobante.proveedor.foto == null}"
+            src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
+            class="card-img-top" alt="Foto perfil Proveedor">
+          <img 
+              th:if="${comprobante.proveedor.foto != null}"
+            th:src="${'/foto/usuario-imagen/'+comprobante.proveedor.id}"
+            width="52" height="52" class="rounded-circle" alt="Foto perfil Proveedor" >
+              </div>
+                                            
+                                        <p th:text="${comprobante.proveedor.nombreEmpresa}"></p>
+                                           
+                                            </div>
+                                    </td>
+                                        <td class="cell100 column2" >
+                                            <p th:text="${comprobante.viaje.origen}"></p>
+                                            <p th:text="${comprobante.viaje.destino}"></p>
+                                        </td>
+                                        <td class="cell100 column2"th:text="${comprobante.viaje.kmRecorridos}"></td>
+                                        <td class="cell100 column2" th:text="${comprobante.viaje.tipoCargas}"></td>
+                                        <td class="cell100 column2" >
+                                            <div class="row">
+                                               <div class="col-4"th:if="${comprobante.valoracion!=null}" th:each="i: ${#numbers.sequence( comprobante.valoracion, 1)}">
+                                                 <i class="fas fa-star"></i>
+                                               </div>
+                                             <div class="col-4" th:if="${comprobante.valoracion==null}" >
+                                                <p>Esperando valoracion</p>
+                                             </div>                            
+                                             </div>
+                                        </td>
+                                </tr> 
+
+                                
+                        </tbody>
+            </table>
+        </div>
+</div>
+
+
+
+        </div>
+</div>
+</div>
+</div>
+
+
+<!--====
+<!--===============================================================================================-->
+	
+         
+          
         </div>
       </div>
     
