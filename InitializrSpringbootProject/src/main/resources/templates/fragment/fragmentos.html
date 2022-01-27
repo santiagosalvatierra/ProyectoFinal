@@ -1,24 +1,23 @@
 <!--ACA EMPIEZA EL FRAGMENT NAV INDEX GENERAL-->
-<header th:fragment="headerNoLogin" class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom navbar navbar-dark bg-dark">
-  <a href="/" class="d-flex mb-3 mb-md-0 me-md-auto col-md-4">
-    <img src="../img/ManageTruck_logo-Blanco.png" class="img h-25 w-25" alt="">
-  </a>
+<header th:fragment="headerNoLogin" class="topheader">
+    <div class="nav-container">
+        <nav class="nav">
+            <a href="/" class="logo"><img src="../img/ManageTruck_logo-Blanco.png" class="logo"></a>
 
-  <ul class="nav nav-pills col-md-4">
-    <li class="nav-item"><a th:href="@{/nosotros}" class="nav-link">NOSOTROS</a></li>
-    <li class="nav-item"><a th:href="@{/servicios}" class="nav-link">SERVICIOS</a></li>
-    <li class="nav-item"><a th:href="@{/contacto}" class="nav-link">CONTACTO</a></li>
-  </ul>
-
-  <div class="col-md-4 text-end">
-    <button type="button" class="btn btn-outline-primary me-2">Login</button>
-    <button type="button" class="btn btn-primary">Sign-up</button>
-  </div>
+            <ul class="nav__items">
+                <li class="nav__items"><a th:href="@{/nosotros}">NOSOTROS</a></li>
+                <li class="nav__items"><a th:href="@{/servicios}">SERVICIOS</a></li>
+                <li class="nav__items"><a th:href="@{/contacto}">ESCRIBINOS</a></li>
+            </ul>
+        </nav>
+    </div>
 </header>
 
+
+
 <!--ACA EMPIEZA EL FRAGMENT NAV INDEX TRANSPORTISTA-->
-<header th:fragment="headerLoginTrans" class="py-3 mb-3 border-bottom">
-  <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
+<header th:fragment="headerLoginTrans" class="topheader">
+  <div class="nav-container container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 0.1fr 0.2fr 0.5fr 0.1fr;">
     <!--DESDE ACA EL MENU OFFCANVAS-->
     <button class="btn btn-toolbar" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
       aria-controls="offcanvasScrolling">
@@ -49,10 +48,10 @@
         </div>
       </div>
       <div class="offcanvas-body">
-        <div class="buttom-mod-container">
+        <div class="text-center">
           <ul class="nav flex-column">
-            <li class="nav-item"><a class="btn btn-primary" th:href="@{/transportista/perfil-transportista}+'?id='+${session.usuariosession.id}">PERFIL</a></li>
-            <li class="nav-item"><a class="btn btn-primary" th:href="@{comprobante/listarComprobantes}">COMPROBANTES</a></li>
+            <li class="nav-item"><a class="buttom-mod-container btn btn-primary" th:href="@{/transportista/perfil-transportista}+'?id='+${session.usuariosession.id}">PERFIL</a></li>
+            <li class="nav-item"><a class="buttom-mod-container btn btn-primary" th:href="@{../comprobante/listarComprobantes}">COMPROBANTES</a></li>
           </ul>
         </div>
         <div class="m-5">
@@ -90,24 +89,35 @@
       </div>
     </div>
     <!--HASTA ACA ES EL MENU OFFCANVAS-->
-    <div class="d-flex align-items-end">
+    <!--ACA EMPIEZAN LOS OTROS ELEMENTOS DEL NAV-->
+    <div>
+      <a href="/" class="d-flex mb-3 mb-md-0 ">
+        <img src="../img/ManageTruck_logo-Blanco.png" class="img" width="200" height="52" alt="">
+      </a>
+    </div>
+    <div class="d-flex align-items-center">
       <form class="w-100 me-3">
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        <input type="buscar" class="form-control" placeholder="Buscar..." aria-label="Buscar">
       </form>
+    </div>
+    <div class="d-flex text-end" >
+      <a class="w-100 me-3 align-content-end" th:href="@{/logout}"><button class="btn btn-dark">SALIR</button></a>
     </div>
   </div>
 </header>
 
 
+
+
 <!--ACA EMPIEZA EL FRAGMENT NAV INDEX EMPRESA-->
-<header th:fragment="headerLoginEmp" class="py-3 mb-3 border-bottom">
-  <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
+<header th:fragment="headerLoginEmp" class="topheader">
+  <div class="contenedorNav container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 0.1fr 0.2fr 0.5fr 0.1fr;">
     <!--DESDE ACA EL MENU OFFCANVAS-->
     <button class="btn btn-toolbar" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
       aria-controls="offcanvasScrolling">
       <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
         data-bs-toggle="dropdown" aria-expanded="false">
-        <img th:if="${session.usuariosession.foto == null}" src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg" alt="mdo" width="52" height="52" class="rounded-circle">
+        <img th:if="${session.usuariosession.foto == null}" src="/img/Foto sin foto.jpg" alt="mdo" width="52" height="52" class="rounded-circle">
         <!-- FORMA EN MOSTRAR LA IMAGEN QUE TIENE EL USUARIO GUARDADA-->
          <img th:if="${session.usuariosession.foto != null}" th:src="${'/foto/usuario-imagen/'+session.usuariosession.id}" alt="mdo" width="52" height="52" class="rounded-circle">
       </a>
@@ -119,7 +129,7 @@
         <div class="justify-content-center">
           <img
               th:if="${session.usuariosession.foto == null}"
-            src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
+            src="../img/Foto sin foto.jpg"
             class="img-thumbnail rounded-circle col-auto" alt="Perfil" width="250" height="300">
           <img
               th:if="${session.usuariosession.foto != null}"
@@ -128,24 +138,32 @@
         </div>
       </div>
       <div class="offcanvas-body">
-        <div class="buttom-mod-container">
-          <ul class="nav flex-column">
-            <li class="nav-item"><a class="btn btn-primary" th:href="@{/proveedor/perfil-proveedor}+'?id='+${session.usuariosession.id}">PERFIL</a></li>
-            <li class="nav-item"><a class="btn btn-primary" th:href="@{/viaje/listar-viajes}+'?id='+${session.usuariosession.id}">REGISTRO DE VIAJES</a></li>
-            <li class="nav-item"><a class="btn btn-primary" th:href="@{/viaje/pedido}">NUEVA CARGA</a></li>
+        <div class="">
+          <ul class="nav flex-column align-content-center">
+            <li class="nav-item"><a class="buttom-mod-container btn btn-primary" th:href="@{/proveedor/perfil-proveedor}+'?id='+${session.usuariosession.id}">PERFIL</a></li>
+            <li class="nav-item"><a class="buttom-mod-container btn btn-primary" th:href="@{/viaje/listar-viajes}+'?id='+${session.usuariosession.id}">REGISTRO DE VIAJES</a></li>
+            <li class="nav-item"><a class="buttom-mod-container btn btn-primary" th:href="@{/viaje/pedido}">NUEVA CARGA</a></li>
           </ul>
         </div>
         <div>
-          <a class="" th:href="@{/logout}"><button class="btn btn-dark mt-3">CERRAR SESIÓN
-          </button></a>
+          <a class="buttom-mod-container" th:href="@{/logout}"><button class="btn btn-dark mt-5">CERRAR SESIÓN</button></a>
         </div>
       </div>
     </div>
     <!--HASTA ACA ES EL MENU OFFCANVAS-->
-    <div class="d-flex align-items-end">
+    <!--ACA EMPIEZAN LOS OTROS ELEMENTOS DEL NAV-->
+    <div>
+      <a href="/" class="d-flex mb-3 mb-md-0 ">
+        <img src="../img/ManageTruck_logo-Blanco.png" class="img" width="200" height="52" alt="">
+      </a>
+    </div>
+    <div class="d-flex align-items-center">
       <form class="w-100 me-3">
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        <input type="buscar" class="form-control" placeholder="Buscar..." aria-label="Buscar">
       </form>
+    </div>
+    <div class="d-flex text-end" >
+      <a class="w-100 me-3 align-content-end" th:href="@{/logout}"><button class="btn btn-dark">SALIR</button></a>
     </div>
   </div>
 </header>
