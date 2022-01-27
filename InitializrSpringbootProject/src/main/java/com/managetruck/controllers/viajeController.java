@@ -42,18 +42,28 @@ public class viajeController {
     @GetMapping("/pedido")
     public String inicioViaje(ModelMap modelo) {
         List<Provincias> provincias = provinciaServicio.listarProvinciasTotales();
+        Viaje viaje = new Viaje();
+        modelo.put("viaje", viaje);
         modelo.put("provincias",provincias);
         return "FormNuevaCarga";
     }
 
     @PostMapping("/pedido")
-    public String comienzoViaje(HttpSession session,String idProveedor, @RequestParam String origen, @RequestParam String destino, @RequestParam String tipoCargas, @RequestParam Integer peso, @RequestParam Integer kmRecorridos) {
+    public String comienzoViaje(HttpSession session,String idProveedor, String idViaje,@RequestParam String origen, @RequestParam String destino, @RequestParam String tipoCargas, @RequestParam Integer peso, @RequestParam Integer kmRecorridos) {
         Usuario login =(Usuario) session.getAttribute("usuariosession");
         if (login == null || !login.getId().equals(idProveedor)) {
                 return "redirect:/login";
             }
         try {
-            viajeServicio.crearViaje(idProveedor, peso, kmRecorridos, tipoCargas, destino, origen);
+            
+            if (idViaje.isEmpty()) {
+                
+              viajeServicio.crearViaje(idProveedor, peso, kmRecorridos, tipoCargas, destino, origen);  
+            }else{
+               
+                viajeServicio.ModificarViaje(idViaje, peso, kmRecorridos, tipoCargas, destino, origen);
+            }
+            
         } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -61,8 +71,16 @@ public class viajeController {
     }
 
     @GetMapping("/modificar-viaje")
-    public String modificarViaje() {
-        return null;
+    public String modificarViaje(@RequestParam(required = true) String id_viaje,ModelMap modelo) {        
+        try {
+            List<Provincias> provincias = provinciaServicio.listarProvinciasTotales();
+            Viaje viaje = viajeServicio.buscarViajeId(id_viaje);
+            modelo.put("viaje", viaje);
+            modelo.put("provincias", provincias);
+        } catch (ErroresServicio ex) {
+            Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "FormNuevaCarga";
     }
 
     @PostMapping("/modificar-viaje")
@@ -117,8 +135,7 @@ public class viajeController {
     }
     @GetMapping("/aplicar")
     public String aplicar(ModelMap model, @RequestParam(required = true)String id_transportista,@RequestParam(required = false) String error, @RequestParam(required = true)String id_viaje){
-        System.out.println("este es el id trasnportista="+id_transportista);
-        System.out.println("este el id comprobante="+id_viaje);
+       
         try {
             viajeServicio.aplicar(id_transportista, id_viaje);
                   
@@ -134,7 +151,7 @@ public class viajeController {
     @GetMapping("/listar-viajes")
     public String listarviajes(@RequestParam (required=true)String id,ModelMap modelo){
         try {
-            System.out.println("id proveedor" +id);
+            
             List<Viaje> viajes = viajeServicio.viajesCreadosProveedor(id);
             modelo.put("viajes",viajes);
             return "ListadoCargas";
@@ -150,7 +167,7 @@ public class viajeController {
         try {
             Viaje viaje=viajeServicio.buscarViajeId(id_viaje);
             List<Transportista> postulantes = viaje.getListadoTransportista();
-            System.out.println(postulantes);
+          
             modelo.put("id_viaje", id_viaje);
             modelo.put("transportistas", postulantes); 
             return "TransportistasPostulados";

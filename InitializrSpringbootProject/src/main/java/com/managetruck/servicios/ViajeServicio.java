@@ -157,14 +157,19 @@ public class ViajeServicio {
 
     //metodo para traer los viajes del proveedor
     public List<Viaje> viajesCreadosProveedor(String proveedor_id) throws ErroresServicio {
-        List<Viaje> viajes = new ArrayList();
+        
         List<Comprobante> comprobantes = repositorioComprobante.buscarComprobanteporIdPorveedor(proveedor_id);
         if (comprobantes.isEmpty()) {          
             throw new ErroresServicio("Nose encontro ningun comprobante creado por este proveedor");
         }
-       
-        for (Comprobante comprobante : comprobantes) {           
-            viajes.add(comprobante.getViaje());
+       List<Viaje> viajes = new ArrayList();
+        for (Comprobante comprobante : comprobantes) {  
+            System.out.println(comprobante.getViaje().isAlta());
+            if (comprobante.getViaje().isAlta()) {
+                System.out.println("entrea cuando dice"+comprobante.getViaje().isAlta());
+                viajes.add(comprobante.getViaje());
+            }
+            
         }
 
         return viajes;

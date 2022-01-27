@@ -28,7 +28,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
         <title>ManageTruck</title>
   
-    <title>Nueva carga</title>
+    <title >Nueva carga</title>
 </head>
 
 <body>
@@ -45,38 +45,41 @@
         </div>
     </header>
             
-    <main class="top-titulo"><h1>Nueva Carga</h1></main>
+    <main class="top-titulo" style="padding-top: 17px;"><h1><span th:text="${viaje.ID == null ? 'Nueva' : 'Modificar'}"></span> Carga</h1></main>
     <!--<div th:replace="fragment/fragmentos :: headerLoginEmp"></div>-->
 
 
     <div class="row g-2">
         <div class="col-md-6">   
-            <form  th:action="@{/viaje/pedido}" method="POST" class="NuevaCarga">
+            <form th:action="@{/viaje/pedido}" method="POST" class="NuevaCarga">
             <input type="hidden" name="idProveedor" th:value="${session.usuariosession.id}" />
+            <input type="hidden" name="idViaje" th:value="${viaje.ID}" />
      
             <div class="cargaDiv">
                 
                 <select name="origen" id="zona" class="form-select"  required>
-                                <option selected disable value="">Partida</option>
+                                <option th:if="${viaje.ID == null}"selected disable value="">Partida</option>
+                                <option th:if="${viaje.ID != null}"th:selected disable th:value="${viaje.origen}" th:text="${viaje.origen}"></option>
                                 <option option th:each="provincia:${provincias}" th:value="${provincia.provincia}" th:text="${provincia.provincia}"></option>
                             </select>
             </div>
             <div class="cargaDiv">
                 
                 <select name="destino" id="zona" class="form-select" required>
-                                <option selected disable value="">Destino</option>
+                                <option th:if="${viaje.ID == null}"selected disable value="">Destino</option>
+                                <option th:if="${viaje.ID != null}"th:selected disable th:value="${viaje.destino}" th:text="${viaje.destino}"></option>
                                 <option option th:each="provincia:${provincias}" th:value="${provincia.provincia}" th:text="${provincia.provincia}"></option>
                             </select>
                             
             </div>
     <div class="cargaDiv1">
                 
-                <input list="tipo-carga" id="kmRecorridos" name="kmRecorridos" placeholder="kmRecorridos" required="required" tipe="number"/>
+                <input id="kmRecorridos" name="kmRecorridos" placeholder="kmRecorridos" required="required" tipe="number" th:value="${viaje.kmRecorridos}"/>
                                    
             </div>
             <div class="cargaDiv1">
                 
-                <input list="tipo-carga" id="tipo-carga-choice" name="tipoCargas" placeholder="Tipo de carga" required="required" />
+                <input list="tipo-carga" id="tipo-carga-choice" name="tipoCargas" placeholder="Tipo de carga" required="required" th:value="${viaje.tipoCargas}"/>
                 <datalist id="tipo-carga">
                     <option value="arena">
                     <option value="ripio">
@@ -86,37 +89,21 @@
             </div>
             <div class="cargaDiv2">
                 
-                <input type="number" id="peso" name="peso" placeholder="Peso (Kg)" required="required">
+                <input type="number" id="peso" name="peso" placeholder="Peso (Kg)" required="required" th:value="${viaje.peso}">
             </div>
-            <input class="cargaButton" type="submit" value="Crear Viaje">
-        </form></div>
+            <input class="cargaButton" type="submit" th:value="${viaje.ID == null ? 'Crear Viaje' : 'Modificar'}">
+                
+            </form></div>
 
+        
+        <div class="contenedor-imagen"><img src="../img/ManageTruck_logo-Blanco.png" class="imagen"></div>
 
-        <div class="col-md-6"><img src="../img/ManageTruck_logo-Blanco.png" class="imagen"></div>
-
-        <div class="cargaDiv1">
-            
-            <input list="tipo-carga" id="tipo-carga-choice" name="tipoCargas" placeholder="Tipo de carga" required="required" />
-            <datalist id="tipo-carga">
-                <option value="arena">
-                <option value="ripio">
-                <option value="ladrillos">
-                <option value="frio">
-            </datalist>
-        </div>
-        <div class="cargaDiv2">
-            
-            <input type="number" id="peso" name="peso" placeholder="Peso (Kg)" required="required">
-        </div>
-        <div class="cargaDiv2">
-            
-            <input type="number" id="peso" name="kmRecorridos" placeholder="Peso (Kg)" required="required">
-        </div>
-        <input class="cargaButton" type="submit" value="Crear Viaje">
-    </form>
-
+        
+        
 
     </div>
+            <br>
+        <br>
     <footer th:replace="fragment/fragmentos :: footer"></footer>
 </body>
 

@@ -1,13 +1,8 @@
 
 
-
-
-@font-face {
-  font-family: Lato-Bold;
-  src: url('../fonts/Lato/Lato-Bold.ttf'); 
-}
-
 /*//////////////////////////////////////////////////////////////////
+
+
 [ RESTYLE TAG ]*/
 * {
 	margin: 0px; 
@@ -39,20 +34,13 @@ a:hover {
 
 /* ------------------------------------ */
 
-
 p {margin: 10px;}
 
 ul, li {
 	margin: 0px;
 	list-style-type: none;
 }
-.topheader-title{
-  color: black;
-  font-size: 2rem;
-  font-style: normal;
-  font-weight: 800;
-  text-align: center;
-}
+
 
 /* ------------------------------------ */
 input {
@@ -138,9 +126,13 @@ iframe {
   width: 1366px;
   margin: 0 auto;
 }
-
+.central{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 .container-table100 {
   width: 100%;
+  min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -151,15 +143,20 @@ iframe {
   flex-wrap: wrap;
   padding: 33px 30px;
 }
-
+#botones{
+    width:7%;
+    margin-left: 35%;
+}
 .wrap-table100 {
   width: 1170px;
+  
 }
 
 /*//////////////////////////////////////////////////////////////////
 [ Table ]*/
 .table100 {
   background-color: #fff;
+  
 }
 
 table {
@@ -172,8 +169,8 @@ th, td {
 }
 
 .column1 {
-  width: 5%;
-  padding-left: 10px;
+  width: 33%;
+  padding-left: 40px;
 }
 
 .column2 {
@@ -207,6 +204,7 @@ th, td {
 .table100 {
   position: relative;
   padding-top: 60px;
+  
 }
 
 .table100-head {
@@ -219,6 +217,10 @@ th, td {
 .table100-body {
   max-height: 585px;
   overflow: auto;
+  overflow-x: hidden;
+  scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
+    scrollbar-width: none;
+  
 }
 
 
@@ -228,15 +230,16 @@ th, td {
 .table100.ver1 th {
   font-size: 18px;
   color: #fff;
+  text-align: center;
   line-height: 1.4;
-text-align: center;
+
   background-color: #6930C3;
 }
 
 .table100.ver1 td {
   font-size: 15px;
-  color: #808080;
   text-align: center;
+  color: #808080;
   line-height: 1.4;
 }
 
@@ -267,5 +270,3 @@ text-align: center;
 .table100.ver1 .ps__rail-y .ps__thumb-y::before {
   background-color: #cccccc;
 }
-
-
