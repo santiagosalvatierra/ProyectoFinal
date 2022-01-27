@@ -100,6 +100,7 @@ public class ViajeServicio {
             Viaje viaje = respuesta.get();
             viaje.setAlta(false);
             repositorioViaje.save(viaje);
+            comprobanteServicio.eliminarComprobantes(id);
         } else {
             throw new ErroresServicio("No se encontro el viaje solicitado");
         }

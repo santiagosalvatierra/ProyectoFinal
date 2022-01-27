@@ -120,5 +120,18 @@ public class ComprobanteServicio {
         }
         
     }
-    
+    //Metodo para borrar comprobantes
+    @Transactional
+    public void eliminarComprobantes(String idViaje)throws ErroresServicio{
+        Optional<Comprobante> comprobantes = repositorioComprobante.buscarComprobanteporIdViaje(idViaje);
+       
+        if (comprobantes.isPresent()) {
+            Comprobante comprobante = comprobantes.get();
+            repositorioComprobante.delete(comprobante);
+            
+            
+        }else {
+        throw new ErroresServicio("El comprobante no se pudo comprar");
+         }
+    }
 }
