@@ -49,7 +49,7 @@ nav .logo {
 nav .nav__items {
     padding: 1.3rem;
     display: flex;    
-    font-size: 11pt;
+    font-size: 12pt;
     font-style: italic;
     font-weight: 500;
     display: inline-block;
@@ -107,25 +107,6 @@ nav .nav__items a:hover {
   justify-content: center;
   margin-bottom: 1rem;
 }
-#boton2{
-    background:#3CE2D1;
-    font-weight: 500;
-    margin-top:20px;
-    color:#18524c;
-  border-color: #3CE2D1;
-  text-transform: capitalize;
-  padding-top: 10px;
-
-    
-}
-
-
-#boton2:hover {
-  color: #64ded3;
-  background: #FCFCFC;
-  border-width: 0.2rem;
-  border-color: #64ded3;
-}
 
 .btn-primary {
   color: #fcfcfc;
@@ -140,14 +121,21 @@ nav .nav__items a:hover {
   overflow: hidden;
   cursor: pointer;
 }
-.card {
-    min-height: 570px;
-}
+
 .btn-primary:hover {
   color: #6930C3;
   background: #FCFCFC;
   border-width: 0.2rem;
   border-color: #6930C3;
+}
+
+
+.index {
+  background-image: linear-gradient(to bottom, #7430e2, #451592);
+  font-size: 19px;
+  font-weight: 400;
+  width: 18.5rem;
+  height: 3.5rem;
 }
 
 /* MODALS */
@@ -159,6 +147,7 @@ nav .nav__items a:hover {
 
 .modal-content {
   margin: 0 auto;
+  overflow:hidden; /* Caracteristica que sirve para que el contenido no se desborde. Lo oculta*/
 }
 
 .modal-content .btn-close {
@@ -180,6 +169,15 @@ nav .nav__items a:hover {
   text-align: center;
   font-weight: 700;
   font-size: 2rem;
+}
+
+/* Título modal recuperar contraseña */
+.modal-title-h3 {
+  color: #31175a;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.7rem;
 }
 
 #ing {
@@ -238,10 +236,7 @@ form .btn-primary {
   overflow-y:auto; /* Scroll automatico si se achica pantalla */
 
 }
-#imagen2{
-    border-radius: 5px;
-    height: 50%;
-}
+
 .right {
   width: 55%;
   background-image: url(../img/modal\ tipousuario.png);
@@ -294,4 +289,79 @@ form .btn-primary {
   width: 1300px;
 }
 
+/* ////////////////////////////////////////////////////////////////////////*/
 
+/* Noticias destacadas */
+
+
+.cards-notices {
+  margin: 6rem auto;
+  margin-bottom: 10rem;
+}
+
+.notice-title h2 {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 35px;
+  color: #3CE2D1;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.card-body {
+  max-height: 570px;
+  overflow: hidden;
+}
+
+.box {
+  width: 325px;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-bottom: 1.5rem;
+}
+
+.card-img-top{
+  width: 500px;
+  height: inherit;
+}
+
+.box-title{
+  margin-left: 2px;
+  text-align: left;
+  font-size: 22px;
+  font-weight: 600;
+  color:#797979;
+  text-transform: none;
+}
+
+.box-text {
+  margin-left: 3px;
+  font-size: 15px;
+  text-transform: none;
+  text-align: left;
+  font-weight: 500;
+  color:#959595;
+}
+
+#boton2{
+  display: flex;
+  justify-content: center;
+  text-transform: none;
+  padding-top: 10px;
+  font-weight: 500;
+  margin: 25px auto;
+  color:#041d1a;
+  background:#3CE2D1;
+  border-color: #3CE2D1;
+  width: 10rem
+}
+
+#boton2:hover {
+color: #3CE2D1;
+padding-top: 10px;
+background: #FCFCFC;
+border-width: 0.2rem;
+border-color: #3CE2D1;
+}

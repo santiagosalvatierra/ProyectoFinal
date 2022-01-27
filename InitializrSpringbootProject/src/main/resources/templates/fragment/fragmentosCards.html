@@ -1,6 +1,6 @@
 <!-- CARDS Index Empresa -->
 <section th:fragment="truckCards" style="margin: 0rem 8rem 2rem; padding: 0rem 4rem 2rem 4rem;">
-   
+
   <!-- TARJETA 1 SECUNDARIA
   Deberian conectarse todos los datos con la base de datos según usuario-->
   <div class="row mx-5" style="margin:3rem 3rem 3rem 3rem;">
@@ -8,106 +8,92 @@
     <div class="container">
       <div class="card-group mt-3">
 
-      <div th:each="transportista,stat:${transportistas}">
-    <div class="col mx-3">
-      <div class="card" style="width: 13rem;">
-          <div class="container-fluid" id="main-content">
-        <div class="container">
-            <div class="row">
-                <div class="col-2" th:if="${transportista.valoracion!=0}" th:each="i: ${#numbers.sequence( transportista.valoracion, 1)}">
-            <i class="fas fa-star"></i>
+        <div th:each="transportista,stat:${transportistas}">
+          <div class="col mx-3">
+            <div class="card" style="width: 13rem;">
+              <div class="container-fluid" id="main-content">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-2" th:if="${transportista.valoracion!=0}"
+                      th:each="i: ${#numbers.sequence( transportista.valoracion, 1)}">
+                      <i class="fas fa-star"></i>
+                    </div>
                   </div>
-            </div>
-        </div>
-    </div>
-          
-          
-        
-          <img id="imagen"
-              th:if="${transportista.foto == null}"
-            src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
-            class="card-img-top" alt="Foto perfil Transportista">
-          <img id="imagen"
-              th:if="${transportista.foto != null}"
-            th:src="${'/foto/usuario-imagen/'+transportista.id}"
-            class="card-img-top" alt="Foto perfil Transportista">
-        <!--<img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto perfil Transportista">-->
-        <div class="card-body">
-          <h5 class="card-title" th:text="${transportista.apellido}">Nombre Apellido</h5>
-          <p class="card-text" th:text="${transportista.zona}">Zona</p>
-          <p class="card-text" th:text="${transportista.camion}">Marca/Modelo/Año</p>
-          <!--<p class="card-text">Carga máxima en kg</p>-->
-          <form th:action="@{/comprobante/seleccionar}+'?id_proveedor='+${session.usuariosession.id}+'&id_transportista='+${transportista.id}+'&id_viaje='+${id_viaje}" method="post">
-              <button class="btn btn-primary btn-sm">Ver Mas</button>
-          </form>
-         </div> 
-        </div>
-      </div>
-    </div>      
-</div>
-    </div>
-  </div>  
-</div> 
+                </div>
+              </div>
 
-         
+
+
+              <img id="imagen" th:if="${transportista.foto == null}"
+                src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
+                class="card-img-top" alt="Foto perfil Transportista">
+              <img id="imagen" th:if="${transportista.foto != null}"
+                th:src="${'/foto/usuario-imagen/'+transportista.id}" class="card-img-top"
+                alt="Foto perfil Transportista">
+              <!--<img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto perfil Transportista">-->
+              <div class="card-body">
+                <h5 class="card-title" th:text="${transportista.apellido}">Nombre Apellido</h5>
+                <p class="card-text" th:text="${transportista.zona}">Zona</p>
+                <p class="card-text" th:text="${transportista.camion}">Marca/Modelo/Año</p>
+                <!--<p class="card-text">Carga máxima en kg</p>-->
+                <form
+                  th:action="@{/comprobante/seleccionar}+'?id_proveedor='+${session.usuariosession.id}+'&id_transportista='+${transportista.id}+'&id_viaje='+${id_viaje}"
+                  method="post">
+                  <button class="btn btn-primary btn-sm">Ver Mas</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+ 
 
 
   <!-- SECCIÓN NOTICIAS INDEX -->
 </section>
 <section th:fragment="newCards" style="margin: 0rem 8rem 2rem; padding: 0rem 4rem 2rem 4rem;">
-  <br>
-  <br>
-  <div class="text-subtitle">
-    <p style="font-size:  20px">Noticias Destacadas</p>
+
+  <div class="notice-title">
+    <h2>Noticias Destacadas</h2>
   </div>
   <br>
   <div class="row">
     <div class="col-sm-4">
       <div class="card text-left">
         <div class="card-body">
-          <img id="imagen2"
+          <div class="box"><img 
             src="https://phantom-marca.unidadeditorial.es/c96531b374e9634d02eecaf6f7048e1c/resize/1320/f/jpg/assets/multimedia/imagenes/2020/12/23/16087422153115.jpg"
-            class="card-img-top" alt="Foto perfil Transportista">
-          <br>
-          <br>
-
-          <h5 class="card-title" style="font-size:  15px">Titulo noticia</h5>
-          <p class="card-text" style="font-size:  10px">With supporting text below as a natural lead-in to additional
-            content.</p>
-          <a href="http://www.camionesybuses.com.ar/" id="boton2" class="btn btn-primary">Saber mas</a>
+            class="card-img-top" alt="Imagen de la noticia"></div>
+          <h5 class="box-title">Esto es una noticia</h5>
+          <p class="box-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque iusto aliquam, illum necessitatibus, facilis ad quaerat maiores ex doloremque voluptatibus...</p>
+          <a href="http://www.camionesybuses.com.ar/" id="boton2" class="btn btn-primary">Leer más</a>
         </div>
       </div>
     </div>
+    
     <div class="col-sm-4">
       <div class="card text-left">
         <div class="card-body">
-          <img id="imagen2"
+          <div class="box"><img
             src="https://static.eldiario.es/clip/754db661-d1de-42f4-b47c-16766c885f48_16-9-discover-aspect-ratio_default_1025265.jpg"
-            class="card-img-top" alt="Foto perfil Transportista">
-          <br>
-          <br>
-          <h5 class="card-title" style="font-size:  15px">Titulo noticia</h5>
-          <p class="card-text" style="font-size:  10px">With supporting text below as a natural lead-in to additional
-            content.</p>
-          <a href="http://www.camionesybuses.com.ar/" id="boton2" class="btn btn-primary">Saber mas</a>
+            class="card-img-top" alt="Imagen de la noticia"></div>
+          <h5 class="box-title">Esto es una noticia</h5>
+          <p class="box-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque iusto aliquam, illum necessitatibus, facilis ad quaerat maiores ex doloremque voluptatibus...</p>
+            <a href="http://www.camionesybuses.com.ar/" id="boton2" class="btn btn-primary">Leer más</a>
         </div>
       </div>
     </div>
+   
     <div class="col-sm-4">
       <div class="card text-left">
         <div class="card-body">
-          <img id="imagen2"
-            src="https://viapais.com.ar/resizer/pI9wZMJY9ZguMyOr1GDdQUCDG_0=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/PYMY6JJBORGZ7HOM74O4WVWGQU.png"
-            class="card-img-top" alt="Foto perfil Transportista">
-          <br>
-          <br>
-          <h5 class="card-title" style="font-size:  15px">Titulo noticia</h5>
-          <p class="card-text" style="font-size:  10px">With supporting text below as a natural lead-in to additional
-            content.</p>
-          <a href="http://www.camionesybuses.com.ar/" id="boton2" class="btn btn-primary">Saber mas</a>
+          <div class="box"><img
+            src="https://viapais.com.ar/resizer/pI9wZMJY9ZguMyOr1GDdQUCDG_0=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/PYMY6JJBORGZ7HOM74O4WVWGQU.png" class="card-img-top" alt="Imagen de la noticia"></div>
+          <h5 class="box-title">Esto es una noticia</h5>
+          <p class="box-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque iusto aliquam, illum necessitatibus, facilis ad quaerat maiores ex doloremque voluptatibus...</p>
+            <a href="http://www.camionesybuses.com.ar/" id="boton2" class="btn btn-primary">Leer más</a>
         </div>
       </div>
     </div>
