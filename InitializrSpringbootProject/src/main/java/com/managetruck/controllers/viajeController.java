@@ -55,12 +55,12 @@ public class viajeController {
                 return "redirect:/login";
             }
         try {
-            System.out.println("el id del viaje cuando se crea es= "+idViaje);
+            
             if (idViaje.isEmpty()) {
-                System.out.println("Se crea un viaje");
+                
               viajeServicio.crearViaje(idProveedor, peso, kmRecorridos, tipoCargas, destino, origen);  
             }else{
-                System.out.println("Se modifica un viaje");
+               
                 viajeServicio.ModificarViaje(idViaje, peso, kmRecorridos, tipoCargas, destino, origen);
             }
             
@@ -71,8 +71,7 @@ public class viajeController {
     }
 
     @GetMapping("/modificar-viaje")
-    public String modificarViaje(@RequestParam(required = true) String id_viaje,ModelMap modelo) {
-        System.out.println(id_viaje);
+    public String modificarViaje(@RequestParam(required = true) String id_viaje,ModelMap modelo) {        
         try {
             List<Provincias> provincias = provinciaServicio.listarProvinciasTotales();
             Viaje viaje = viajeServicio.buscarViajeId(id_viaje);
@@ -136,8 +135,7 @@ public class viajeController {
     }
     @GetMapping("/aplicar")
     public String aplicar(ModelMap model, @RequestParam(required = true)String id_transportista,@RequestParam(required = false) String error, @RequestParam(required = true)String id_viaje){
-        System.out.println("este es el id trasnportista="+id_transportista);
-        System.out.println("este el id comprobante="+id_viaje);
+       
         try {
             viajeServicio.aplicar(id_transportista, id_viaje);
                   
@@ -153,7 +151,7 @@ public class viajeController {
     @GetMapping("/listar-viajes")
     public String listarviajes(@RequestParam (required=true)String id,ModelMap modelo){
         try {
-            System.out.println("id proveedor" +id);
+            
             List<Viaje> viajes = viajeServicio.viajesCreadosProveedor(id);
             modelo.put("viajes",viajes);
             return "ListadoCargas";
@@ -169,7 +167,7 @@ public class viajeController {
         try {
             Viaje viaje=viajeServicio.buscarViajeId(id_viaje);
             List<Transportista> postulantes = viaje.getListadoTransportista();
-            System.out.println(postulantes);
+          
             modelo.put("id_viaje", id_viaje);
             modelo.put("transportistas", postulantes); 
             return "TransportistasPostulados";
