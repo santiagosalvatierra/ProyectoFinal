@@ -66,6 +66,11 @@ public class ComprobanteController {
             
             transportista = transportistaServicio.buscarID(login.getId());
             List<Comprobante> comprobantes = transportista.getComprobante();
+            for (Comprobante comprobante : comprobantes) {
+                if (comprobante.getValoracion()==null) {
+                    comprobante.setValoracion(0);
+                }
+            }
             modelo.put("comprobantes", comprobantes);
             
         } catch (ErroresServicio ex) {

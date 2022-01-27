@@ -1,13 +1,8 @@
 
 
-
-
-@font-face {
-  font-family: Lato-Bold;
-  src: url('../fonts/Lato/Lato-Bold.ttf'); 
-}
-
 /*//////////////////////////////////////////////////////////////////
+
+
 [ RESTYLE TAG ]*/
 * {
 	margin: 0px; 
@@ -39,20 +34,13 @@ a:hover {
 
 /* ------------------------------------ */
 
-
-p {margin: 10px;}
+p {margin: 0px;}
 
 ul, li {
 	margin: 0px;
 	list-style-type: none;
 }
-.topheader-title{
-  color: black;
-  font-size: 2rem;
-  font-style: normal;
-  font-weight: 800;
-  text-align: center;
-}
+
 
 /* ------------------------------------ */
 input {
@@ -141,6 +129,8 @@ iframe {
 
 .container-table100 {
   width: 100%;
+  min-height: 100vh;
+
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -172,8 +162,8 @@ th, td {
 }
 
 .column1 {
-  width: 5%;
-  padding-left: 10px;
+  width: 33%;
+  padding-left: 40px;
 }
 
 .column2 {
@@ -219,6 +209,7 @@ th, td {
 .table100-body {
   max-height: 585px;
   overflow: auto;
+  overflow-x: hidden;
 }
 
 
@@ -228,15 +219,16 @@ th, td {
 .table100.ver1 th {
   font-size: 18px;
   color: #fff;
+  text-align: center;
   line-height: 1.4;
-text-align: center;
+
   background-color: #6930C3;
 }
 
 .table100.ver1 td {
   font-size: 15px;
-  color: #808080;
   text-align: center;
+  color: #808080;
   line-height: 1.4;
 }
 
@@ -267,5 +259,3 @@ text-align: center;
 .table100.ver1 .ps__rail-y .ps__thumb-y::before {
   background-color: #cccccc;
 }
-
-

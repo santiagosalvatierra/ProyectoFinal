@@ -43,7 +43,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
-	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <title>Empresa</title>
 </head>
@@ -78,7 +78,7 @@
                                 <tr class="row100 body" th:each="comprobante,iterator:${comprobantes}">
                                     <td class="cell100 column2"  >
                                         <div class="row">
-                                            <div class="col">
+                                            <div class="col-3" style="margin-left:15px;">
                                         <img 
               th:if="${comprobante.proveedor.foto == null}"
             src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
@@ -88,9 +88,9 @@
             th:src="${'/foto/usuario-imagen/'+comprobante.proveedor.id}"
             width="52" height="52" class="rounded-circle" alt="Foto perfil Proveedor" >
               </div>
-                                            
+                                            <div class="col-2">
                                         <p th:text="${comprobante.proveedor.nombreEmpresa}"></p>
-                                           
+                                            </div>
                                             </div>
                                     </td>
                                         <td class="cell100 column2" >
@@ -101,11 +101,11 @@
                                         <td class="cell100 column2" th:text="${comprobante.viaje.tipoCargas}"></td>
                                         <td class="cell100 column2" >
                                             <div class="row">
-                                               <div class="col-4"th:if="${comprobante.valoracion!=null}" th:each="i: ${#numbers.sequence( comprobante.valoracion, 1)}">
+                                               <div class="col"th:if="${comprobante.valoracion!=0}" th:each="i: ${#numbers.sequence( comprobante.valoracion, 1)}">
                                                  <i class="fas fa-star"></i>
                                                </div>
-                                             <div class="col-4" th:if="${comprobante.valoracion==null}" >
-                                                <p>Esperando valoracion</p>
+                                             <div class="col-4" th:if="${comprobante.valoracion==0}" >
+                                                <p style="margin-left:100%;">Esperando valoracion</p>
                                              </div>                            
                                              </div>
                                         </td>
@@ -114,6 +114,7 @@
                                 
                         </tbody>
             </table>
+            
         </div>
 </div>
 
@@ -123,7 +124,27 @@
 </div>
 </div>
 </div>
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
 
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+			
+		
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
 
 <!--====
 <!--===============================================================================================-->
@@ -138,10 +159,7 @@
     <section th:replace="fragment/fragmentosCards :: truckCards"></section>
     
     <!-- NO FUNCIONA /NO SE VE. REAJUSTAR-->
-    <div class="contenidoOculto" style="padding-bottom: 6rem; align-content: center;">
-        <a href="#" class="btn btn-primary btn-sm">Ver más</a>
-       
-    </div>
+    
 
     <footer th:replace="fragment/fragmentos :: footer"></footer>
 
