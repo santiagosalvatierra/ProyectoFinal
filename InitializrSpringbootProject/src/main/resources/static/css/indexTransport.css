@@ -27,6 +27,10 @@ body{
     cursor: pointer;
   }
   
+ul, li {
+	margin: 5px;
+	list-style-type: none;
+}
   .btn-primary:hover {
     color: #6930C3;
     background: #FCFCFC;

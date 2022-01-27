@@ -18,8 +18,14 @@ width: 200px;
     margin-bottom: 1rem;
   }
   
+ul, li {
+	margin: 5px;
+	list-style-type: none;
+}
+  
   .btn-primary {
     color: #fcfcfc;
+     padding-top: 50px;
     background: #6930C3;
     font-weight: 400;
     padding: 0.5rem;
