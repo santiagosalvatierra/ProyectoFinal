@@ -59,11 +59,11 @@ rel="stylesheet">
     <thead>
         <tr class="row100 head">
             
-                <th class="cell100 column2" scope="col">Recorrido</th>
-                <th class="cell100 column2" scope="col">Tipo de carga</th>
-                <th class="cell100 column2" scope="col">Transportista</th>
-                <th class="cell100 column2" scope="col">Acciones</th>
-                <th class="cell100 column2" scope="col">Estado</th>
+                <th class="cell100 column2" style="padding-left: 3%">Recorrido</th>
+                <th class="cell100 column2" style="padding-left: 5%" >Tipo de carga</th>
+                <th class="cell100 column2" style="padding-left: 5%">Transportista</th>
+                <th class="cell100 column2" style="padding-left: 4%">Acciones</th>
+                <th class="cell100 column2" style="padding-left: -4px">Estado</th>
             </tr>
     </thead>
 
@@ -74,21 +74,21 @@ rel="stylesheet">
         <div class="table100-body js-pscroll">
                 <table>
                         <tbody>
-        <tr class="row100 body" scope="row" th:each="viaje,iterator:${viajes}">
-            <td class="cell100 column2" scope="col">
+        <tr class="row100 body"  th:each="viaje,iterator:${viajes}">
+            <td class="cell100 column2" >
                 <p th:text="${viaje.origen}"></p>
                 <p th:text="${viaje.destino}"></p>
             </td>
-            <td class="cell100 column2" scope="col" th:text="${viaje.tipoCargas}"></td>
+            <td class="cell100 column2"  th:text="${viaje.tipoCargas}"></td>
             <!--<td th:if="${viaje.transportistaAplicado != null}" th:text="${viaje.transportistaAplicado}"</td>-->
-            <td class="cell100 column2" scope="col">  
+            <td class="cell100 column2" >  
                 <!--<button th:if="${viaje.transportistaAplicado != null}" th:text="${viaje.transportistaAplicado}">Eliminar viaje</button>--> 
                 <img th:if="${viaje.transportistaAplicado != null}" th:src="@{'/foto/viaje-transportista/'+${viaje.ID}}" alt="mdo" width="52" height="52" class="rounded-circle">
                     <a th:if="${viaje.transportistaAplicado != null}" class="btn btn-success" th:href="@{'/viaje/perfil-aplicado'+'?id_viaje='+${viaje.ID}}">Ver perfil</a>
                     <a th:if="${!#lists.isEmpty(viaje.listadoTransportista) && {viaje.transportistaAplicado == null}}" class="btn btn-primary" th:href="@{'/viaje/listar-postulantes'+'?id_viaje='+${viaje.ID}}">Aplicados</a>
                     <a th:if="${#lists.isEmpty(viaje.listadoTransportista)}" class="btn btn-info" th:href="@{'/viaje/listar-postulantes'+'?id_viaje='+${viaje.ID}}">Contactar</a>
             </td>
-            <td class="cell100 column2" id="botones" scope="col">
+            <td class="cell100 column2" id="botones" >
                                 <div class="row">
                                 <a th:if="${#strings.toString(viaje.estado)== 'ELEGIR'}"  class="btn btn-warning" th:href="@{'/viaje/perfil-aplicado'+'?id_viaje='+${viaje.ID}}">Modificar</a>
                                 </div>
@@ -100,7 +100,7 @@ rel="stylesheet">
                                 </div>
                                 </td>
             <!--<td> <img width='80' height='80' src='img/".$mostrar['imagen'] ?></td>-->
-            <td class="cell100 column2" scope="col"> <!--th:text="${viaje.estado}"-->        
+            <td class="cell100 column2" style="padding-left: 4%"> <!--th:text="${viaje.estado}"-->        
                 <img th:if="${#strings.toString(viaje.estado)== 'ELEGIR'}" src="https://icones.pro/wp-content/uploads/2021/06/icone-chargement-orange.png" alt="mdo" width="48" height="48" class="rounded-circle">
                     <img th:if="${#strings.toString(viaje.estado)== 'FINALIZADA'}" src="https://c8.alamy.com/compes/rpk7w2/las-marcas-de-verificacion-tick-verde-icono-dentro-del-circulo-ilustracion-vectorial-rpk7w2.jpg" alt="mdo" width="52" height="52" class="rounded-circle">
                         <img th:if="${#strings.toString(viaje.estado)== 'VIAJANDO'}" src="https://www.pngmart.com/files/16/Tick-Green-Check-Mark-PNG-Clipart.png" alt="mdo" width="52" height="52" class="rounded-circle">

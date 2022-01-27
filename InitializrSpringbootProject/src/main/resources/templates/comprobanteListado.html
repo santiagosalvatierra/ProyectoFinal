@@ -66,7 +66,7 @@
                                         <th class="cell100 column2">Recorrido</th>
                                         <th class="cell100 column2">KM Total</th>
                                         <th class="cell100 column2">Tipo de Carga</th>
-                                        <th class="cell100 column2">Valoracion</th>
+                                        <th class="cell100 column2" >Valoracion</th>
                                 </tr>
                         </thead>
                 </table>
@@ -99,15 +99,19 @@
                                         </td>
                                         <td class="cell100 column2"th:text="${comprobante.viaje.kmRecorridos}"></td>
                                         <td class="cell100 column2" th:text="${comprobante.viaje.tipoCargas}"></td>
-                                        <td class="cell100 column2" >
+                                        <td class="cell100 column2" style="padding-left: 3%;">
                                             <div class="row">
-                                               <div class="col"th:if="${comprobante.valoracion!=0}" th:each="i: ${#numbers.sequence( comprobante.valoracion, 1)}">
-                                                 <i class="fas fa-star"></i>
-                                               </div>
-                                             <div class="col-4" th:if="${comprobante.valoracion==0}" >
-                                                <p style="margin-left:100%;">Esperando valoracion</p>
-                                             </div>                            
-                                             </div>
+                    <div class="col-2" th:if="${comprobante.valoracion!=0}"
+                      th:each="i: ${#numbers.sequence( comprobante.valoracion, 1)}">
+                      <i class="estrella fas fa-star"></i>
+                    </div>
+                      <div class="col-2" th:if="${comprobante.valoracion<5}"
+                      th:each="i: ${#numbers.sequence( comprobante.valoracion, 4)}">
+                      <i class="estrella2 far fa-star"></i>
+                    </div>
+                    
+                  </div>
+                                           
                                         </td>
                                 </tr> 
 
