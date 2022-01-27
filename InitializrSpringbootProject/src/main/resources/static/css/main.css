@@ -34,7 +34,7 @@ a:hover {
 
 /* ------------------------------------ */
 
-p {margin: 0px;}
+p {margin: 10px;}
 
 ul, li {
 	margin: 0px;
@@ -126,7 +126,10 @@ iframe {
   width: 1366px;
   margin: 0 auto;
 }
-
+.central{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 .container-table100 {
   width: 100%;
   min-height: 100vh;
@@ -141,7 +144,10 @@ iframe {
   flex-wrap: wrap;
   padding: 33px 30px;
 }
-
+#botones{
+    width:7%;
+    margin-left: 35%;
+}
 .wrap-table100 {
   width: 1170px;
 }
