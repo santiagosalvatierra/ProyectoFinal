@@ -72,12 +72,12 @@ public class UsuarioServicio implements UserDetailsService {
     public void modificarContrasena(String id, String claveNueva, String claveNueva1, String claveVieja) throws ErroresServicio {
         Usuario usuario = buscarUsuarioId(id);
         if (usuario != null) {
-            System.out.println("entro al if de combiar contraseña");
+            
             verificarPassword(claveVieja, usuario);
             if (!claveNueva.isEmpty()) {
                 if (claveNueva.equals(claveNueva1)) {
                     String encriptada = new BCryptPasswordEncoder().encode(claveNueva);
-                    System.out.println("llego hasta final para setearla");
+                  
                     usuario.setPassword(encriptada);
                 } else {
                     throw new ErroresServicio("Las nuevas contraseñas no son iguales");
