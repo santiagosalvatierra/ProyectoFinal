@@ -21,7 +21,7 @@
     <!-- LOGUITO EN PESTAÑA -->
     <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
-    <title>Empresa</title>
+    <title>Perfil empresario</title>
 </head>
 
 <body>
@@ -30,54 +30,53 @@
     <main>
         <div class="container contenedor">
 
-            <div class="p-5 text-center">
-                <img th:if="${perfil.foto != null}" class="img-fluid rounded-circle"
-                    th:src="${'/foto/usuario-imagen/' + perfil.id}" width="400" height="400" alt="" />
-                <img th:if="${perfil.foto == null}" class="img-fluid rounded-circle" src="../img/Foto sin foto.jpg"
-                    width="400" height="400" alt="" />
+            <div class="container-img">
+                <img th:if="${perfil.foto != null}" class="perfil-img" th:src="${'/foto/usuario-imagen/' + perfil.id}"
+                    alt="" />
+                <img th:if="${perfil.foto == null}" class="perfil-img" src="../img/Foto sin foto.jpg" alt="" />
             </div>
 
-            <form th:action="@{/proveedor/modificar-proveedor}" method="POST" enctype="multipart/form-data"
+            <form class="form" th:action="@{/proveedor/modificar-proveedor}" method="POST" enctype="multipart/form-data"
                 th:object="${perfil}">
                 <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
                 <input type="hidden" name="id" th:value="${perfil.id}" />
-                
 
-                <div class="col-md-4">
-                    <label for="nombreEmpresa" class="visually-hidden"> Nombre</label>
-                    <input class="form-control form-control-lg" type="text" id="nombreEmpresa" name="nombreEmpresa"
+                <div class="usuario">
+                    <div>
+                        <input type="text" class="form-control user" id="nombre" name="nombre"
+                            th:value="${perfil.nombre}" />
+                    </div>
+                    <div>
+                        <input type="text" class="form-control user" id="apellido" name="apellido"
+                            th:value="${perfil.apellido}" />
+                    </div>
+                </div>
+
+                <div class="empresa-in">
+                    <input class="form-control" type="text" id="nombreEmpresa" name="nombreEmpresa"
                         th:value="${perfil.nombreEmpresa}" />
                 </div>
-                <p>Empresa</p>
+
                 <div class="row g-2">
                     <div class="col-md-6">
                         <label for="provincia" class="form-label">Zona</label>
                         <select name="zona" id="zona" class="form-select" required>
                             <option th:selected disable th:value="${perfil.zona}" th:text="${perfil.zona}"></option>
                             <option option th:each="provincia:${provincias}" th:value="${provincia}"
-                                th:text="${provincia.provincia}" ></option>
+                                th:text="${provincia.provincia}"></option>
                         </select>
                     </div>
                     <div class="col-md-6">
                         <label for="rubro" class="form-label">Rubro</label>
                         <select name="rubro" id="zona" class="form-select" required>
                             <!--<option th:selected disable th:value="${rubro}" th:text="${rubro}"></option>-->
-                            <option option th:each="rubro:${rubros}" th:value="${rubro}"
-                                th:text="${rubro}" th:selected="${perfil.rubro != null && rubro == perfil.rubro}"></option>
+                            <option option th:each="rubro:${rubros}" th:value="${rubro}" th:text="${rubro}"
+                                th:selected="${perfil.rubro != null && rubro == perfil.rubro}"></option>
                         </select>
                     </div>
                 </div>
                 <br>
-                 <div class="row g-2">
-                    <div class="col-md-6">
-                        <label for="nombre"> Nombre</label>
-                        <input type="text" class="form-control form-control-lg"id="nombre" name="nombre" th:value="${perfil.nombre}" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="apellido"> Apellido</label>
-                        <input type="text" class="form-control form-control-lg"id="apellido" name="apellido" th:value="${perfil.apellido}" />
-                    </div>
-                </div>
+
                 <div class="row g-2">
                     <div class="col-md-6">
                         <label for="mail"> Correo Electronico</label>
@@ -121,7 +120,7 @@
                 <div class="col-sm-9">
                     <!--<input type="password" readonly class="form-control-plaintext" id="clave1"
                                th:value="${perfil.password}">-->
-                    
+
                     <!--ACA EMPIEZA EL MODAL CAMBIO CLAVE-->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
@@ -175,15 +174,14 @@
                 </div>
             </div>
         </div>
-
-
     </main>
-    <div>
+
+    <div style="margin-bottom: 7rem;">
         <div class="buttom-mod-container">
-            <a class="btn btn-primary" href="" role="button">REGISTRO DE VIAJES</a>
+            <a class="btn btn-primary" href="" role="button">Registro de viajes</a>
         </div>
         <div class="buttom-mod-container">
-            <a class="btn btn-primary" href="" role="button">NUEVA CARGA</a>
+            <a class="btn btn-primary" href="" role="button">Nuevo viaje</a>
         </div>
     </div>
 
