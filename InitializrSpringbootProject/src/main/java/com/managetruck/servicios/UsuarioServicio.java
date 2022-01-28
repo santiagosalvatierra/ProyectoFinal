@@ -14,6 +14,7 @@ import com.managetruck.repositorios.RepositorioUsuario;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -126,13 +127,18 @@ public class UsuarioServicio implements UserDetailsService {
 
     //metodo para crear una contraseña aleatroria
     public String regenerar() {
-        String claveRegenerada = "";
-        for (int i = 0; i < 10; i++) {
-            int aleatorio = (int) Math.random() * 57 + 65;
-            char letra = (char) aleatorio;
-            claveRegenerada = claveRegenerada + letra;
-        }
-        return claveRegenerada;
+    String randomStrings=null ;
+    Random random = new Random(); 
+    for(int i = 0; i < 1; i++) 
+    { 
+     char[] word = new char[random.nextInt(8)+3]; // words of length 3 through 10. (1 and 2 letter words are boring.) 
+     for(int j = 0; j < word.length; j++) 
+     { 
+      word[j] = (char)('a' + random.nextInt(26)); 
+     } 
+     randomStrings = new String(word); 
+    } 
+    return randomStrings;
     }
 
     //metodo para retornar si es proveedor o trasnportista

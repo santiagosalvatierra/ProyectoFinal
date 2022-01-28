@@ -96,8 +96,10 @@ public class MainController {
                 comprobantes = comprobanteServicio.comprobantesAbiertos();
                 if (!comprobantes.isEmpty()) {
                     model.put("comprobantes", comprobantes);
-                }
-                
+                } else{
+                      model.put("error", "no se encuentra ningun viaje al que se pueda aplicar");
+                }                    
+               
                 return "indexTransportista";
             } catch (ErroresServicio ex) {
                 Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);

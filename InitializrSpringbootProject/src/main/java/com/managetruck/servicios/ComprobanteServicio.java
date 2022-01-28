@@ -112,13 +112,24 @@ public class ComprobanteServicio {
     public List<Comprobante> comprobantesAbiertos()throws ErroresServicio{
         
         List<Comprobante> comprobantes = repositorioComprobante.buscarComprobanteporAbiertos(new Viaje().getEstado().ELEGIR);
-        if (comprobantes.isEmpty()) {
-            throw new ErroresServicio("no hay ningun comprobante abierto para mostrar");
-        }else{
+        
            
             return comprobantes;
-        }
+        
         
     }
-    
+    //Metodo para borrar comprobantes
+    @Transactional
+    public void eliminarComprobantes(String idViaje)throws ErroresServicio{
+        Optional<Comprobante> comprobantes = repositorioComprobante.buscarComprobanteporIdViaje(idViaje);
+       
+        if (comprobantes.isPresent()) {
+            Comprobante comprobante = comprobantes.get();
+            repositorioComprobante.delete(comprobante);
+            
+            
+        }else {
+        throw new ErroresServicio("El comprobante no se pudo comprar");
+         }
+    }
 }
