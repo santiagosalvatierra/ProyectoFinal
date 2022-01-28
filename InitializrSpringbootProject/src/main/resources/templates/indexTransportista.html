@@ -49,8 +49,10 @@
  
     <div class="container">   
     <div class="card-group mt-3">
-
-      <div th:each="comprobantes,stat:${comprobantes}">
+        <div th:if="${comprobantes == null}">
+            <h3 class="textTitle" style="color:red"> No hay ninguna empresa que te busque </h3>
+        </div>
+      <div th:if="${comprobantes != null}" th:each="comprobantes,stat:${comprobantes}">
     <div class="col mx-3">
       <div class="card" style="width: 13rem;">
                     
