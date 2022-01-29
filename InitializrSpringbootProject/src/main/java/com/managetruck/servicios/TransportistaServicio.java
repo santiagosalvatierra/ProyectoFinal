@@ -283,7 +283,7 @@ public class TransportistaServicio {
     }
     
     //metoso para listar a los trasportistas que se encuentran disponible
-    public List listarTrasportista(){
+    public List listarTrasportistaLibres(){
         List<Transportista> libres=repositorioTransportista.buscarTransportistaLibres();
         return libres;
     }
