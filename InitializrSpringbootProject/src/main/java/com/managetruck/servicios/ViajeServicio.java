@@ -91,7 +91,7 @@ public class ViajeServicio {
             throw new ErroresServicio("Debe ingresar un origen");
         }
     }
-
+//metodo para eliminar el viaje y el comprobante que se crero porque se dio de baja
     @Transactional
     public void BajaViaje(String id) throws ErroresServicio {
         Optional<Viaje> respuesta = repositorioViaje.findById(id);
@@ -101,6 +101,19 @@ public class ViajeServicio {
             viaje.setAlta(false);
             repositorioViaje.save(viaje);
             comprobanteServicio.eliminarComprobantes(id);
+        } else {
+            throw new ErroresServicio("No se encontro el viaje solicitado");
+        }
+    }
+    //metodo apra dar de baja al viaje para no mostrarlo mas 
+    @Transactional
+    public void BajaViaje2(String id) throws ErroresServicio {
+        Optional<Viaje> respuesta = repositorioViaje.findById(id);
+
+        if (respuesta.isPresent()) {
+            Viaje viaje = respuesta.get();
+            viaje.setAlta(false);
+            repositorioViaje.save(viaje);
         } else {
             throw new ErroresServicio("No se encontro el viaje solicitado");
         }
@@ -198,5 +211,20 @@ public class ViajeServicio {
            throw new ErroresServicio("No se encontro ningun viaje con ese ID");
         }  
     }
+    
+    //metodo para cambiar el estado del viaje
+    @Transactional
+    public void cambioEstado(String id_viaje)throws ErroresServicio{
+        Optional<Viaje> respuesta = repositorioViaje.findById(id_viaje);
+
+        if (respuesta.isPresent()) {
+            Viaje viaje = respuesta.get();
+            viaje.setEstado(EstadoEnum.FINALIZADA);
+            repositorioViaje.save(viaje);
+        } else {
+            throw new ErroresServicio("No se encontro el viaje solicitado");
+        }
+    }
+    
 
 }

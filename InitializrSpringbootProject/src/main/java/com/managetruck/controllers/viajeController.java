@@ -102,15 +102,16 @@ public class viajeController {
     }
 
     @PostMapping("/finalizar")
-    public String finalizarViaje(HttpSession session,@RequestParam String id, @RequestParam Integer valoracion) {
+    public String finalizarViaje(HttpSession session,@RequestParam(required = true) String id) {
         try {
             Comprobante comprobante = comprobanteServicio.buscarComprobanteIdViaje(id);
             Usuario login = (Usuario) session.getAttribute("usuariosession");
             if (login == null || !login.getId().equals(comprobante.getProveedor().getId())) {
                 return "redirect:/login";
             }
-            viajeServicio.BajaViaje(id);
-            comprobanteServicio.ValorarTrasnportista(comprobante.getID(), valoracion);
+            viajeServicio.cambioEstado(id);
+            //viajeServicio.BajaViaje2(id);
+            //comprobanteServicio.ValorarTrasnportista(comprobante.getID(), valoracion);
         } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
         }
