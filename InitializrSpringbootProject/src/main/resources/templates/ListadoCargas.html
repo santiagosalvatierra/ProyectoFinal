@@ -99,7 +99,7 @@ rel="stylesheet">
                                 <a th:if="${#strings.toString(viaje.estado)== 'FINALIZADA'}"  class="btn btn-light" th:href="@{'/viaje/perfil-aplicado'+'?id_viaje='+${viaje.ID}}">Valorar</a>
                                 </div>
                                 <div class="row">
-                                <a th:if="${#strings.toString(viaje.estado)== 'VIAJANDO'}"  class="btn btn-dark" th:href="@{'/viaje/perfil-aplicado'+'?id_viaje='+${viaje.ID}}">Finalizar</a>
+                                <a th:if="${#strings.toString(viaje.estado)== 'VIAJANDO'}"  class="btn btn-dark" th:href="@{'/viaje/finalizar'+'?id_viaje='+${viaje.ID}}">Finalizar</a>
                                 </div>
                                 </td>
             <!--<td> <img width='80' height='80' src='img/".$mostrar['imagen'] ?></td>-->

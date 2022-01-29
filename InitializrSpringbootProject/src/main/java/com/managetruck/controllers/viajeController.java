@@ -101,21 +101,26 @@ public class viajeController {
         return null;
     }
 
-    @PostMapping("/finalizar")
-    public String finalizarViaje(HttpSession session,@RequestParam(required = true) String id) {
+    @GetMapping("/finalizar")
+    public String finalizarViaje(HttpSession session,@RequestParam(required = true) String id_viaje,ModelMap modelo) {
+        System.out.println(id_viaje);
         try {
-            Comprobante comprobante = comprobanteServicio.buscarComprobanteIdViaje(id);
+            Comprobante comprobante = comprobanteServicio.buscarComprobanteIdViaje(id_viaje);
             Usuario login = (Usuario) session.getAttribute("usuariosession");
             if (login == null || !login.getId().equals(comprobante.getProveedor().getId())) {
                 return "redirect:/login";
             }
-            viajeServicio.cambioEstado(id);
+            viajeServicio.cambioEstado(id_viaje);
             //viajeServicio.BajaViaje2(id);
             //comprobanteServicio.ValorarTrasnportista(comprobante.getID(), valoracion);
+            List<Viaje> viajes = viajeServicio.viajesCreadosProveedor(comprobante.getProveedor().getId());
+            modelo.put("viajes",viajes);
+            return "ListadoCargas";
         } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
+            return "redirect:/inicio";
         }
-        return "redirect:/valorar";
+        
     }
     
     @GetMapping("/valorar")
@@ -154,6 +159,7 @@ public class viajeController {
         try {
             
             List<Viaje> viajes = viajeServicio.viajesCreadosProveedor(id);
+            System.out.println(viajes);
             modelo.put("viajes",viajes);
             return "ListadoCargas";
         } catch (ErroresServicio ex) {
