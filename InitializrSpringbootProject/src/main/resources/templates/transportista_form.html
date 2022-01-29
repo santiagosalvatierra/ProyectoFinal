@@ -148,7 +148,8 @@
                 <div class="container flex">
                     <div class="buttom-mod-container">
                         <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" id="checkReg" onclick="pregunta()">Confirmar registro</button><br>
+                            data-bs-target="#exampleModal" id="checkReg" onclick="pregunta()">Confirmar
+                            registro</button><br>
                         <!-- Se cliquea boton confirmar -> validar información,
                         se recarga la página -> SE ACTIVA MODAL SI SE PERSISTIÓ -->
 
@@ -167,16 +168,15 @@
                                             Ingresa a tu email y verifica la cuenta
                                             para poder loguearte en nuestra web.</p>
 
-                                        <a th:href="@{/}"><button type="reset"
-                                                class="btn btn-primary sec-ok">Aceptar</button></a>
+                                        <a th:href="@{/}"><input class="btn btn-primary sec-ok" type="button"
+                                                value="Aceptar"></input></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <a th:href="@{/}"><button type="reset" class="btn btn-primary close">
-                            X
-                        </button></a>
+                        <a th:href="@{/}"><input class="btn btn-primary close" type="button" value="X">
+                            </input></a>
                     </div>
                 </div>
             </div>
@@ -195,9 +195,9 @@
     <!-- JQUERY para hacer validar formulario y a partir de eso: modal exito -->
     <script>
         $("#checkReg").pregunta(function (parametroBooleanSpring) {
-            if (parametroBooleanSpring == true) 
+            if (parametroBooleanSpring == true)
                 $("#exampleModal").modal("show");
-            });
+        });
     </script>
 </body>
 

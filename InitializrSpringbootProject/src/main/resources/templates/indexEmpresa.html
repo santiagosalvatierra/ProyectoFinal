@@ -41,6 +41,7 @@
     <h3 class="textTitle"> Transportistas destacados por valoración y zona </h3>
     <!-- ESTO SE CONECTARIA CON LA BASE DE DATOS EN FUNCIÓN DE LOS MÁS CERCANOS A LA ZONA DE LA EMPRESA
     Y LA VALORACIÓN QUE TENGAN -->
+<p th:if="${error != null}" th:text="${error}" style="color:red"></p>
 
     <main class="favs-conteiner">
        
@@ -51,7 +52,7 @@
     <div class="container">   
     <div class="card-group mt-3">
 
-      <div th:each="transportista,stat:${transportistas2}">
+      <div th:if="${transportistas2!=null}" th:each="transportista,stat:${transportistas2}">
     <div class="col mx-3">
       <div class="card" style="width: 13rem;">
         <div class="container-fluid" id="main-content">

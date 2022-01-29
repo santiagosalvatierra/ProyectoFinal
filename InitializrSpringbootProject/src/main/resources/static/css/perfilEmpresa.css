@@ -1,10 +1,81 @@
 body{
-    background: linear-gradient(180deg, #6930C3 0%, rgba(230,230,230,1) 35%, rgba(252,252,252,1) 100%);
-    background-color: #fcfcfc;
+    /* background: linear-gradient(180deg, #6930C3 0%, rgba(230,230,230,1) 35%, rgba(252,252,252,1) 100%);
+    */ background-color: #fcfcfc;
     font-family: 'Raleway', sans-serif;
     min-height: 100vh;
   }
   
+main {
+  margin: 4rem auto;
+}
+
+.container-img {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-bottom: 1.5rem;
+}
+
+.perfil-img {
+  max-width: 700px;
+}
+
+.form {
+  margin: 0 auto;
+  background-image: url("../img/Filtro\ violeta.png");
+  border-radius: 15px;
+  width: 70%;
+  padding: 30px;
+}
+
+input {
+  height: 50px;
+}
+
+.usuario {
+  display:flex;
+  justify-content: center;
+  position: relative;
+  margin: 0 auto;
+  padding: 1rem;
+  max-width: 400px ;
+}
+
+.usuario div {
+  margin: 0 5px;
+}
+
+.user {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  color: #31175a;
+}
+
+.empresa-in {
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  max-width: 320px;
+}
+
+.empresa-in input {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  color: #31175a;
+}
+
+
+
+
+
+
+  /* //////////////////////////////////////////////////////////////////// */
   /* BUTTONS */
   .buttom-mod-container {
     position: relative;
