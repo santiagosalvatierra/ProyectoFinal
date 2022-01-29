@@ -1,11 +1,36 @@
+body {
+  background-color: #fcfcfc;
+  font-family: "Raleway", sans-serif;
+  min-height: 100vh;
+}
 
-body{
-    background-color: #fcfcfc;
-    font-family: 'Raleway', sans-serif;
-    min-height: 100vh;
-  }
+.topheader {
+  height: 100px;
+  background-color: #6930c3;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
 
-  /* BUTTONS */
+/* BARRA NAV-HEADER */
+.nav-container {
+  width: 100%;
+}
+
+
+
+nav .logo {
+  padding: 1rem;
+  width: 30%;
+  margin-right: 6rem;
+  margin-bottom: 8px;
+}
+
+.buscar{
+  width: 500px;
+}
+
+/* BUTTONS */
 .buttom-mod-container {
     position: relative;
     background-color: none;
@@ -124,9 +149,9 @@ input[type=checkbox].toggle{
   }
 
 .contenidoOculto {
-    margin-bottom: 4rem;
-    padding-bottom: 4rem;
-    padding-left: 38rem;
+  margin-bottom: 4rem;
+  padding-bottom: 4rem;
+  padding-left: 38rem;
 }
 
 /* ALINEACIÓN DE CONTENIDO: Icono + Info 
@@ -137,41 +162,39 @@ input[type=checkbox].toggle{
 #weight2 {float: right;}*/
 
 .card-body {
-    display:flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-title {
-    font-size: 1rem;
-    font-weight: 700;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .card-text {
-    font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 
 .textTitle {
-    margin-top: 3rem;
-    text-align: center;
+  margin-top: 3rem;
+  text-align: center;
 }
 
 .textTitle {
-     font-weight: 400;
-     font-size: 2.5rem;
-     margin-top: 3rem;
-     text-align: center;
+  font-weight: 400;
+  font-size: 2.5rem;
+  margin-top: 3rem;
+  text-align: center;
 }
- 
+
 .bodyText {
-    padding: 4rem 8rem 2rem 8rem;
-    text-align: center;
-    font-size:1rem;
+  padding: 4rem 8rem 2rem 8rem;
+  text-align: center;
+  font-size: 1rem;
 }
 
-
- /* PROPIEDAD PARA DESTACAR INFO CUANDO SELECCIONAS CON EL CURSOR */
- ::selection {
-    color:white;
-    background-color: #032144f6;
- }
- 
+/* PROPIEDAD PARA DESTACAR INFO CUANDO SELECCIONAS CON EL CURSOR */
+::selection {
+  color: white;
+  background-color: #032144f6;
+}
