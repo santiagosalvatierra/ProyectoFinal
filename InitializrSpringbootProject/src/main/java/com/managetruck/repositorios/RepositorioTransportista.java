@@ -27,7 +27,7 @@ public interface RepositorioTransportista extends JpaRepository<Transportista, S
     @Query("SELECT c FROM Transportista c WHERE c.zona = :zona ORDER BY c.valoracion DESC")
     public List <Transportista> buscarTransportistaPorZona(@Param("zona")String zona);
     
-    //query para traer a los trasnportista que no hayan aceptado un viaje o lo hayan contratado
+    //query para traer a los trasnportista que no hayan aceptado un viaje o no lo hayan contratado
     @Query("SELECT c FROM Transportista c WHERE c.viajando = false")
-    public List <Transportista> buscarTransportistaporViajando();
+    public List <Transportista> buscarTransportistaLibres();
 }

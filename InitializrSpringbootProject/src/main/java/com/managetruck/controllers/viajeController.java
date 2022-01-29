@@ -174,7 +174,10 @@ public class viajeController {
         try {
             Viaje viaje=viajeServicio.buscarViajeId(id_viaje);
             List<Transportista> postulantes = viaje.getListadoTransportista();
-          
+            for (Transportista postulante : postulantes) {
+                System.out.println("el boolean de viajando es= "+ postulante.isViajando());
+            }
+            
             modelo.put("id_viaje", id_viaje);
             modelo.put("transportistas", postulantes); 
             return "TransportistasPostulados";

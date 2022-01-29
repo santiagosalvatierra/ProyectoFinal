@@ -271,16 +271,21 @@ public class TransportistaServicio {
     public void enViaje(String id_trasnportista) throws ErroresServicio {
         Transportista transportista = buscarID(id_trasnportista);
         if (transportista.isViajando()) {
-            transportista.setViajando(true);
-
-        } else {
             transportista.setViajando(false);
+        } else {
+            transportista.setViajando(true);
         }
     }
 
     public List listarTransportista() {
         List<Transportista> listado = repositorioTransportista.findAll();
         return listado;
+    }
+    
+    //metoso para listar a los trasportistas que se encuentran disponible
+    public List listarTrasportista(){
+        List<Transportista> libres=repositorioTransportista.buscarTransportistaLibres();
+        return libres;
     }
 //    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
 //        Optional<Usuario> usuario = repositorioUsuario.buscarPorMail(mail);

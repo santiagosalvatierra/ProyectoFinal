@@ -221,6 +221,7 @@ public class ViajeServicio {
             Viaje viaje = respuesta.get();
             viaje.setEstado(EstadoEnum.FINALIZADA);
             repositorioViaje.save(viaje);
+            transportistaServicio.enViaje(viaje.getTransportistaAplicado().getId());
         } else {
             throw new ErroresServicio("No se encontro el viaje solicitado");
         }
