@@ -42,11 +42,11 @@
                 <input type="hidden" name="id" th:value="${perfil.id}" />
 
                 <div class="usuario">
-                    <div>
+                    <div class="us-2">
                         <input type="text" class="form-control user" id="nombre" name="nombre"
                             th:value="${perfil.nombre}" />
                     </div>
-                    <div>
+                    <div class="us-2">
                         <input type="text" class="form-control user" id="apellido" name="apellido"
                             th:value="${perfil.apellido}" />
                     </div>
@@ -57,63 +57,58 @@
                         th:value="${perfil.nombreEmpresa}" />
                 </div>
 
-                <div class="row g-2">
-                    <div class="col-md-6">
-                        <label for="provincia" class="form-label">Zona</label>
-                        <select name="zona" id="zona" class="form-select" required>
-                            <option th:selected disable th:value="${perfil.zona}" th:text="${perfil.zona}"></option>
-                            <option option th:each="provincia:${provincias}" th:value="${provincia}"
-                                th:text="${provincia.provincia}"></option>
-                        </select>
+                <div class="datos-user">
+                    <div class="row g-2">
+                        <div class="col-md-6">
+                            <select name="zona" id="zona" class="form-select" required>
+                                <option th:selected disable th:value="${perfil.zona}" th:text="${perfil.zona}"></option>
+                                <option option th:each="provincia:${provincias}" th:value="${provincia}"
+                                    th:text="${provincia.provincia}"></option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <select name="rubro" id="zona" class="form-select" required>
+                                <!--<option th:selected disable th:value="${rubro}" th:text="${rubro}"></option>-->
+                                <option option th:each="rubro:${rubros}" th:value="${rubro}" th:text="${rubro}"
+                                    th:selected="${perfil.rubro != null && rubro == perfil.rubro}"></option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <label for="rubro" class="form-label">Rubro</label>
-                        <select name="rubro" id="zona" class="form-select" required>
-                            <!--<option th:selected disable th:value="${rubro}" th:text="${rubro}"></option>-->
-                            <option option th:each="rubro:${rubros}" th:value="${rubro}" th:text="${rubro}"
-                                th:selected="${perfil.rubro != null && rubro == perfil.rubro}"></option>
-                        </select>
-                    </div>
-                </div>
-                <br>
+                    <br>
 
-                <div class="row g-2">
-                    <div class="col-md-6">
-                        <label for="mail"> Correo Electronico</label>
-                        <input type="email" class="form-control form-control-lg" id="mail" name="mail"
-                            th:value="${perfil.mail}" />
+                    <div class="row g-2">
+                        <div class="col-md-6">
+                            <input type="email" class="form-control form-control-lg" id="mail" name="mail"
+                                th:value="${perfil.mail}" />
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control form-control-lg" id="razonSocial" name="razonSocial"
+                                th:value="${perfil.razonSocial}" />
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <label for="razonSocial"> Razón Social</label>
-                        <input type="text" class="form-control form-control-lg" id="razonSocial" name="razonSocial"
-                            th:value="${perfil.razonSocial}" />
-                    </div>
-                </div>
-                <br>
-                <div class="row g-2">
-                    <div class="col-md-6">
-                        <label for="telefono"> Telefono</label>
-                        <input type="text" class="form-control form-control-lg" id="telefono" name="telefono"
-                            th:value="${perfil.telefono}" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="cuilEmpresa"> CUIT</label>
-                        <input type="text" class="form-control form-control-lg" id="cuilEmpresa" name="cuilEmpresa"
-                            th:value="${perfil.cuilEmpresa}" />
+                    <br>
+                    <div class="row g-2">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control form-control-lg" id="telefono" name="telefono"
+                                th:value="${perfil.telefono}" />
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control form-control-lg" id="cuilEmpresa" name="cuilEmpresa"
+                                th:value="${perfil.cuilEmpresa}" />
+                        </div>
                     </div>
                 </div>
-                <br>
-                <div class="row g-2">
-                    <div class="col-md-6">
-                        <label for="Archivo">Cambiar foto de Perfil</label>
-                        <input type="file" class="form-control form-control-lg" id="archivo" name="archivo" />
-                    </div>
-                </div>
-                <br>
+
+
                 <div class="buttom-mod-container">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    <div class="upload-btn-wrapper">
+                        <button class="boton-standar-rw">Foto de perfil</button>
+                        <input class="upload-file-buton" type="file">
+                    </div>
+
+                    <button type="button" class="btn btn-primary center" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">Cambiar Contraseña</button>
-                    <button class="btn btn-primary">Guardar</button>
+                    <button class="btn btn-primary">Guardar cambios</button>
                 </div>
             </form>
             <div class="row">
@@ -176,7 +171,7 @@
         </div>
     </main>
 
-    <div style="margin-bottom: 7rem;">
+    <div style="margin: 4rem 0 7rem 0;">
         <div class="buttom-mod-container">
             <a class="btn btn-primary" href="" role="button">Registro de viajes</a>
         </div>
@@ -191,6 +186,18 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
         </script>
     <script src="animacion.js"></script>
+
+    <script type="application/javascript">
+        jQuery('input[type=file]').change(function () {
+            var filename = jQuery(this).val().split('\\').pop();
+            var idname = jQuery(this).attr('id');
+            console.log(jQuery(this));
+            console.log(filename);
+            console.log(idname);
+            jQuery('span.' + idname).next().find('span').html(filename);
+        });
+    </script>
+
 </body>
 
 </html>
