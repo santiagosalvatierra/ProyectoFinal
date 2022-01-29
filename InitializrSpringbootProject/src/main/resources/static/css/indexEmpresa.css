@@ -4,12 +4,6 @@ body {
   min-height: 100vh;
 }
 
-#imagen {
-  height: 150px;
-  object-fit: cover;
-  width: 100%;
-}
-
 .topheader {
   height: 100px;
   background-color: #6930c3;
@@ -21,6 +15,23 @@ body {
 /* BARRA NAV-HEADER */
 .nav-container {
   width: 100%;
+  margin: 0 auto;
+}
+
+nav {
+  align-items: center;
+  justify-content: center;
+}
+
+nav .logo {
+    padding: 1rem;
+    width: 45%;
+    margin-right: 6rem;
+    margin-bottom: 8px;
+}
+
+.buscar{
+  width: 500px;
 }
 
 /* BUTTONS */
@@ -30,26 +41,6 @@ body {
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
-}
-
-.estrella {
-  color: #e49a00;
-  border: 1px;
-  border-color: black;
-}
-
-.estrella2 {
-  color: #e49a00;
-}
-
-ul,
-li {
-  margin: 5px;
-  list-style-type: none;
-}
-
-p {
-  margin-bottom: 2px;
 }
 
 .btn-primary {
@@ -73,57 +64,24 @@ p {
   border-color: #6930c3;
 }
 
-/* FONDO CARDS DESTACADAS */
-.favs-conteiner {
-  margin: 4rem 8rem 8rem;
-  padding: 4rem 4rem 4rem 4rem;
-  background-color: #e2ebee;
+.estrella {
+  color: #e49a00;
+  border: 1px;
+  border-color: black;
 }
 
-.contenidoOculto {
-  margin-bottom: 4rem;
-  padding-botton: 4rem;
-  align-items: center;
+.estrella2 {
+  color: #e49a00;
 }
 
-nav {
-  align-items: center;
+ul,
+li {
+  margin: 5px;
+  list-style-type: none;
 }
 
-nav .logo {
-  padding: 1rem;
-  width: 45%;
-  margin-right: 6rem;
-  margin-bottom: 8px;
-}
-
-/* BUTTONS */
-.buttom-mod-container {
-  position: relative;
-  background-color: none;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.btn-primary {
-  color: #fcfcfc;
-  background: #6930c3;
-  font-weight: 400;
-  padding: 0.5rem;
-  width: 11rem;
-  box-shadow: 0px 4px 4px rgba(31, 31, 31, 0.25);
-  border-radius: 10px;
-  border-color: #6930c3;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.btn-primary:hover {
-  color: #6930c3;
-  background: #fcfcfc;
-  border-width: 0.2rem;
-  border-color: #6930c3;
+p {
+  margin-bottom: 2px;
 }
 
 /* FONDO CARDS DESTACADAS */
@@ -131,6 +89,12 @@ nav .logo {
   margin: 4rem 8rem 8rem;
   padding: 4rem 4rem 4rem 4rem;
   background-color: #e2ebee;
+}
+
+#imagen {
+  height: 150px;
+  object-fit: cover;
+  width: 100%;
 }
 
 .contenidoOculto {
@@ -140,11 +104,11 @@ nav .logo {
 }
 
 /* ALINEACIÓN DE CONTENIDO: Icono + Info 
-   #truck {float:left;}
-   #truck2 {float: right;}
-   
-   #weight {float:left;}
-   #weight2 {float: right;}*/
+ #truck {float:left;}
+ #truck2 {float: right;}
+ 
+ #weight {float:left;}
+ #weight2 {float: right;}*/
 
 .card-body {
   display: flex;
@@ -188,6 +152,7 @@ nav .logo {
 .clasificacion label:hover ~ label {
   color: #f9d71c;
 }
+
 .input[type="radio"]:checked ~ label {
   color: #f9d71c;
 }
