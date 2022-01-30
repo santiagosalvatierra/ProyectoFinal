@@ -25,160 +25,145 @@
 </head>
 
 <body>
-    <header th:replace="fragment/fragmentos :: headerLoginEmp"></header>
+    <div class="body-plus">
+        <header th:replace="fragment/fragmentos :: headerLoginEmp"></header>
 
-    <main>
-        <div class="container contenedor">
+        <main>
+            <div class="container contenedor">
 
-            <div class="container-img">
-                <img th:if="${perfil.foto != null}" class="perfil-img" th:src="${'/foto/usuario-imagen/' + perfil.id}"
-                    alt="" />
-                <img th:if="${perfil.foto == null}" class="perfil-img" src="../img/Foto sin foto.jpg" alt="" />
-            </div>
-
-            <form class="form" th:action="@{/proveedor/modificar-proveedor}" method="POST" enctype="multipart/form-data"
-                th:object="${perfil}">
-                <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
-                <input type="hidden" name="id" th:value="${perfil.id}" />
-
-                <div class="usuario">
-                    <div class="us-2">
-                        <input type="text" class="form-control user" id="nombre" name="nombre"
-                            th:value="${perfil.nombre}" />
-                    </div>
-                    <div class="us-2">
-                        <input type="text" class="form-control user" id="apellido" name="apellido"
-                            th:value="${perfil.apellido}" />
-                    </div>
+                <div class="container-img">
+                    <img th:if="${perfil.foto != null}" class="perfil-img"
+                        th:src="${'/foto/usuario-imagen/' + perfil.id}" alt="" />
+                    <img th:if="${perfil.foto == null}" class="perfil-img" src="../img/Foto sin foto.jpg" alt="" />
                 </div>
 
-                <div class="empresa-in">
-                    <input class="form-control" type="text" id="nombreEmpresa" name="nombreEmpresa"
-                        th:value="${perfil.nombreEmpresa}" />
-                </div>
+                <form class="form" th:action="@{/proveedor/modificar-proveedor}" method="POST"
+                    enctype="multipart/form-data" th:object="${perfil}">
+                    <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
+                    <input type="hidden" name="id" th:value="${perfil.id}" />
 
-                <div class="datos-user">
-                    <div class="row g-2">
-                        <div class="col-md-6">
-                            <select name="zona" id="zona" class="form-select" required>
-                                <option th:selected disable th:value="${perfil.zona}" th:text="${perfil.zona}"></option>
-                                <option option th:each="provincia:${provincias}" th:value="${provincia}"
-                                    th:text="${provincia.provincia}"></option>
-                            </select>
+                    <div class="usuario">
+                        <div class="us-2">
+                            <input type="text" class="form-control user" id="nombre" name="nombre"
+                                th:value="${perfil.nombre}" />
                         </div>
-                        <div class="col-md-6">
-                            <select name="rubro" id="zona" class="form-select" required>
-                                <!--<option th:selected disable th:value="${rubro}" th:text="${rubro}"></option>-->
-                                <option option th:each="rubro:${rubros}" th:value="${rubro}" th:text="${rubro}"
-                                    th:selected="${perfil.rubro != null && rubro == perfil.rubro}"></option>
-                            </select>
+                        <div class="us-2">
+                            <input type="text" class="form-control user" id="apellido" name="apellido"
+                                th:value="${perfil.apellido}" />
                         </div>
                     </div>
-                    <br>
 
-                    <div class="row g-2">
-                        <div class="col-md-6">
-                            <input type="email" class="form-control form-control-lg" id="mail" name="mail"
-                                th:value="${perfil.mail}" />
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control form-control-lg" id="razonSocial" name="razonSocial"
-                                th:value="${perfil.razonSocial}" />
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row g-2">
-                        <div class="col-md-6">
-                            <input type="text" class="form-control form-control-lg" id="telefono" name="telefono"
-                                th:value="${perfil.telefono}" />
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control form-control-lg" id="cuilEmpresa" name="cuilEmpresa"
-                                th:value="${perfil.cuilEmpresa}" />
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="buttom-mod-container">
-                    <div class="upload-btn-wrapper">
-                        <button class="boton-standar-rw">Foto de perfil</button>
-                        <input class="upload-file-buton" type="file">
+                    <div class="empresa-in">
+                        <input class="form-control" type="text" id="nombreEmpresa" name="nombreEmpresa"
+                            th:value="${perfil.nombreEmpresa}" />
                     </div>
 
-                    <button type="button" class="btn btn-primary center" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">Cambiar Contraseña</button>
-                    <button class="btn btn-primary">Guardar cambios</button>
-                </div>
-            </form>
-            <div class="row">
-                <div class="col-sm-9">
-                    <!--<input type="password" readonly class="form-control-plaintext" id="clave1"
-                               th:value="${perfil.password}">-->
+                    <div class="datos-user">
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <select name="zona" id="zona" class="form-select" required>
+                                    <option th:selected disable th:value="${perfil.zona}" th:text="${perfil.zona}">
+                                    </option>
+                                    <option option th:each="provincia:${provincias}" th:value="${provincia}"
+                                        th:text="${provincia.provincia}"></option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <select name="rubro" id="zona" class="form-select" required>
+                                    <!--<option th:selected disable th:value="${rubro}" th:text="${rubro}"></option>-->
+                                    <option option th:each="rubro:${rubros}" th:value="${rubro}" th:text="${rubro}"
+                                        th:selected="${perfil.rubro != null && rubro == perfil.rubro}"></option>
+                                </select>
+                            </div>
+                        </div>
 
-                    <!--ACA EMPIEZA EL MODAL CAMBIO CLAVE-->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title text-center" id="exampleModalLabel">ACTUALIZA TU
-                                        CONTRASEÑA</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <input type="email" class="form-control form-control-lg" id="mail" name="mail"
+                                    th:value="${perfil.mail}" />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control form-control-lg" id="razonSocial"
+                                    name="razonSocial" th:value="${perfil.razonSocial}" />
+                            </div>
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control form-control-lg" id="telefono" name="telefono"
+                                    th:value="${perfil.telefono}" />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control form-control-lg" id="cuilEmpresa"
+                                    name="cuilEmpresa" th:value="${perfil.cuilEmpresa}" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="buttom-mod-container">
+                        <div class="upload-btn-wrapper">
+                            <label for="file" class="boton-standar-rw">Foto de perfil</label>
+                            <input class="upload-file-buton" type="file">
+                        </div>
+
+                        <button type="button" class="btn btn-primary center" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">Cambiar Contraseña</button>
+                        <button class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
+
+
+                <!-- CAMBIO CONTRASEÑA -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                            <div class="modal-body" id="ing">
+                                <div class="modal-title-h3" id="exampleModalLabel">Cambiar contraseña</div>
+                                <div class="modal-subtitle">
+                                    <p>Ingresa los datos correspondientes</p>
                                 </div>
-                                <div class="modal-body">
-                                    <form class="row g-3"
-                                        th:action="@{'/usuario/cambio-password?id='+${session.usuariosession.id}}"
-                                        method="post">
-                                        <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
-                                        <div class="form-group col-auto">
-                                            <!--<label for="password" class="col-form-label">Clave Actual</label>-->
-                                            <input type="hidden" name="claveVieja" readonly
-                                                class="form-control-plaintext" id="password"
-                                                th:value="${perfil.password}">
-                                        </div>
-                                        <br>
-                                        <div class="form-group col-auto">
-                                            <label for="password">Clave nueva</label>
-                                            <input th:value="${password}" name="claveNueva" type="password"
-                                                class="form-control" id="password" placeholder="Clave Nueva">
-                                            <br>
-                                        </div>
-                                        <div class="form-group col-auto">
-                                            <label for="password2">Confirmar clave</label>
-                                            <input th:value="${password2}" name="claveNueva1" type="password"
-                                                class="form-control" id="password2" placeholder="Repetir clave Nueva">
-                                            <br>
-                                        </div>
-                                        <div>
-                                            <div class="d-grid gap-2 col-6 mx-auto">
-                                                <button type="submit" class="btn btn-primary">Confirmar</button>
-                                            </div>
-                                    </form>
-                                    <br>
-                                    <div class="tdCancel">
-                                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"
-                                            aria-label="Close">Cancelar</button>
+                                <form th:action="@{'/usuario/cambio-password?id='+${session.usuariosession.id}}"
+                                    method="post">
+                                    <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
+                                    <div class="form-group">
+                                        <input type="password" name="claveVieja" readonly class="form-control"
+                                            id="password" th:field="${perfil.password}"
+                                            placeholder="Contraseña anterior">
                                     </div>
-                                </div>
+                                    <div class="form-group">
+                                        <input th:value="${password}" name="claveNueva" type="password"
+                                            class="form-control" id="password" placeholder="Nueva clave">
+                                    </div>
+                                    <div class="form-group">
+                                        <input th:value="${password2}" name="claveNueva1" type="password"
+                                            class="form-control" id="password2" placeholder="Repita la nueva clave">
+                                    </div>
 
+                                    <button type="submit" class="btn btn-primary" id="confirm">Confirmar</button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
-
-    <div style="margin: 4rem 0 7rem 0;">
-        <div class="buttom-mod-container">
-            <a class="btn btn-primary" href="" role="button">Registro de viajes</a>
-        </div>
-        <div class="buttom-mod-container">
-            <a class="btn btn-primary" href="" role="button">Nuevo viaje</a>
-        </div>
+        </main>
     </div>
+
+
+    <div class="btns-container">
+        <div><a class="extra-btns" href="/" role="button">Registro de viajes</a></div>
+        <div><a class="extra-btns" href="/" role="button">Nuevo viaje</a></div>
+
+    </div>
+
+
+
+
 
     <footer th:replace="fragment/fragmentos :: footer" id="footer"></footer>
 
