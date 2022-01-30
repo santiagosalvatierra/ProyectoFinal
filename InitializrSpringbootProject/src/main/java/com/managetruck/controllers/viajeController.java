@@ -174,7 +174,10 @@ public class viajeController {
         try {
             Viaje viaje=viajeServicio.buscarViajeId(id_viaje);
             List<Transportista> postulantes = viaje.getListadoTransportista();
-          
+            for (Transportista postulante : postulantes) {
+                System.out.println("el boolean de viajando es= "+ postulante.isViajando());
+            }
+            
             modelo.put("id_viaje", id_viaje);
             modelo.put("transportistas", postulantes); 
             return "TransportistasPostulados";
@@ -216,6 +219,27 @@ public class viajeController {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
             return "redirect:/inicio";
         }        
+    }
+    @GetMapping("/contactar")
+    public String contactartransportista(ModelMap modelo){
+      
+        try {
+            
+            List<Transportista> postulantes = transportistaServicio.listarTrasportistaLibres();
+            if (postulantes.isEmpty()) {
+                throw new ErroresServicio("No hay ningun transportista libre");
+            }
+            for (Transportista postulante : postulantes) {
+                System.out.println("el boolean de viajando es= "+ postulante.isViajando());
+            }
+            
+            //modelo.put("id_viaje", id_viaje);
+            modelo.put("transportistas", postulantes); 
+            return "TransportistasPostulados";
+        } catch (ErroresServicio ex){
+            Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
+            return "redirect:/inicio";
+        }
     }
     
 }
