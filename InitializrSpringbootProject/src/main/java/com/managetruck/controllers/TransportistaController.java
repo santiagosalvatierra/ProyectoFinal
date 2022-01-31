@@ -156,7 +156,12 @@ public class TransportistaController {
     }
     
     @GetMapping("/perfil-transportista")
-    public String perfilTransportista(String id,ModelMap modelo, Model model){
+    public String perfilTransportista(String id,ModelMap modelo, Model model,HttpSession session){
+        //verificacion de que el usuario que esta modificando sea el mismo que va a modifica
+        Usuario login = (Usuario) session.getAttribute("usuariosession");
+        if (login == null || !login.getId().equals(id)) {
+            return "redirect:/login";
+        }
         try {
             Transportista transportista = transportistaServicio.buscarID(id);
             Camion camion = transportista.getCamion();
@@ -171,6 +176,21 @@ public class TransportistaController {
             Logger.getLogger(TransportistaController.class.getName()).log(Level.SEVERE, null, ex);
             return "redirect:/inicio";
         }
+    }
+    @PostMapping("/comunicar")
+    public String comunicarAccion(@RequestParam(required = true)String id,HttpSession session,String exampleRadios){
+        System.out.println("la opcion elegida es= "+exampleRadios);
+        System.out.println("el aid enviado es= "+ id);
+        System.out.println("la secion es= "+session);
+        //verificacion de que el usuario que esta modificando sea el mismo que va a modifica
+        Usuario login = (Usuario) session.getAttribute("usuariosession");
+        if (login == null || !login.getId().equals(id)) {
+            return "redirect:/login";
+        }
+        System.out.println("paso el comprobar el id");
+        transportistaServicio.comunicarAvance(id,exampleRadios);
+        System.out.println("deberia haber entrado al metodo");
+        return null;
     }
 
 }

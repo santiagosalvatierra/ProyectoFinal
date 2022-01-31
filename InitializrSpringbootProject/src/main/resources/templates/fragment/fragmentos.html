@@ -57,24 +57,27 @@
           </div>
           <div class="m-5">
             <h5>PROCESO DE PEDIDO</h5>
+            <form th:action="@{/transportista/comunicar}+'?id='+${session.usuariosession.id}" method="POST">
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="1">
               <label class="form-check-label" for="exampleRadios1">
                 Carga recogida
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="2">
               <label class="form-check-label" for="exampleRadios2">
                 En camino
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="3">
               <label class="form-check-label" for="exampleRadios3">
                 Carga entregada
               </label>
             </div>
+                <input class="cargaButton" type="submit" th:value="Comunicar">
+            </form>    
           </div>
           <div class="m-5">
             <h5>ESTADO</h5>

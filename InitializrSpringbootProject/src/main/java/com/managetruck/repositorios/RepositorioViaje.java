@@ -7,6 +7,7 @@ package com.managetruck.repositorios;
 
 import com.managetruck.entidades.Viaje;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,6 +18,5 @@ public interface RepositorioViaje extends JpaRepository <Viaje,String>{
     
     @Query("SELECT c FROM Viaje c WHERE c.id = :id")
     public List <Viaje> buscarViajeporId(@Param("id")String id);
-    
     
 }

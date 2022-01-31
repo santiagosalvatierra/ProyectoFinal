@@ -12,6 +12,7 @@ import com.managetruck.entidades.Foto;
 import com.managetruck.entidades.Proveedor;
 import com.managetruck.entidades.Transportista;
 import com.managetruck.entidades.Usuario;
+import com.managetruck.entidades.Viaje;
 import com.managetruck.enumeracion.EstadoEnum;
 import com.managetruck.enumeracion.Role;
 import com.managetruck.errores.ErroresServicio;
@@ -61,6 +62,7 @@ public class TransportistaServicio {
 
     @Autowired
     ComprobanteServicio comprobanteServicio;
+    
 
     @Transactional
     public void crearTransportista(String nombre, String apellido, String mail, String clave1, String clave2, MultipartFile archivo, String zona, String telefono) throws ErroresServicio {
@@ -248,7 +250,7 @@ public class TransportistaServicio {
                     transportista.get().getComprobante().add(comprobante.get());
                     System.out.println(comprobante.get());
                     comprobante.get().getViaje().setTransportistaAplicado(transportista.get());
-
+                    comprobante.get().setValoracion(0);
                     comprobante.get().getViaje().setEstado(EstadoEnum.VIAJANDO);
                     enViaje(transportista.get().getId());
 
@@ -286,6 +288,47 @@ public class TransportistaServicio {
     public List listarTrasportistaLibres(){
         List<Transportista> libres=repositorioTransportista.buscarTransportistaLibres();
         return libres;
+    }
+    //metodo para comunicarle al proveedor sobre como va el viaje
+    public void comunicarAvance(String id_trasnportista, String option){
+        Optional<Transportista> respuesta = repositorioTransportista.findById(id_trasnportista);  
+        if (respuesta.isPresent()) {
+            List <Comprobante> comprobantes = respuesta.get().getComprobante();
+            System.out.println("la lista de comprobantes es");
+            System.out.println(comprobantes);
+            Viaje viaje;
+            Comprobante comprobante1= new Comprobante();
+            for (Comprobante comprobante : comprobantes) {
+                if (comprobante.getValoracion()==0) {
+                    viaje = comprobante.getViaje();
+                    System.out.println("el viaje= "+viaje);
+                    comprobante1 = comprobante;
+                    System.out.println("el comprobante= "+comprobante1);
+                }
+            }
+            switch(option){
+                case "1":
+                    System.out.println("envia correo opcion 1");
+                    //notificacionServicio.enviar("El trasnportista "+respuesta.get().getApellido()+", "+respuesta.get().getNombre()+" a recogido la carga del lugar de origen", "Carga Recogida", comprobante1.getProveedor().getMail());
+                    //enviar una notificacion
+                    break;
+                case "2":
+                    System.out.println("envia correo opcion 2");
+                    //notificacionServicio.enviar("El trasnportista "+respuesta.get().getApellido()+", "+respuesta.get().getNombre()+" va camino a su destino", "En camino", comprobante1.getProveedor().getMail());
+                    //enviar una notificacion
+                    break;
+                case "3":
+                    System.out.println("enviar correo opcion 3");
+                    //notificacionServicio.enviar("El trasnportista "+respuesta.get().getApellido()+", "+respuesta.get().getNombre()+" a entregado la carga, aho", "Carga Entregada", comprobante1.getProveedor().getMail());
+                    //enviar una notificaion
+                    break;
+            }
+            
+        }else{
+            System.out.println("no encontro nada");
+        }
+
+        
     }
 //    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
 //        Optional<Usuario> usuario = repositorioUsuario.buscarPorMail(mail);
