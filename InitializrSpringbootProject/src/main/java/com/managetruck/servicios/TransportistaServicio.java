@@ -62,7 +62,7 @@ public class TransportistaServicio {
 
     @Autowired
     ComprobanteServicio comprobanteServicio;
-    
+   
 
     @Transactional
     public void crearTransportista(String nombre, String apellido, String mail, String clave1, String clave2, MultipartFile archivo, String zona, String telefono) throws ErroresServicio {
@@ -290,23 +290,35 @@ public class TransportistaServicio {
         return libres;
     }
     //metodo para comunicarle al proveedor sobre como va el viaje
-    public void comunicarAvance(String id_trasnportista, String option){
+    public String comunicarAvance(String id_trasnportista, String option)throws ErroresServicio{
         Optional<Transportista> respuesta = repositorioTransportista.findById(id_trasnportista);  
         if (respuesta.isPresent()) {
             List <Comprobante> comprobantes = respuesta.get().getComprobante();
             System.out.println("la lista de comprobantes es");
             System.out.println(comprobantes);
-            Viaje viaje;
-            Comprobante comprobante1= new Comprobante();
-            for (Comprobante comprobante : comprobantes) {
-                if (comprobante.getValoracion()==0) {
-                    viaje = comprobante.getViaje();
-                    System.out.println("el viaje= "+viaje);
-                    comprobante1 = comprobante;
-                    System.out.println("el comprobante= "+comprobante1);
-                }
-            }
-            switch(option){
+            System.out.println(comprobantes.size()+" es el numero de elementos de la lista");
+         
+            Comprobante comprobante1= comprobanteServicio.buscarComprobanteAbierto(comprobantes);
+            Viaje viaje=comprobante1.getViaje();
+//            for (Comprobante comprobante : comprobantes) {
+//                if (comprobante.getValoracion()==0) {
+//                    viaje = comprobante.getViaje();
+//                    System.out.println("el viaje= "+viaje);
+//                    comprobante1 = comprobante;
+//                    System.out.println("el comprobante= "+comprobante1);
+//                }
+//            }
+            opciones(option,viaje);
+            return viaje.getID();
+            
+        }else{
+            throw new ErroresServicio("no se encontro el trasnportista");
+        } 
+    }
+    
+    @Transactional
+    public void opciones(String option,Viaje viaje){
+        switch(option){
                 case "1":
                     System.out.println("envia correo opcion 1");
                     //notificacionServicio.enviar("El trasnportista "+respuesta.get().getApellido()+", "+respuesta.get().getNombre()+" a recogido la carga del lugar de origen", "Carga Recogida", comprobante1.getProveedor().getMail());
@@ -323,12 +335,6 @@ public class TransportistaServicio {
                     //enviar una notificaion
                     break;
             }
-            
-        }else{
-            System.out.println("no encontro nada");
-        }
-
-        
     }
 //    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
 //        Optional<Usuario> usuario = repositorioUsuario.buscarPorMail(mail);

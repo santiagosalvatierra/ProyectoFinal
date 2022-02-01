@@ -132,4 +132,17 @@ public class ComprobanteServicio {
         throw new ErroresServicio("El comprobante no se pudo comprar");
          }
     }
+    public Comprobante buscarComprobanteAbierto(List<Comprobante> comprobantes)throws ErroresServicio{
+        System.out.println("el numero de elementos de la lista es "+comprobantes.size());
+        Comprobante comprobante1 = null;
+        for (Comprobante comprobante : comprobantes) {
+            System.out.println("comprobaante valoracion es = "+comprobante.getValoracion());
+                if (comprobante.getValoracion()==0) {
+                    comprobante1 = comprobante;
+                    System.out.println("el comprobante= "+comprobante1);
+                }
+            }
+        System.out.println("el comprobante1 es= "+comprobante1);
+        return comprobante1;
+    }
 }
