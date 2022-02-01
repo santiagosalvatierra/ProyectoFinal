@@ -226,7 +226,7 @@ public class ViajeServicio {
             throw new ErroresServicio("No se encontro el viaje solicitado");
         }
     }
-    //
+    //metodo para cambia r a finalizado el viaje por parte del trasnportista
     
 
 }

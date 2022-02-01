@@ -11,6 +11,7 @@ import com.managetruck.repositorios.RepositorioTransportista;
 import com.managetruck.servicios.CamionServicio;
 import com.managetruck.servicios.TransportistaServicio;
 import com.managetruck.servicios.UsuarioServicio;
+import com.managetruck.servicios.ViajeServicio;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -44,6 +45,9 @@ public class TransportistaController {
     
     @Autowired
     UsuarioServicio usuarioServicio;
+    
+    @Autowired
+    ViajeServicio viajeServicio;
 
     @PostMapping("/registra")
     public String registroProveedor(ModelMap model, String nombre, String apellido, String mail, String clave1,String clave2, MultipartFile archivo, String provincia, String telefono, Integer pesoMaximo, String descripcion, @RequestParam String modelo, Integer anio, String patente, Integer poliza, List<MultipartFile> archivos) throws ErroresServicio {
@@ -179,19 +183,24 @@ public class TransportistaController {
     }
     @PostMapping("/comunicar")
     public String comunicarAccion(@RequestParam(required = true)String id,HttpSession session,String exampleRadios){
-        System.out.println("la opcion elegida es= "+exampleRadios);
-        System.out.println("el aid enviado es= "+ id);
-        System.out.println("la secion es= "+session);
-        //verificacion de que el usuario que esta modificando sea el mismo que va a modifica
-        Usuario login = (Usuario) session.getAttribute("usuariosession");
-        if (login == null || !login.getId().equals(id)) {
-            return "redirect:/login";
+        try {
+            System.out.println("la opcion elegida es= "+exampleRadios);
+            System.out.println("el aid enviado es= "+ id);
+            System.out.println("la secion es= "+session);
+            //verificacion de que el usuario que esta modificando sea el mismo que va a modifica
+            Usuario login = (Usuario) session.getAttribute("usuariosession");
+            if (login == null || !login.getId().equals(id)) {
+                return "redirect:/login";
+            }
+            System.out.println("paso el comprobar el id");
+            String id_viaje=transportistaServicio.comunicarAvance(id,exampleRadios);
+            System.out.println("deberia haber entrado al metodo");
+            viajeServicio.cambioEstado(id_viaje);
+            return "redirect:/inicio";
+        } catch (ErroresServicio ex) {
+            Logger.getLogger(TransportistaController.class.getName()).log(Level.SEVERE, null, ex);
+            return "redirect:/inicio";
         }
-        System.out.println("paso el comprobar el id");
-        transportistaServicio.comunicarAvance(id,exampleRadios);
-        System.out.println("deberia haber entrado al metodo");
-        
-        return "redirect:/inicio";
     }
 
 }

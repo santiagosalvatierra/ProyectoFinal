@@ -290,29 +290,32 @@ public class TransportistaServicio {
         return libres;
     }
     //metodo para comunicarle al proveedor sobre como va el viaje
-    public void comunicarAvance(String id_trasnportista, String option){
+    public String comunicarAvance(String id_trasnportista, String option)throws ErroresServicio{
         Optional<Transportista> respuesta = repositorioTransportista.findById(id_trasnportista);  
         if (respuesta.isPresent()) {
             List <Comprobante> comprobantes = respuesta.get().getComprobante();
             System.out.println("la lista de comprobantes es");
             System.out.println(comprobantes);
-            Viaje viaje=new Viaje();
-            Comprobante comprobante1= new Comprobante();
-            for (Comprobante comprobante : comprobantes) {
-                if (comprobante.getValoracion()==0) {
-                    viaje = comprobante.getViaje();
-                    System.out.println("el viaje= "+viaje);
-                    comprobante1 = comprobante;
-                    System.out.println("el comprobante= "+comprobante1);
-                }
-            }
+            System.out.println(comprobantes.size()+" es el numero de elementos de la lista");
+         
+            Comprobante comprobante1= comprobanteServicio.buscarComprobanteAbierto(comprobantes);
+            Viaje viaje=comprobante1.getViaje();
+//            for (Comprobante comprobante : comprobantes) {
+//                if (comprobante.getValoracion()==0) {
+//                    viaje = comprobante.getViaje();
+//                    System.out.println("el viaje= "+viaje);
+//                    comprobante1 = comprobante;
+//                    System.out.println("el comprobante= "+comprobante1);
+//                }
+//            }
             opciones(option,viaje);
-            
+            return viaje.getID();
             
         }else{
-            System.out.println("no encontro nada");
+            throw new ErroresServicio("no se encontro el trasnportista");
         } 
     }
+    
     @Transactional
     public void opciones(String option,Viaje viaje){
         switch(option){
@@ -328,7 +331,6 @@ public class TransportistaServicio {
                     break;
                 case "3":
                     System.out.println("enviar correo opcion 3");
-                    viaje.setEstado(EstadoEnum.FINALIZADA);
                     //notificacionServicio.enviar("El trasnportista "+respuesta.get().getApellido()+", "+respuesta.get().getNombre()+" a entregado la carga, aho", "Carga Entregada", comprobante1.getProveedor().getMail());
                     //enviar una notificaion
                     break;
