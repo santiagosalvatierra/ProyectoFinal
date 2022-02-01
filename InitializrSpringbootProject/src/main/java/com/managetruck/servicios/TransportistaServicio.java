@@ -62,7 +62,7 @@ public class TransportistaServicio {
 
     @Autowired
     ComprobanteServicio comprobanteServicio;
-    
+   
 
     @Transactional
     public void crearTransportista(String nombre, String apellido, String mail, String clave1, String clave2, MultipartFile archivo, String zona, String telefono) throws ErroresServicio {
@@ -296,7 +296,7 @@ public class TransportistaServicio {
             List <Comprobante> comprobantes = respuesta.get().getComprobante();
             System.out.println("la lista de comprobantes es");
             System.out.println(comprobantes);
-            Viaje viaje;
+            Viaje viaje=new Viaje();
             Comprobante comprobante1= new Comprobante();
             for (Comprobante comprobante : comprobantes) {
                 if (comprobante.getValoracion()==0) {
@@ -306,7 +306,16 @@ public class TransportistaServicio {
                     System.out.println("el comprobante= "+comprobante1);
                 }
             }
-            switch(option){
+            opciones(option,viaje);
+            
+            
+        }else{
+            System.out.println("no encontro nada");
+        } 
+    }
+    @Transactional
+    public void opciones(String option,Viaje viaje){
+        switch(option){
                 case "1":
                     System.out.println("envia correo opcion 1");
                     //notificacionServicio.enviar("El trasnportista "+respuesta.get().getApellido()+", "+respuesta.get().getNombre()+" a recogido la carga del lugar de origen", "Carga Recogida", comprobante1.getProveedor().getMail());
@@ -319,16 +328,11 @@ public class TransportistaServicio {
                     break;
                 case "3":
                     System.out.println("enviar correo opcion 3");
+                    viaje.setEstado(EstadoEnum.FINALIZADA);
                     //notificacionServicio.enviar("El trasnportista "+respuesta.get().getApellido()+", "+respuesta.get().getNombre()+" a entregado la carga, aho", "Carga Entregada", comprobante1.getProveedor().getMail());
                     //enviar una notificaion
                     break;
             }
-            
-        }else{
-            System.out.println("no encontro nada");
-        }
-
-        
     }
 //    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
 //        Optional<Usuario> usuario = repositorioUsuario.buscarPorMail(mail);

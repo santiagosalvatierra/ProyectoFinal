@@ -190,7 +190,8 @@ public class TransportistaController {
         System.out.println("paso el comprobar el id");
         transportistaServicio.comunicarAvance(id,exampleRadios);
         System.out.println("deberia haber entrado al metodo");
-        return null;
+        
+        return "redirect:/inicio";
     }
 
 }
