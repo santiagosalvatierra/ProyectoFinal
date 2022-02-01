@@ -1,0 +1,93 @@
+
+* ::before ::after {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root { 
+  background-color: #fcfcfc;
+}
+
+body {
+  background-color:#fcfcfc;
+  font-family: 'Raleway', sans-serif;  
+}
+
+
+.cabezal{
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+.header-title {
+  max-width: 80%;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #31175a;
+  margin: 5rem auto 2rem auto;
+}
+
+.form-subtitle {
+  margin: 0 auto;
+  margin-bottom: 7rem;
+  max-width: 80%;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #31175a;
+  line-height: 45px;
+}
+
+.contenido {
+  text-align: center;
+  margin-bottom: 12rem;
+}
+
+table {
+  margin-bottom: 2.3rem;
+}
+
+.cont-img {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width: 330px;
+  height: 330px;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  border: 7px #6930C3;
+  border-style: inset;
+}
+
+.img-dev {
+  max-width: 550px;
+} 
+
+.namer {
+  color: #6930C3;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.proyect-position {
+  color: #31175a;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.b-description {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.description {
+  color: #31175a;
+  font-size: 1rem;
+  font-weight: 400;
+}

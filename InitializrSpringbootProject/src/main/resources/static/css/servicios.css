@@ -1,0 +1,14 @@
+* ::before ::after {
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  :root { 
+    background-color: #fcfcfc;
+  }
+  
+  body {
+    background-color:#fcfcfc;
+    font-family: 'Raleway', sans-serif;  
+  }
+  

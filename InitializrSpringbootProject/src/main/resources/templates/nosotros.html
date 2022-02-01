@@ -2,11 +2,14 @@
 <html lang="ES-ar" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Nosotros</title>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+
+    <link href="/css/nosotrosSty.css" rel="stylesheet" type="text/css" />
+    <link href="../static/css/nosotrosSty" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" th:href="@{/css/Footer.css}">
     <link rel="stylesheet" th:href="@{../static/css/Footer.css}">
     <link rel="stylesheet" th:href="@{/css/NavGeneral.css}">
@@ -22,174 +25,168 @@
     <!-- LOGUITO EN PESTAÑA -->
     <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
-</head>
+
+    <title>Nosotros</title>
 
 <body>
     <header th:insert="fragment/fragmentos :: headerNoLogin" class="Header"></header>
-
+    
     <div class="container">
-        <div class="panel">
-            <h1 class="display-2 text-center mb-3">Quiénes somos</h1>
-        </div>
-        <div class="contenido text-center">
-            <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                In egestas erat imperdiet sed euismod nisi.
-                Consectetur libero id faucibus nisl tincidunt eget nullam non nisi.
-                Ornare quam viverra orci sagittis eu volutpat odio.
-                Viverra maecenas accumsan lacus vel facilisis volutpat est velit.
-                Amet nulla facilisi morbi tempus iaculis.
-                Praesent tristique magna sit amet purus gravida quis blandit turpis.
-                Placerat duis ultricies lacus sed turpis.
-                Curabitur gravida arcu ac tortor dignissim convallis aenean.
-                Semper quis lectus nulla at volutpat diam.
+        <div class="cabezal">
+            <h1 class="header-title">Acerca de nosotros</h1>
+            <p class="form-subtitle">
+                Somos un equipo de jóvenes profesionales, entusiastas y con una gran pasión por la tecnología y el
+                desarrollo de aplicaciones que faciliten la interacción y la comunicación. Iniciamos como full stack
+                developer y nos focalizamos sobre diferentes ramas buscando combinarnos de la mejor manera para
+                llevar a cabo nuestra principal meta: ofrecer una plataforma que conecte a los productores y
+                transportistas a lo largo de todo el país.
+                Nuestro objetivo principal es trabajar para ofrecer a las empresas y a transportistas un espacio los
+                vincule facilitando la comunicación entre ambos para la gestión y traslado de mercadería, materia
+                prima y otros productos relacionados a la industria nacional.
             </p>
-            <div class="row g-2">
-                <div class="col-md-6">
-                    <table>
-                        <thead>
-                            <tr> <img src="../img/Foto sin foto.jpg" /> </tr>
-                            <h3>SANTIAGO SALVATIERRA</h3>
-                            <h4>BackEnd Developer</h4>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    In egestas erat imperdiet sed euismod nisi.
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-6">
-                    <table>
-                        <thead>
-                            <tr> <img src="../img/Foto sin foto.jpg" /> </tr>
-                            <h3>SERGIO REAL</h3>
-                            <h4>BackEnd Developer</h4>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    In egestas erat imperdiet sed euismod nisi.
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        </div>
+    </div>
+
+    <div class="contenido">
+        <div class="row g-2">
+            <div class="col-md-6">
+                <table>
+                    <thead>
+                        <div class="cont-img"><img class="img-dev" src="../img/Foto sin foto.jpg"></div>
+                        <h3 class="namer">SANTIAGO SALVATIERRA</h3>
+                        <h4 class="proyect-position">BackEnd Developer</h4>
+                    </thead>
+                    <div class="b-description">
+                        <p class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                </table>
             </div>
-            <div class="row g-2">
-                <div class="col-md-6">
-                    <table>
-                        <thead>
-                            <tr> <img src="../img/Foto sin foto.jpg" /> </tr>
-                            <h3>AXEL DE ROSA</h3>
-                            <h4>BackEnd Developer</h4>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    In egestas erat imperdiet sed euismod nisi.
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-6">
-                    <table>
-                        <thead>
-                            <tr> <img src="../img/Foto sin foto.jpg" /> </tr>
-                            <h3>EMANUEL ORTIZ</h3>
-                            <h4>BackEnd Developer</h4>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    In egestas erat imperdiet sed euismod nisi.
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="col-md-6">
+                <table>
+                    <thead>
+                        <div class="cont-img"><img class="img-dev" src="../img/Foto sin foto.jpg"></div>
+                        <h3 class="namer">SERGIO REAL</h3>
+                        <h4 class="proyect-position">BackEnd Developer</h4>
+                    </thead>
+                    <div class="b-description">
+                        <p class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                </table>
             </div>
-            <div class="row g-2">
-                <div class="col-md-6">
-                    <table>
-                        <thead>
-                            <tr> <img src="../img/Foto sin foto.jpg" /> </tr>
-                            <h3>AGUSTINA MEYER</h3>
-                            <h4>FrontEnd Developer</h4>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    In egestas erat imperdiet sed euismod nisi.
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-6">
-                    <table>
-                        <thead>
-                            <tr> <img src="../img/Foto sin foto.jpg" /> </tr>
-                            <h3>LUIS BARNABO</h3>
-                            <h4>FrontEnd Developer</h4>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    In egestas erat imperdiet sed euismod nisi.
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        </div>
+
+
+        <div class="row g-2">
+            <div class="col-md-6">
+                <table>
+                    <thead>
+                        <div class="cont-img"><img class="img-dev" src="../img/Foto sin foto.jpg"></div>
+                        <h3 class="namer">AXEL DE ROSA</h3>
+                        <h4 class="proyect-position">BackEnd Developer</h4>
+                    </thead>
+                    <div class="b-description">
+                        <p class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                </table>
             </div>
-            <div class="row g-2 m-auto">
-                <div class="col-md-6">
-                    <table>
-                        <thead>
-                            <tr> <img src="../img/Foto sin foto.jpg" /> </tr>
-                            <h3>FRANCO BULLAUDE</h3>
-                            <h4>FrontEnd Developer</h4>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    In egestas erat imperdiet sed euismod nisi.
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-6">
-                    <table>
-                        <thead>
-                            <tr> <img src="../img/Foto sin foto.jpg" /> </tr>
-                            <h3>FACUNDO PEREZ BOTTI</h3>
-                            <h4>FrontEnd Developer</h4>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    In egestas erat imperdiet sed euismod nisi.
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="col-md-6">
+                <table>
+                    <thead>
+                        <div class="cont-img"><img class="img-dev" src="../img/Foto sin foto.jpg"></div>
+                        <h3 class="namer">EMANUEL ORTIZ</h3>
+                        <h4 class="proyect-position">BackEnd Developer</h4>
+                    </thead>
+                    <div class="b-description">
+                        <p class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="row g-2">
+            <div class="col-md-6">
+                <table>
+                    <thead>
+                        <div class="cont-img"><img class="img-dev" src="../img/Foto sin foto.jpg"></div>
+                        <h3 class="namer">AGUSTINA MEYER</h3>
+                        <h4 class="proyect-position">FrontEnd Developer</h4>
+                    </thead>
+                    <div class="b-description">
+                        <p class="description">
+                            Comencé mi camino profesional como diseñadora y comunicadora visual. Actualmente estoy
+                            focalizada en profesionalizarme como FrontEnd Developer permitiendo vincular mis
+                            capacidades visuales con mis competencias y conocimientos de desarrollo tecnológico.
+                        </p>
+                    </div>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table>
+                    <thead>
+                        <div class="cont-img"><img class="img-dev" src="../img/Foto sin foto.jpg"></div>
+                        <h3 class="namer">LUIS BARNABO</h3>
+                        <h4 class="proyect-position">FrontEnd Developer</h4>
+                    </thead>
+                    <div class="b-description">
+                        <p class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="row g-2 m-auto">
+            <div class="col-md-6">
+                <table>
+                    <thead>
+                        <div class="cont-img"><img class="img-dev" src="../img/Foto sin foto.jpg"></div>
+                        <h3 class="namer">FRANCO BULLAUDE</h3>
+                        <h4 class="proyect-position">FrontEnd Developer</h4>
+                    </thead>
+                    <div class="b-description">
+                        <p class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table>
+                    <thead>
+                        <div class="cont-img"><img class="img-dev" src="../img/Foto sin foto.jpg"></div>
+                        <h3 class="namer">FACUNDO PEREZ BOTTI</h3>
+                        <h4 class="proyect-position">FrontEnd Developer</h4>
+                    </thead>
+                    <div class="b-description">
+                        <p class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                </table>
             </div>
         </div>
     </div>
+    </div>
+
+
     <footer th:replace="fragment/fragmentos :: footer"></footer>
 </body>
 

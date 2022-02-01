@@ -29,22 +29,8 @@
 </head>
 
 <body>
-    <header class="topheader">
-        <div class="nav-container">
-            <nav class="nav">
-                <a href="/" class="logo"><img src="../img/ManageTruck_logo-Blanco.png" class="logo"></a>
-
-                <ul class="nav__items">
-                    <li class="nav__items"><a th:href="@{/nosotros}">NOSOTROS</a></li>
-                    <li class="nav__items"><a th:href="@{/servicios}">SERVICIOS</a></li>
-                    <li class="nav__items"><a th:href="@{/contacto}">ESCRIBINOS</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-
-    <!-- <div class="container py-5 mb-  3 contenedor" id="form1"> -->
+    <header th:insert="fragment/fragmentos :: headerNoLogin" class="Header"></header>
+    
     <div class="form1 full">
         <h2 class="header-title">Registrarme como empresa</h2>
 

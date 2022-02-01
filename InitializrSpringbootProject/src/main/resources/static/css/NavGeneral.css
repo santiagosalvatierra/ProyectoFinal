@@ -14,8 +14,8 @@ body {
 }
 
 .topheader {
-  height: 100px;
-  background-color: #6930C3;
+  height: 120px;
+  background: linear-gradient(48deg, rgba(154,50,210,1) 0%, rgba(119,51,208,1) 50%, rgba(102,23,218,1) 100%);
   background-size: cover;
   background-position: center;
   position: relative;
@@ -23,29 +23,31 @@ body {
 
 /* BARRA NAV-HEADER */
 .nav-container {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
   }
   
   nav {
     align-items: center;
+    margin: auto;
     justify-content: center;
+    width: 100%;
   }
   
   nav .logo {
-      padding: 1rem;
-      width: 45%;
-      margin-right: 6rem;
-      margin-bottom: 8px;
+    padding: 1rem;
+    width: 42%;
+    margin-right: 250px;
+    margin-bottom: 8px;
   }
   
   nav .nav__items {
-      padding: 1.3rem;
-      display: flex;    
-      font-size: 11pt;
-      font-style: italic;
-      font-weight: 500;
-      display: inline-block;
+    padding: 1.3rem;
+    display: flex;    
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 500;
+    display: inline-block;
   }
   
   nav .nav__items a {
@@ -54,13 +56,16 @@ body {
     font-weight: bold;
     padding: 5px;
     transition: all 0.10s linear; 
-    border-radius: 5px;  
+    border-radius: 5px;    
   }
   
   nav .nav__items a:hover {
-      background: #6930C3;
-  }
+    background-color: rgba(49,23,90,0.2);
+}
+  
 
   /*///////////////////////////////////////////////////////////*/
+
+  
 
   
