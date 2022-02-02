@@ -131,9 +131,8 @@
                                     method="post">
                                     <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
                                     <div class="form-group">
-                                        <input type="password" name="claveVieja" readonly class="form-control"
-                                            id="password" th:field="${perfil.password}"
-                                            placeholder="Contraseña anterior">
+                                        <input type="hidden" name="claveVieja" readonly class="form-control-plaintext"
+                                        id="password" th:value="${perfil.password}">
                                     </div>
                                     <div class="form-group">
                                         <input th:value="${password}" name="claveNueva" type="password"
