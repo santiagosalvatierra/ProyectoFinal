@@ -124,16 +124,32 @@ public class viajeController {
     }
     
     @GetMapping("/valorar")
-    public String puntear (String id_comprobante){
-        return null;
+    public String puntear (@RequestParam(required = true)String id_viaje,ModelMap modelo){
+        try {
+            System.out.println("el id del viaje es= "+ id_viaje);
+            Viaje viaje =viajeServicio.buscarViajeId(id_viaje);
+            Comprobante comprobante = comprobanteServicio.buscarComprobanteIdViaje(id_viaje);
+            System.out.println("el id del comprobante encontrado es= "+comprobante.getID());
+            System.out.println("el viaje que tiene el comprobante es= "+comprobante.getViaje().getID());
+            modelo.put("viaje",viaje);
+            modelo.put("comprobante", comprobante);
+        } catch (ErroresServicio ex) {
+            Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "verfuncionamiento";
     }
     @PostMapping("/validar")
-    public String finalizarPuntuacion(String id_comprobante, Integer valoracion){
-        
+    public String finalizarPuntuacion(@RequestParam(required = true)String id_comprobante, Integer estrellas){
+        System.out.println("el id del comprobante es= "+id_comprobante);
+        System.out.println("el valor de la estrella es= "+ estrellas);
         Comprobante comprobante;
         try {
             comprobante = comprobanteServicio.buscarComprobanteId(id_comprobante);
-            comprobanteServicio.ValorarTrasnportista(comprobante.getID(), valoracion);
+            System.out.println("el id del comprobante encontrado es="+ comprobante.getID());
+            comprobanteServicio.ValorarTrasnportista(comprobante.getID(), estrellas);
+            System.out.println("el id del trasnportista aplicado es= "+comprobante.getViaje().getTransportistaAplicado().getId());
+            transportistaServicio.valoracion(comprobante.getViaje().getTransportistaAplicado().getId());
+            //viajeServicio.BajaViaje2(comprobante.getViaje().getID());
         } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
         }

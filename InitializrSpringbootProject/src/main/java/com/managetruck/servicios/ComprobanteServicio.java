@@ -54,16 +54,20 @@ public class ComprobanteServicio {
                 repositorioComprobante.save(comprobante);
         }
     }
+    @Transactional
     public void ValorarTrasnportista(String id, Integer valoracion) throws ErroresServicio{
         Optional<Comprobante> respuesta = repositorioComprobante.findById(id);
+        System.out.println("El id del comprobante encontrado es en el metoso valorar trasnportista es= "+respuesta.get().getID());
         if (respuesta.isPresent()) {
             Comprobante comprobante = respuesta.get();
-            if (comprobante.getViaje().isAlta() == false) {
+            System.out.println("el id del comprobante dentro del if es= "+comprobante.getID());
+            System.out.println("el boleano del viaje es en el metodo valorar = "+comprobante.getViaje().isAlta());
+            if (comprobante.getViaje().isAlta() == true) {
                 //para incorporar la valoracion al finalizar el viaje
                 validarvaloracion(valoracion);
                 comprobante.setValoracion(valoracion);
-                comprobante.getViaje().setEstado(EstadoEnum.FINALIZADA);
                 repositorioComprobante.save(comprobante);
+                System.out.println("entro al if de valorartransportista");
             } else {
                 throw new ErroresServicio("El viaje no esta finalizado para poder valorarlo");
             }

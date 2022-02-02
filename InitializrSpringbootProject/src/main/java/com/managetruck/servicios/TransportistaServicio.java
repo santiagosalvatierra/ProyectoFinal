@@ -210,19 +210,31 @@ public class TransportistaServicio {
     }
 
     //metodo para calcular el promedio de valoracion del transportista
-    public Integer valoracion(Transportista transportista) {
+    @Transactional
+    public void valoracion(String id_transportista) {
+        Optional <Transportista> respuesta = repositorioTransportista.findById(id_transportista);
+        if(respuesta.isPresent()){
+            Transportista transportista=respuesta.get();
+            System.out.println("el id del trasnportista en el metodo validar es= "+transportista.getId());
         List<Comprobante> comprobante = transportista.getComprobante();
         //comprobar que de la cantidad de elementos no nulos
         Integer cantidad = comprobante.size();
+        System.out.println("la cantidad de la lista es= "+ comprobante.size());
         Integer valoracion = 0;
         for (Comprobante factura : comprobante) {
             if (factura.getValoracion() != null) {
+                int i=0;
                 valoracion = factura.getValoracion() + valoracion;
+                System.out.println("el valor de la valorarcion es= "+valoracion+"en la iteracion"+i++);
             }
         }
         Integer promedio = (int) valoracion / cantidad;
+            System.out.println("el valor de promedio es= "+promedio);
+            transportista.setValoracion(promedio);
+            repositorioTransportista.save(transportista);
+        }
         
-        return promedio;
+        //return promedio;
     }
 
     //metodo para buscar a un transportista por ID y separar la capa
