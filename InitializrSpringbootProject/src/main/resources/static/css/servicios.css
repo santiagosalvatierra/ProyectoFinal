@@ -7,8 +7,59 @@
     background-color: #fcfcfc;
   }
   
-  body {
-    background-color:#fcfcfc;
-    font-family: 'Raleway', sans-serif;  
-  }
+body {
+  background-color:#fcfcfc;
+  font-family: 'Raleway', sans-serif;  
+}
   
+.services {
+  margin-bottom: 7rem;
+}
+
+.header-title {
+  max-width: 80%;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #31175a;
+  margin: 5rem auto 2rem auto;
+}
+
+.card-card {
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  width: 380px;
+}
+
+.card {
+  width: 20rem;
+  margin: 0 auto;
+  border: none;
+  border-radius:7px;
+  background-color: #fcfcfc;
+  box-shadow: 0px 4px 4px rgba(31, 31, 31, 0.25);
+  color: #6930C3;
+  height: 410px;
+  padding: 10px;
+}
+
+.cont-img {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.card-img-top {
+  display: block;
+}
+
+.card-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.card-text {
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+}

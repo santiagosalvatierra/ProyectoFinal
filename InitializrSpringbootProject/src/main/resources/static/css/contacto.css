@@ -1,0 +1,98 @@
+
+* ::before ::after {
+    margin: 0;
+    box-sizing: border-box;
+}
+  
+:root { 
+    background-color: #fcfcfc;
+}
+  
+body {
+    background-color:#fcfcfc;
+    font-family: 'Raleway', sans-serif;  
+}
+
+main {
+    display: flex;
+    margin-bottom: 7rem;
+}
+
+
+.display-4 {
+    text-align: left;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #31175a;
+    margin: 5rem auto 2rem auto;
+}
+
+.text {
+    margin: 0 auto;
+    text-align: left;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #31175a;
+    line-height: 40px;
+}
+
+.columna1{
+    margin-right: 3rem;
+    float: left;
+    width: 49%;
+}
+
+.columna2{
+    width: 49%;
+    height: 432px;
+}
+
+label {
+    margin: 0.1rem 0 0 0.3rem;
+    font-size: 0.9rem;
+    font-weight: 300;
+    opacity: 60%;
+}
+
+#modelo {
+    height: 230px;
+}
+
+
+.btn-primary {
+    color: #fcfcfc;
+    background: #6930C3;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 0.5rem;
+    width: 6rem;
+    box-shadow: 0px 4px 4px rgba(31, 31, 31, 0.25);
+    border-radius: 10px;
+    border-color: #6930C3;
+    overflow: hidden;
+    cursor: pointer;
+    margin-right: 8px;
+}
+  
+.btn-primary:hover {
+    color: #6930C3;
+    background: #FCFCFC;
+    border-width: 0.2rem;
+    border-color: #6930C3;
+}
+
+.close {
+    width: 6rem;
+    font-weight: 500;
+  }
+  
+  .btn-primary a {
+    text-decoration: none;
+    color: #fcfcfc;
+    font-weight: 600;
+  }
+  
+  .btn-primary:hover a{
+    color: #6930C3;
+    font-weight: 600;
+  }
