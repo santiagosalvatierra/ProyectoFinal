@@ -19,4 +19,7 @@ public interface RepositorioViaje extends JpaRepository <Viaje,String>{
     @Query("SELECT c FROM Viaje c WHERE c.id = :id")
     public List <Viaje> buscarViajeporId(@Param("id")String id);
     
+    @Query("SELECT c FROM Viaje c WHERE c.origen = :origen")
+    public List <Viaje> buscarViajeporOrigen(@Param("origen")String origen);
+    
 }

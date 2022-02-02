@@ -56,8 +56,8 @@
     <div class="col mx-3">
       <div class="card" style="width: 13rem;">
           <div>
-                    <img th:if="${comprobantes.proveedor.foto != null}"th:src="@{'/foto/comprobante-imagenes/'+${comprobantes.ID}}" class="card-img-top" alt="Foto Empresa">
-                        <img th:if="${comprobantes.proveedor.foto == null}" th:src="@{../img/Foto sin foto.jpg}" class="card-img-top" alt="Foto Empresa">
+                    <img id="imagen" th:if="${comprobantes.proveedor.foto != null}"th:src="@{'/foto/comprobante-imagenes/'+${comprobantes.ID}}" class="card-img-top" alt="Foto Empresa">
+                        <img id="imagen" th:if="${comprobantes.proveedor.foto == null}" th:src="@{../img/Foto sin foto.jpg}" class="card-img-top" alt="Foto Empresa">
           </div>
                         <div class="card-body">
                         <h5 class="card-title" th:text="${comprobantes.proveedor}">Nombre Empresa</h5>

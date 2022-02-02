@@ -22,6 +22,7 @@ import com.managetruck.servicios.ProveedorServicio;
 import com.managetruck.servicios.TransportistaServicio;
 import com.managetruck.servicios.ViajeServicio;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
@@ -74,12 +75,20 @@ public class MainController {
     }
 
     @GetMapping("/inicio")
-    public String inicio(ModelMap model, HttpSession session, @RequestParam(required = false) String error) {
+    public String inicio(ModelMap model, HttpSession session, @RequestParam(required = false) String error, @RequestParam(required=false)String nombre, @RequestParam(required=false) String empresa) throws ErroresServicio {
         //tambien podemos usar un switch7inicio
         Usuario login = (Usuario) session.getAttribute("usuariosession");
         if (login.getRol().equals(Proveedor)) {
-            List<Transportista> transportistas = transportistaServicio.listarTransportista();
-            model.put("transportistas", transportistas);
+            
+            
+            if (nombre!=null) {
+               List <Transportista> transportistas = transportistaServicio.listarTranpsortistasNombre(nombre);
+               model.put("transportistas", transportistas);
+            }else{
+                List<Transportista> transportistas = transportistaServicio.listarTransportista();
+                model.put("transportistas", transportistas);
+            }
+            
             List<Transportista> transportistas2 = repositorioTransportista.buscarTransportistaPorZona(login.getZona());
             if (!transportistas2.isEmpty()) {
                 model.addAttribute("tittle", "Listado Transportistas");
@@ -93,12 +102,18 @@ public class MainController {
         } else if (login.getRol().equals(Transportista)) {
             List<Comprobante> comprobantes;
             try {
-                comprobantes = comprobanteServicio.comprobantesAbiertos();
+                if(empresa!=null){
+                    comprobantes= comprobanteServicio.buscarComprobantePorProveedor(empresa);
+                    model.put("comprobantes", comprobantes);
+                }else{
+                    comprobantes = comprobanteServicio.comprobantesAbiertos();
                 if (!comprobantes.isEmpty()) {
                     model.put("comprobantes", comprobantes);
                 } else{
                       model.put("error", "no se encuentra ningun viaje al que se pueda aplicar");
-                }                    
+                }      
+                }
+                              
                
                 return "indexTransportista";
             } catch (ErroresServicio ex) {

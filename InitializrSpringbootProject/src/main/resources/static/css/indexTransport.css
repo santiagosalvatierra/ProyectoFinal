@@ -67,7 +67,11 @@ ul, li {
 input[type=checkbox].toggle{
     display: none;
   }
-  
+  #imagen {
+  height: 150px;
+  object-fit: cover;
+  width: 100%;
+}
   input[type=checkbox].toggle + label{
     display: inline-block;
     height: 60px;

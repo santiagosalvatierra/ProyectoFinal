@@ -200,7 +200,17 @@ public class ViajeServicio {
             }
         }
     }
-    
+    //metodo para devolver un listado de viaje por su origen
+    public List buscarViajeOrigen(String nombre)throws ErroresServicio{
+        List <Viaje> viajes = repositorioViaje.buscarViajeporOrigen(nombre);
+        if(!viajes.isEmpty()){
+            return viajes;
+        }else{
+            List <Viaje> viajes2 = repositorioViaje.findAll();
+            return viajes2;
+        }
+        
+    }
     //metodo para devolver un viaje por su id
     public Viaje buscarViajeId(String id_viaje)throws ErroresServicio{
        Optional<Viaje> respuesta=repositorioViaje.findById(id_viaje);

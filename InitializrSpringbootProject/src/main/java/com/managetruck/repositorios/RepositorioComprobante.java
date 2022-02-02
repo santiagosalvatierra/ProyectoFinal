@@ -29,6 +29,7 @@ public interface RepositorioComprobante extends JpaRepository<Comprobante, Strin
     @Query("SELECT c FROM Comprobante c WHERE c.viaje.estado LIKE :elegir")
     public List <Comprobante> buscarComprobanteporAbiertos(@Param("elegir")EstadoEnum estadoEnum);
 
-    
+    @Query("SELECT c FROM Comprobante c WHERE c.proveedor.nombreEmpresa LIKE :nombre%")
+    public List <Comprobante> buscarComprobanteporNombrePorveedor(@Param("nombre")String nombre);
     
 }

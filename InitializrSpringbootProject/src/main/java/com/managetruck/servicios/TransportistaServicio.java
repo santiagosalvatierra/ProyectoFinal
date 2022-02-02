@@ -289,6 +289,20 @@ public class TransportistaServicio {
         List<Transportista> libres=repositorioTransportista.buscarTransportistaLibres();
         return libres;
     }
+    public List listarTranpsortistasNombre(String nombre) throws ErroresServicio{
+        
+        List <Transportista> transportistas= repositorioTransportista.buscarTransportistaPorNombre2(nombre);
+        if(!transportistas.isEmpty()){
+           return transportistas;
+        }else{
+            List <Transportista> transportistasList= repositorioTransportista.findAll();
+            
+            return transportistasList;
+        }
+        
+        
+        
+    }
     //metodo para comunicarle al proveedor sobre como va el viaje
     public String comunicarAvance(String id_trasnportista, String option)throws ErroresServicio{
         Optional<Transportista> respuesta = repositorioTransportista.findById(id_trasnportista);  

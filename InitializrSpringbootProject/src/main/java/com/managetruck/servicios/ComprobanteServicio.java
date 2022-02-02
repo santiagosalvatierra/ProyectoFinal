@@ -12,6 +12,7 @@ import com.managetruck.entidades.Transportista;
 import com.managetruck.entidades.Viaje;
 import com.managetruck.enumeracion.EstadoEnum;
 import static com.managetruck.enumeracion.EstadoEnum.ELEGIR;
+import static com.managetruck.enumeracion.Role.Transportista;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.repositorios.RepositorioComprobante;
 import java.util.ArrayList;
@@ -69,7 +70,16 @@ public class ComprobanteServicio {
             }
         }
     }
-
+    public List buscarComprobantePorProveedor(String nombre) throws ErroresServicio{
+        List <Comprobante> comprobantes = repositorioComprobante.buscarComprobanteporNombrePorveedor(nombre);
+        if (!comprobantes.isEmpty()) {
+            return comprobantes;
+            
+        }else{
+            comprobantes = comprobantesAbiertos();
+            return comprobantes;
+        }
+    }
     private void validarComprobante(Proveedor proveedor, Viaje viaje) throws ErroresServicio {
         if (proveedor == null) {
             throw new ErroresServicio("Debe ingresar un proveedor");
