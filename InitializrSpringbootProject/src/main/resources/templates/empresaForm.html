@@ -30,130 +30,136 @@
 
 <body>
     <header th:insert="fragment/fragmentos :: headerNoLogin" class="Header"></header>
-    
+
     <div class="form1 full">
         <h2 class="header-title">Registrarme como empresa</h2>
 
         <form class="needs-validation" th:action="@{/proveedor/registro}" method="POST" enctype="multipart/form-data">
-            <p th:if="${error!=null}" th:text="${error}" style="color:red"></p>
-            <div class="container1">
-                <div class="row g-2">
-                    <div class="form-floating col-md-6">
-                        <input type="text" class="form-control" id="floatingNombre" name="nombre" placeholder="Nombre"
-                            th:value="${nombre}" required>
-                        <label for="floatingNombre">Nombre</label>
+            <div class="form-group">
+                <p th:if="${error!=null}" th:text="${error}" style="color:red"></p>
+                <div class="container1">
+                    <div class="row g-2">
+                        <div class="form-floating col-md-6">
+                            <input type="text" class="form-control" id="floatingNombre" name="nombre"
+                                placeholder="Nombre" th:value="${nombre}" required>
+                            <label for="floatingNombre">Nombre</label>
+                        </div>
+                        <div class="form-floating col-md-6">
+                            <input type="apellido" class="form-control" id="floatingApellido" name="apellido"
+                                placeholder="Apellido" th:value="${apellido}" required>
+                            <label for="floatingApellido">Apellido</label>
+                        </div>
                     </div>
-                    <div class="form-floating col-md-6">
-                        <input type="apellido" class="form-control" id="floatingApellido" name="apellido"
-                            placeholder="Apellido" th:value="${apellido}" required>
-                        <label for="floatingApellido">Apellido</label>
+
+                    <div class="form-floating mt-3 mb-3">
+                        <input type="email" class="form-control" id="floatingInput" name="mail"
+                            placeholder="name@example.com" th:value="${mail}" required>
+                        <label for="floatingInput">Correo Electrónico</label>
+                    </div>
+                    <div class="form-floating col-md-12 mb-3">
+                        <input id="floatingTelefono" type="text" name="telefono" class="form-control"
+                            placeholder="Telefono" th:value="${telefono}" required />
+                        <label for="floatingTelefono" class="form-label">Teléfono</label>
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="form-floating col-md-6">
+                            <input type="password" class="form-control" id="floatingPassword" name="clave1"
+                                th:value="${clave}" placeholder="Clave" required>
+                            <label for="floatingPassword">Clave</label>
+                        </div>
+                        <div class="form-floating col-md-6">
+                            <input type="password" class="form-control" id="floatingPassword2" name="clave2"
+                                placeholder="Clave" required>
+                            <label for="floatingPassword2">Repetir Clave</label>
+                        </div>
+                    </div>
+
+                    <div class="row g-2 mb-3">
+                        <div class="col-md-12 mb-2">
+                            <label for="archivo">Foto de perfil</label>
+                            <input type="file" class="form-control selectfoto" name="archivo1" />
+                        </div>
+                        <div class="form-floating col-md-12">
+                            <select name="provincia" id="zona" class="form-select" required>
+                                <option selected disable value="">Seleccione la provincia</option>
+                                <option option th:each="provincia:${provincias}" th:value="${provincia.provincia}"
+                                    th:text="${provincia.provincia}"></option>
+                            </select>
+                            <label for="provincia" class="select-title">Zona</label>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-floating mt-3 mb-3">
-                    <input type="email" class="form-control" id="floatingInput" name="mail"
-                        placeholder="name@example.com" th:value="${mail}" required>
-                    <label for="floatingInput">Correo Electrónico</label>
-                </div>
-                <div class="form-floating col-md-12 mb-3">
-                    <input id="floatingTelefono" type="text" name="telefono" class="form-control" placeholder="Telefono"
-                        th:value="${telefono}" required />
-                    <label for="floatingTelefono" class="form-label">Teléfono</label>
-                </div>
-                <div class="row g-2 mb-3">
-                    <div class="form-floating col-md-6">
-                        <input type="password" class="form-control" id="floatingPassword" name="clave1"
-                            th:value="${clave}" placeholder="Clave" required>
-                        <label for="floatingPassword">Clave</label>
-                    </div>
-                    <div class="form-floating col-md-6">
-                        <input type="password" class="form-control" id="floatingPassword2" name="clave2"
-                            placeholder="Clave" required>
-                        <label for="floatingPassword2">Repetir Clave</label>
+                <div class="container2">
+                    <div class="row g-2">
+                        <h3 class="form-subtitle">Datos de la Empresa</h3>
+                        <div class="form-floating col-md-12 mb-2">
+                            <input id="nombreEmpresa" type="text" name="nombreEmpresa" class="form-control"
+                                th:value="${nombreEmpresa}" placeholder="Nombre de la Empresa" required />
+                            <label for="nombreEmpresa" class="form-label">Nombre de la Empresa</label>
+                        </div>
+
+                        <div class="form-floating col-md-12 mb-2">
+                            <select name="rubro" id="rubro" class="form-select" required>
+                                <option selected disable value="" class="label">Seleccione el tipo de mercadería
+                                </option>
+                                <option option th:each="rubro:${rubros}" th:value="${rubro}" th:text="${rubro}">
+                                </option>
+                            </select>
+                            <label for="provincia" class="select-title">Rubro</label>
+                        </div>
+                        <div class="form-floating col-md-12 mb-2">
+                            <input id="razonSocial" type="text" name="razonSocial" class="form-control"
+                                th:value="${razonSocial}" placeholder="Razón Social" required />
+                            <label for="razonSocial" class="form-label">Razón Social</label>
+                        </div>
+                        <div class="form-floating col-md-12 mb-2">
+                            <input id="cuilEmpresa" type="text" name="cuilEmpresa" class="form-control"
+                                th:value="${cuilEmpresa}" placeholder="Cuit de la Empresa" required />
+                            <label for="cuilEmpresa" class="form-label">CUIT de la Empresa</label>
+                        </div>
                     </div>
                 </div>
 
-                <div class="row g-2 mb-3">
-                    <div class="col-md-12 mb-2">
-                        <label for="archivo">Foto de perfil</label>
-                        <input type="file" class="form-control selectfoto" name="archivo1" />
-                    </div>
-                    <div class="form-floating col-md-12">
-                        <select name="provincia" id="zona" class="form-select" required>
-                            <option selected disable value="">Seleccione la provincia</option>
-                            <option option th:each="provincia:${provincias}" th:value="${provincia.provincia}"
-                                th:text="${provincia.provincia}"></option>
-                        </select>
-                        <label for="provincia" class="select-title">Zona</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container2">
-                <div class="row g-2">
-                    <h3 class="form-subtitle">Datos de la Empresa</h3>
-                    <div class="form-floating col-md-12 mb-2">
-                        <input id="nombreEmpresa" type="text" name="nombreEmpresa" class="form-control"
-                            th:value="${nombreEmpresa}" placeholder="Nombre de la Empresa" required />
-                        <label for="nombreEmpresa" class="form-label">Nombre de la Empresa</label>
-                    </div>
-    
-                    <div class="form-floating col-md-12 mb-2">
-                        <select name="rubro" id="rubro" class="form-select" required>
-                            <option selected disable value="" class="label">Seleccione el tipo de mercadería</option>
-                            <option option th:each="rubro:${rubros}" th:value="${rubro}"
-                                th:text="${rubro}"></option>
-                        </select>
-                        <label for="provincia" class="select-title">Rubro</label>
-                    </div>
-                    <div class="form-floating col-md-12 mb-2">
-                        <input id="razonSocial" type="text" name="razonSocial" class="form-control"
-                            th:value="${razonSocial}" placeholder="Razón Social" required />
-                        <label for="razonSocial" class="form-label">Razón Social</label>
-                    </div>
-                    <div class="form-floating col-md-12 mb-2">
-                        <input id="cuilEmpresa" type="text" name="cuilEmpresa" class="form-control"
-                            th:value="${cuilEmpresa}" placeholder="Cuit de la Empresa" required />
-                        <label for="cuilEmpresa" class="form-label">CUIT de la Empresa</label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- BOTONES DE CHECK Y CANCEL / CON MODAL DE REGISTRO EXITOSO INCLUIDO 
+                <!-- BOTONES DE CHECK Y CANCEL / CON MODAL DE REGISTRO EXITOSO INCLUIDO 
             FALTA INCORPORAR THYMELEAF PARA QUE EL MODAL SÓLO SE ACTIVE SI TODA LA INFO ESTA OK-->
-            <div class="row g-2 btns">
-                <div class="container flex">
-                    <div class="buttom-mod-container">
-                        <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" onclick="pregunta()">Confirmar registro</button><br>
+                <div class="row g-2 btns">
+                    <div class="container flex">
+                        <div class="buttom-mod-container">
+                            <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" onclick="pregunta()">Confirmar registro</button><br>
 
-                        <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-                            <div class="modal-dialog sec">
-                                <div class="modal-content sec">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
+                                <div class="modal-dialog sec">
+                                    <div class="modal-content sec">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
 
-                                    <div class="modal-bodysec">
-                                        <div class="modal-titlesec" id="exampleModalLabel">Registro Exitoso</div>
-                                        <p class="text-ok">Tus datos fueron registrados con éxito.
-                                            Ingresa a tu email y verifica la cuenta
-                                            para poder loguearte en nuestra web.</p>
+                                        <div class="modal-bodysec">
+                                            <div class="modal-titlesec" id="exampleModalLabel">Registro Exitoso</div>
+                                            <p class="text-ok">Tus datos fueron registrados con éxito.
+                                                Ingresa a tu email y verifica la cuenta
+                                                para poder loguearte en nuestra web.</p>
 
-                                        <a th:href="@{/}"><input class="btn btn-primary sec-ok" type="button" value="Aceptar"></input></a>
+                                            <a th:href="@{/}"><input class="btn btn-primary sec-ok" type="button"
+                                                    value="Aceptar"></input></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <a th:href="@{/}"><input class="btn btn-primary close" type="button" value="X">
-                        </input></a>
+                            <a th:href="@{/}"><input class="btn btn-primary close" type="button" value="X">
+                                </input></a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+
+            </div>
         </form>
+
     </div>
 
     <footer th:replace="fragment/fragmentos :: footer"></footer>

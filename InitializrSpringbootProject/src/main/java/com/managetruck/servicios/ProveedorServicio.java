@@ -16,6 +16,8 @@ import com.managetruck.repositorios.RepositorioUsuario;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +48,7 @@ public class ProveedorServicio {
     private FotoServicio fotoServicio;
 
     @Transactional
-    public void crearProveedor(String nombre, String apellido, String mail, String password, String password2, MultipartFile archivo, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa,Rubro rubro) throws ErroresServicio {
+    public void crearProveedor(String nombre, String apellido, String mail, String password, String password2, MultipartFile archivo, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa, Rubro rubro) throws ErroresServicio {
         Foto foto = fotoServicio.guardar(archivo);
         validarProveedor(nombre, apellido, mail, password, password2, archivo, zona, telefono, razonSocial, cuilEmpresa, nombreEmpresa);
 
@@ -79,7 +81,7 @@ public class ProveedorServicio {
         Optional<Proveedor> respuesta = repositorioproveedor.findById(id);
         if (respuesta.isPresent()) {
             Proveedor proveedor = respuesta.get();
-           
+
             proveedor.setNombre(nombre);
             proveedor.setApellido(apellido);
             proveedor.setMail(mail);
@@ -125,14 +127,28 @@ public class ProveedorServicio {
     }
 
     public void validarProveedor(String nombre, String apellido, String mail, String password, String password2, MultipartFile foto, String zona, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa) throws ErroresServicio {
+
+        Pattern pString = Pattern.compile("^([A-Za-z]+[ ]*){1,3}$");
+        Pattern pNum = Pattern.compile("^[0-9]{8}$");
+        Pattern pNumPhone = Pattern.compile("^[0-9]{8,10}$");
+        Pattern pMail = Pattern.compile("\\b[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,4}\\b");
+
+        Matcher mName = pString.matcher(nombre);
+        Matcher mMail = pMail.matcher(mail);
+
         if (nombre == null || nombre.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un nombre");
+        } else if (!mName.matches()) {
+            throw new ErroresServicio("Debe ingresar un nombre válido");
         }
+
         if (apellido == null || apellido.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un apellido");
         }
         if (mail == null || mail.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un mail");
+        } else if (!mMail.matches()) {
+            throw new ErroresServicio("Debe ingresar un mail válido");
         }
         if (telefono == null || telefono.isEmpty()) {
             throw new ErroresServicio("Debe ingresar un telefono ");

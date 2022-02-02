@@ -37,6 +37,7 @@
                     <li class="nav__items"><a th:href="@{/nosotros}">NOSOTROS</a></li>
                     <li class="nav__items"><a th:href="@{/servicios}">SERVICIOS</a></li>
                     <li class="nav__items"><a th:href="@{/contacto}">ESCRIBINOS</a></li>
+
                 </ul>
             </nav>
 
@@ -53,13 +54,13 @@
 
     <!-- ACA EMPIEZA EL MODAL LOG IN y REGISTRARME -->
     <div class="container">
-        <div class="buttom-mod-container">
+        <div class="buttom-mod-container" sec:authorize="!isAuthenticated()">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary index" data-bs-toggle="modal"
-                data-bs-target="#exampleModal">Ingresar</button>
+                data-bs-target="#user-login">Ingresar</button>
 
             <!-- Modal Log In-->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="modal fade" id="user-login" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
 
                 <div class="modal-dialog">
@@ -68,16 +69,16 @@
 
                         <div class="modal-body" id="ing">
                             <div class="modal-title" id="exampleModalLabel">Ingresar</div>
-                            <form th:action="@{/logincheck}" method="post">
-                                <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
+                            <form action="#" method="post">
+                                <p id="error2" style="color:red"></p>
                                 <div class="form-group">
-                                    <input th:value="${mail}" name="username" type="email" class="form-control"
-                                        id="exampleInputEmail1" aria-describedby="emailHelp"
+                                    <input id="username" name="username" type="email" class="form-control"
+                                        aria-describedby="emailHelp"
                                         placeholder="Email@managetruck.com" required>
                                 </div>
                                 <div class="form-group">
-                                    <input th:value="${password}" name="password" type="password" class="form-control"
-                                        id="exampleInputPassword1" placeholder="Password" required>
+                                    <input id="password1" name="password" type="password" class="form-control"
+                                     placeholder="Password" required>
 
                                     <div class="forgotpass"><a href="#" data-bs-toggle="modal"
                                             data-bs-target="#cambiarContrasena">¿Olvidaste tu clave?</a></div>
@@ -243,6 +244,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
         </script>
+
+    <script src="/js/jquery-3.6.0.js" th:inline="javascript"></script>
+    <script src="/js/index.js" th:inline="javascript"></script>
+    <script src="/js/user-form-login.js" sec:authorize="!isAuthenticated()"></script>
 </body>
 
 </html>

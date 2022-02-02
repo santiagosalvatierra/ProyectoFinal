@@ -125,7 +125,7 @@ public class UsuarioServicio implements UserDetailsService {
         
     }
 
-    //metodo para crear una contraseña aleatroria
+    //metodo para crear una contraseña aleatoria
     public String regenerar() {
     String randomStrings=null ;
     Random random = new Random(); 

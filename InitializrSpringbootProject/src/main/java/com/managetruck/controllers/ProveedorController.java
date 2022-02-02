@@ -41,6 +41,9 @@ public class ProveedorController {
     @Autowired
     RepositorioProvincias repositorioProvincias;
 
+    
+  
+    
     @PostMapping("/registro")
     public String registroProveedor(ModelMap model,String nombre, String apellido, String mail, String clave1, String clave2, MultipartFile archivo1, String provincia, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa, Rubro rubro) throws ErroresServicio {
         try{
@@ -63,9 +66,11 @@ public class ProveedorController {
             model.put("rubros", Rubro.values());
             return "empresaForm";
         }
+        
         return "index";
     }
 
+    
     @GetMapping("/registro")
     public String mostrarPaginaRegistro(ModelMap modelo) {
         List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
