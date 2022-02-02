@@ -97,48 +97,13 @@ rel="stylesheet">
                                 <a th:if="${#strings.toString(viaje.estado)== 'ELEGIR'&& #lists.isEmpty(viaje.listadoTransportista)}"  class="btn btn-danger central" th:href="@{'/viaje/eliminar'+'?id_viaje='+${viaje.ID}}" title="Eliminar"><i class="fas fa-trash-alt"></i></a>
                                 </div>
                                 <div class="row">
-                                <a th:if="${#strings.toString(viaje.estado)== 'FINALIZADA'}"  class="btn btn-light" th:href="@{'/viaje/perfil-aplicado'+'?id_viaje='+${viaje.ID}}" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal" title="Calificar"><img src="../img/calificaciones.png"width="30" height="30" ></a>
+                                    <a th:if="${#strings.toString(viaje.estado)== 'FINALIZADA'}"  class="btn btn-light" th:href="@{'/viaje/valorar'+'?id_viaje='+${viaje.ID}}"
+                                ><img src="../img/calificaciones.png"width="30" height="30" ></a>
                                 
-                                <div class="container">
-                                    <div class="buttom-mod-container">
+                                
 
-                                        <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        
-                                                    <div class="modal-body" id="ing">
-                                                        <div class="modal-title" id="exampleModalLabel">Valorar</div>
-                                                        <form>
-                                                            <p class="clasificacion">
-                                                              <input id="radio1" type="radio" name="estrellas" value="5"><!--
-                                                              --><label for="radio1">★</label><!--
-                                                              --><input id="radio2" type="radio" name="estrellas" value="4"><!--
-                                                              --><label for="radio2">★</label><!--
-                                                              --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-                                                              --><label for="radio3">★</label><!--
-                                                              --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-                                                              --><label for="radio4">★</label><!--
-                                                              --><input id="radio5" type="radio" name="estrellas" value="1"><!--
-                                                              --><label for="radio5">★</label>
-                                                            </p>
-                                                            <button type="submit" class="btn btn-primary1">Aceptar</button>
-                                                          </form>
-                
-                                                    </div>
-                        
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>   
-                                </div>
-
-
-                                </div>
-                                <div class="row">
+                                
+                                
                                 <a th:if="${#strings.toString(viaje.estado)== 'VIAJANDO'}"  class="btn btn-dark" th:href="@{'/viaje/finalizar'+'?id_viaje='+${viaje.ID}}" title="Finalizar"><i class="fas fa-check-circle"></i></a>
                                 </div>
                                 </td>
@@ -158,6 +123,42 @@ rel="stylesheet">
 </div>
 </div>
 </div>
+<!--<div class="container">
+                                    <div class="buttom-mod-container">
+
+                                        <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        
+                                                    <div class="modal-body" id="ing">
+                                                        <div class="modal-title" id="exampleModalLabel">Valorar</div>
+                                                        <form>
+                                                            <p class="clasificacion">
+                                                              <input id="radio1" type="radio" name="estrellas" value="5"><!--
+                                                              <label for="radio1">★</label><!--
+                                                              <input id="radio2" type="radio" name="estrellas" value="4"><!--
+                                                              <label for="radio2">★</label><!--
+                                                              <input id="radio3" type="radio" name="estrellas" value="3"><!--
+                                                              <label for="radio3">★</label><!--
+                                                              input id="radio4" type="radio" name="estrellas" value="2"><!--
+                                                              label for="radio4">★</label><!--
+                                                              <input id="radio5" type="radio" name="estrellas" value="1"><!--
+                                                              label for="radio5">★</label>
+                                                            </p>
+                                                            <button type="submit" class="btn btn-primary1">Aceptar</button>
+                                                          </form>
+                
+                                                    </div>
+                        
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>   
+                                </div>-->
+
                             </main>
 
                             <section th:replace="fragment/fragmentosCards :: truckCards"></section>
