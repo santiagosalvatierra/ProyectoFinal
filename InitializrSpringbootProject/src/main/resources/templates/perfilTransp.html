@@ -24,65 +24,69 @@
 </head>
 
 <body>
-    <header th:replace="fragment/fragmentos :: headerLoginTrans"></header>
-    <main>
-        <!--ESTE DIV ENGLOBA TODA LA PAGINA-->
-        <article class="container">
-            <div class="text-center">
-                <img th:if="${perfil.foto != null}" class="img-fluid rounded-circle"
-                    th:src="${'/foto/usuario-imagen/' + perfil.id}" width="400" height="400" alt="" />
-                <img th:if="${perfil.foto == null}" class="img-fluid rounded-circle" src="/img/Foto sin foto.jpg"
-                    width="400" height="400" alt="" />
-            </div>
-            <section class="contenedor1">
-                <form th:action="@{/transportista/modificar}" method="POST" enctype="multipart/form-data">
+    <div class="body-plus">
+        <header th:replace="fragment/fragmentos :: headerLoginTrans"></header>
+        <main>
+            <!--ESTE DIV ENGLOBA TODA LA PAGINA-->
+            <article class="container contenedor">
+                <div class="container-img">
+                    <img th:if="${perfil.foto != null}" class="perfil-img"
+                        th:src="${'/foto/usuario-imagen/' + perfil.id}" width="400" height="400" alt="" />
+                    <img th:if="${perfil.foto == null}" class="perfil-img" src="/img/Foto sin foto.jpg" width="400"
+                        height="400" alt="" />
+                </div>
 
+                <form th:action="@{/transportista/modificar}" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="id" th:value="${perfil.id}" />
-                    <div class="row g-2">
-                        <div class="col-md-3">
+
+                    <div class="row g-2 usuario">
+                        <div class="col-md-3 us-2">
                             <label for="nombre" class="visually-hidden"> Nombre</label>
                             <input class="form-control form-control-lg" type="text" id="nombre" name="nombre"
                                 th:value="${perfil.nombre}" />
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 us-2">
                             <label for="apellido" class="visually-hidden">Apellido</label>
                             <input class="form-control form-control-lg" type="text" id="apellido" name="apellido"
                                 th:value="${perfil.apellido}" />
                         </div>
                     </div>
                     <p>Transportista</p>
-                    <div >
+                    <div>
                         <div>
-                            
+
                         </div>
-                        <div>
+                        <div class="center">
                             <h5>ESTADO ACTUAL</h5>
                             <input type="checkbox" class="toggle" id="rounded">
-                            <label for="rounded" data-checked="Disponible" class="rounded" data-unchecked="Ocupado"></label>
+                            <label for="rounded" data-checked="Disponible" class="rounded"
+                                data-unchecked="Ocupado"></label>
                         </div>
                     </div>
                     <br>
-                    <br>
-                    <div class="row g-2">
-                        <div class="col-md-6">
-                            <label for="zona"> Zona</label>
-                            <select name="zona" id="zona" class="form-select-lg" required>
-                                <option th:selected disable th:value="${perfil.zona}" th:text="${perfil.zona}"></option>
-                                <option option th:each="provincia:${provincias}" th:value="${provincia}"
-                                    th:text="${provincia.provincia}"></option>
-                            </select>
-                            <br>
-                            <label for="mail"> Correo Electronico</label>
-                            <input class="form-control form-control-lg" type="email" id="mail" name="mail"
-                                th:value="${perfil.mail}" />
-                            <br>
-                            <label for="telefono"> Telefono</label>
-                            <input class="form-control form-control-lg" type="" id="telefono" name="telefono"
-                                th:value="${perfil.telefono}" />
-                            <br>
-                            <label for="Archivo">Cambiar foto de Perfil</label>
-                            <input type="file" class="form-control form-control-lg" id="archivo" name="archivo" />
-                        </div>
+                    <div class="datos-user">
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <label for="zona"> Zona</label>
+                                <select name="zona" id="zona" class="form-select-lg" required>
+                                    <option th:selected disable th:value="${perfil.zona}" th:text="${perfil.zona}">
+                                    </option>
+                                    <option option th:each="provincia:${provincias}" th:value="${provincia}"
+                                        th:text="${provincia.provincia}"></option>
+                                </select>
+                                <br>
+                                <label for="mail"> Correo Electronico</label>
+                                <input class="form-control form-control-lg" type="email" id="mail" name="mail"
+                                    th:value="${perfil.mail}" />
+                                <br>
+                                <label for="telefono"> Telefono</label>
+                                <input class="form-control form-control-lg" type="" id="telefono" name="telefono"
+                                    th:value="${perfil.telefono}" />
+                                <br>
+                                <label for="Archivo">Cambiar foto de Perfil</label>
+                                <input type="file" class="form-control form-control-lg" id="archivo" name="archivo" />
+                            </div>
+                        
                         <div class="col-md-6">
                             <div class="buttom-mod-container">
                                 <button type="submit" class="btn btn-primary">Editar</button>
@@ -93,122 +97,112 @@
                             </div>
                         </div>
                     </div>
+                    </div>
                 </form>
-            </section>
-            <!--ACA EMPIEZA EL MODAL CAMBIO CLAVE-->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title text-center" id="exampleModalLabel">ACTUALIZA TU
-                                CONTRASEÑA</h5>
+
+                <!--ACA EMPIEZA EL MODAL CAMBIO CLAVE-->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="row g-3"
-                                th:action="@{'/usuario/cambio-password?id='+${session.usuariosession.id}}"
-                                method="post">
-                                <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
-                                <div class="form-group col-auto">
-                                    <!--<label for="password" class="col-form-label">Clave Actual</label>-->
-                                    <input type="hidden" name="claveVieja" readonly class="form-control-plaintext"
-                                        id="password" th:value="${perfil.password}">
+
+                            <div class="modal-body" id="ing">
+                                <div class="modal-title-h3" id="exampleModalLabel">Cambiar contraseña</div>
+                                <div class="modal-subtitle">
+                                    <p>Ingresa los datos correspondientes</p>
                                 </div>
-                                <br>
-                                <div class="form-group col-auto">
-                                    <label for="password">Clave nueva</label>
-                                    <input th:value="${password}" name="claveNueva" type="password" class="form-control"
-                                        id="password" placeholder="Clave Nueva">
-                                    <br>
-                                </div>
-                                <div class="form-group col-auto">
-                                    <label for="password2">Confirmar clave</label>
-                                    <input th:value="${password2}" name="claveNueva1" type="password"
-                                        class="form-control" id="password2" placeholder="Repetir clave Nueva">
-                                    <br>
-                                </div>
-                                <div class="buttom-mod-container">
+                                <form th:action="@{'/usuario/cambio-password?id='+${session.usuariosession.id}}"
+                                    method="post">
+                                    <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
+                                    <div class="form-group col-auto">
+                                        <!--<label for="password" class="col-form-label">Clave Actual</label>-->
+                                        <input type="hidden" name="claveVieja" readonly class="form-control-plaintext"
+                                            id="password" th:value="${perfil.password}"
+                                            placeholder="Contraseña anterior">
+                                    </div>
+                                    <div class="form-group">
+                                        <input th:value="${password}" name="claveNueva" type="password"
+                                            class="form-control" id="password" placeholder="Nueva clave">
+                                    </div>
+                                    <div class="form-group">
+                                        <input th:value="${password2}" name="claveNueva1" type="password"
+                                            class="form-control" id="password2" placeholder="Repita la nueva clave">
+                                    </div>
                                     <button type="submit" class="btn btn-primary">Confirmar</button>
-                                </div>
-                            </form>
-                            <br>
-                            <div class="tdCancel">
-                                <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"
-                                    aria-label="Close">Cancelar</button>
+                                </form>
                             </div>
                         </div>
-
                     </div>
                 </div>
-            </div>
 
 
-            <br>
-            <section>
-                <h1 class="text-center">Tu Camión</h1>
-                <div class="container">
-                    <form th:action="@{'/camion/modificar-camion?id_transportista='+${perfil.id}}" method="POST"
-                        enctype="multipart/form-data">
-                        <div class="contenedor2">
-                            <div class="contenedor2-fotos">
-                                <div class="foto" th:each="fotos,iterator:${fotos}">
-                                    <img th:if="${iterator.index != null}" class="img-fluid rounded-2"
-                                        th:src="@{'/foto/camion-imagenes/'+${camion.ID}+'?orden='+${iterator.index}}"
-                                        width="200" height="200" alt="" />
-                                    <!--<img th:if="${camion.foto != null}" class="img-fluid rounded-circle"
+                <br>
+                <section>
+                    <h1 class="text-center">Tu Camión</h1>
+                    <div class="container">
+                        <form th:action="@{'/camion/modificar-camion?id_transportista='+${perfil.id}}" method="POST"
+                            enctype="multipart/form-data">
+                            <div class="contenedor2">
+                                <div class="contenedor2-fotos">
+                                    <div class="foto" th:each="fotos,iterator:${fotos}">
+                                        <img th:if="${iterator.index != null}" class="img-fluid rounded-2"
+                                            th:src="@{'/foto/camion-imagenes/'+${camion.ID}+'?orden='+${iterator.index}}"
+                                            width="200" height="200" alt="" />
+                                        <!--<img th:if="${camion.foto != null}" class="img-fluid rounded-circle"
                                         th:src="${'/foto/camion-imagenes/' + perfil.id}" width="200" height="200" alt="" />-->
-                                    <img th:if="${iterator.index == null}" class="img-fluid rounded-2"
-                                        src="/img/Foto sin foto.jpg" width="200" height="200" alt="" />
+                                        <img th:if="${iterator.index == null}" class="img-fluid rounded-2"
+                                            src="/img/Foto sin foto.jpg" width="200" height="200" alt="" />
+                                    </div>
+                                </div>
+                                <div class="contenedor2-texto">
+                                    <input type="hidden" name="id" th:value="${camion.ID}" />
+
+                                    <label for="modelo"> Modelo</label>
+                                    <input type="text" class="form-control form-control-lg" id="modelo" name="modelo"
+                                        placeholder="Ej: Kodiak" th:value="${camion.modelo}" />
+
+                                    <label for="año"> Año</label>
+                                    <input type="number" class="form-control form-control-lg" id="año" name="anio"
+                                        placeholder="Ej: 1999" th:value="${camion.anio}" />
+
+                                    <label for="patente"> Patente</label>
+                                    <input type="text" class="form-control form-control-lg" id="patente" name="patente"
+                                        placeholder="Ej: ABC-123 o AB-123-CD" th:value="${camion.patente}" />
+
+                                    <label for="descripcion"> Descripción</label>
+                                    <input type="text" class="form-control form-control-lg" id="modelo"
+                                        name="descripcion" placeholder="Ej: Kodiak" th:value="${camion.descripcion}" />
+
+                                    <label for="pesoMaximo"> Carga</label>
+                                    <input type="number" class="form-control form-control-lg" id="año" name="pesoMaximo"
+                                        placeholder="Ej: 150" th:value="${camion.pesoMaximo}" />
+
+                                    <label for="poliza"> Número de Poliza</label>
+                                    <input type="number" class="form-control form-control-lg" id="poliza" name="poliza"
+                                        placeholder="Número de póliza" th:value="${camion.poliza}" />
+
+                                    <label for="archivo">Cambiar fotos del camión</label>
+                                    <input type="file" class="form-control form-control-lg selectfoto" name="archivos"
+                                        multiple />
+
+                                    <div class="buttom-mod-container">
+                                        <button class="btn btn-primary" type="sumbit"> Guardar </button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="contenedor2-texto">
-                                <input type="hidden" name="id" th:value="${camion.ID}" />
 
-                                <label for="modelo"> Modelo</label>
-                                <input type="text" class="form-control form-control-lg" id="modelo" name="modelo"
-                                    placeholder="Ej: Kodiak" th:value="${camion.modelo}" />
+                        </form>
+                    </div>
+                    <br>
+                    <br>
+                </section>
+            </article>
+        </main>
+    </div>
 
-                                <label for="año"> Año</label>
-                                <input type="number" class="form-control form-control-lg" id="año" name="anio"
-                                    placeholder="Ej: 1999" th:value="${camion.anio}" />
-
-                                <label for="patente"> Patente</label>
-                                <input type="text" class="form-control form-control-lg" id="patente" name="patente"
-                                    placeholder="Ej: ABC-123 o AB-123-CD" th:value="${camion.patente}" />
-
-                                <label for="descripcion"> Descripción</label>
-                                <input type="text" class="form-control form-control-lg" id="modelo" name="descripcion"
-                                    placeholder="Ej: Kodiak" th:value="${camion.descripcion}" />
-
-                                <label for="pesoMaximo"> Carga</label>
-                                <input type="number" class="form-control form-control-lg" id="año" name="pesoMaximo"
-                                    placeholder="Ej: 150" th:value="${camion.pesoMaximo}" />
-
-                                <label for="poliza"> Número de Poliza</label>
-                                <input type="number" class="form-control form-control-lg" id="poliza" name="poliza"
-                                    placeholder="Número de póliza" th:value="${camion.poliza}" />
-
-                                <label for="archivo">Cambiar fotos del camión</label>
-                                <input type="file" class="form-control form-control-lg selectfoto" name="archivos"
-                                    multiple />
-
-                                <div class="buttom-mod-container">
-                                    <button class="btn btn-primary" type="sumbit"> Guardar </button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-                <br>
-                <br>
-            </section>
-        </article>
-    </main>
-
-    <div class="buttom-mod-container">
-        <a class="btn btn-primary" th:href="@{../comprobante/listarComprobantes}" role="button">COMPROBANTES</a>
+    <div class="btns-container">
+        <a class="extra-btns" th:href="@{../comprobante/listarComprobantes}" role="button">COMPROBANTES</a>
     </div>
 
     <footer th:replace="fragment/fragmentos :: footer"></footer>

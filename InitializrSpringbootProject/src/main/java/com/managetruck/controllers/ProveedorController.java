@@ -20,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -73,12 +74,12 @@ public class ProveedorController {
         modelo.put("rubros", Rubro.values());
         return "empresaForm";
     }
-
+    @PreAuthorize("hasRole('ROLE_Proveedor')")
     @GetMapping("/modificar-proveedor")
     public String modificarProveedor() {
         return null;
     }
-
+    @PreAuthorize("hasRole('ROLE_Proveedor')")
     @PostMapping("/modificar-proveedor")
     public String modificacionProveedor(HttpSession session, String id, String nombreEmpresa,String zona,String mail,String razonSocial,String telefono, String cuilEmpresa,@RequestParam(required = false)MultipartFile foto, String nombre, String apellido,Rubro rubro) {
       //verificacion de que el usuario que esta modificando sea el mismo que va a modificar
@@ -95,6 +96,8 @@ public class ProveedorController {
         }
         return "redirect:/inicio";
     }
+    
+    @PreAuthorize("hasRole('ROLE_Proveedor')")
     @GetMapping("/listarProveedor")
     public String listarProveedores() {
         
@@ -103,12 +106,14 @@ public class ProveedorController {
     }
     
     //para mi esta vista esta de mas ya que la decuelve en el inicio cuando se registra el proveedor
+    @PreAuthorize("hasRole('ROLE_Proveedor')")
     @GetMapping("/indexEmpresa")
     public String indexEmpresa(Model model) {
         List<Transportista> listado = transportistaServicio.listarTransportista();
         model.addAttribute("transportistas", listado);
         return "indexEmpresa";
     }
+    @PreAuthorize("hasRole('ROLE_Proveedor')")
     @GetMapping("/perfil-proveedor")
     public String perfilProveedor(@RequestParam(required = true) String id,ModelMap modelo,Model model){
         try {           
