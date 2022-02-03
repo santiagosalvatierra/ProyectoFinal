@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -38,7 +39,8 @@ public class ComprobanteController {
     private RepositorioComprobante repositorioComprobante;
     @Autowired
     private RepositorioTransportista repositorioTransportista;
-
+    
+    @PreAuthorize("hasRole('ROLE_Transportista')")
     @GetMapping("/mostrarTranspostistas")//muestra los transportistas que aplicaron a un viaje en especifico
     public String mostrarTranspostistas(Model model, String id_viaje) {
         Optional<Viaje> viaje = repositorioViaje.findById(id_viaje);
@@ -47,7 +49,7 @@ public class ComprobanteController {
         model.addAttribute("listadoTransportistas", listadoTransportistas);
         return null;
     }
-
+    @PreAuthorize("hasRole('ROLE_Proveedor')")
     @PostMapping("/seleccionar")//proveedor elije el transportista que va a ser responsable del viaje
     public String votacion(String id_proveedor, String id_transportista, String id_viaje) throws ErroresServicio {
         try {
@@ -57,7 +59,7 @@ public class ComprobanteController {
         }
         return "redirect:/viaje/listar-viajes?id="+id_proveedor;
     }
-
+    @PreAuthorize("hasRole('ROLE_Transportista')")
     @GetMapping("/listarComprobantes")
     public String comprobanteListado(ModelMap modelo, HttpSession session) {
         Transportista transportista;
