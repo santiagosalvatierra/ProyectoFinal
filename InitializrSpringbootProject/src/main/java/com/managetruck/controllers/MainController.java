@@ -10,6 +10,7 @@ import com.managetruck.entidades.Comprobante;
 import com.managetruck.entidades.Proveedor;
 import com.managetruck.entidades.Transportista;
 import com.managetruck.entidades.Usuario;
+import static com.managetruck.enumeracion.EstadoEnum.ELEGIR;
 import static com.managetruck.enumeracion.Role.Proveedor;
 import static com.managetruck.enumeracion.Role.Transportista;
 import com.managetruck.errores.ErroresServicio;
@@ -21,6 +22,7 @@ import com.managetruck.servicios.NotificacionDeServicio;
 import com.managetruck.servicios.ProveedorServicio;
 import com.managetruck.servicios.TransportistaServicio;
 import com.managetruck.servicios.ViajeServicio;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -28,6 +30,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import jdk.nashorn.internal.ir.BreakNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -73,7 +76,8 @@ public class MainController {
 
         return "index";
     }
-
+    
+    @Secured({"ROLE_Transportista","ROLE_Proveedor"})
     @GetMapping("/inicio")
     public String inicio(ModelMap model, HttpSession session, @RequestParam(required = false) String error, @RequestParam(required=false)String nombre, @RequestParam(required=false) String empresa) throws ErroresServicio {
         //tambien podemos usar un switch7inicio
@@ -103,8 +107,19 @@ public class MainController {
             List<Comprobante> comprobantes;
             try {
                 if(empresa!=null){
+                    
                     comprobantes= comprobanteServicio.buscarComprobantePorProveedor(empresa);
-                    model.put("comprobantes", comprobantes);
+                    List<Comprobante> abiertos = new ArrayList();
+                    for (Comprobante comprobante : comprobantes) {
+                        System.out.println("Entra al for");
+                        if (comprobante.getViaje().getEstado().equals(ELEGIR)) {
+                            System.out.println("Entra al if 2");
+                            abiertos.add(comprobante);
+                            System.out.println(comprobante);
+                        }
+                    }
+                    System.out.println("Comprobantes Abiertos: "+abiertos);
+                    model.put("comprobantes", abiertos);
                 }else{
                     comprobantes = comprobanteServicio.comprobantesAbiertos();
                 if (!comprobantes.isEmpty()) {

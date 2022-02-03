@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -38,7 +39,8 @@ public class viajeController {
     
     @Autowired
     ProvinciasServicio provinciaServicio;
-
+    
+    @PreAuthorize("hasRole('ROLE_Proveedor')")
     @GetMapping("/pedido")
     public String inicioViaje(ModelMap modelo) {
         List<Provincias> provincias = provinciaServicio.listarProvinciasTotales();
@@ -47,7 +49,7 @@ public class viajeController {
         modelo.put("provincias",provincias);
         return "FormNuevaCarga";
     }
-
+    @PreAuthorize("hasRole('ROLE_Proveedor')")
     @PostMapping("/pedido")
     public String comienzoViaje(HttpSession session,String idProveedor, String idViaje,@RequestParam String origen, @RequestParam String destino, @RequestParam String tipoCargas, @RequestParam Integer peso, @RequestParam Integer kmRecorridos) {
         Usuario login =(Usuario) session.getAttribute("usuariosession");
@@ -69,7 +71,7 @@ public class viajeController {
         }
         return "indexEmpresa";
     }
-
+    @PreAuthorize("hasRole('ROLE_Proveedor')")
     @GetMapping("/modificar-viaje")
     public String modificarViaje(@RequestParam(required = true) String id_viaje,ModelMap modelo) {        
         try {
@@ -82,7 +84,7 @@ public class viajeController {
         }
         return "FormNuevaCarga";
     }
-
+    @PreAuthorize("hasRole('ROLE_Proveedor')")
     @PostMapping("/modificar-viaje")
     public String cambiarViaje(HttpSession session, @RequestParam String id, @RequestParam Integer peso, @RequestParam Integer kmRecorridos, @RequestParam String tipoCargas, @RequestParam String destino, @RequestParam String origen) {
 
@@ -100,7 +102,7 @@ public class viajeController {
         }
         return null;
     }
-
+    @PreAuthorize("hasRole('ROLE_Proveedor')")
     @GetMapping("/finalizar")
     public String finalizarViaje(HttpSession session,@RequestParam(required = true) String id_viaje,ModelMap modelo) {
         System.out.println(id_viaje);
@@ -122,23 +124,41 @@ public class viajeController {
         }
         
     }
-    
+    @PreAuthorize("hasRole('ROLE_Proveedor')")
     @GetMapping("/valorar")
-    public String puntear (String id_comprobante){
-        return null;
-    }
-    @PostMapping("/validar")
-    public String finalizarPuntuacion(String id_comprobante, Integer valoracion){
-        
-        Comprobante comprobante;
+    public String puntear (@RequestParam(required = true)String id_viaje,ModelMap modelo){
         try {
-            comprobante = comprobanteServicio.buscarComprobanteId(id_comprobante);
-            comprobanteServicio.ValorarTrasnportista(comprobante.getID(), valoracion);
+            System.out.println("el id del viaje es= "+ id_viaje);
+            Viaje viaje =viajeServicio.buscarViajeId(id_viaje);
+            Comprobante comprobante = comprobanteServicio.buscarComprobanteIdViaje(id_viaje);
+            System.out.println("el id del comprobante encontrado es= "+comprobante.getID());
+            System.out.println("el viaje que tiene el comprobante es= "+comprobante.getViaje().getID());
+            modelo.put("viaje",viaje);
+            modelo.put("comprobante", comprobante);
         } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return "verfuncionamiento";
     }
+    @PreAuthorize("hasRole('ROLE_Proveedor')")
+    @PostMapping("/validar")
+    public String finalizarPuntuacion(@RequestParam(required = true)String id_comprobante, Integer estrellas){
+        System.out.println("el id del comprobante es= "+id_comprobante);
+        System.out.println("el valor de la estrella es= "+ estrellas);
+        Comprobante comprobante;
+        try {
+            comprobante = comprobanteServicio.buscarComprobanteId(id_comprobante);
+            System.out.println("el id del comprobante encontrado es="+ comprobante.getID());
+            comprobanteServicio.ValorarTrasnportista(comprobante.getID(), estrellas);
+            System.out.println("el id del trasnportista aplicado es= "+comprobante.getViaje().getTransportistaAplicado().getId());
+            transportistaServicio.valoracion(comprobante.getViaje().getTransportistaAplicado().getId());
+            //viajeServicio.BajaViaje2(comprobante.getViaje().getID());
+        } catch (ErroresServicio ex) {
+            Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "redirect:/inicio";
+    }
+    @PreAuthorize("hasRole('ROLE_Transportista')")
     @GetMapping("/aplicar")
     public String aplicar(ModelMap model, @RequestParam(required = true)String id_transportista,@RequestParam(required = false) String error, @RequestParam(required = true)String id_viaje){
        
@@ -154,6 +174,7 @@ public class viajeController {
         
         return "redirect:/inicio";
     }
+    @PreAuthorize("hasRole('ROLE_Proveedor')")
     @GetMapping("/listar-viajes")
     public String listarviajes(@RequestParam (required=true)String id,ModelMap modelo){
         try {
@@ -168,6 +189,7 @@ public class viajeController {
         }
         
     }
+    @PreAuthorize("hasRole('ROLE_Proveedor')")
     @GetMapping("/listar-postulantes")
     public String postulantes(@RequestParam(required = true)String id_viaje, ModelMap modelo){
       
@@ -186,6 +208,7 @@ public class viajeController {
             return "redirect:/inicio";
         }
     }
+    @PreAuthorize("hasRole('ROLE_Proveedor')")
     @GetMapping("/perfil-aplicado")
     public String perfilAplicado(@RequestParam(required = true)String id_viaje, ModelMap modelo,Model model){
         try {
@@ -202,6 +225,7 @@ public class viajeController {
             return "redirect:/inicio";
         }
     }
+    @PreAuthorize("hasRole('ROLE_Proveedor')")
     @GetMapping("/eliminar")
     public String eliminarViaje(HttpSession session,@RequestParam(required = true)String id_viaje,ModelMap modelo){
         
@@ -220,6 +244,7 @@ public class viajeController {
             return "redirect:/inicio";
         }        
     }
+    @PreAuthorize("hasRole('ROLE_Proveedor')")//Revisar metodo falta
     @GetMapping("/contactar")
     public String contactartransportista(ModelMap modelo){
       

@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -86,7 +87,7 @@ public class TransportistaController {
         modelo.put("provincias",provincias);
         return "transportista_form";
     }
-
+    @PreAuthorize("hasRole('ROLE_Transportista')")
     @GetMapping("")
     public String listarTransportista(ModelMap modelo, @RequestParam(required = false) String error, @RequestParam(required = false) HttpSession session) {
         if (session != null) {
@@ -107,7 +108,7 @@ public class TransportistaController {
 
         return "index";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos
     }
-
+    @PreAuthorize("hasRole('ROLE_Transportista')")
     @GetMapping("/bajar")
     public String darDeBaja(ModelMap model, @RequestParam(required = true) String id) throws ErroresServicio {
         try {
@@ -117,7 +118,7 @@ public class TransportistaController {
         }
         return "redirect:/index";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos 
     }
-
+    @PreAuthorize("hasRole('ROLE_Transportista')")
     @GetMapping("/alta")
     public String darDeAlta(ModelMap model, @RequestParam(required = true) String id) throws ErroresServicio {
         try {
@@ -127,7 +128,7 @@ public class TransportistaController {
         }
         return "redirect:/index";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos 
     }
-
+    @PreAuthorize("hasRole('ROLE_Transportista')")
     @PostMapping("/modificar")
     public String modificar(HttpSession session, ModelMap modelo, String id, String nombre, String apellido, String mail,@RequestParam(required = false) MultipartFile archivo, String zona, String telefono) throws ErroresServicio {
         //verificacion de que el usuario que esta modificando sea el mismo que va a modifica
@@ -153,12 +154,12 @@ public class TransportistaController {
         }
         return "redirect:/inicio";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos 
     }
-
+    @PreAuthorize("hasRole('ROLE_Transportista')")
     @GetMapping("/indexTransportista")
     public String indexTransportista() {
         return "indexTransportista";
     }
-    
+    @PreAuthorize("hasRole('ROLE_Transportista')")
     @GetMapping("/perfil-transportista")
     public String perfilTransportista(String id,ModelMap modelo, Model model,HttpSession session){
         //verificacion de que el usuario que esta modificando sea el mismo que va a modifica
@@ -181,6 +182,7 @@ public class TransportistaController {
             return "redirect:/inicio";
         }
     }
+    @PreAuthorize("hasRole('ROLE_Transportista')")
     @PostMapping("/comunicar")
     public String comunicarAccion(@RequestParam(required = true)String id,HttpSession session,String exampleRadios){
         try {
