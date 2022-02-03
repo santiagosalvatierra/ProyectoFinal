@@ -64,7 +64,9 @@ table {
 }
 
 .img-dev {
-  max-width: 550px;
+  width: 330px;
+  display: block;
+  object-fit: 330px;
 } 
 
 .namer {

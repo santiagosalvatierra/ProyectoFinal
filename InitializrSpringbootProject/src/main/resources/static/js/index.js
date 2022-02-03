@@ -28,7 +28,7 @@ $(document).ready(function () {
             success: function (result) {
                 if (result.status == true) {
                     //Reloads the page if the login was successfully processed
-                    location.reload()
+                    location.reload();
                 } else {
                     console.log(result);
                     $('#error2').html(result.error);

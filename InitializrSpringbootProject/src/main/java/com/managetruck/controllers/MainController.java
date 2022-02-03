@@ -65,6 +65,7 @@ public class MainController {
     @Autowired
     ComprobanteServicio comprobanteServicio;
 
+    
     @GetMapping("/")
     public String index(Authentication auth, HttpSession session, Model model) {
 
@@ -90,7 +91,7 @@ public class MainController {
 
         return "index";
     }
-     */
+    */
     
     
     @GetMapping("/inicio")
@@ -135,17 +136,17 @@ public class MainController {
                 return "indexTransportista";
             } catch (ErroresServicio ex) {
                 Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-
             }
-
         }
         return "index";
     }
+    
 
     @GetMapping("/servicios")
     public String serviciosMT() {
         return "servicios";
     }
+    
 
     @GetMapping("/contacto")
     public String contactoMG() {
