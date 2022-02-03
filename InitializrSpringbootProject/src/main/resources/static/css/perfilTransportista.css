@@ -1,45 +1,95 @@
-body{
-  background: linear-gradient(180deg, #6930C3 0%, rgba(230,230,230,1) 41%, rgba(252,252,252,1) 100%);
+body {
   background-color: #fcfcfc;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   min-height: 100vh;
 }
 
-/* BUTTONS */
-.buttom-mod-container {
+.body-plus {
+  background-image: url(../img/Filtro\ violeta.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+}
+
+/* BARRA NAV-HEADER */
+.buscar {
+  width: 500px;
+}
+
+.topheader {
+  height: 100px;
+  background-size: cover;
+  background-position: center;
   position: relative;
-  background-color: none;
+}
+
+/* /////////////////////////////////////////////////////////////*/
+main {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  margin: 0 auto;
+}
+
+.container-img {
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.btn-primary {
-  color: #fcfcfc;
-  background: #6930C3;
-  font-weight: 400;
-  padding: 0.5rem;
-  width: 13rem;
-  box-shadow: 0px 4px 4px rgba(31, 31, 31, 0.25);
-  border-radius: 10px;
-  border-color: #6930C3;
+  align-items: center;
+  width: 400px;
+  height: 400px;
   overflow: hidden;
-  cursor: pointer;
+  margin: 0 auto;
+  margin-bottom: 1.5rem;
+  border-radius: 50%;
+  border: 7px solid #fcfcfc;
 }
 
-.btn-primary:hover {
-  color: #6930C3;
-  background: #FCFCFC;
-  border-width: 0.2rem;
-  border-color: #6930C3;
+.perfil-img {
+  max-width: 700px;
+}
+
+.form {
+  margin: 0 auto;
+  background-color: #fcfcfc;
+  border-radius: 15px;
+  width: 70%;
+  padding: 30px;
+}
+
+.form input {
+  color: #31175a;
+  outline: none;
+  background-color: #fcfcfc;
+  border: 0;
+  height: 40px;
+}
+
+.form select {
+  color: #31175a;
+  outline: none;
+  background-color: #fcfcfc;
+  border: 0;
+  font-size: 17.5px;
+  font-weight: 400;
+}
+
+.usuario {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.us-2 input {
+  height: 50px;
 }
 
 /*SWITCH*/
-input[type=checkbox].toggle{
+input[type="checkbox"].toggle {
   display: none;
 }
 
-input[type=checkbox].toggle + label{
+input[type="checkbox"].toggle + label {
   display: inline-block;
   height: 60px;
   width: 200px;
@@ -53,17 +103,17 @@ input[type=checkbox].toggle + label{
   transition: all 0.3s ease;
 }
 
-input[type=checkbox].toggle + label:before{
+input[type="checkbox"].toggle + label:before {
   position: absolute;
   top: 4px;
   height: 44px;
   width: 44px;
-  content: '';
+  content: "";
   transition: all 0.3s ease;
   z-index: 3;
 }
 
-input[type=checkbox].toggle + label:after{
+input[type="checkbox"].toggle + label:after {
   width: 140px;
   text-align: center;
   z-index: 2;
@@ -75,25 +125,25 @@ input[type=checkbox].toggle + label:after{
   overflow: hidden;
 }
 
-input[type=checkbox].toggle + label.rounded{
+input[type="checkbox"].toggle + label.rounded {
   border-radius: 30px;
 }
 
-input[type=checkbox].toggle + label.rounded:before{
+input[type="checkbox"].toggle + label.rounded:before {
   border-radius: 50%;
 }
 
-input[type=checkbox].toggle:not(checked) + label{
+input[type="checkbox"].toggle:not(checked) + label {
   background-color: transparent;
   text-align: right;
 }
 
-input[type=checkbox].toggle:not(checked) + label:before{
+input[type="checkbox"].toggle:not(checked) + label:before {
   left: 4px;
   background-color: rgb(230, 75, 75);
 }
 
-input[type=checkbox].toggle:not(checked) + label:after{
+input[type="checkbox"].toggle:not(checked) + label:after {
   content: attr(data-unchecked);
   right: 0;
   left: auto;
@@ -101,17 +151,17 @@ input[type=checkbox].toggle:not(checked) + label:after{
   color: rgb(15, 5, 5);
 }
 
-input[type=checkbox].toggle:checked + label{
+input[type="checkbox"].toggle:checked + label {
   text-align: left;
   border-color: rgb(34, 92, 179);
 }
 
-input[type=checkbox].toggle:checked + label:before{
+input[type="checkbox"].toggle:checked + label:before {
   left: 144px;
   background-color: rgb(77, 172, 228);
 }
 
-input[type=checkbox].toggle:checked + label:after{
+input[type="checkbox"].toggle:checked + label:after {
   content: attr(data-checked);
   left: 4px;
   right: auto;
@@ -119,8 +169,171 @@ input[type=checkbox].toggle:checked + label:after{
   color: rgb(10, 23, 143);
 }
 
+.datos-user {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.datos-user div {
+  margin: 0.5rem 0;
+}
+
+.datos-user input {
+  font-size: 17.5px;
+  font-weight: 400;
+}
+
+/* //////////////////////////////////////////////////////////////////// */
+/* BUTTONS FORM */
+.buttom-mod-container {
+  position: relative;
+  background-color: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+  width: 70%;
+}
+
+.btn-primary {
+  margin: 1rem 0.6rem;
+  background-color: #fcfcfc;
+  color: #6930c3;
+  border-radius: 10px;
+  font-weight: 600;
+  line-height: 15px;
+  border: 3px solid #6930c3;
+  transition: all 0.3s ease 0s;
+  width: 150px;
+  height: 65px;
+  padding-top: 8px;
+  line-height: 20px;
+}
+
+.btn-primary:hover {
+  color: #fcfcfc;
+  background-color: #6930c3;
+  border-color: #6930c3;
+}
+
+.boton-standar-rw {
+  text-align: center;
+  margin: 5px;
+  background-color: #fcfcfc;
+  color: #6930c3;
+  border-radius: 10px;
+  font-weight: 600;
+  line-height: 15px;
+  border: 3px solid #6930c3;
+  transition: all 0.3s ease 0s;
+  width: 150px;
+  height: 65px;
+  cursor: pointer;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.boton-standar-rw:hover {
+  color: #fcfcfc;
+  background-color: #6930c3;
+}
+
+.center {
+  margin: 0 2rem;
+}
+
+/* ///////////////////////////////////////////////////////*/
+/* MODAL CAMBIAR CONTRASEÑA */
+.modal-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  margin: 0 auto;
+  overflow: hidden; /* Caracteristica que sirve para que el contenido no se desborde. Lo oculta*/
+}
+
+.modal-content .btn-close {
+  background-color: none;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.modal-content .btn-close :hover {
+  color: #31175a;
+  border: #3CE2D1;
+}
+
+.modal-subtitle {
+  color: #4a2488;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.modal-title {
+  color: #31175a;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.modal-title-h3 {
+  color: #31175a;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.7rem;
+}
+
+#ing {
+  margin: 0 3rem;
+}
+
+.form-group {
+  margin: 1rem 0rem;
+}
+
+#password {
+  height: 3rem;
+  font-size: 0.8rem;
+}
+
+#password2 {
+  height: 3rem;
+  font-size: 0.8rem;
+}
+
+#confirm {
+  margin: 0.5rem 2rem 1.5rem 4rem;
+  color: #fcfcfc;
+  background: #6930C3;
+  font-weight: 400;
+  padding: 0.5rem;
+  width: 15rem;
+  height: 3rem;
+  box-shadow: 0px 4px 4px rgba(31, 31, 31, 0.25);
+  border-radius: 10px;
+  border-color: #6930C3;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#confirm:hover {
+  color: #6930C3;
+  background: #FCFCFC;
+  border-width: 0.2rem;
+  border-color: #6930C3;
+}
+
 /*CONTENIDO CAMION*/
-.contenedor1{
+.contenedor1 {
   width: 90%;
   max-width: 1200px;
   margin: auto;
@@ -149,12 +362,12 @@ input[type=checkbox].toggle:checked + label:after{
   margin-bottom: 10px;
 }*/
 
-.foto{
+.foto {
   margin-bottom: 10px;
   object-fit: fill;
 }
 
-.contenedor2-texto{
+.contenedor2-texto {
   display: flex;
   height: 100%;
   width: 100%;
@@ -165,7 +378,7 @@ input[type=checkbox].toggle:checked + label:after{
 }
 
 /*GRID*/
-.contenedor2{
+.contenedor2 {
   width: 90%;
   max-width: 1200px;
   margin: auto;
@@ -175,13 +388,50 @@ input[type=checkbox].toggle:checked + label:after{
   gap: 20px;
 }
 
-.contenedor2-fotos{
+.contenedor2-fotos {
   display: grid;
   grid-template-columns: 1fr;
   align-content: center;
 }
 
-.contenedor2-texto input{
+.contenedor2-texto input {
   width: 400px;
   margin-bottom: 20px;
+}
+
+/* //////////////////////////////////////////////////////////////////// */
+/* BUTTONS EXTRA */
+.btns-container {
+  background-color: none;
+  margin: 5rem 0 7rem 0;
+}
+
+.extra-btns {
+  display: flex;
+  justify-content: center;
+  width: 15%;
+  margin: 1rem auto;
+  text-align: center;
+  background-color: #6930c3;
+  background: linear-gradient(
+    48deg,
+    rgba(154, 50, 210, 1) 0%,
+    rgba(119, 51, 208, 1) 50%,
+    rgba(102, 23, 218, 1) 100%
+  );
+  color: #fcfcfc;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 17px;
+  border: 3px solid #6930c3;
+  transition: all 0.3s ease 0s;
+  padding: 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.extra-btns:hover {
+  color: #6930c3;
+  background: #fcfcfc;
+  border-color: #6930c3;
 }
