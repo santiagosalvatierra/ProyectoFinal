@@ -160,7 +160,7 @@ public class viajeController {
        
         try {
             viajeServicio.aplicar(id_transportista, id_viaje);
-                  
+            transportistaServicio.enViaje(id_transportista);
 
         } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);

@@ -286,6 +286,7 @@ public class TransportistaServicio {
         Transportista transportista = buscarID(id_trasnportista);
         if (transportista.isViajando()) {
             transportista.setViajando(false);
+            //sino funciona falta el save del repositorio
         } else {
             transportista.setViajando(true);
         }
