@@ -4,13 +4,30 @@ body {
   min-height: 100vh;
 }
 
-/* BARRA NAV-HEADER */
 .topheader {
   height: 100px;
   background-color: #6930c3;
   background-size: cover;
   background-position: center;
   position: relative;
+}
+
+/* BARRA NAV-HEADER */
+.nav-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+nav {
+  align-items: center;
+  justify-content: center;
+}
+
+nav .logo {
+    padding: 1rem;
+    width: 45%;
+    margin-right: 6rem;
+    margin-bottom: 8px;
 }
 
 .buscar{
@@ -63,27 +80,14 @@ li {
   list-style-type: none;
 }
 
-h5{
-  color: #31175a;;
-}
 p {
   margin-bottom: 2px;
-  color: #31175a;
-}
-
-.btn-mas{
-  width: 7rem;
-  justify-content: center;
-  padding-top: unset;
-  padding: unset;
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
 }
 
 /* FONDO CARDS DESTACADAS */
 .favs-conteiner {
-  margin: 3% 10%;
-  padding: 1rem 4rem 1rem 4rem;
+  margin: 4rem 8rem 8rem;
+  padding: 4rem 4rem 4rem 4rem;
   background-color: #e2ebee;
 }
 
@@ -157,4 +161,7 @@ p {
 ::selection {
   color: white;
   background-color: #032144f6;
+}
+
+table {
 }
