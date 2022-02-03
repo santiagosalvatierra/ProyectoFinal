@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +39,7 @@ public class CamionController {
         camionServicio.crearCamion(pesoMaximo, modelo, descripcion, anio, patente, poliza, fotos);
         return "crearCamion";
     }
+    @PreAuthorize("hasRole('ROLE_Transportista')")
     @PostMapping("/modificar-camion")
     public String crearCamion(HttpSession session,@RequestParam(required = true)String id_transportista,String id,@RequestParam Integer pesoMaximo, String descripcion, @RequestParam String modelo, Integer anio, @RequestParam String patente, @RequestParam Integer poliza, List<MultipartFile> fotos) {
         //metodo para revisar que sea la misma persona hay que testearlo
