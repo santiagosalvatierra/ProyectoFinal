@@ -3,17 +3,17 @@
 
   <!-- TARJETA 1 SECUNDARIA
   Deberian conectarse todos los datos con la base de datos según usuario-->
-  <div class="row mx-5" style="margin:3rem 3rem 3rem 3rem;">
+  <div class="row" style="margin:3rem 3rem 3rem 3rem;">
 
     <div class="container">
       <div class="card-group mt-3">
-
+        <!--ACA EL CODIGO DE LAS ESTRELLAS-->
         <div th:each="transportista,stat:${transportistas}">
-          <div class="col mx-3">
-            <div class="card" style="width: 13rem; margin-bottom: 15px; margin-top:15px;">
+          <div class="col mx-5">
+            <div class="card" style="width: 14rem; margin-bottom: 15px; margin-top:15px;">
               <div class="container-fluid" id="main-content">
                 <div class="container">
-                  <div class="row">
+                  <div class="row my-2">
                     <div class="col-2" th:if="${transportista.valoracion!=0}"
                       th:each="i: ${#numbers.sequence( transportista.valoracion, 1)}">
                       <i class="estrella fas fa-star"></i>
@@ -22,31 +22,41 @@
                       th:each="i: ${#numbers.sequence( transportista.valoracion, 4)}">
                       <i class="estrella2 far fa-star"></i>
                     </div>
-                    
                   </div>
                 </div>
               </div>
-
-
-
+              <!--ACA EMPIEZAN LOS DATOS DEL TRANSPORTISTA-->
               <img id="imagen" th:if="${transportista.foto == null}"
                 src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
                 class="card-img-top" alt="Foto perfil Transportista">
               <img id="imagen" th:if="${transportista.foto != null}"
                 th:src="${'/foto/usuario-imagen/'+transportista.id}" class="card-img-top"
                 alt="Foto perfil Transportista">
-              <!--<img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto perfil Transportista">-->
               <div class="card-body">
-                <h5 class="card-title" th:text="${transportista.apellido}">Nombre Apellido</h5>
-                <p class="card-text" th:text="${transportista.zona}">Zona</p>
-                <p class="card-text" th:text="${transportista.camion.modelo}">Modelo</p>
-                <p class="card-text" th:text="${transportista.camion.anio}">Ano</p>
-                <p class="card-text" th:text="${transportista.camion.patente}">patente</p>
-                <!--<p class="card-text">Carga máxima en kg</p>-->
+                <h5 class="card-title text-capitalize text-center" th:text="${transportista.apellido} +', '+ ${transportista.nombre}">Nombre Apellido</h5>
+                <div class="row mb-1">
+                  <div class="col-2">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="col-10">
+                    <p class="card-text" th:text="${transportista.zona}">Zona</p>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-2">
+                    <i class="fas fa-truck"></i>
+                  </div>
+                  <div class="col-10">
+                    <p class="card-text" th:text="${transportista.camion.modelo}">Modelo</p>
+                    <p class="card-text" th:text="${transportista.camion.anio}">Ano</p>
+                    <p class="card-text" th:text="${transportista.camion.patente}">patente</p>
+                  </div>
+                </div>
+                
                 <form
                   th:action="@{/comprobante/seleccionar}+'?id_proveedor='+${session.usuariosession.id}+'&id_transportista='+${transportista.id}+'&id_viaje='+${id_viaje}"
                   method="post">
-                  <button class="btn btn-primary btn-sm">Ver Mas</button>
+                  <button class="btn btn-primary btn-mas">Ver Mas</button>
                 </form>
               </div>
             </div>
@@ -56,10 +66,9 @@
     </div>
   </div>
  
-
-
-  <!-- SECCIÓN NOTICIAS INDEX -->
 </section>
+
+<!-- SECCIÓN NOTICIAS INDEX -->
 <section th:fragment="newCards" style="margin: 0rem 8rem 2rem; padding: 0rem 4rem 2rem 4rem;">
 
   <div class="notice-title">
