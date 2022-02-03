@@ -3,12 +3,15 @@ package com.managetruck.controllers;
 import com.managetruck.entidades.Camion;
 import com.managetruck.entidades.Comprobante;
 import com.managetruck.entidades.Foto;
+import com.managetruck.entidades.Proveedor;
 import com.managetruck.entidades.Provincias;
 import com.managetruck.entidades.Transportista;
 import com.managetruck.entidades.Usuario;
 import com.managetruck.entidades.Viaje;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.servicios.ComprobanteServicio;
+import com.managetruck.servicios.NotificacionDeServicio;
+import com.managetruck.servicios.ProveedorServicio;
 import com.managetruck.servicios.ProvinciasServicio;
 import com.managetruck.servicios.TransportistaServicio;
 import com.managetruck.servicios.ViajeServicio;
@@ -29,14 +32,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/viaje")
 public class viajeController {
-
+    
+    @Autowired
+    private ProveedorServicio proveedorServicio;
     @Autowired
     private ViajeServicio viajeServicio;
     @Autowired
     private TransportistaServicio transportistaServicio;
     @Autowired
     private ComprobanteServicio comprobanteServicio;
-    
+     @Autowired
+    private NotificacionDeServicio notif;
     @Autowired
     ProvinciasServicio provinciaServicio;
     
@@ -238,7 +244,7 @@ public class viajeController {
             viajeServicio.BajaViaje(id_viaje);
             List<Viaje> viajes = viajeServicio.viajesCreadosProveedor(comprobante.getProveedor().getId());
             modelo.put("viajes",viajes);
-            return "ListadoCargas";
+            return "contactar";
         } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
             return "redirect:/inicio";
@@ -266,5 +272,15 @@ public class viajeController {
             return "redirect:/inicio";
         }
     }
-    
+     @PostMapping("/contactar")
+    public String contactarTransportista(ModelMap modelo, String id_transportista, String id_proveedor) throws ErroresServicio{
+        Transportista transportista = transportistaServicio.buscarID(id_transportista);
+        Proveedor proveedor = proveedorServicio.buscarID(id_proveedor);
+        
+            notif.enviar(proveedor.getNombreEmpresa()+" se ha contactado con usted por que quiere que realice un viaje", "Contacto", transportista.getMail());
+            return "indexEmpresa";
+       
+    }
 }
+    
+

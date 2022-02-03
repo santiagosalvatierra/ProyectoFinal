@@ -84,7 +84,6 @@ public class MainController {
         Usuario login = (Usuario) session.getAttribute("usuariosession");
         if (login.getRol().equals(Proveedor)) {
             
-            
             if (nombre!=null) {
                List <Transportista> transportistas = transportistaServicio.listarTranpsortistasNombre(nombre);
                model.put("transportistas", transportistas);
@@ -92,16 +91,35 @@ public class MainController {
                 List<Transportista> transportistas = transportistaServicio.listarTransportista();
                 model.put("transportistas", transportistas);
             }
-            
             List<Transportista> transportistas2 = repositorioTransportista.buscarTransportistaPorZona(login.getZona());
             if (!transportistas2.isEmpty()) {
-                model.addAttribute("tittle", "Listado Transportistas");
-                model.addAttribute("transportistas2", transportistas2);
+                
+                if(transportistas2.size()<3){
+                    int i = transportistas2.size();
+                    List<Transportista> transportistas = transportistaServicio.listarTransportista();
+                    for (Transportista transportista : transportistas) {
+                    if(i!=3){
+                    transportistas2.add(transportista);
+                    i++;
+                    }
+                }
+                    
+                }
                 if (error != null) {
                     model.put("error", "Usted no puede aplicar al viaje");
                 }
+            }else{
+                int i = 0;
+                List<Transportista> transportistas = transportistaServicio.listarTransportista();
+                for (Transportista transportista : transportistas) {
+                    if(i!=3){
+                    transportistas2.add(transportista);
+                    i++;
+                    }
+                }
             }
-
+            model.addAttribute("tittle", "Listado Transportistas");
+                model.addAttribute("transportistas2", transportistas2);
             return "indexEmpresa";
         } else if (login.getRol().equals(Transportista)) {
             List<Comprobante> comprobantes;
@@ -111,14 +129,13 @@ public class MainController {
                     comprobantes= comprobanteServicio.buscarComprobantePorProveedor(empresa);
                     List<Comprobante> abiertos = new ArrayList();
                     for (Comprobante comprobante : comprobantes) {
-                        System.out.println("Entra al for");
                         if (comprobante.getViaje().getEstado().equals(ELEGIR)) {
-                            System.out.println("Entra al if 2");
+                            
                             abiertos.add(comprobante);
                             System.out.println(comprobante);
                         }
                     }
-                    System.out.println("Comprobantes Abiertos: "+abiertos);
+                    
                     model.put("comprobantes", abiertos);
                 }else{
                     comprobantes = comprobanteServicio.comprobantesAbiertos();
@@ -132,8 +149,7 @@ public class MainController {
                
                 return "indexTransportista";
             } catch (ErroresServicio ex) {
-                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-                
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex); 
             }
 
         }
