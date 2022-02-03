@@ -12,26 +12,6 @@ body{
   }
 
 /* BARRA NAV-HEADER */
-.nav-container {
-  width: 100%;
-  margin: 0 auto;
-}
-
-nav {
-  align-items: center;
-  justify-content: center;
-}
-
-nav .logo {
-    padding: 1rem;
-    width: 45%;
-    margin-right: 6rem;
-    margin-bottom: 8px;
-}
-
-.buscar{
-  width: 500px;
-}
 
 .topheader {
   height: 100px;
@@ -40,6 +20,9 @@ nav .logo {
   position: relative;
 }
 
+.buscar{
+  width: 500px;
+}
 
 /* /////////////////////////////////////////////////////////////*/
 main {
