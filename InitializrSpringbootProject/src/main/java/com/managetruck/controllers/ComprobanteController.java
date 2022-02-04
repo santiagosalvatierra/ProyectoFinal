@@ -54,6 +54,7 @@ public class ComprobanteController {
     public String votacion(String id_proveedor, String id_transportista, String id_viaje) throws ErroresServicio {
         try {
             transportistaServicio.asignacionTransportida(id_proveedor, id_viaje, id_transportista);
+            transportistaServicio.enViaje(id_transportista);
         } catch (ErroresServicio ex) {
             Logger.getLogger(ComprobanteController.class.getName()).log(Level.SEVERE, null, ex);
         }
