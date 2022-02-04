@@ -9,7 +9,11 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/Footer.css}">
     <link rel="stylesheet" th:href="@{../static/css/Footer.css}">
-    <link rel="stylesheet" th:href="@{/css/perfilEmpresa.css}">
+    <link rel="stylesheet" href="/css/perfilEmpresa.css">
+    <link rel="stylesheet" href="../static/css/perfilEmpresa.css">
+    <link rel="stylesheet" th:href="@{/css/navEmpresa.css}">
+    <link rel="stylesheet" th:href="@{../static/css/navEmpresa.css}">
+  
 
     <!-- TIPOGRAFÍAS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,13 +35,13 @@
         <main>
             <div class="container contenedor">
 
-                <div class="container-img">
-                    <img th:if="${perfil.foto != null}" class="perfil-img"
+                <div class="container-img-perf">
+                    <img th:if="${perfil.foto != null}" class="perfil-img-int"
                         th:src="${'/foto/usuario-imagen/' + perfil.id}" alt="" />
-                    <img th:if="${perfil.foto == null}" class="perfil-img" src="../img/Foto sin foto.jpg" alt="" />
+                    <img th:if="${perfil.foto == null}" class="perfil-img-int" src="../img/Foto sin foto.jpg" alt="" />
                 </div>
 
-                <form class="form" th:action="@{/proveedor/modificar-proveedor}" method="POST"
+                <form class="form" id="body" th:action="@{/proveedor/modificar-proveedor}" method="POST"
                     enctype="multipart/form-data" th:object="${perfil}">
                     <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
                     <input type="hidden" name="id" th:value="${perfil.id}" />

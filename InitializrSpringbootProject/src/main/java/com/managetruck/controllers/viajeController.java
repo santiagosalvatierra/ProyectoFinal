@@ -204,9 +204,9 @@ public class viajeController {
         try {
             Viaje viaje=viajeServicio.buscarViajeId(id_viaje);
             List<Transportista> postulantes = viaje.getListadoTransportista();
-            List<Transportista> postulantesActivos=new ArrayList();
-            for (Transportista postulante : postulantes) {
-                if (postulante.isViajando()==false) {
+            List<Transportista> postulantesActivos = new ArrayList();
+            for(Transportista postulante : postulantes) {
+                if (postulante.isViajando() == false ) {
                     postulantesActivos.add(postulante);
                 }
                 System.out.println("el boolean de viajando es= "+ postulante.isViajando());
@@ -272,7 +272,7 @@ public class viajeController {
             
             //modelo.put("id_viaje", id_viaje);
             modelo.put("transportistas", postulantes); 
-            return "TransportistasPostulados";
+            return "contactar";
         } catch (ErroresServicio ex){
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
             return "redirect:/inicio";
@@ -282,9 +282,11 @@ public class viajeController {
     public String contactarTransportista(ModelMap modelo, String id_transportista, String id_proveedor) throws ErroresServicio{
         Transportista transportista = transportistaServicio.buscarID(id_transportista);
         Proveedor proveedor = proveedorServicio.buscarID(id_proveedor);
+         System.out.println("TRANSPORTISTA: "+transportista);
+         System.out.println("TRANSPORTISTA_id: "+id_transportista);
         
             notif.enviar(proveedor.getNombreEmpresa()+" se ha contactado con usted por que quiere que realice un viaje", "Contacto", transportista.getMail());
-            return "indexEmpresa";
+            return "redirect:/inicio";
        
     }
 }

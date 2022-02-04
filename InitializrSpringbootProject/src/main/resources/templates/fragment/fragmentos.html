@@ -14,7 +14,6 @@
 </header>
 
 
-
 <!--ACA EMPIEZA EL FRAGMENT NAV INDEX TRANSPORTISTA-->
 <header th:fragment="headerLoginTrans">
   <nav class="topheader navbar">
@@ -58,26 +57,26 @@
           <div class="m-5">
             <h5>PROCESO DE PEDIDO</h5>
             <form th:action="@{/transportista/comunicar}+'?id='+${session.usuariosession.id}" method="POST">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="1">
-              <label class="form-check-label" for="exampleRadios1">
-                Carga recogida
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="2">
-              <label class="form-check-label" for="exampleRadios2">
-                En camino
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="3">
-              <label class="form-check-label" for="exampleRadios3">
-                Carga entregada
-              </label>
-            </div>
-                <input class="cargaButton" type="submit" th:value="Comunicar">
-            </form>    
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="1">
+                <label class="form-check-label" for="exampleRadios1">
+                  Carga recogida
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="2">
+                <label class="form-check-label" for="exampleRadios2">
+                  En camino
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="3">
+                <label class="form-check-label" for="exampleRadios3">
+                  Carga entregada
+                </label>
+              </div>
+              <input class="cargaButton" type="submit" th:value="Comunicar">
+            </form>
           </div>
           <div class="m-5">
             <h5>ESTADO</h5>
@@ -99,9 +98,11 @@
       </a>
       <form class="d-flex buscar">
         <input type="buscar" name="empresa" class="form-control me-2" placeholder="Buscar..." aria-label="Buscar">
-        <button type="submit" class="btn btn-primary" style="width: 50px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-</svg></button>
+        <button type="submit" class="btn btn-primary" style="width: 50px"><svg xmlns="http://www.w3.org/2000/svg"
+            width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+          </svg></button>
       </form>
       <div class="d-flex ">
         <a class="me-3" th:href="@{/logout}"><button class="btn btn-dark">SALIR</button></a>
@@ -117,61 +118,68 @@
 <header th:fragment="headerLoginEmp">
   <nav class="topheader navbar">
     <div class="container-fluid">
+
       <!--DESDE ACA EL MENU OFFCANVAS-->
       <button class="btn btn-toolbar" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
         aria-controls="offcanvasScrolling">
-        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          <img th:if="${session.usuariosession.foto == null}" src="/img/Foto sin foto.jpg" alt="mdo" width="52"
-            height="52" class="rounded-circle">
-          <!-- FORMA EN MOSTRAR LA IMAGEN QUE TIENE EL USUARIO GUARDADA-->
-          <img th:if="${session.usuariosession.foto != null}"
-            th:src="${'/foto/usuario-imagen/'+session.usuariosession.id}" alt="mdo" width="52" height="52"
-            class="rounded-circle">
-        </a>
+
+        <div class="container-img">
+          <a href="#" class="d-block link-white text-decoration-none dropdown-toggle" id="dropdownUser2"
+            data-bs-toggle="dropdown" aria-expanded="false">
+
+            <img th:if="${session.usuariosession.foto == null}" src="/img/Foto sin foto.jpg" alt="mdo"
+              class="perfil-img">
+
+            <!-- FORMA EN MOSTRAR LA IMAGEN QUE TIENE EL USUARIO GUARDADA-->
+            <img th:if="${session.usuariosession.foto != null}"
+              th:src="${'/foto/usuario-imagen/'+session.usuariosession.id}" alt="mdo" class="perfil-img">
+          </a>
+        </div>
       </button>
+
       <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasScrolling"
         aria-labelledby="offcanvasLabel">
         <div class="offcanvas-header">
           <!--<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#my-offcanvas" aria-label="Close"></button>-->
-          <div class="justify-content-center">
-            <img th:if="${session.usuariosession.foto == null}" src="../img/Foto sin foto.jpg"
-              class="img-thumbnail rounded-circle col-auto" alt="Perfil" width="250" height="300">
+
+          <div class="cont-img-oncanvas">
+            <img th:if="${session.usuariosession.foto == null}" src="../img/Foto sin foto.jpg" class="img-oncanvas"
+              alt="Perfil">
             <img th:if="${session.usuariosession.foto != null}"
-              th:src="${'/foto/usuario-imagen/'+session.usuariosession.id}"
-              class="img-thumbnail rounded-circle col-auto" alt="Perfil" width="250" height="300">
+              th:src="${'/foto/usuario-imagen/'+session.usuariosession.id}" class="img-oncanvas" alt="Perfil">
           </div>
+
         </div>
+
         <div class="offcanvas-body">
-          <div class="">
-            <ul class="nav flex-column align-content-center">
-              <li class="nav-item"><a class="buttom-mod-container btn btn-primary"
-                  th:href="@{/proveedor/perfil-proveedor}+'?id='+${session.usuariosession.id}">PERFIL</a></li>
-              <li class="nav-item"><a class="buttom-mod-container btn btn-primary"
-                  th:href="@{/viaje/listar-viajes}+'?id='+${session.usuariosession.id}">REGISTRO DE VIAJES</a></li>
-              <li class="nav-item"><a class="buttom-mod-container btn btn-primary" th:href="@{/viaje/pedido}">NUEVA
-                  CARGA</a></li>
-            </ul>
-          </div>
-          <div>
-            <a class="buttom-mod-container" th:href="@{/logout}"><button class="btn btn-dark mt-5">CERRAR
-                SESIÓN</button></a>
+            <a class="btns-opt"
+              th:href="@{/proveedor/perfil-proveedor}+'?id='+${session.usuariosession.id}">Editar perfil</a>
+            <a class="btns-opt"
+              th:href="@{/viaje/listar-viajes}+'?id='+${session.usuariosession.id}">Registro de viajes</a>
+            <a class="btns-opt" th:href="@{/viaje/pedido}">Nuevo viaje</a>
+
+
+          <div class="logout">
+            <a class="buttom-mod-container" th:href="@{/logout}"><button class="btn btn-secondary-opt">Cerrar sesión</button></a>
           </div>
         </div>
       </div>
       <!--HASTA ACA ES EL MENU OFFCANVAS-->
+
       <!--ACA EMPIEZAN LOS OTROS ELEMENTOS DEL NAV-->
-      <a th:href="@{/inicio}" class="navbar-brand logo">
-        <img src="../img/ManageTruck_logo-Blanco.png" class="img" width="200" height="52" alt="">
+      <a th:href="@{/inicio}" class="navbar-brand">
+        <img src="../img/ManageTruck_logo-Blanco.png" class="img" alt="">
       </a>
       <form class="d-flex buscar">
         <input type="buscar" class="form-control me-2" name="nombre" placeholder="Buscar..." aria-label="Buscar">
-        <button type="submit" class="btn btn-primary" style="width: 50px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-</svg></button>
+        <button type="submit" class="btn lupa" style="width: 50px"><svg xmlns="http://www.w3.org/2000/svg"
+            width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+          </svg></button>
       </form>
       <div class="d-flex ">
-        <a class="me-3" th:href="@{/logout}"><button class="btn btn-dark">SALIR</button></a>
+        <a class="me-3" th:href="@{/logout}"><button class="btn btn-out"><i class="fas fa-sign-out-alt icon"></i>Salir</button></a>
       </div>
     </div>
   </nav>

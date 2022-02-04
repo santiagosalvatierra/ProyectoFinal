@@ -33,7 +33,7 @@
                 th:src="${'/foto/usuario-imagen/'+transportista.id}" class="card-img-top"
                 alt="Foto perfil Transportista">
               <div class="card-body">
-                <h5 class="card-title text-capitalize text-center" th:text="${transportista.apellido} +', '+ ${transportista.nombre}">Nombre Apellido</h5>
+                <h5 class="card-title text-capitalize text-center" th:text="${transportista.nombre} +' '+ ${transportista.apellido}">Nombre Apellido</h5>
                 <div class="row mb-1">
                   <div class="col-2">
                     <i class="fas fa-map-marker-alt"></i>
@@ -47,9 +47,7 @@
                     <i class="fas fa-truck"></i>
                   </div>
                   <div class="col-10">
-                    <p class="card-text" th:text="${transportista.camion.modelo}">Modelo</p>
-                    <p class="card-text" th:text="${transportista.camion.anio}">Ano</p>
-                    <p class="card-text" th:text="${transportista.camion.patente}">patente</p>
+                    <p class="card-text" th:text="${transportista.camion.modelo} +', '+ ${transportista.camion.anio}">Modelo y año</p>                  
                   </div>
                 </div>
                 

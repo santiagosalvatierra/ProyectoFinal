@@ -13,8 +13,8 @@
     <link href="../static/css/FormNuevaCarga.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" th:href="@{/css/Footer.css}">
     <link rel="stylesheet" th:href="@{../static/css/Footer.css}">
-    <link rel="stylesheet" th:href="@{/css/NavGeneral.css}">
-    <link rel="stylesheet" th:href="@{../static/css/NavGeneral.css}">
+    <link rel="stylesheet" th:href="@{/css/navEmpresa.css}">
+    <link rel="stylesheet" th:href="@{../static/css/navEmpresa.css}">
 
         <!-- TIPOGRAFÍAS -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,21 +32,11 @@
 </head>
 
 <body>
-    <header class="topheader">
-        <div class="nav-container">
-            <nav class="nav">
-                <a href="/" class="logo"><img src="/img/ManageTruck_logo-Blanco.png" class="logo"></a>
-                <ul class="nav__items">
-                    <li class="nav__items"><a th:href="@{/nosotros}">NOSOTROS</a></li>
-                    <li class="nav__items"><a th:href="@{/servicios}">SERVICIOS</a></li>
-                    <li class="nav__items"><a th:href="@{/contacto}">ESCRIBINOS</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <header th:replace="fragment/fragmentos :: headerLoginEmp"></header>
             
-    <main class="top-titulo" style="padding-top: 17px;"><h1><span th:text="${viaje.ID == null ? 'Nueva' : 'Modificar'}"></span> Carga</h1></main>
-    <!--<div th:replace="fragment/fragmentos :: headerLoginEmp"></div>-->
+    <main class="top-titulo" style="padding-top: 17px;">
+        <h1><span th:text="${viaje.ID == null ? 'Nueva' : 'Modificar'}"></span> Carga</h1>
+    </main>
 
 
     <div class="row g-2">
