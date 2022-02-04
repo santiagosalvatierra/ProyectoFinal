@@ -79,7 +79,7 @@
                 <p class="card-text" th:text="${transportista.camion.anio}">Ano</p>
                 <p class="card-text" th:text="${transportista.camion.patente}">patente</p>
            <!--<p class="card-text">Carga máxima en kg</p>-->
-          <form th:action="@{/viaje/}+'?id_transportista='+${transportista.id}+'&id_proveedor='+${session.usuariosession.id}" method="post">
+          <form th:action="@{/viaje/contactar}+'?id_transportista='+${transportista.id}+'&id_proveedor='+${session.usuariosession.id}" method="post">
               <button class="btn btn-primary btn-sm">Contactar</button>
           </form>
          </div> 

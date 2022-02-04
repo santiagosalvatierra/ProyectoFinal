@@ -158,7 +158,8 @@ public class viajeController {
             comprobanteServicio.ValorarTrasnportista(comprobante.getID(), estrellas);
             System.out.println("el id del trasnportista aplicado es= "+comprobante.getViaje().getTransportistaAplicado().getId());
             transportistaServicio.valoracion(comprobante.getViaje().getTransportistaAplicado().getId());
-            //viajeServicio.BajaViaje2(comprobante.getViaje().getID());
+            
+            viajeServicio.BajaViaje2(comprobante.getViaje().getID());
         } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -266,7 +267,7 @@ public class viajeController {
             
             //modelo.put("id_viaje", id_viaje);
             modelo.put("transportistas", postulantes); 
-            return "TransportistasPostulados";
+            return "contactar";
         } catch (ErroresServicio ex){
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
             return "redirect:/inicio";
@@ -276,9 +277,11 @@ public class viajeController {
     public String contactarTransportista(ModelMap modelo, String id_transportista, String id_proveedor) throws ErroresServicio{
         Transportista transportista = transportistaServicio.buscarID(id_transportista);
         Proveedor proveedor = proveedorServicio.buscarID(id_proveedor);
+         System.out.println("TRANSPORTISTA: "+transportista);
+         System.out.println("TRANSPORTISTA_id: "+id_transportista);
         
             notif.enviar(proveedor.getNombreEmpresa()+" se ha contactado con usted por que quiere que realice un viaje", "Contacto", transportista.getMail());
-            return "indexEmpresa";
+            return "redirect:/inicio";
        
     }
 }
