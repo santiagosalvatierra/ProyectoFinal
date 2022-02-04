@@ -52,7 +52,7 @@
       <div class="container">
         <div class="card-group mt-3">
 
-          <div th:if="${transportistas2!=null}" th:each="transportista,stat:${transportistas2}">
+            <div th:if="${transportistas2!=null}" th:each="transportista,stat:${transportistas2}" th:unless="${stat.index>=3}">
             <div class="col mx-5">
               <div class="card" style="width: 14rem;">
                 <div class="container-fluid" id="main-content">
