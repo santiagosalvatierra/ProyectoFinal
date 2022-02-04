@@ -4,18 +4,6 @@ body {
   min-height: 100vh;
 }
 
-/* BARRA NAV-HEADER */
-.topheader {
-  height: 100px;
-  background-color: #6930c3;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
-.buscar{
-  width: 500px;
-}
 
 /* BUTTONS */
 .buttom-mod-container {

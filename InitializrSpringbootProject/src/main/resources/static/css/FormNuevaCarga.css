@@ -4,18 +4,18 @@
 }
 
 body{
-    overflow-x: hidden;
     background-color: #fcfcfc;
     font-family: 'Raleway', sans-serif;
 }
 
 .contenedor-imagen {
-        width: 700px;
+    width: 700px;
     height: 200px;
     overflow: hidden;
     margin: 10px;
     position: relative;
 }
+
 .contenedor-imagen > .crop {
     position:absolute;
     left: -100%;
@@ -26,6 +26,7 @@ body{
     min-height: 100%;
     min-width: 100%;
 }
+
 .top-titulo{
   background-color: #fcfcfc;
   text-align: center;
@@ -34,10 +35,12 @@ body{
   color:#31175a;
   margin: 0rem 0rem 5rem;
 }
+
 .imagen{
     object-fit: cover;
 }
-form{
+
+.NuevaCarga{
     background-color: #fcfcfc;
     border-radius: 20px;
     height: 300px;
