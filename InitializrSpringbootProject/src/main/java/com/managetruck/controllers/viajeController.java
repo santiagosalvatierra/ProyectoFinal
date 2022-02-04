@@ -15,6 +15,7 @@ import com.managetruck.servicios.ProveedorServicio;
 import com.managetruck.servicios.ProvinciasServicio;
 import com.managetruck.servicios.TransportistaServicio;
 import com.managetruck.servicios.ViajeServicio;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -158,7 +159,8 @@ public class viajeController {
             comprobanteServicio.ValorarTrasnportista(comprobante.getID(), estrellas);
             System.out.println("el id del trasnportista aplicado es= "+comprobante.getViaje().getTransportistaAplicado().getId());
             transportistaServicio.valoracion(comprobante.getViaje().getTransportistaAplicado().getId());
-            //viajeServicio.BajaViaje2(comprobante.getViaje().getID());
+            transportistaServicio.enViaje(comprobante.getViaje().getTransportistaAplicado().getId());
+            viajeServicio.BajaViaje2(comprobante.getViaje().getID());
         } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -170,7 +172,7 @@ public class viajeController {
        
         try {
             viajeServicio.aplicar(id_transportista, id_viaje);
-            transportistaServicio.enViaje(id_transportista);
+            //transportistaServicio.enViaje(id_transportista);
 
         } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
@@ -202,12 +204,16 @@ public class viajeController {
         try {
             Viaje viaje=viajeServicio.buscarViajeId(id_viaje);
             List<Transportista> postulantes = viaje.getListadoTransportista();
+            List<Transportista> postulantesActivos=new ArrayList();
             for (Transportista postulante : postulantes) {
+                if (postulante.isViajando()==false) {
+                    postulantesActivos.add(postulante);
+                }
                 System.out.println("el boolean de viajando es= "+ postulante.isViajando());
             }
             
             modelo.put("id_viaje", id_viaje);
-            modelo.put("transportistas", postulantes); 
+            modelo.put("transportistas", postulantesActivos); 
             return "TransportistasPostulados";
         } catch (ErroresServicio ex){
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
@@ -260,9 +266,9 @@ public class viajeController {
             if (postulantes.isEmpty()) {
                 throw new ErroresServicio("No hay ningun transportista libre");
             }
-            for (Transportista postulante : postulantes) {
-                System.out.println("el boolean de viajando es= "+ postulante.isViajando());
-            }
+//            for (Transportista postulante : postulantes) {
+//                System.out.println("el boolean de viajando es= "+ postulante.isViajando());
+//            }
             
             //modelo.put("id_viaje", id_viaje);
             modelo.put("transportistas", postulantes); 
