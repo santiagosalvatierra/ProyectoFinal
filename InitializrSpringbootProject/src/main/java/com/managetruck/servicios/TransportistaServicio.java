@@ -335,7 +335,7 @@ public class TransportistaServicio {
 //                    System.out.println("el comprobante= "+comprobante1);
 //                }
 //            }
-            opciones(option,viaje);
+            opciones(option,viaje,respuesta.get(),comprobante1);
             return viaje.getID();
             
         }else{
@@ -344,21 +344,21 @@ public class TransportistaServicio {
     }
     
     @Transactional
-    public void opciones(String option,Viaje viaje){
+    public void opciones(String option,Viaje viaje, Transportista transportista,Comprobante comprobante){
         switch(option){
                 case "1":
                     System.out.println("envia correo opcion 1");
-                    //notificacionServicio.enviar("El trasnportista "+respuesta.get().getApellido()+", "+respuesta.get().getNombre()+" a recogido la carga del lugar de origen", "Carga Recogida", comprobante1.getProveedor().getMail());
+                    notificacionServicio.enviar("El trasnportista "+transportista.getApellido()+", "+transportista.getNombre()+" a recogido la carga del lugar de origen", "Carga Recogida", comprobante.getProveedor().getMail());
                     //enviar una notificacion
                     break;
                 case "2":
                     System.out.println("envia correo opcion 2");
-                    //notificacionServicio.enviar("El trasnportista "+respuesta.get().getApellido()+", "+respuesta.get().getNombre()+" va camino a su destino", "En camino", comprobante1.getProveedor().getMail());
+                    notificacionServicio.enviar("El trasnportista "+transportista.getApellido()+", "+transportista.getNombre()+" va camino a su destino", "En camino", comprobante.getProveedor().getMail());
                     //enviar una notificacion
                     break;
                 case "3":
                     System.out.println("enviar correo opcion 3");
-                    //notificacionServicio.enviar("El trasnportista "+respuesta.get().getApellido()+", "+respuesta.get().getNombre()+" a entregado la carga, aho", "Carga Entregada", comprobante1.getProveedor().getMail());
+                    notificacionServicio.enviar("El trasnportista "+transportista.getApellido()+", "+transportista.getNombre()+" a entregado la carga, aho", "Carga Entregada", comprobante.getProveedor().getMail());
                     //enviar una notificaion
                     break;
             }
