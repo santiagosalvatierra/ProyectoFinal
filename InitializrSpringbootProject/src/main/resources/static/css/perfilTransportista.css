@@ -11,18 +11,6 @@ body {
   background-position: top;
 }
 
-/* BARRA NAV-HEADER */
-.buscar {
-  width: 500px;
-}
-
-.topheader {
-  height: 100px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
 /* /////////////////////////////////////////////////////////////*/
 main {
   padding-top: 4rem;

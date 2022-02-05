@@ -1,97 +1,98 @@
 .btn-primary1 {
-    color: #fcfcfc;
-    background: #6930C3;
-    font-weight: 400;
-    padding: 0.5rem;
-    width: 13rem;
-    box-shadow: 0px 4px 4px rgba(31, 31, 31, 0.25);
-    border-radius: 10px;
-    border-color: #6930C3;
-    overflow: hidden;
-    cursor: pointer;
-    margin: 0 5rem;
-  }
-    
-    .btn-primary:hover {
-      color: #6930C3;
-      background: #FCFCFC;
-      border-width: 0.2rem;
-      border-color: #6930C3;
-    }
-  
-    :root {
-      --lightgray: #efefef;
-      --blue: steelblue;
-      --white: #fff;
-      --black: rgba(0, 0, 0, 0.8);
-      --bounceEasing: cubic-bezier(0.51, 0.92, 0.24, 1.15);
-    }
-    
-  
-    
-    button {
-      cursor: pointer;
-      background: transparent;
-      border: none;
-      outline: none;
-      font-size: inherit;
-    }
-  
-  
-    .modal-dialog {
-      display: flex;
-      justify-content: center;
-      position: relative;
-    }
-    
-    .modal-content {
-      margin: 0 auto;
-    }
-    
-    .modal-content .btn-close {
-      background-color: none;
-      position: absolute;
-      right: 20px;
-      top: 15px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-    
-    .modal-content .close-btn :hover {
-      color: #31175a;
-    }
-    
-    .modal-title {
-      color: #31175a;
-      margin-top: 1rem;
-      text-align: center;
-      font-weight: 700;
-      font-size: 2rem;
-    }
-    #ing {
-      margin: 0 3rem;
-    }
-    
-    input[type="radio"] {
-      display: none;
-    }
-    
-    label {
-      color: grey;
-      font-size: 30px;
-    }
-    
-    .clasificacion {
-      direction: rtl;
-      unicode-bidi: bidi-override;
-      margin: 0 7rem;
-    }
-    
-    label:hover,
-    label:hover ~ label {
-      color: orange;
-    }
-    
-    input[type="radio"]:checked ~ label {
-      color: orange;
-    }
+  color: #fcfcfc;
+  background: #6930c3;
+  font-weight: 400;
+  padding: 0.5rem;
+  width: 13rem;
+  box-shadow: 0px 4px 4px rgba(31, 31, 31, 0.25);
+  border-radius: 10px;
+  border-color: #6930c3;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 0 5rem;
+}
+
+.container-table100 {
+  align-items:inherit;
+}
+
+.btn-primary:hover {
+  color: #6930c3;
+  background: #fcfcfc;
+  border-width: 0.2rem;
+  border-color: #6930c3;
+}
+
+:root {
+  --lightgray: #efefef;
+  --blue: steelblue;
+  --white: #fff;
+  --black: rgba(0, 0, 0, 0.8);
+  --bounceEasing: cubic-bezier(0.51, 0.92, 0.24, 1.15);
+}
+
+button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: inherit;
+}
+
+.modal-dialog {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.modal-content {
+  margin: 0 auto;
+}
+
+.modal-content .btn-close {
+  background-color: none;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.modal-content .close-btn :hover {
+  color: #31175a;
+}
+
+.modal-title {
+  color: #31175a;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+}
+#ing {
+  margin: 0 3rem;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  color: grey;
+  font-size: 30px;
+}
+
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  margin: 0 7rem;
+}
+
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: orange;
+}

@@ -1,129 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <html lang="ES-ar" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" th:href="@{/css/estilos.css}">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<link href="../css/indexEmpresa.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link th:href="@{/css/navEmpresa.css}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" th:href="@{/css/Footer.css}">
     <link rel="stylesheet" th:href="@{../static/css/Footer.css}">
     <link rel="stylesheet" th:href="@{/css/indexEmpresa.css}">
-<link href="/css/ListadoCargas.css" rel="stylesheet" type="text/css" />
-<link href="../static/css/ListadoCarga.css" rel="stylesheet" type="text/css" />
 
-<!-- PERFIL DE ESTILO FONTAWESOME PARA LINKEAR ICONOS -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-<!-- TIPOGRAFÍAS -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-rel="stylesheet">
 
-<!-- LOGUITO EN PESTAÑA -->
-<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
-<title>ManageTruck</title>
+    <!-- PERFIL DE ESTILO FONTAWESOME PARA LINKEAR ICONOS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <!-- TIPOGRAFÍAS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- LOGUITO EN PESTAÑA -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
+    <title>ManageTruck</title>
     <!-- ESTILO TABLA -->
-     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
-	
-	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <!--===============================================================================================-->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link href="/css/ListadoCargas.css" rel="stylesheet" type="text/css" />
+    <link href="../static/css/ListadoCarga.css" rel="stylesheet" type="text/css" />
 
 </head>
+
 <body>
-<header th:replace="fragment/fragmentos :: headerLoginEmp"></header>
-<div class="pagenotfound">
-<div class="copy-container center-xy">
+    <header th:replace="fragment/fragmentos :: headerLoginEmp"></header>
+    <div class="pagenotfound">
+        <div class="copy-container center-xy">
 
-<h3 class="textTitle" style="text-align: center;">Listado de Cargas</h3>
+            <h3 class="textTitle" style="text-align: center;">Listado de Cargas</h3>
 
-<div class="container-table100">
-<div class="wrap-table100">
-<div class="table100 ver1 m-b-110">
-<div class="table100-head">
-<table>
-    <thead>
-        <tr class="row100 head">
-            
-                <th class="cell100 column2" style="padding-left: 3%">Recorrido</th>
-                <th class="cell100 column2" style="padding-left: 5%" >Tipo de carga</th>
-                <th class="cell100 column2" style="padding-left: 5%">Transportista</th>
-                <th class="cell100 column2" style="padding-left: 4%">Acciones</th>
-                <th class="cell100 column2" style="padding-left: -4px">Estado</th>
-            </tr>
-    </thead>
+            <div class="container-table100">
+                <div class="wrap-table100">
+                    <div class="table100 ver1 m-b-110">
+                        <div class="table100-head">
+                            <table>
+                                <thead>
+                                    <tr class="row100 head">
 
-        
-          </table>
-        </div>
+                                        <th class="cell100 column2" style="padding-left: 3%">Recorrido</th>
+                                        <th class="cell100 column2" style="padding-left: 5%">Tipo de carga</th>
+                                        <th class="cell100 column2" style="padding-left: 5%">Transportista</th>
+                                        <th class="cell100 column2" style="padding-left: 4%">Acciones</th>
+                                        <th class="cell100 column2" style="padding-left: -4px">Estado</th>
+                                    </tr>
+                                </thead>
 
-        <div class="table100-body js-pscroll">
-                <table>
-                        <tbody>
-        <tr class="row100 body"  th:each="viaje,iterator:${viajes}">
-            <td class="cell100 column2" >
-                <p th:text="${viaje.origen}"></p>
-                <p th:text="${viaje.destino}"></p>
-            </td>
-            <td class="cell100 column2"  th:text="${viaje.tipoCargas}"></td>
-            <!--<td th:if="${viaje.transportistaAplicado != null}" th:text="${viaje.transportistaAplicado}"</td>-->
-            <td class="cell100 column2" >  
-                <!--<button th:if="${viaje.transportistaAplicado != null}" th:text="${viaje.transportistaAplicado}">Eliminar viaje</button>--> 
-                <img th:if="${viaje.transportistaAplicado != null}" th:src="@{'/foto/viaje-transportista/'+${viaje.ID}}" alt="mdo" width="52" height="52" class="rounded-circle">
-                    <a th:if="${viaje.transportistaAplicado != null}" class="btn btn-success" th:href="@{'/viaje/perfil-aplicado'+'?id_viaje='+${viaje.ID}}">Ver perfil</a>
-                    <a th:if="${!#lists.isEmpty(viaje.listadoTransportista) && {viaje.transportistaAplicado == null}}" class="btn btn-primary" th:href="@{'/viaje/listar-postulantes'+'?id_viaje='+${viaje.ID}}">Aplicados</a>
-                    <a th:if="${#lists.isEmpty(viaje.listadoTransportista)}" class="btn btn-info" th:href="@{/viaje/contactar}">Contactar</a>
-            </td>
-            <td class="cell100 column2" id="botones" >
-                                <div class="row">
-                                <a th:if="${#strings.toString(viaje.estado)== 'ELEGIR' && #lists.isEmpty(viaje.listadoTransportista)}"  class="btn btn-warning" th:href="@{'/viaje/modificar-viaje'+'?id_viaje='+${viaje.ID}}" title="Modificar"><i class="fas fa-edit"></i></a>
-                                </div>
-                                <div class="row">
-                                <a th:if="${#strings.toString(viaje.estado)== 'ELEGIR'&& #lists.isEmpty(viaje.listadoTransportista)}"  class="btn btn-danger central" th:href="@{'/viaje/eliminar'+'?id_viaje='+${viaje.ID}}" title="Eliminar"><i class="fas fa-trash-alt"></i></a>
-                                </div>
-                                <div class="row">
-                                    <a th:if="${#strings.toString(viaje.estado)== 'FINALIZADA'}"  class="btn btn-light" th:href="@{'/viaje/valorar'+'?id_viaje='+${viaje.ID}}"
-                                ><img src="../img/calificaciones.png"width="30" height="30" ></a>
-                                
-                                
 
-                                
-                                
-                                <a th:if="${#strings.toString(viaje.estado)== 'VIAJANDO'}"  class="btn btn-dark" th:href="@{'/viaje/finalizar'+'?id_viaje='+${viaje.ID}}" title="Finalizar"><i class="fas fa-check-circle"></i></a>
-                                </div>
-                                </td>
-            <!--<td> <img width='80' height='80' src='img/".$mostrar['imagen'] ?></td>-->
-            <td class="cell100 column2" style="padding-left: 4%"> <!--th:text="${viaje.estado}"-->        
-                <img th:if="${#strings.toString(viaje.estado)== 'ELEGIR'}" src="https://icones.pro/wp-content/uploads/2021/06/icone-chargement-orange.png" alt="mdo" width="48" height="48" class="rounded-circle">
-                    <img th:if="${#strings.toString(viaje.estado)== 'FINALIZADA'}" src="https://c8.alamy.com/compes/rpk7w2/las-marcas-de-verificacion-tick-verde-icono-dentro-del-circulo-ilustracion-vectorial-rpk7w2.jpg" alt="mdo" width="52" height="52" class="rounded-circle">
-                        <img th:if="${#strings.toString(viaje.estado)== 'VIAJANDO'}" src="https://www.pngmart.com/files/16/Tick-Green-Check-Mark-PNG-Clipart.png" alt="mdo" width="52" height="52" class="rounded-circle">
-                            </td>
-                            
-                            </tr>
-                        </tbody>
                             </table>
+                        </div>
+
+                        <div class="table100-body js-pscroll">
+                            <table>
+                                <tbody>
+                                    <tr class="row100 body" th:each="viaje,iterator:${viajes}">
+                                        <td class="cell100 column2">
+                                            <p th:text="${viaje.origen}"></p>
+                                            <p th:text="${viaje.destino}"></p>
+                                        </td>
+                                        <td class="cell100 column2" th:text="${viaje.tipoCargas}"></td>
+                                        <!--<td th:if="${viaje.transportistaAplicado != null}" th:text="${viaje.transportistaAplicado}"</td>-->
+                                        <td class="cell100 column2">
+                                            <!--<button th:if="${viaje.transportistaAplicado != null}" th:text="${viaje.transportistaAplicado}">Eliminar viaje</button>-->
+                                            <img th:if="${viaje.transportistaAplicado != null}"
+                                                th:src="@{'/foto/viaje-transportista/'+${viaje.ID}}" alt="mdo"
+                                                width="52" height="52" class="rounded-circle">
+                                            <a th:if="${viaje.transportistaAplicado != null}" class="btn btn-success"
+                                                th:href="@{'/viaje/perfil-aplicado'+'?id_viaje='+${viaje.ID}}">Ver
+                                                perfil</a>
+                                            <a th:if="${!#lists.isEmpty(viaje.listadoTransportista) && {viaje.transportistaAplicado == null}}"
+                                                class="btn btn-primary"
+                                                th:href="@{'/viaje/listar-postulantes'+'?id_viaje='+${viaje.ID}}">Aplicados</a>
+                                            <a th:if="${#lists.isEmpty(viaje.listadoTransportista)}"
+                                                class="btn btn-info" th:href="@{/viaje/contactar}">Contactar</a>
+                                        </td>
+                                        <td class="cell100 column2" id="botones">
+                                            <div class="row">
+                                                <a th:if="${#strings.toString(viaje.estado)== 'ELEGIR' && #lists.isEmpty(viaje.listadoTransportista)}"
+                                                    class="btn btn-warning"
+                                                    th:href="@{'/viaje/modificar-viaje'+'?id_viaje='+${viaje.ID}}"
+                                                    title="Modificar"><i class="fas fa-edit"></i></a>
+                                            </div>
+                                            <div class="row">
+                                                <a th:if="${#strings.toString(viaje.estado)== 'ELEGIR'&& #lists.isEmpty(viaje.listadoTransportista)}"
+                                                    class="btn btn-danger central"
+                                                    th:href="@{'/viaje/eliminar'+'?id_viaje='+${viaje.ID}}"
+                                                    title="Eliminar"><i class="fas fa-trash-alt"></i></a>
+                                            </div>
+                                            <div class="row">
+                                                <a th:if="${#strings.toString(viaje.estado)== 'FINALIZADA'}"
+                                                    class="btn btn-light"
+                                                    th:href="@{'/viaje/valorar'+'?id_viaje='+${viaje.ID}}"><img
+                                                        src="../img/calificaciones.png" width="30" height="30"></a>
+
+                                                <a th:if="${#strings.toString(viaje.estado)== 'VIAJANDO'}"
+                                                    class="btn btn-dark"
+                                                    th:href="@{'/viaje/finalizar'+'?id_viaje='+${viaje.ID}}"
+                                                    title="Finalizar"><i class="fas fa-check-circle"></i></a>
+                                            </div>
+                                        </td>
+                                        <!--<td> <img width='80' height='80' src='img/".$mostrar['imagen'] ?></td>-->
+                                        <td class="cell100 column2" style="padding-left: 4%">
+                                            <!--th:text="${viaje.estado}"-->
+                                            <img th:if="${#strings.toString(viaje.estado)== 'ELEGIR'}"
+                                                src="https://icones.pro/wp-content/uploads/2021/06/icone-chargement-orange.png"
+                                                alt="mdo" width="48" height="48" class="rounded-circle">
+                                            <img th:if="${#strings.toString(viaje.estado)== 'FINALIZADA'}"
+                                                src="https://c8.alamy.com/compes/rpk7w2/las-marcas-de-verificacion-tick-verde-icono-dentro-del-circulo-ilustracion-vectorial-rpk7w2.jpg"
+                                                alt="mdo" width="52" height="52" class="rounded-circle">
+                                            <img th:if="${#strings.toString(viaje.estado)== 'VIAJANDO'}"
+                                                src="https://www.pngmart.com/files/16/Tick-Green-Check-Mark-PNG-Clipart.png"
+                                                alt="mdo" width="52" height="52" class="rounded-circle">
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-</div>
-           </div>
-</div>
-</div>
-</div>
-<!--<div class="container">
+    </div>
+    <!--<div class="container">
                                     <div class="buttom-mod-container">
 
                                         <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1"
@@ -159,44 +183,39 @@ rel="stylesheet">
                                     </div>   
                                 </div>-->
 
-                            </main>
+    </main>
 
-                            <section th:replace="fragment/fragmentosCards :: truckCards"></section>
+    <footer th:replace="fragment/fragmentos :: footer"></footer>
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script>
+        $('.js-pscroll').each(function () {
+            var ps = new PerfectScrollbar(this);
 
-                            
+            $(window).on('resize', function () {
+                ps.update();
+            })
+        });
 
-                            <footer th:replace="fragment/fragmentos :: footer"></footer>
-                            <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script>
-		$('.js-pscroll').each(function(){
-			var ps = new PerfectScrollbar(this);
 
-			$(window).on('resize', function(){
-				ps.update();
-			})
-		});
-			
-		
-	</script>
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
+    </script>
+    <!--===============================================================================================-->
+    <script src="js/main.js"></script>
 
-<!--====
-<!--===============================================================================================-->
-	
-       
-                            <!-- BUNDLE BOOTSTRAP5 -> PLUGGINS JS Y POPPER PARA FUNCIONALIDADES DINÁMICAS -->
-                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-                                    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-                            crossorigin="anonymous"></script>
-                            <script src="/animacion.js"></script>
-                            </body>
-                            </html>
+    <!--===============================================================================================-->
+
+    <!-- BUNDLE BOOTSTRAP5 -> PLUGGINS JS Y POPPER PARA FUNCIONALIDADES DINÁMICAS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="/animacion.js"></script>
+</body>
+
+</html>

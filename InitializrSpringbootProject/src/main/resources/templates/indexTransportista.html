@@ -13,7 +13,7 @@
     <link rel="stylesheet" th:href="@{/css/Footer.css}">
     <link rel="stylesheet" th:href="@{../static/css/Footer.css}">
     <link th:href="@{/css/indexTransport.css}" rel="stylesheet" type="text/css" />
-
+    <link th:href="@{/css/navEmpresa.css}" rel="stylesheet" type="text/css" />
     <!-- PERFIL DE ESTILO FONTAWESOME PARA LINKEAR ICONOS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
@@ -31,81 +31,84 @@
     <title>Transportista</title>
 </head>
 
-
 <body>
     <header th:replace="fragment/fragmentos :: headerLoginTrans"></header>
 
     <h3 class="textTitle"> Empresas que te buscan </h3>
-    
 
-    <section style="margin: 0rem 8rem 2rem; padding: 0rem 4rem 2rem 4rem;">
+    <section style="margin: 0rem 7.5rem 2rem; padding: 0rem 4rem 2rem 4rem;">
 
         <!-- TARJETAS  
         Deberian conectarse todos los datos con la base de datos según usuario
         Se visualizarían 9 en principio. A partir del boton ver más se despliegan 
         otras 9, y así -->
 
-        <div class="row mx-5" style="margin:3rem 3rem 3rem 3rem;">
- 
-    <div class="container">   
-    <div class="card-group mt-3">
-        <div th:if="${comprobantes == null}">
-            <h3 class="textTitle" style="color:red"> No hay ninguna empresa que te busque </h3>
-        </div>
-      <div th:if="${comprobantes != null}" th:each="comprobantes,stat:${comprobantes}">
-    <div class="col mx-3">
-      <div class="card" style="width: 13rem;">
-          <div>
-                    <img id="imagen" th:if="${comprobantes.proveedor.foto != null}"th:src="@{'/foto/comprobante-imagenes/'+${comprobantes.ID}}" class="card-img-top" alt="Foto Empresa">
-                        <img id="imagen" th:if="${comprobantes.proveedor.foto == null}" th:src="@{../img/Foto sin foto.jpg}" class="card-img-top" alt="Foto Empresa">
-          </div>
-                        <div class="card-body">
-                        <h5 class="card-title" th:text="${comprobantes.proveedor}">Nombre Empresa</h5>
-                        <p class="card-text" th:text="${comprobantes.viaje.kmRecorridos}">km</p>
-                        <p class="card-text" th:text="${comprobantes.viaje.destino}">destino</p>
-                        <p class="card-text" th:text="${comprobantes.viaje.origen}">orign</p>
-                        <p class="card-text" th:text="${comprobantes.viaje.peso}">peso</p>
-                        <!--<p class="card-text">Peso de carga</p>
-                        <p class="card-text">Trayecto</p>-->
-                        
-                        <a th:href="@{'/viaje/aplicar'+'?id_transportista='+${session.usuariosession.id}+'&id_viaje='+${comprobantes.ID}}" class="btn btn-primary btn-sm">Aplicar a viaje</a>
-                        
+        <div class="row" style="margin:3rem 3rem 3rem 3rem;">
+
+            <div class="container">
+                <div class="card-group mt-3">
+                    <!--SI NO HAY EMPRESAS CON VIAJES CARGADOS-->
+                    <div th:if="${comprobantes == null}">
+                        <h3 class="textTitle" style="color:red"> No hay ninguna empresa que te busque </h3>
+                    </div>
+
+                    <!--CUANDO HAY VIAJES CARGADOS SE MUESTRAN A CONTINUACION-->
+                    <div class="mb-4" th:if="${comprobantes != null}" th:each="comprobantes,stat:${comprobantes}">
+                        <div class="col mx-3">
+                            <div class="card" style="width: 14rem;">
+                                <div>
+                                    <img id="imagen" th:if="${comprobantes.proveedor.foto != null}"
+                                        th:src="@{'/foto/comprobante-imagenes/'+${comprobantes.ID}}"
+                                        class="card-img-top" alt="Foto Empresa">
+                                    <img id="imagen" th:if="${comprobantes.proveedor.foto == null}"
+                                        th:src="@{../img/Foto sin foto.jpg}" class="card-img-top" alt="Foto Empresa">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title text-capitalize text-center"
+                                        th:text="${comprobantes.proveedor}">Nombre Empresa</h5>
+                                    <div class="row my-1">
+                                        <div class="col-2">
+                                            <i class="fas fa-route"></i>
+                                        </div>
+                                        <div class="col-10">
+                                            <p class="card-text" th:text="${comprobantes.viaje.origen}">orign</p>
+                                            <p class="card-text" th:text="${comprobantes.viaje.destino}">destino</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <i class="fas fa-road"></i>
+                                        </div>
+                                        <div class="col-10">
+                                            <p class="card-text" th:text="${comprobantes.viaje.kmRecorridos} +' km'">km
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <i class="fas fa-weight-hanging"></i>
+                                        </div>
+                                        <div class="col-10">
+                                            <p class="card-text" th:text="${comprobantes.viaje.peso}">peso</p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-2">
+                                            <i class="fas fa-clipboard-list"></i>
+                                        </div>
+                                        <div class="col-10">
+                                            <p class="card-text" th:text="${comprobantes.viaje.tipoCargas}">Tipo</p>
+                                        </div>
+                                    </div>
+
+                                    <a th:href="@{'/viaje/aplicar'+'?id_transportista='+${session.usuariosession.id}+'&id_viaje='+${comprobantes.ID}}"
+                                        class="btn btn-primary btn-mas">Aplicar a viaje</a>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        </div>
-
-
-
-
-
-        <!--<div class="col mx-2">
-                <div class="card" style="width: 13rem;">
-                    <img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto Empresa">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Empresa</h5>
-                        <p class="card-text">Rubro</p>
-                        <p class="card-text">Peso de carga</p>
-                        <p class="card-text">Trayecto</p>
-                        <a href="#" class="btn btn-primary btn-sm">Aplicar a viaje</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col mx-2">
-                <div class="card" style="width: 13rem;">
-                    <img src="../img/Foto sin foto.jpg" class="card-img-top" alt="Foto Empresa">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre Empresa</h5>
-                        <p class="card-text">Rubro</p>
-                        <p class="card-text">Peso de carga</p>
-                        <p class="card-text">Trayecto</p>
-                        <a href="#" class="btn btn-primary btn-sm">Aplicar a viaje</a>
-                    </div>
-                </div>
-            </div>
-        </div>-->
 
     </section>
 
@@ -114,10 +117,10 @@
     Y LA VALORACIÓN QUE TENGAN
     <section th:replace="fragment/fragmentos :: truckCardsTransp"></section>-->
 
-    <!-- REAJUSTAR-->
+    <!-- REAJUSTAR
     <div class="contenidoOculto">
         <a href="#" class="btn btn-primary">Ver más</a>
-    </div>
+    </div>-->
 
     <footer th:replace="fragment/fragmentos :: footer"></footer>
 
@@ -126,7 +129,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-    <script src="/animacion.js"></script>
 </body>
 
 </html>
