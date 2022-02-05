@@ -34,26 +34,24 @@
 <body>
     <header th:replace="fragment/fragmentos :: headerLoginTrans"></header>
 
-    <h3 class="textTitle"> Empresas que te buscan </h3>
 
-    <section style="margin: 0rem 7.5rem 2rem; padding: 0rem 4rem 2rem 4rem;">
+    <div class="row" style="margin:3rem 3rem 3rem 3rem;">
 
-        <!-- TARJETAS  
-        Deberian conectarse todos los datos con la base de datos según usuario
-        Se visualizarían 9 en principio. A partir del boton ver más se despliegan 
-        otras 9, y así -->
+        <div class="container">
+            <div class="card-group mt-3">
+                <!--SI NO HAY EMPRESAS CON VIAJES CARGADOS-->
+                <div th:if="${comprobantes == null}">
+                    <h3 class="textTitle" style="color:red; font-style: italic;">No hay empresas con viajes sin
+                        postulantes activos</h3>
+                </div>
 
-        <div class="row" style="margin:3rem 3rem 3rem 3rem;">
-
-            <div class="container">
-                <div class="card-group mt-3">
-                    <!--SI NO HAY EMPRESAS CON VIAJES CARGADOS-->
-                    <div th:if="${comprobantes == null}">
-                        <h3 class="textTitle" style="color:red"> No hay ninguna empresa que te busque </h3>
-                    </div>
+                <div class="notnull" th:if="${comprobantes != null}">
+                    <h3 class="textTitle"> Empresas que buscan transportistas </h3>
+                    <p class="fav-text"> Busca el viaje que te interese y aplica </p>
 
                     <!--CUANDO HAY VIAJES CARGADOS SE MUESTRAN A CONTINUACION-->
                     <div class="mb-4" th:if="${comprobantes != null}" th:each="comprobantes,stat:${comprobantes}">
+
                         <div class="col mx-3">
                             <div class="card" style="width: 14rem;">
                                 <div>
@@ -65,14 +63,15 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title text-capitalize text-center"
-                                        th:text="${comprobantes.proveedor}">Nombre Empresa</h5>
+                                        th:text="${comprobantes.proveedor}">
+                                        Nombre empresa</h5>
                                     <div class="row my-1">
                                         <div class="col-2">
                                             <i class="fas fa-route"></i>
                                         </div>
                                         <div class="col-10">
-                                            <p class="card-text" th:text="${comprobantes.viaje.origen}">orign</p>
-                                            <p class="card-text" th:text="${comprobantes.viaje.destino}">destino</p>
+                                            <p class="card-text" th:text="${comprobantes.viaje.origen}">Origen</p>
+                                            <p class="card-text" th:text="${comprobantes.viaje.destino}">Destino</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -103,32 +102,30 @@
 
                                     <a th:href="@{'/viaje/aplicar'+'?id_transportista='+${session.usuariosession.id}+'&id_viaje='+${comprobantes.ID}}"
                                         class="btn btn-primary btn-mas">Aplicar a viaje</a>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-    </section>
 
-
-    <!-- ESTO SE CONECTARIA CON LA BASE DE DATOS EN FUNCIÓN DE LOS MÁS CERCANOS A LA ZONA DE LA EMPRESA
+            <!-- ESTO SE CONECTARIA CON LA BASE DE DATOS EN FUNCIÓN DE LOS MÁS CERCANOS A LA ZONA DE LA EMPRESA
     Y LA VALORACIÓN QUE TENGAN
     <section th:replace="fragment/fragmentos :: truckCardsTransp"></section>-->
 
-    <!-- REAJUSTAR
+            <!-- REAJUSTAR
     <div class="contenidoOculto">
         <a href="#" class="btn btn-primary">Ver más</a>
     </div>-->
 
-    <footer th:replace="fragment/fragmentos :: footer"></footer>
+            <footer th:replace="fragment/fragmentos :: footer"></footer>
 
-    <!-- BUNDLE BOOTSTRAP5 -> PLUGGINS JS Y POPPER PARA FUNCIONALIDADES DINÁMICAS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+            <!-- BUNDLE BOOTSTRAP5 -> PLUGGINS JS Y POPPER PARA FUNCIONALIDADES DINÁMICAS -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+                crossorigin="anonymous"></script>
 </body>
 
 </html>
