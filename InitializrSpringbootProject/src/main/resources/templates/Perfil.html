@@ -11,6 +11,9 @@
     <link rel="stylesheet" th:href="@{/css/Footer.css}">
     <link rel="stylesheet" th:href="@{../static/css/Footer.css}">
     <link rel="stylesheet" th:href="@{/css/perfilTransportista.css}">
+
+    <link rel="stylesheet" th:href="@{/css/NavGeneral.css}">
+    <link th:href="@{/css/navEmpresa.css}" rel="stylesheet" type="text/css" />
     <!-- TIPOGRAFÍAS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,41 +23,40 @@
     <!-- LOGUITO EN PESTAÑA -->
     <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
-    <title>Transportista</title>
+    <title>Perfil Transportista</title>
 </head>
 
-<body>
-  <header th:replace="fragment/fragmentos :: headerLoginEmp"></header>
+<body class="body-plus">
+    <header th:replace="fragment/fragmentos :: headerLoginEmp"></header>
     <main>
         <!--ESTE DIV ENGLOBA TODA LA PAGINA-->
-        <article class="container">
-            <div class="text-center">
-                <img th:if="${perfil.foto != null}" class="img-fluid rounded-circle"
+        <article class="container contenedor">
+            <div class="container-img-perf">
+                <img th:if="${perfil.foto != null}" class="perfil-img-perf"
                     th:src="${'/foto/usuario-imagen/' + perfil.id}" width="400" height="400" alt="" />
-                <img th:if="${perfil.foto == null}" class="img-fluid rounded-circle" src="/img/Foto sin foto.jpg"
-                    width="400" height="400" alt="" />
+                <img th:if="${perfil.foto == null}" class="perfil-img-perf" src="/img/Foto sin foto.jpg" width="400"
+                    height="400" alt="" />
             </div>
-            <section class="contenedor1">
-                <form th:action="@{/transportista/modificar}" method="POST" enctype="multipart/form-data">
-                 
-                    <div class="row g-2">
-                        <div class="col-md-3">
-                            <label for="nombre" class="visually-hidden"> Nombre</label>
-                            <input class="form-control form-control-lg" type="text" id="nombre" name="nombre"
-                                th:value="${perfil.nombre}" disabled />
-                        </div>
-                        <div class="col-md-3">
-                            <label for="apellido" class="visually-hidden">Apellido</label>
-                            <input class="form-control form-control-lg" type="text" id="apellido" name="apellido"
-                                th:value="${perfil.apellido}"disabled />
-                        </div>
+
+            <form class="form" th:action="@{/transportista/modificar}" method="POST" enctype="multipart/form-data">
+
+                <div class="row g-2 usuario">
+                    <div class="col-md-3 us-2">
+                        <label for="nombre" class="visually-hidden"> Nombre</label>
+                        <input class="form-control form-control-lg" type="text" id="nombre" name="nombre"
+                            th:value="${perfil.nombre}" disabled />
                     </div>
-                    <p>Transportista</p>
-                    
-                    <br>
-                    <br>
+                    <div class="col-md-3 us-2">
+                        <label for="apellido" class="visually-hidden">Apellido</label>
+                        <input class="form-control form-control-lg" type="text" id="apellido" name="apellido"
+                            th:value="${perfil.apellido}" disabled />
+                    </div>
+                    <p class="text-center">Transportista</p>
+                </div>
+            
+                <div class="datos-user">
                     <div class="row g-2">
-                        <div class="col-md-6">
+                        <div class="text-center">
                             <label for="zona"> Zona</label>
                             <select name="zona" id="zona" class="form-select-lg" required>
                                 <option th:selected disable th:value="${perfil.zona}" th:text="${perfil.zona}"></option>
@@ -64,18 +66,18 @@
                             <br>
                             <label for="mail"> Correo Electronico</label>
                             <input class="form-control form-control-lg" type="email" id="mail" name="mail"
-                                th:value="${perfil.mail}"disabled />
+                                th:value="${perfil.mail}" disabled />
                             <br>
                             <label for="telefono"> Telefono</label>
                             <input class="form-control form-control-lg" type="" id="telefono" name="telefono"
-                                th:value="${perfil.telefono}"disabled />
+                                th:value="${perfil.telefono}" disabled />
                             <br>
                         </div>
-                        
                     </div>
-                </form>
-            </section>
-            
+                </div>
+            </form>
+
+
             <section>
                 <h1 class="text-center">Tu Camión</h1>
                 <div class="container">
@@ -94,46 +96,46 @@
                                 </div>
                             </div>
                             <div class="contenedor2-texto">
-                                
+
                                 <label for="modelo"> Modelo</label>
                                 <input type="text" class="form-control form-control-lg" id="modelo" name="modelo"
-                                    placeholder="Ej: Kodiak" th:value="${camion.modelo}" disabled/>
+                                    placeholder="Ej: Kodiak" th:value="${camion.modelo}" disabled />
 
                                 <label for="año"> Año</label>
                                 <input type="number" class="form-control form-control-lg" id="año" name="anio"
-                                    placeholder="Ej: 1999" th:value="${camion.anio}" disabled/>
+                                    placeholder="Ej: 1999" th:value="${camion.anio}" disabled />
 
                                 <label for="patente"> Patente</label>
                                 <input type="text" class="form-control form-control-lg" id="patente" name="patente"
-                                    placeholder="Ej: ABC-123 o AB-123-CD" th:value="${camion.patente}" disabled/>
+                                    placeholder="Ej: ABC-123 o AB-123-CD" th:value="${camion.patente}" disabled />
 
                                 <label for="descripcion"> Descripción</label>
                                 <input type="text" class="form-control form-control-lg" id="modelo" name="descripcion"
-                                    placeholder="Ej: Kodiak" th:value="${camion.descripcion}" disabled/>
+                                    placeholder="Ej: Kodiak" th:value="${camion.descripcion}" disabled />
 
                                 <label for="pesoMaximo"> Carga</label>
                                 <input type="number" class="form-control form-control-lg" id="año" name="pesoMaximo"
-                                    placeholder="Ej: 150" th:value="${camion.pesoMaximo}"disabled />
+                                    placeholder="Ej: 150" th:value="${camion.pesoMaximo}" disabled />
 
                                 <label for="poliza"> Número de Poliza</label>
                                 <input type="number" class="form-control form-control-lg" id="poliza" name="poliza"
-                                    placeholder="Número de póliza" th:value="${camion.poliza}" disabled/>
+                                    placeholder="Número de póliza" th:value="${camion.poliza}" disabled />
 
 
-                                
+
                             </div>
                         </div>
 
                     </form>
-                    
+
                 </div>
                 <br>
                 <br>
             </section>
         </article>
-    </main> 
+    </main>
 
-      <footer th:replace="fragment/fragmentos :: footer"></footer>
+    <footer th:replace="fragment/fragmentos :: footer"></footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
