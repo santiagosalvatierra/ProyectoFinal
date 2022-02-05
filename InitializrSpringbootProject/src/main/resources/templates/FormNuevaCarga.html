@@ -4,95 +4,112 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <script src="https://kit.fontawesome.com/d8bd2a2ca3.js" crossorigin="anonymous"></script>
+    <!-- PERFIL DE ESTILOS CSS DE BOOTSTRAP5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-
-  <link href="/css/FormNuevaCarga.css" rel="stylesheet" type="text/css" />
-    <link href="../static/css/FormNuevaCarga.css" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/navEmpresa.css}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" th:href="@{/css/Footer.css}">
     <link rel="stylesheet" th:href="@{../static/css/Footer.css}">
-    <link rel="stylesheet" th:href="@{/css/navEmpresa.css}">
-    <link rel="stylesheet" th:href="@{../static/css/navEmpresa.css}">
+    <link rel="stylesheet" th:href="@{/css/FormNuevaCarga.css}">
 
-        <!-- TIPOGRAFÍAS -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-            rel="stylesheet">
-    
-        <!-- LOGUITO EN PESTAÑA -->
-        <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
-        <title>ManageTruck</title>
-  
-    <title >Nueva carga</title>
+    <!-- PERFIL DE ESTILO FONTAWESOME PARA LINKEAR ICONOS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+
+    <!-- TIPOGRAFÍAS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- LOGUITO EN PESTAÑA -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
+
+    <title>Nueva viaje</title>
 </head>
 
 <body>
     <header th:replace="fragment/fragmentos :: headerLoginEmp"></header>
-            
-    <main class="top-titulo" style="padding-top: 17px;">
-        <h1><span th:text="${viaje.ID == null ? 'Nueva' : 'Modificar'}"></span> Carga</h1>
-    </main>
+
+    <div class="form-viaje">
+
+        <div class="row g-2">
+            <div class="col-md-6">
+                <main class="top-titulo">
+                    <h1><span th:text="${viaje.ID == null ? 'Nuevo ' : 'Modificar'}"></span>viaje</h1>
+                </main>
 
 
-    <div class="row g-2">
-        <div class="col-md-6">   
-            <form th:action="@{/viaje/pedido}" method="POST" class="NuevaCarga">
-            <input type="hidden" name="idProveedor" th:value="${session.usuariosession.id}" />
-            <input type="hidden" name="idViaje" th:value="${viaje.ID}" />
-     
-            <div class="cargaDiv">
-                
-                <select name="origen" id="zona" class="form-select"  required>
-                                <option th:if="${viaje.ID == null}"selected disable value="">Partida</option>
-                                <option th:if="${viaje.ID != null}"th:selected disable th:value="${viaje.origen}" th:text="${viaje.origen}"></option>
-                                <option option th:each="provincia:${provincias}" th:value="${provincia.provincia}" th:text="${provincia.provincia}"></option>
-                            </select>
-            </div>
-            <div class="cargaDiv">
-                
-                <select name="destino" id="zona" class="form-select" required>
-                                <option th:if="${viaje.ID == null}"selected disable value="">Destino</option>
-                                <option th:if="${viaje.ID != null}"th:selected disable th:value="${viaje.destino}" th:text="${viaje.destino}"></option>
-                                <option option th:each="provincia:${provincias}" th:value="${provincia.provincia}" th:text="${provincia.provincia}"></option>
-                            </select>
-                            
-            </div>
-    <div class="cargaDiv1">
-                
-                <input id="kmRecorridos" name="kmRecorridos" placeholder="kmRecorridos" required="required" tipe="number" th:value="${viaje.kmRecorridos}"/>
-                                   
-            </div>
-            <div class="cargaDiv1">
-                
-                <input list="tipo-carga" id="tipo-carga-choice" name="tipoCargas" placeholder="Tipo de carga" required="required" th:value="${viaje.tipoCargas}"/>
-                <datalist id="tipo-carga">
-                    <option value="arena">
-                    <option value="ripio">
-                    <option value="ladrillos">
-                    <option value="frio">
-                </datalist>
-            </div>
-            <div class="cargaDiv2">
-                
-                <input type="number" id="peso" name="peso" placeholder="Peso (Kg)" required="required" th:value="${viaje.peso}">
-            </div>
-            <input class="cargaButton" type="submit" th:value="${viaje.ID == null ? 'Crear Viaje' : 'Modificar'}">
-                
-            </form></div>
+                <form th:action="@{/viaje/pedido}" method="POST" class="NuevaCarga">
+                    <input type="hidden" name="idProveedor" th:value="${session.usuariosession.id}"
+                        class="form-control-in" />
+                    <input type="hidden" name="idViaje" th:value="${viaje.ID}" class="form-control-in" />
 
-        
-        <div class="contenedor-imagen"><img src="../img/ManageTruck_logo-Blanco.png" class="imagen"></div>
+                    <div class="cargaDiv">
+                        <select name="origen" id="zona" class="form-select" required>
+                            <option th:if="${viaje.ID == null}" selected disable value="">Partida</option>
+                            <option th:if="${viaje.ID != null}" th:selected disable th:value="${viaje.origen}"
+                                th:text="${viaje.origen}"></option>
+                            <option option th:each="provincia:${provincias}" th:value="${provincia.provincia}"
+                                th:text="${provincia.provincia}"></option>
+                        </select>
+                    </div>
+                    <div class="cargaDiv">
+                        <select name="destino" id="zona" class="form-select" required>
+                            <option th:if="${viaje.ID == null}" selected disable value="">Destino</option>
+                            <option th:if="${viaje.ID != null}" th:selected disable th:value="${viaje.destino}"
+                                th:text="${viaje.destino}"></option>
+                            <option option th:each="provincia:${provincias}" th:value="${provincia.provincia}"
+                                th:text="${provincia.provincia}"></option>
+                        </select>
 
-        
-        
+                    </div>
+
+                    <div class="cargaDiv1">
+                        <input id="kmRecorridos" name="kmRecorridos" placeholder="Distancia total (Km)"
+                            required="required" tipe="number" th:value="${viaje.kmRecorridos}" />
+                    </div>
+                    <div class="cargaDiv1">
+                        <input list="tipo-carga" id="tipo-carga-choice" name="tipoCargas" placeholder="Tipo de carga"
+                            required="required" th:value="${viaje.tipoCargas}" />
+                        <datalist id="tipo-carga">
+                            <option value="Alimentos">
+                            <option value="Materiales de construcción">
+                            <option value="Bebidas">
+                            <option value="Químicos">
+                            <option value="Droguería">
+                            <option value="Otro">
+                        </datalist>
+                    </div>
+
+                    <div class="cargaDiv2">
+                        <input type="number" id="peso" name="peso" placeholder="Peso (Kg)" required="required"
+                            th:value="${viaje.peso}">
+                    </div>
+
+                    <div class="btnfinal">
+                        <input class="btn btn-viaje" type="submit"
+                            th:value="${viaje.ID == null ? 'Crear Viaje' : 'Modificar'}">
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6 imagen-ilustrativa"><img src="/img/nuevacarga-2.jpg"></div>
+        </div>
 
     </div>
     <footer th:replace="fragment/fragmentos :: footer"></footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="/animacion.js"></script>
 </body>
 
 </html>

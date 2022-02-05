@@ -38,6 +38,22 @@ li {
   border-color: #6930c3;
 }
 
+.btn-sm {
+  box-shadow: 0px 4px 4px rgba(31, 31, 31, 0.25);
+}
+
+.btn-mas{
+  background-color: #31175a;
+  font-size: 13px;
+  font-weight: 500;
+  width: 6rem;
+  height: 1.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
 /*SWITCH*/
 input[type="checkbox"].toggle {
   display: none;
@@ -133,13 +149,6 @@ input[type="checkbox"].toggle:checked + label:after {
   padding-left: 38rem;
 }
 
-/* ALINEACIÓN DE CONTENIDO: Icono + Info 
-#truck {float:left;}
-#truck2 {float: right;}
-
-#weight {float:left;}
-#weight2 {float: right;}*/
-
 .card-body {
   display: flex;
   flex-direction: column;
@@ -160,11 +169,33 @@ p{
   color: #31175a;
 }
 
+.card-group {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
 .textTitle {
-  font-weight: 400;
-  font-size: 2.5rem;
-  margin-top: 3rem;
+  color: #31175a;
   text-align: center;
+  font-size: 33px;
+  font-weight: 700;
+  margin-top:2rem;
+  text-shadow: 0px 6px 6px 0px #00000040;
+}
+
+.fav-text {
+  margin: 0 auto;
+  text-align: center;
+  width: 900px;
+  padding: 0.5rem;
+  color: #31175a;  
+  font-size: 20px;
+  font-weight: 400;
+  text-shadow: 0px 6px 6px 0px #00000040;
+  margin-bottom: 2rem;
 }
 
 .bodyText {
@@ -175,17 +206,20 @@ p{
 
 .card:hover {
   transform: scale(1.1, 1.1);
-  box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
-    -5px -5px 30px 15px rgba(0,0,0,0.22);
+  box-shadow: 1px 1px 8px 3px rgba(13, 1, 24, 0.2), 
+    -1px -1px 8px 3px rgba(13, 1, 24, 0.2);
 }
 
 .btn-mas{
-  width: 7rem;
+  background-color: #31175a;
+  font-size: 13px;
+  font-weight: 500;
+  width: 8rem;
+  height: 1.8rem;
+  display: flex;
   justify-content: center;
-  padding-top: unset;
-  padding: unset;
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
+  align-items: center;
+  margin: 0 auto;
 }
 
 /* PROPIEDAD PARA DESTACAR INFO CUANDO SELECCIONAS CON EL CURSOR */

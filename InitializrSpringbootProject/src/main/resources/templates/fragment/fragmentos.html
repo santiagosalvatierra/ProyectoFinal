@@ -18,6 +18,7 @@
 <header th:fragment="headerLoginTrans">
   <nav class="topheader navbar">
     <div class="container-fluid">
+
       <!--DESDE ACA EL MENU OFFCANVAS-->
       <button class="btn btn-toolbar" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
         aria-controls="offcanvasScrolling">
@@ -25,7 +26,6 @@
         <div class="container-imagen">
           <a href="#" class="d-block link-white text-decoration-none dropdown-toggle" id="dropdownUser2"
             data-bs-toggle="dropdown" aria-expanded="false">
-
             <img th:if="${session.usuariosession.foto == null}" src="/img/Foto sin foto.jpg" alt="mdo" class="perfil-imagen">
 
             <!-- FORMA EN MOSTRAR LA IMAGEN QUE TIENE EL USUARIO GUARDADA-->
@@ -50,7 +50,6 @@
         </div>
 
         <div class="offcanvas-body">
-            
               <a class="btns-opt"
                   th:href="@{/transportista/perfil-transportista}+'?id='+${session.usuariosession.id}">Editar perfil</a>
               <a class="btns-opt"
@@ -102,7 +101,7 @@
       </a>
       <form class="d-flex buscar">
         <input type="buscar" name="empresa" class="form-control me-2" placeholder="Buscar..." aria-label="Buscar">
-        <button type="submit" class="btn btn-primary" style="width: 50px"><svg xmlns="http://www.w3.org/2000/svg"
+        <button type="submit" class="btn lupa" style="width: 50px"><svg xmlns="http://www.w3.org/2000/svg"
             width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
             <path
               d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
@@ -131,7 +130,6 @@
         <div class="container-imagen">
           <a href="#" class="d-block link-white text-decoration-none dropdown-toggle" id="dropdownUser2"
             data-bs-toggle="dropdown" aria-expanded="false">
-
             <img th:if="${session.usuariosession.foto == null}" src="/img/Foto sin foto.jpg" alt="mdo" class="perfil-imagen">
 
             <!-- FORMA EN MOSTRAR LA IMAGEN QUE TIENE EL USUARIO GUARDADA-->

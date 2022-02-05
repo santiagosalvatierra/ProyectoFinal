@@ -1,0 +1,148 @@
+/* BARRA NAV-HEADER */
+.topheader {
+    height: 100px;
+    background: linear-gradient(
+      70deg,
+      rgba(154, 50, 210, 1) 0%,
+      rgba(119, 51, 208, 1) 50%,
+      rgba(102, 23, 218, 1) 100%
+    );
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  
+  .buscar {
+    width: 500px;
+  }
+  
+  .container-imagen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 54px;
+    height: 54px;
+    overflow: hidden;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 2px solid #fcfcfc;
+  }
+  
+  .perfil-imagen {
+    max-width: 100px;
+  
+  }
+  
+  .canvas {
+    display: flex;
+  }
+  
+  .cont-img-oncanvas {
+    background-color: #fcfcfc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-top: 2rem;
+    border-radius: 50%;
+    border: 5px solid #6930c3;
+  }
+  
+  .img-oncanvas {
+    max-width: 400px;
+    max-height: 400px;
+  }
+  
+  .offcanvas-start {
+    width: 23%;
+    background-color: #fcfcfc;
+  }
+  
+  .offcanvas-body {
+    margin: 0 auto;
+  }
+  
+  .logout {
+    margin-top: 5rem;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  .btn-secondary-opt {
+    background-color: #31175a;
+    color: #fcfcfc;
+    font-size: 15px;
+    font-weight: 400;
+  }
+  
+  .btn-secondary-opt:hover {
+    background-color: #110525;
+    color: #6930c3;
+  }
+  
+  .btns-opt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem auto;
+    background-color: #6930c3;
+    color: #fcfcfc;
+    border-radius: 5px;
+    font-weight: 500;
+    border: 3px solid #6930c3;
+    transition: all 0.3s ease 0s;
+    width: 170px;
+    height: 40px;
+  }
+  
+  .btns-opt:hover {
+    background-color: #31175a;
+    color: #fcfcfc;
+  }
+  
+  .navbar-brand {
+    margin: 0;
+  }
+  
+  .navbar-brand img {
+    width: 160px;
+  }
+  
+  .container-fluid {
+    width: 95%;
+  }
+  
+  .btn-out {
+    background-color: #31175a;
+    color: #fcfcfc;
+  }
+  
+  .btn-out:hover {
+    background-color: #110525;
+    color: #fcfcfc;
+  }
+  
+  .icon {
+    margin-right: 5px;
+  }
+  
+  .lupa {
+    background-color: #6930c3;
+    color: #fcfcfc;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(31, 31, 31, 0.25);
+    border: 3px solid #6930c3;
+    transition: all 0.3s ease 0s;
+  }
+  
+  .lupa:hover {
+    background-color: #fcfcfc;
+    color: #6930c3;
+    border: #6930c3;
+  }
+  

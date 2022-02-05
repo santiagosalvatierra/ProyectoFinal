@@ -78,7 +78,7 @@ public class TransportistaController {
 
             return "transportista_form";//modificar nombre de vista, no debe redirigir a index si no a la vista que utilizaremos
         }
-        return "index";
+        return "RegistroExitoso";
     }
 
     @GetMapping("/registra")

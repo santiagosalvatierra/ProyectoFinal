@@ -132,13 +132,10 @@
             <div class="row g-2 btns">
                 <div class="container flex">
                     <div class="buttom-mod-container">
-                        <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" id="checkReg" onclick="pregunta()">Confirmar
-                            registro</button><br>
-                        <!-- Se cliquea boton confirmar -> validar información,
-                        se recarga la página -> SE ACTIVA MODAL SI SE PERSISTIÓ -->
-
+                        <button type="submit" class="btn btn-primary">Confirmar registro</button><br>
+                        
                         <!-- INICIA MODAL -> ACA SE LLAMARIA A LA JQUERY-->
+                        <!--
                         <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
 
@@ -159,6 +156,7 @@
                                 </div>
                             </div>
                         </div>
+                        -->
 
                         <a th:href="@{/}"><input class="btn btn-primary close" type="button" value="X">
                             </input></a>

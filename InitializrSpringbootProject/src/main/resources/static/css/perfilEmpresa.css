@@ -21,6 +21,7 @@ main {
 
 
 .container-img-perf {
+  background-color: #fcfcfc;
   display:flex;
   justify-content: center;
   align-items: center;
@@ -36,6 +37,7 @@ main {
 
 .perfil-img-int {
   max-width: 700px;
+  height: auto;
 }
 
 .form {

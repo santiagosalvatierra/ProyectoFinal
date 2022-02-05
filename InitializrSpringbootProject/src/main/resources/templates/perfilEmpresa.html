@@ -25,6 +25,7 @@
     <!-- LOGUITO EN PESTAÑA -->
     <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
+    
     <title>Perfil empresario</title>
 </head>
 
@@ -159,8 +160,8 @@
 
 
     <div class="btns-container">
-        <div><a class="extra-btns" href="/" role="button">Registro de viajes</a></div>
-        <div><a class="extra-btns" href="/" role="button">Nuevo viaje</a></div>
+        <div><a class="extra-btns" th:href="@{/viaje/listar-viajes}+'?id='+${session.usuariosession.id}" role="button">Registro de viajes</a></div>
+        <div><a class="extra-btns" th:href="@{/viaje/pedido}" role="button">Nuevo viaje</a></div>
 
     </div>
 
