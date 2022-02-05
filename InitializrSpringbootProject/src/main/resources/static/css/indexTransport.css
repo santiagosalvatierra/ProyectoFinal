@@ -38,6 +38,22 @@ li {
   border-color: #6930c3;
 }
 
+.btn-sm {
+  box-shadow: 0px 4px 4px rgba(31, 31, 31, 0.25);
+}
+
+.btn-mas{
+  background-color: #31175a;
+  font-size: 13px;
+  font-weight: 500;
+  width: 6rem;
+  height: 1.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
 /*SWITCH*/
 input[type="checkbox"].toggle {
   display: none;
@@ -133,13 +149,6 @@ input[type="checkbox"].toggle:checked + label:after {
   padding-left: 38rem;
 }
 
-/* ALINEACIÓN DE CONTENIDO: Icono + Info 
-#truck {float:left;}
-#truck2 {float: right;}
-
-#weight {float:left;}
-#weight2 {float: right;}*/
-
 .card-body {
   display: flex;
   flex-direction: column;
@@ -160,11 +169,12 @@ p{
   color: #31175a;
 }
 
-
 .card-group {
+  width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
 }
 
 .textTitle {
