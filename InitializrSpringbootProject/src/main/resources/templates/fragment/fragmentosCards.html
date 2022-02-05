@@ -3,7 +3,7 @@
 
   <!-- TARJETA 1 SECUNDARIA
   Deberian conectarse todos los datos con la base de datos según usuario-->
-  <div class="row" style="margin:3rem 3rem 3rem 3rem;">
+  <div class="row">
 
     <div class="container">
       <div class="card-group mt-3">
@@ -58,7 +58,7 @@
                 <form
                   th:action="@{/comprobante/seleccionar}+'?id_proveedor='+${session.usuariosession.id}+'&id_transportista='+${transportista.id}+'&id_viaje='+${id_viaje}"
                   method="post">
-                  <button class="btn btn-primary btn-mas">Ver Mas</button>
+                  <button class="btn btn-primary btn-mas">Ver perfil</button>
                 </form>
               </div>
             </div>
