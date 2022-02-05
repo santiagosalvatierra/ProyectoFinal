@@ -64,7 +64,7 @@ public class ProveedorController {
             model.put("rubros", Rubro.values());
             return "empresaForm";
         }
-        return "index";
+        return "RegistroExitoso";
     }
 
     @GetMapping("/registro")

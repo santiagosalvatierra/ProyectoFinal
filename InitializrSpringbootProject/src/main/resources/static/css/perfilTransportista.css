@@ -5,23 +5,12 @@ body {
 }
 
 .body-plus {
-  background-image: url(../img/Filtro\ violeta.png);
+  background: linear-gradient(70deg, rgba(154,50,210,1) 0%, rgba(119,51,208,1) 50%, rgba(102,23,218,1) 100%);
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top;
+  background-size: 2000px;
+  background-position: bottom;
 }
 
-/* BARRA NAV-HEADER */
-.buscar {
-  width: 500px;
-}
-
-.topheader {
-  height: 100px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
 
 /* /////////////////////////////////////////////////////////////*/
 main {
@@ -30,7 +19,8 @@ main {
   margin: 0 auto;
 }
 
-.container-img {
+.container-img-perf {
+  background-color: #fcfcfc;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,8 +33,10 @@ main {
   border: 7px solid #fcfcfc;
 }
 
-.perfil-img {
+.perfil-img-perf {
   max-width: 700px;
+  object-fit: contain;
+  height: auto;
 }
 
 .form {
@@ -53,6 +45,14 @@ main {
   border-radius: 15px;
   width: 70%;
   padding: 30px;
+}
+
+#body input {
+  color: #31175a;
+  outline: none;
+  background-color: #fcfcfc;
+  border: 0;
+  height: 40px;
 }
 
 .form input {

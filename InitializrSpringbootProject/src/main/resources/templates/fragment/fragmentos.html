@@ -18,42 +18,44 @@
 <header th:fragment="headerLoginTrans">
   <nav class="topheader navbar">
     <div class="container-fluid">
+
       <!--DESDE ACA EL MENU OFFCANVAS-->
       <button class="btn btn-toolbar" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
         aria-controls="offcanvasScrolling">
-        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          <img th:if="${session.usuariosession.foto == null}"
-            src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
-            alt="mdo" width="52" height="52" class="rounded-circle">
-          <!-- FORMA EN MOSTRAR LA IMAGEN QUE TIENE EL USUARIO GUARDADA-->
-          <img th:if="${session.usuariosession.foto != null}"
-            th:src="${'/foto/usuario-imagen/'+session.usuariosession.id}" alt="mdo" width="52" height="52"
-            class="rounded-circle">
-        </a>
+
+        <div class="container-imagen">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img th:if="${session.usuariosession.foto == null}" src="/img/Foto sin foto.jpg" alt="mdo" class="perfil-imagen">
+
+            <!-- FORMA EN MOSTRAR LA IMAGEN QUE TIENE EL USUARIO GUARDADA-->
+            <img th:if="${session.usuariosession.foto != null}"
+              th:src="${'/foto/usuario-imagen/'+session.usuariosession.id}" alt="mdo" class="perfil-imagen">
+          </a>
+        </div>
       </button>
+
       <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasScrolling"
         aria-labelledby="offcanvasLabel">
         <div class="offcanvas-header">
           <!--<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#my-offcanvas" aria-label="Close"></button>-->
-          <div class="justify-content-center">
+
+          <div class="cont-img-oncanvas">
             <img th:if="${session.usuariosession.foto == null}"
-              src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
-              class="img-thumbnail rounded-circle col-auto" alt="Perfil" width="250" height="300">
+              src="../img/Foto sin foto.jpg"
+              class="img-oncanvas" alt="Perfil">
             <img th:if="${session.usuariosession.foto != null}"
-              th:src="${'/foto/usuario-imagen/'+session.usuariosession.id}"
-              class="img-thumbnail rounded-circle col-auto" alt="Perfil" width="250" height="300">
+              th:src="${'/foto/usuario-imagen/'+session.usuariosession.id}" class="img-oncanvas" alt="Perfil">
           </div>
         </div>
+
         <div class="offcanvas-body">
-          <div class="text-center">
-            <ul class="nav flex-column">
-              <li class="nav-item"><a class="buttom-mod-container btn btn-primary"
-                  th:href="@{/transportista/perfil-transportista}+'?id='+${session.usuariosession.id}">PERFIL</a></li>
-              <li class="nav-item"><a class="buttom-mod-container btn btn-primary"
-                  th:href="@{../comprobante/listarComprobantes}">COMPROBANTES</a></li>
-            </ul>
-          </div>
+              <a class="btns-opt"
+                  th:href="@{/transportista/perfil-transportista}+'?id='+${session.usuariosession.id}">Editar perfil</a>
+              <a class="btns-opt"
+                  th:href="@{../comprobante/listarComprobantes}">Comprobantes</a>
+            
+          
           <div class="m-5">
             <h5>PROCESO DE PEDIDO</h5>
             <form th:action="@{/transportista/comunicar}+'?id='+${session.usuariosession.id}" method="POST">
@@ -75,7 +77,7 @@
                   Carga entregada
                 </label>
               </div>
-              <input class="cargaButton" type="submit" th:value="Comunicar">
+              <input class="btns-opt" type="submit" th:value="Comunicar">
             </form>
           </div>
           <div class="m-5">
@@ -85,27 +87,29 @@
               <label for="rounded" data-checked="Disponible" data-unchecked="Ocupado"></label>
             </div>
           </div>
-          <div>
-            <a class="" th:href="@{/logout}"><button class="btn btn-dark mt-3">CERRAR SESIÓN
-              </button></a>
+          <div class="logout">
+            <a class="buttom-mod-container" th:href="@{/logout}"><button class="btn btn-secondary-opt">Cerrar
+                sesión</button></a>
           </div>
         </div>
       </div>
       <!--HASTA ACA ES EL MENU OFFCANVAS-->
+
       <!--ACA EMPIEZAN LOS OTROS ELEMENTOS DEL NAV-->
-      <a href="/" class="navbar-brand logo">
-        <img src="../img/ManageTruck_logo-Blanco.png" class="img" width="200" height="52" alt="">
+      <a href="/" class="navbar-brand">
+        <img src="../img/ManageTruck_logo-Blanco.png" class="img" alt="">
       </a>
       <form class="d-flex buscar">
         <input type="buscar" name="empresa" class="form-control me-2" placeholder="Buscar..." aria-label="Buscar">
-        <button type="submit" class="btn btn-primary" style="width: 50px"><svg xmlns="http://www.w3.org/2000/svg"
+        <button type="submit" class="btn lupa" style="width: 50px"><svg xmlns="http://www.w3.org/2000/svg"
             width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
             <path
               d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
           </svg></button>
       </form>
       <div class="d-flex ">
-        <a class="me-3" th:href="@{/logout}"><button class="btn btn-dark">SALIR</button></a>
+        <a class="me-3" th:href="@{/logout}"><button class="btn btn-out"><i
+              class="fas fa-sign-out-alt icon"></i>Salir</button></a>
       </div>
     </div>
   </nav>
@@ -123,16 +127,14 @@
       <button class="btn btn-toolbar" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
         aria-controls="offcanvasScrolling">
 
-        <div class="container-img">
+        <div class="container-imagen">
           <a href="#" class="d-block link-white text-decoration-none dropdown-toggle" id="dropdownUser2"
             data-bs-toggle="dropdown" aria-expanded="false">
-
-            <img th:if="${session.usuariosession.foto == null}" src="/img/Foto sin foto.jpg" alt="mdo"
-              class="perfil-img">
+            <img th:if="${session.usuariosession.foto == null}" src="/img/Foto sin foto.jpg" alt="mdo" class="perfil-imagen">
 
             <!-- FORMA EN MOSTRAR LA IMAGEN QUE TIENE EL USUARIO GUARDADA-->
             <img th:if="${session.usuariosession.foto != null}"
-              th:src="${'/foto/usuario-imagen/'+session.usuariosession.id}" alt="mdo" class="perfil-img">
+              th:src="${'/foto/usuario-imagen/'+session.usuariosession.id}" alt="mdo" class="perfil-imagen">
           </a>
         </div>
       </button>
@@ -152,15 +154,16 @@
         </div>
 
         <div class="offcanvas-body">
-            <a class="btns-opt"
-              th:href="@{/proveedor/perfil-proveedor}+'?id='+${session.usuariosession.id}">Editar perfil</a>
-            <a class="btns-opt"
-              th:href="@{/viaje/listar-viajes}+'?id='+${session.usuariosession.id}">Registro de viajes</a>
-            <a class="btns-opt" th:href="@{/viaje/pedido}">Nuevo viaje</a>
+          <a class="btns-opt" th:href="@{/proveedor/perfil-proveedor}+'?id='+${session.usuariosession.id}">Editar
+            perfil</a>
+          <a class="btns-opt" th:href="@{/viaje/listar-viajes}+'?id='+${session.usuariosession.id}">Registro de
+            viajes</a>
+          <a class="btns-opt" th:href="@{/viaje/pedido}">Nuevo viaje</a>
 
 
           <div class="logout">
-            <a class="buttom-mod-container" th:href="@{/logout}"><button class="btn btn-secondary-opt">Cerrar sesión</button></a>
+            <a class="buttom-mod-container" th:href="@{/logout}"><button class="btn btn-secondary-opt">Cerrar
+                sesión</button></a>
           </div>
         </div>
       </div>
@@ -172,14 +175,15 @@
       </a>
       <form class="d-flex buscar">
         <input type="buscar" class="form-control me-2" name="nombre" placeholder="Buscar..." aria-label="Buscar">
-        <button type="submit" class="btn lupa" style="width: 50px"><svg xmlns="http://www.w3.org/2000/svg"
-            width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+        <button type="submit" class="btn lupa" style="width: 50px"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+            height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
             <path
               d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
           </svg></button>
       </form>
       <div class="d-flex ">
-        <a class="me-3" th:href="@{/logout}"><button class="btn btn-out"><i class="fas fa-sign-out-alt icon"></i>Salir</button></a>
+        <a class="me-3" th:href="@{/logout}"><button class="btn btn-out"><i
+              class="fas fa-sign-out-alt icon"></i>Salir</button></a>
       </div>
     </div>
   </nav>

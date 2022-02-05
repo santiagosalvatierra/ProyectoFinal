@@ -12,7 +12,7 @@
 
 body, html {
 	height: 100%;
-	font-family: sans-serif;
+	font-family: "Raleway", sans-serif;
 }
 
 /* ------------------------------------ */
@@ -138,7 +138,6 @@ iframe {
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
-  align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   padding: 33px 30px;
