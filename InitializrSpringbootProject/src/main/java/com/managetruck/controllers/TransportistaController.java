@@ -204,5 +204,22 @@ public class TransportistaController {
             return "redirect:/inicio";
         }
     }
+    @PostMapping("/vermas")
+    public String verMas(@RequestParam(required = true)String id_transportista,ModelMap modelo,Model model){
+        try {
+            System.out.println("el id es= "+ id_transportista);
+            Transportista transportista= transportistaServicio.buscarID(id_transportista);
+            System.out.println("el perfil es= "+transportista);
+            Camion camion = transportista.getCamion();
+            List<Foto> fotos = camion.getFoto();
+            model.addAttribute("fotos", fotos);
+            modelo.put("perfil", transportista);
+            modelo.put("camion", camion);
+            return "Perfil";
+        } catch (ErroresServicio ex) {
+            Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
+            return "redirect:/inicio";
+        }
+    }
 
 }
