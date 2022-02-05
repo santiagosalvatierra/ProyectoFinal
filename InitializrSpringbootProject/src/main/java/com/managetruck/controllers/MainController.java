@@ -181,5 +181,5 @@ public class MainController {
     @GetMapping("/logout")
     public String salir() {
         return "index";
-    }
+    }  
 }
