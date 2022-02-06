@@ -88,6 +88,10 @@ main {
   font-weight: 700;
 }
 
+.right input {
+  text-align: right;
+}
+
 .empresa-in {
   margin: 0 auto;
   margin-bottom: 3rem;
