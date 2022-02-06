@@ -83,8 +83,11 @@
           <div class="m-5">
             <h5>ESTADO</h5>
             <div>
-              <input type="checkbox" class="toggle" id="rounded">
-              <label for="rounded" data-checked="Disponible" data-unchecked="Ocupado"></label>
+                
+                <label th:if="${session.usuariosession.viajando==false}" th:text="DISPONIBLE"></label>
+                <label th:if="${session.usuariosession.viajando==true}" th:text="OCUPADO"></label>
+              <!--<input type="checkbox" class="toggle" id="rounded">
+              <label for="rounded" data-checked="Disponible" data-unchecked="Ocupado"></label>-->
             </div>
           </div>
           <div class="logout">
