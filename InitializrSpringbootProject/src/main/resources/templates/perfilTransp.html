@@ -63,9 +63,9 @@
                         </div>
                         <div class="center">
                             <h5>ESTADO ACTUAL</h5>
-                            <input type="checkbox" class="toggle" id="rounded">
-                            <label for="rounded" data-checked="Disponible" class="rounded"
-                                data-unchecked="Ocupado"></label>
+                            <!--<input type="checkbox" class="toggle" id="rounded">-->
+                            <label th:if="${perfil.viajando==false}" th:text="DISPONIBLE"></label>
+                            <label th:if="${perfil.viajando==true}" th:text="OCUPADO"></label>
                         </div>
                     </div>
                     <br>
