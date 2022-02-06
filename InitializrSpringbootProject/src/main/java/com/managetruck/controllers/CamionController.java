@@ -41,14 +41,14 @@ public class CamionController {
     }
     @PreAuthorize("hasRole('ROLE_Transportista')")
     @PostMapping("/modificar-camion")
-    public String crearCamion(HttpSession session,@RequestParam(required = true)String id_transportista,String id,@RequestParam Integer pesoMaximo, String descripcion, @RequestParam String modelo, Integer anio, @RequestParam String patente, @RequestParam Integer poliza, List<MultipartFile> fotos) {
+    public String crearCamion(HttpSession session,@RequestParam(required = true)String id_transportista,String id,@RequestParam Integer pesoMaximo, String descripcion, @RequestParam String modelo, Integer anio, @RequestParam String patente, @RequestParam Integer poliza, List<MultipartFile> archivos) {
         //metodo para revisar que sea la misma persona hay que testearlo
         Transportista login = (Transportista) session.getAttribute("usuariosession");
         if (login == null || !login.getId().equals(id_transportista)) {          
             return "redirect:/login";
         }
         try {
-            camionServicio.modificarCamion(id_transportista,id, pesoMaximo, modelo, descripcion, anio, patente, poliza, fotos);
+            camionServicio.modificarCamion(id_transportista,id, pesoMaximo, modelo, descripcion, anio, patente, poliza, archivos);
         } catch (ErroresServicio ex) {
             Logger.getLogger(CamionController.class.getName()).log(Level.SEVERE, null, ex);
         }

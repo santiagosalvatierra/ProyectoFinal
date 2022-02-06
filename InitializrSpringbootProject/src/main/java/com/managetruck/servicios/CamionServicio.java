@@ -92,10 +92,10 @@ public class CamionServicio {
                 //camion.setAlta(alta);
                 if (archivos != null && !archivos.isEmpty()) {
                     List<Foto> fotos = new ArrayList<>();
-                    for (MultipartFile archivo : archivos) {
-                        fotos.add(fotoServicio.guardar(archivo));
-                        camion.setFoto(fotos);
+                    for (MultipartFile archivo : archivos) {                      
+                        fotos.add(fotoServicio.guardar(archivo));                    
                     }
+                    camion.setFoto(fotos);
                 }
                 repositorioCamion.save(camion);
             }
