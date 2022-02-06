@@ -56,10 +56,10 @@
                 </div>
 
                 <form
-                  th:action="@{/comprobante/seleccionar}+'?id_proveedor='+${session.usuariosession.id}+'&id_transportista='+${transportista.id}+'&id_viaje='+${id_viaje}"
-                  method="post">
-                  <a href="/perfil" ><button class="btn btn-primary btn-mas">Ver perfil</button></a>
-                </form>
+                    th:action="@{'/transportista/vermas?id_transportista='+${transportista.id}}"
+                    method="post">
+                    <button class="btn btn-primary btn-mas">Ver perfil</button>
+                  </form>
               </div>
             </div>
           </div>
