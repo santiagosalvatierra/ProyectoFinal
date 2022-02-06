@@ -23,6 +23,7 @@ import com.managetruck.servicios.ProveedorServicio;
 import com.managetruck.servicios.TransportistaServicio;
 import com.managetruck.servicios.ViajeServicio;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -104,6 +105,16 @@ public class MainController {
                     }
                 }
                     
+                }else if(transportistas2.size()>3){
+                    Collections.reverse(transportistas2);
+                    for (Transportista transportista : transportistas2) {
+                        
+                        transportistas2.remove(transportista);
+                        if (transportistas2.size()==3) {
+                            Collections.reverse(transportistas2);
+                            break;
+                        }
+                    }
                 }
                 if (error != null) {
                     model.put("error", "Usted no puede aplicar al viaje");
