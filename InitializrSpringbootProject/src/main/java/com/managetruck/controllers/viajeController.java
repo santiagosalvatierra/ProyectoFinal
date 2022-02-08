@@ -76,7 +76,7 @@ public class viajeController {
         } catch (ErroresServicio ex) {
             Logger.getLogger(viajeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "indexEmpresa";
+        return "redirect:/inicio";
     }
     @PreAuthorize("hasRole('ROLE_Proveedor')")
     @GetMapping("/modificar-viaje")

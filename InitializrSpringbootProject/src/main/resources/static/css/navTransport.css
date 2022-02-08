@@ -72,7 +72,7 @@
   a {
     text-decoration: none;
   }
-  
+
   .btn-secondary-opt {
     background-color: #31175a;
     color: #fcfcfc;
@@ -144,5 +144,11 @@
     background-color: #fcfcfc;
     color: #6930c3;
     border: #6930c3;
+  }
+  
+  h5 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #6930c3;
   }
   

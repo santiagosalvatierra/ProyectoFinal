@@ -26,7 +26,8 @@
         <div class="container-imagen">
           <a href="#" class="d-block link-white text-decoration-none dropdown-toggle" id="dropdownUser2"
             data-bs-toggle="dropdown" aria-expanded="false">
-            <img th:if="${session.usuariosession.foto == null}" src="/img/Foto sin foto.jpg" alt="mdo" class="perfil-imagen">
+            <img th:if="${session.usuariosession.foto == null}" src="/img/Foto sin foto.jpg" alt="mdo"
+              class="perfil-imagen">
 
             <!-- FORMA EN MOSTRAR LA IMAGEN QUE TIENE EL USUARIO GUARDADA-->
             <img th:if="${session.usuariosession.foto != null}"
@@ -41,23 +42,21 @@
           <!--<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#my-offcanvas" aria-label="Close"></button>-->
 
           <div class="cont-img-oncanvas">
-            <img th:if="${session.usuariosession.foto == null}"
-              src="../img/Foto sin foto.jpg"
-              class="img-oncanvas" alt="Perfil">
+            <img th:if="${session.usuariosession.foto == null}" src="../img/Foto sin foto.jpg" class="img-oncanvas"
+              alt="Perfil">
             <img th:if="${session.usuariosession.foto != null}"
               th:src="${'/foto/usuario-imagen/'+session.usuariosession.id}" class="img-oncanvas" alt="Perfil">
           </div>
         </div>
 
         <div class="offcanvas-body">
-              <a class="btns-opt"
-                  th:href="@{/transportista/perfil-transportista}+'?id='+${session.usuariosession.id}">Editar perfil</a>
-              <a class="btns-opt"
-                  th:href="@{../comprobante/listarComprobantes}">Comprobantes</a>
-            
-          
+          <a class="btns-opt"
+            th:href="@{/transportista/perfil-transportista}+'?id='+${session.usuariosession.id}">Editar perfil</a>
+          <a class="btns-opt" th:href="@{../comprobante/listarComprobantes}">Comprobantes</a>
+
+
           <div class="m-5">
-            <h5>PROCESO DE PEDIDO</h5>
+            <h5>Proceso de pedido</h5>
             <form th:action="@{/transportista/comunicar}+'?id='+${session.usuariosession.id}" method="POST">
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="1">
@@ -80,16 +79,17 @@
               <input class="btns-opt" type="submit" th:value="Comunicar">
             </form>
           </div>
+
           <div class="m-5">
-            <h5>ESTADO</h5>
+            <h5>Estado</h5>
             <div>
-                
-                <label th:if="${session.usuariosession.viajando==false}" th:text="DISPONIBLE"></label>
-                <label th:if="${session.usuariosession.viajando==true}" th:text="OCUPADO"></label>
-              <!--<input type="checkbox" class="toggle" id="rounded">
-              <label for="rounded" data-checked="Disponible" data-unchecked="Ocupado"></label>-->
+              <label th:if="${session.usuariosession.viajando==false}" th:text="Disponible"
+                style="color: rgb(8, 161, 54)"></label>
+              <label th:if="${session.usuariosession.viajando==true}" th:text="Ocupado"
+                style="color:rgb(189, 3, 3)"></label>
             </div>
           </div>
+
           <div class="logout">
             <a class="buttom-mod-container" th:href="@{/logout}"><button class="btn btn-secondary-opt">Cerrar
                 sesión</button></a>
@@ -104,8 +104,8 @@
       </a>
       <form class="d-flex buscar">
         <input type="buscar" name="empresa" class="form-control me-2" placeholder="Buscar..." aria-label="Buscar">
-        <button type="submit" class="btn lupa" style="width: 50px"><svg xmlns="http://www.w3.org/2000/svg"
-            width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+        <button type="submit" class="btn lupa" style="width: 50px"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+            height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
             <path
               d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
           </svg></button>
@@ -133,7 +133,8 @@
         <div class="container-imagen">
           <a href="#" class="d-block link-white text-decoration-none dropdown-toggle" id="dropdownUser2"
             data-bs-toggle="dropdown" aria-expanded="false">
-            <img th:if="${session.usuariosession.foto == null}" src="/img/Foto sin foto.jpg" alt="mdo" class="perfil-imagen">
+            <img th:if="${session.usuariosession.foto == null}" src="/img/Foto sin foto.jpg" alt="mdo"
+              class="perfil-imagen">
 
             <!-- FORMA EN MOSTRAR LA IMAGEN QUE TIENE EL USUARIO GUARDADA-->
             <img th:if="${session.usuariosession.foto != null}"

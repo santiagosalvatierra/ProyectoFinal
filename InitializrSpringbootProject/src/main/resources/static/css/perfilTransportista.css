@@ -40,22 +40,18 @@ main {
 }
 
 .form {
-  margin: 0 auto;
+  margin: 0 auto 2rem auto;
   background-color: #fcfcfc;
   border-radius: 15px;
   width: 70%;
-  padding: 30px;
+  padding: 20px;
+}
+
+.col {
+  margin-left: 20px;
 }
 
 #body input {
-  color: #31175a;
-  outline: none;
-  background-color: #fcfcfc;
-  border: 0;
-  height: 40px;
-}
-
-.form input {
   color: #31175a;
   outline: none;
   background-color: #fcfcfc;
@@ -72,101 +68,55 @@ main {
   font-weight: 400;
 }
 
+.us-2 input {
+  height: 50px;
+  font-size:
+}
+
 .usuario {
-  display: flex;
+  display:flex;
   justify-content: center;
   position: relative;
   margin: 0 auto;
   padding: 1rem;
+  max-width: 400px;
 }
 
-.us-2 input {
-  height: 50px;
+.usuario div {
+  margin: 0 5px;
 }
 
-/*SWITCH*/
-input[type="checkbox"].toggle {
-  display: none;
+.user {
+  text-align: left;
+  font-size: 30px;
+  font-weight: 700;
 }
 
-input[type="checkbox"].toggle + label {
-  display: inline-block;
-  height: 60px;
-  width: 200px;
-  position: relative;
-  font-size: 20px;
-  border: 4px solid black;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
-  box-sizing: border-box;
-  transition: all 0.3s ease;
-}
-
-input[type="checkbox"].toggle + label:before {
-  position: absolute;
-  top: 4px;
-  height: 44px;
-  width: 44px;
-  content: "";
-  transition: all 0.3s ease;
-  z-index: 3;
-}
-
-input[type="checkbox"].toggle + label:after {
-  width: 140px;
-  text-align: center;
-  z-index: 2;
-  text-transform: uppercase;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-input[type="checkbox"].toggle + label.rounded {
-  border-radius: 30px;
-}
-
-input[type="checkbox"].toggle + label.rounded:before {
-  border-radius: 50%;
-}
-
-input[type="checkbox"].toggle:not(checked) + label {
-  background-color: transparent;
+.right input {
   text-align: right;
 }
 
-input[type="checkbox"].toggle:not(checked) + label:before {
-  left: 4px;
-  background-color: rgb(230, 75, 75);
+.subtext-in {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  max-width: 320px;
 }
 
-input[type="checkbox"].toggle:not(checked) + label:after {
-  content: attr(data-unchecked);
-  right: 0;
-  left: auto;
-  opacity: 1;
-  color: rgb(15, 5, 5);
+.subtext-in label {
+  color: #31175a;
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 1rem;
 }
 
-input[type="checkbox"].toggle:checked + label {
-  text-align: left;
-  border-color: rgb(34, 92, 179);
-}
-
-input[type="checkbox"].toggle:checked + label:before {
-  left: 144px;
-  background-color: rgb(77, 172, 228);
-}
-
-input[type="checkbox"].toggle:checked + label:after {
-  content: attr(data-checked);
-  left: 4px;
-  right: auto;
-  opacity: 1;
-  color: rgb(10, 23, 143);
+.subtext-in p {
+  margin-top: 12px;
+  color: #31175a;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .datos-user {
@@ -183,26 +133,92 @@ input[type="checkbox"].toggle:checked + label:after {
   font-weight: 400;
 }
 
-/* //////////////////////////////////////////////////////////////////// */
-/* BUTTONS FORM */
-.buttom-mod-container {
-  position: relative;
-  background-color: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 2rem auto;
-  width: 70%;
-}
+/* ///////////////////////////////////////// */
+  /* BOTON CARGAR FOTO PERFIL NUEVA */
+  .upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    }
+    
+    /* ESTILO DEL INPUT*/
+    .upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor:pointer;
+    }
 
-.btn-primary {
-  margin: 1rem 0.6rem;
+
+  /* //////////////////////////////////////////////////////////////////// */
+  /* BUTTONS FORM */
+    .buttom-mod-container {
+    position: relative;
+    background-color: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto;
+    width: 70%;
+  }
+  
+  .btn-primary {
+    margin: 1rem 0.6rem;
+    background-color: #fcfcfc;
+    color: #6930C3;
+    border-radius: 10px;
+    font-weight: 600;
+    line-height: 15px;
+    border: 3px solid #6930C3;
+    transition: all 0.3s ease 0s;
+    width: 150px;
+    height: 65px;
+    padding-top: 8px;
+    line-height: 20px;
+  }
+  
+  .btn-primary:hover {
+    color: #fcfcfc;
+    background-color: #6930C3;
+    border-color: #6930C3;
+  }
+
+  
+.boton-standar-rw{
+  text-align: center;
+  margin: 5px;
+  padding-top: 1.5rem;
   background-color: #fcfcfc;
-  color: #6930c3;
+  color: #6930C3;
   border-radius: 10px;
   font-weight: 600;
   line-height: 15px;
-  border: 3px solid #6930c3;
+  border: 3px solid #6930C3;
+  transition: all 0.3s ease 0s;
+  width: 150px;
+  height: 65px;
+  cursor: pointer;
+}
+    
+.boton-standar-rw:hover{
+  color: #fcfcfc;
+  background-color: #6930C3;
+}
+
+.center {
+  margin: 0 2rem;
+}
+
+.btn-primary-2 {
+  margin: 1rem 0.6rem;
+  background-color: #fcfcfc;
+  color: #3CE2D1;
+  border-radius: 10px;
+  font-weight: 600;
+  line-height: 15px;
+  border: 3px solid #3CE2D1;
   transition: all 0.3s ease 0s;
   width: 150px;
   height: 65px;
@@ -210,37 +226,67 @@ input[type="checkbox"].toggle:checked + label:after {
   line-height: 20px;
 }
 
-.btn-primary:hover {
+.btn-primary-2:hover {
   color: #fcfcfc;
-  background-color: #6930c3;
-  border-color: #6930c3;
+  background-color: #3CE2D1;
+  border-color: #3CE2D1;
 }
 
-.boton-standar-rw {
+
+.boton-standar-rw2{
+text-align: center;
+margin: 5px;
+padding-top: 1.5rem;
+background-color: #fcfcfc;
+color: #3CE2D1;
+border-radius: 10px;
+font-weight: 600;
+line-height: 15px;
+border: 3px solid #3CE2D1;
+transition: all 0.3s ease 0s;
+width: 150px;
+height: 65px;
+cursor: pointer;
+}
+  
+.boton-standar-rw2:hover{
+color: #fcfcfc;
+background-color: #3CE2D1;
+}
+
+
+/* //////////////////////////////////////////////////////////////////// */
+/* BUTTONS EXTRA */
+.btns-container {
+  background-color: none;
+  margin: 5rem 0 7rem 0;
+}
+
+.extra-btns {
+  display: flex;
+  justify-content: center;
+  width: 15%;
+  margin: 1rem auto;
   text-align: center;
-  margin: 5px;
-  background-color: #fcfcfc;
-  color: #6930c3;
-  border-radius: 10px;
-  font-weight: 600;
-  line-height: 15px;
-  border: 3px solid #6930c3;
-  transition: all 0.3s ease 0s;
-  width: 150px;
-  height: 65px;
-  cursor: pointer;
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.boton-standar-rw:hover {
+  background-color: #6930C3;
+  background: linear-gradient(48deg, rgba(154,50,210,1) 0%, rgba(119,51,208,1) 50%, rgba(102,23,218,1) 100%);
   color: #fcfcfc;
-  background-color: #6930c3;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 17px;
+  border: 3px solid #6930C3;
+  transition: all 0.3s ease 0s;
+  padding: 15px;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.center {
-  margin: 0 2rem;
+.extra-btns:hover{
+  color: #6930C3;
+  background: #fcfcfc;
+  border-color: #6930C3;
 }
+
 
 /* ///////////////////////////////////////////////////////*/
 /* MODAL CAMBIAR CONTRASEÑA */
@@ -332,106 +378,24 @@ input[type="checkbox"].toggle:checked + label:after {
   border-color: #6930C3;
 }
 
+
+/* ///////////////////////////////////////////////////////////////////*/
 /*CONTENIDO CAMION*/
-.contenedor1 {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 48px 0;
-  display: grid;
-  grid-template-columns: 4fr;
-  gap: 20px;
+.text-center {
+  color: #3CE2D1;
+  font-size: 30px;
+  font-weight: 700;
+  text-shadow: 4px 10px 10px 0px #00000040;
+  margin-bottom:2rem;
 }
-
-/*FLEXBOX
-.contenedor{
-  width: 100%;
-  max-width: 1200px;
-  margin: auto;
-  display: flex;
-  gap: 20px;
-}
-
-.contenedor-fotos{
-  display: flex;
-  height: 100%;
-  width: 100%;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  max-width: 550px;
-  margin-bottom: 10px;
-}*/
 
 .foto {
   margin-bottom: 10px;
   object-fit: fill;
 }
 
-.contenedor2-texto {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  align-items: center;
+.img-fluid {
+  border-radius: 5px;
+  
 }
 
-/*GRID*/
-.contenedor2 {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 48px 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.contenedor2-fotos {
-  display: grid;
-  grid-template-columns: 1fr;
-  align-content: center;
-}
-
-.contenedor2-texto input {
-  width: 400px;
-  margin-bottom: 20px;
-}
-
-/* //////////////////////////////////////////////////////////////////// */
-/* BUTTONS EXTRA */
-.btns-container {
-  background-color: none;
-  margin: 5rem 0 7rem 0;
-}
-
-.extra-btns {
-  display: flex;
-  justify-content: center;
-  width: 15%;
-  margin: 1rem auto;
-  text-align: center;
-  background-color: #6930c3;
-  background: linear-gradient(
-    48deg,
-    rgba(154, 50, 210, 1) 0%,
-    rgba(119, 51, 208, 1) 50%,
-    rgba(102, 23, 218, 1) 100%
-  );
-  color: #fcfcfc;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 17px;
-  border: 3px solid #6930c3;
-  transition: all 0.3s ease 0s;
-  padding: 15px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.extra-btns:hover {
-  color: #6930c3;
-  background: #fcfcfc;
-  border-color: #6930c3;
-}

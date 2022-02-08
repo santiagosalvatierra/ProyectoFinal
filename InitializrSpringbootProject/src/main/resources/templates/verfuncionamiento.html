@@ -24,51 +24,41 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
 
-  <title>Error</title>
+  <title>Valoración</title>
 
 </head>
+
 <body>
-   
 
-        <div class="container">
-                                    <div class="modal-dialog">
-                                                <div class="modal-content">
+  <div class="box-valorar">
+    <div class="cont-valorar">
+      <div class="body-title" id="exampleModalLabel">Valora a este transportista</div>
 
-                        
-                                                    <div class="modal-body" id="ing">
-                                                        <div class="modal-title" id="exampleModalLabel">Valora este transportista</div>
-                                                        <form th:action="@{/viaje/validar}+'?id_comprobante='+${comprobante.ID}" method="POST">
-                                                          <p class="clasificacion">
-                                                            <input id="radio1" type="radio" name="estrellas" value="5">
-                                                            <label for="radio1">★</label>
-                                                            <input id="radio2" type="radio" name="estrellas" value="4">
-                                                            <label for="radio2">★</label>
-                                                            <input id="radio3" type="radio" name="estrellas" value="3">
-                                                            <label for="radio3">★</label>
-                                                            <input id="radio4" type="radio" name="estrellas" value="2">
-                                                            <label for="radio4">★</label>
-                                                            <input id="radio5" type="radio" name="estrellas" value="1">
-                                                            <label for="radio5">★</label>
-                                                          </p> 
-                                                              
-                                                            </p>
-                                                            <button type="submit" class="btn btn-primary1">Aceptar</button>
-                                                            <a href="javascript: history.go(-1)"><input class="btn btn-primary" type="button" value="Volver">
-                                                          </form>
-                
-                                                    </div>
-                        
-                                                </div>
-                                            </div>
-                                    </div>   
-                                </div>
-      </p>
+      <form th:action="@{/viaje/validar}+'?id_comprobante='+${comprobante.ID}" method="POST">
 
+        <div class="clasificacion">
+          <input id="radio1" type="radio" name="estrellas" value="5">
+          <label for="radio1">★</label>
+          <input id="radio2" type="radio" name="estrellas" value="4">
+          <label for="radio2">★</label>
+          <input id="radio3" type="radio" name="estrellas" value="3">
+          <label for="radio3">★</label>
+          <input id="radio4" type="radio" name="estrellas" value="2">
+          <label for="radio4">★</label>
+          <input id="radio5" type="radio" name="estrellas" value="1">
+          <label for="radio5">★</label>
+        </div>
 
-      </input></a>             
+        <div class="btns-app">
+          <button type="submit" class="btn btn-primary">Aceptar</button>
+          <a href="javascript: history.go(-1)"><input class="btn btn-return" type="button" value="Volver">
+        </div>
+      </form>
 
     </div>
+
   </div>
+
 </body>
 
 </html>

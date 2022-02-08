@@ -1,34 +1,82 @@
-.modal-dialog {
-    display: flex;
-    justify-content: center;
-    position: relative;
+
+* ::before ::after {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root { 
+  background-color: #fcfcfc;
+}
+
+body {
+  background-color:#fcfcfc;
+  font-family: 'Raleway', sans-serif;
+}
+
+
+.box-valorar {
+  padding: 3rem;
+  margin: 7rem auto;
+  width: 50%;
+  height: auto;
+  max-height: 300px;
+  border-radius: 15px;
+  background-color:#6930C3;
+  display: flex;
+  justify-content: center;
+  position: relative;
   }
   
-  .modal-content {
+  .cont-valorar {
     margin: 0 auto;
   }
-  
-  .modal-content .btn-close {
-    background-color: none;
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    font-size: 18px;
+
+  .btns-app {
+    margin-left: 5rem;
+    margin-top: 1rem;
+  }
+
+  .btn-return {
+    color: #6930C3;
+    background: #fcfcfc;
+    font-weight: 400;
+    padding: 0.5rem;
+    width: 5rem;
+    box-shadow: 0px 4px 4px rgba(31, 31, 31, 0.25);
+    border-radius: 10px;
+    border-color: #fcfcfc;
+    overflow: hidden;
     cursor: pointer;
   }
   
-  .modal-content .close-btn :hover {
-    color: #31175a;
+  .btn-return:hover {
+    color: #fcfcfc;
+    background: #6930C3;
+    border-width: 0.2rem;
+    border-color: #fcfcfc;
   }
-  
 
-.modal-title {
-    color: #31175a;
-    margin-top: 1rem;
-    text-align: center;
-    font-weight: 700;
-    font-size: 2rem;
+  .clasificacion {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+
+  .body-title {
+    text-align: center;
+    color: #fcfcfc;
+    font-weight: 700;
+    font-size: 35px;
+  }
+
+  .p-text {
+    color: #fcfcfc;
+    font-weight: 400;
+    font-size: 18px;
+    margin-bottom: 3rem;
+  }
+
   #ing {
     margin: 0 3rem;
   }
@@ -38,7 +86,7 @@
   }
   
   label {
-    color: grey;
+    color: #fcfcfc;
     font-size: 30px;
   }
   
@@ -57,30 +105,24 @@
     color: orange;
   }
 
-  .btn-primary1 {
-    color: #fcfcfc;
-    background: #6930C3;
+  .btn-primary {
+    margin: 0 10px;
+    color: #6930C3;
+    background: #fcfcfc;
     font-weight: 400;
     padding: 0.5rem;
-    width: 13rem;
+    width: 9rem;
     box-shadow: 0px 4px 4px rgba(31, 31, 31, 0.25);
     border-radius: 10px;
-    border-color: #6930C3;
+    border-color: #fcfcfc;
     overflow: hidden;
     cursor: pointer;
-    margin: 0 5rem;
   }
-
-  .btn-primary{
+  
+  .btn-primary:hover {
     color: #fcfcfc;
     background: #6930C3;
-    position: absolute;
-    right: 0px;
-    top: 140px;
-    font-size: 18px;
-    cursor: pointer;
-    box-shadow: 0px 4px 4px rgba(31, 31, 31, 0.25);
-    border-radius: 10px;
-    border-color: #6930C3;
-    overflow: hidden;
+    border-width: 0.2rem;
+    border-color: #fcfcfc;
   }
+  
