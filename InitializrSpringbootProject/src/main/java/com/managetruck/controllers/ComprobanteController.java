@@ -31,24 +31,25 @@ public class ComprobanteController {
     @Autowired
     TransportistaServicio transportistaServicio;
 
-    @Autowired
-    private ViajeServicio viajeServicio;
-    @Autowired
-    private RepositorioViaje repositorioViaje;
-    @Autowired
-    private RepositorioComprobante repositorioComprobante;
-    @Autowired
-    private RepositorioTransportista repositorioTransportista;
+//    @Autowired
+//    private ViajeServicio viajeServicio;
+//    @Autowired
+//    private RepositorioViaje repositorioViaje;
+//    @Autowired
+//    private RepositorioComprobante repositorioComprobante;
+//    @Autowired
+//    private RepositorioTransportista repositorioTransportista;
     
-    @PreAuthorize("hasRole('ROLE_Transportista')")
-    @GetMapping("/mostrarTranspostistas")//muestra los transportistas que aplicaron a un viaje en especifico
-    public String mostrarTranspostistas(Model model, String id_viaje) {
-        Optional<Viaje> viaje = repositorioViaje.findById(id_viaje);
-        List<Transportista> listadoTransportistas = viaje.get().getListadoTransportista();
-        model.addAttribute("tittle", "Listado Transportistas");
-        model.addAttribute("listadoTransportistas", listadoTransportistas);
-        return null;
-    }
+//    @PreAuthorize("hasRole('ROLE_Transportista')")
+//    @GetMapping("/mostrarTranspostistas")//muestra los transportistas que aplicaron a un viaje en especifico
+//    public String mostrarTranspostistas(Model model, String id_viaje) {
+//        Viaje viaje = viajeServicio.buscarViajeId(id_viaje);
+//        //Optional<Viaje> viaje = repositorioViaje.findById(id_viaje);
+//        List<Transportista> listadoTransportistas = viaje.getListadoTransportista();
+//        model.addAttribute("tittle", "Listado Transportistas");
+//        model.addAttribute("listadoTransportistas", listadoTransportistas);
+//        return null;
+//    }
     @PreAuthorize("hasRole('ROLE_Proveedor')")
     @PostMapping("/seleccionar")//proveedor elije el transportista que va a ser responsable del viaje
     public String votacion(String id_proveedor, String id_transportista, String id_viaje) throws ErroresServicio {

@@ -363,6 +363,10 @@ public class TransportistaServicio {
                     break;
             }
     }
+    public List listarTransportistaporZona(String zona) {
+        List<Transportista> listado = repositorioTransportista.buscarTransportistaPorZona(zona);
+        return listado;
+    }
 //    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
 //        Optional<Usuario> usuario = repositorioUsuario.buscarPorMail(mail);
 //        if (usuario != null) {

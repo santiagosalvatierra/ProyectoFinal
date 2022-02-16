@@ -92,7 +92,8 @@ public class MainController {
                 List<Transportista> transportistas = transportistaServicio.listarTransportista();
                 model.put("transportistas", transportistas);
             }
-            List<Transportista> transportistas2 = repositorioTransportista.buscarTransportistaPorZona(login.getZona());
+            List<Transportista> transportistas2 = transportistaServicio.listarTransportistaporZona(login.getZona());
+                    //repositorioTransportista.buscarTransportistaPorZona(login.getZona());
             if (!transportistas2.isEmpty()) {
                 
                 if(transportistas2.size()<3){
