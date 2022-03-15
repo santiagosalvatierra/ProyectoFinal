@@ -9,6 +9,7 @@ import com.managetruck.errores.ErroresServicio;
 import com.managetruck.repositorios.RepositorioProvincias;
 import com.managetruck.repositorios.RepositorioTransportista;
 import com.managetruck.servicios.CamionServicio;
+import com.managetruck.servicios.ProvinciasServicio;
 import com.managetruck.servicios.TransportistaServicio;
 import com.managetruck.servicios.UsuarioServicio;
 import com.managetruck.servicios.ViajeServicio;
@@ -41,8 +42,11 @@ public class TransportistaController {
     @Autowired
     RepositorioTransportista repositorioTransportista;
     
+    //@Autowired
+    //RepositorioProvincias repositorioProvincias;
+    
     @Autowired
-    RepositorioProvincias repositorioProvincias;
+    ProvinciasServicio provinciasServicio;
     
     @Autowired
     UsuarioServicio usuarioServicio;
@@ -57,7 +61,7 @@ public class TransportistaController {
             Camion camion=camionServicio.crearCamion(pesoMaximo, modelo, descripcion, anio, patente, poliza, archivos);
             transportistaServicio.SetearCamion(camion.getID(), mail);
         } catch (ErroresServicio es) {
-            List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
+            List<Provincias> provincias = provinciasServicio.listarProvinciasTotales();
             model.put("provincias",provincias);
             model.put("error", es.getMessage());
             model.put("nombre", nombre);
@@ -83,7 +87,7 @@ public class TransportistaController {
 
     @GetMapping("/registra")
     public String mostrarPaginaRegistro(ModelMap modelo) {
-        List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
+        List<Provincias> provincias = provinciasServicio.listarProvinciasTotales();
         modelo.put("provincias",provincias);
         return "transportista_form";
     }
@@ -174,7 +178,7 @@ public class TransportistaController {
             model.addAttribute("fotos", fotos);
             model.addAttribute("camion", camion);
             model.addAttribute("perfil", transportista);
-            List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
+            List<Provincias> provincias = provinciasServicio.listarProvinciasTotales();
             modelo.put("provincias",provincias);
             return "perfilTransp";
         } catch (ErroresServicio ex) {
