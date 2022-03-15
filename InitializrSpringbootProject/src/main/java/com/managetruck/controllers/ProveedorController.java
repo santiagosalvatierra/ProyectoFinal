@@ -14,6 +14,7 @@ import com.managetruck.enumeracion.Rubro;
 import com.managetruck.errores.ErroresServicio;
 import com.managetruck.repositorios.RepositorioProvincias;
 import com.managetruck.servicios.ProveedorServicio;
+import com.managetruck.servicios.ProvinciasServicio;
 import com.managetruck.servicios.TransportistaServicio;
 import java.util.List;
 import java.util.logging.Level;
@@ -39,15 +40,17 @@ public class ProveedorController {
     @Autowired
     TransportistaServicio transportistaServicio;
     
+    //@Autowired
+    //RepositorioProvincias repositorioProvincias;
     @Autowired
-    RepositorioProvincias repositorioProvincias;
+    ProvinciasServicio provinciaServicio;
 
     @PostMapping("/registro")
     public String registroProveedor(ModelMap model,String nombre, String apellido, String mail, String clave1, String clave2, MultipartFile archivo1, String provincia, String telefono, String razonSocial, String cuilEmpresa, String nombreEmpresa, Rubro rubro) throws ErroresServicio {
         try{
         proveedorServicio.crearProveedor(nombre, apellido, mail, clave1, clave2, archivo1, provincia, telefono, razonSocial, cuilEmpresa, nombreEmpresa,rubro);
         } catch (ErroresServicio es) {
-            List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
+            List<Provincias> provincias = provinciaServicio.listarProvinciasTotales();
             model.put("error", es.getMessage());
             model.put("nombre", nombre);
             model.put("apellido", apellido);
@@ -69,7 +72,7 @@ public class ProveedorController {
 
     @GetMapping("/registro")
     public String mostrarPaginaRegistro(ModelMap modelo) {
-        List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
+        List<Provincias> provincias = provinciaServicio.listarProvinciasTotales();
         modelo.put("provincias",provincias);
         modelo.put("rubros", Rubro.values());
         return "empresaForm";
@@ -119,7 +122,7 @@ public class ProveedorController {
         try {           
             Proveedor proveedor = proveedorServicio.buscarID(id);
             model.addAttribute("perfil", proveedor);
-            List<Provincias> provincias = repositorioProvincias.buscarProvinciastotales();
+            List<Provincias> provincias = provinciaServicio.listarProvinciasTotales();
             modelo.put("provincias",provincias);
             modelo.put("rubros", Rubro.values());
             
