@@ -39,8 +39,8 @@ public class TransportistaController {
     @Autowired
     TransportistaServicio transportistaServicio;
 
-    @Autowired
-    RepositorioTransportista repositorioTransportista;
+    //@Autowired
+    //RepositorioTransportista repositorioTransportista;
     
     //@Autowired
     //RepositorioProvincias repositorioProvincias;
@@ -97,7 +97,7 @@ public class TransportistaController {
         if (session != null) {
             Usuario login = (Usuario) session.getAttribute("usuariosession");
            
-            List<Transportista> transportistas2 = repositorioTransportista.buscarTransportistaPorZona(login.getZona());
+            List<Transportista> transportistas2 = transportistaServicio.listarTransportistaporZona(login.getZona());
             
             if (!transportistas2.isEmpty()) {
                 modelo.addAttribute("tittle", "Listado Transportistas");
@@ -105,7 +105,7 @@ public class TransportistaController {
             }
             
         } else {
-            List<Transportista> transportistas = repositorioTransportista.findAll();
+            List<Transportista> transportistas = transportistaServicio.listarTransportista();
             modelo.addAttribute("tittle", "Listado Transportistas");
             modelo.addAttribute("transportistas", transportistas);
         }
