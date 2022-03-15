@@ -54,8 +54,8 @@ public class MainController {
     @Autowired
     TransportistaServicio transportistaServicio;
 
-    @Autowired
-    RepositorioTransportista repositorioTransportista;
+    //@Autowired
+    //RepositorioTransportista repositorioTransportista;
 
     @Autowired
     NotificacionDeServicio notificacionDeServicio;
